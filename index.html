@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="ru" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="TAZY.PRO — национальная цифровая платформа для реестра, ДНК, здоровья, разведения и FCI Data Room казахской тазы."
+    />
+    <meta property="og:title" content="TAZY.PRO — Национальная цифровая платформа тазы" />
+    <meta
+      property="og:description"
+      content="Доказательная инфраструктура для полного FCI-признания к 2034 году."
+    />
+    <meta property="og:image" content="./assets/tazy-hero.png" />
+    <meta name="theme-color" content="#071014" />
+    <title>TAZY.PRO · National Tazy Platform</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#registry">Перейти к реестру</a>
+
+    <header class="site-header" data-header>
+      <a class="brand" href="#top" aria-label="TAZY.PRO home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 40 40" role="img">
+            <path d="M7 23c5-10 15-15 26-13-5 2-8 6-10 11l8 9c-8 2-15 0-21-5l-3 2z" />
+            <path d="M16 18c3 3 7 4 12 3" />
+          </svg>
+        </span>
+        <span>
+          <strong>TAZY.PRO</strong>
+          <small>National breed infrastructure</small>
+        </span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Primary navigation">
+        <a href="#registry">Registry</a>
+        <a href="#breeding">Breeding</a>
+        <a href="#passport">Passport</a>
+        <a href="#fci">FCI Data Room</a>
+      </nav>
+
+      <div class="header-actions">
+        <div class="language-switch" aria-label="Language">
+          <button type="button" data-lang="ru" class="active">RU</button>
+          <button type="button" data-lang="kk">KZ</button>
+          <button type="button" data-lang="en">EN</button>
+        </div>
+        <button class="theme-button" type="button" data-theme-toggle aria-label="Переключить тему">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 4a8 8 0 1 0 8 8 6 6 0 0 1-8-8z" />
+          </svg>
+        </button>
+        <a class="header-cta" href="#registry">Register</a>
+        <button class="menu-button" type="button" data-menu-toggle aria-label="Открыть меню" aria-expanded="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 7h16M4 12h16M4 17h16" />
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <div class="mobile-menu" data-mobile-menu>
+      <a href="#registry">Registry</a>
+      <a href="#breeding">Breeding</a>
+      <a href="#passport">Passport</a>
+      <a href="#fci">FCI Data Room</a>
+      <a href="#launch">Launch</a>
+    </div>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <img class="hero-image" src="./assets/tazy-hero.png" alt="Казахская тазы в степном пейзаже" />
+        <div class="hero-shade" aria-hidden="true"></div>
+        <div class="hero-content">
+          <div class="hero-copy">
+            <h1 id="hero-title" data-copy="heroTitle">TAZY.PRO</h1>
+            <p data-copy="heroText">
+              Национальная цифровая платформа для доказательного реестра тазы: шежіре, здоровье, ДНК,
+              полевые испытания, разведение и FCI Data Room к полному признанию в 2034 году.
+            </p>
+            <div class="hero-actions">
+              <a class="primary-button" href="#registry">Открыть реестр</a>
+              <a class="secondary-button" href="#fci">FCI roadmap</a>
+            </div>
+          </div>
+
+          <aside class="hero-panel" aria-label="FCI recognition status">
+            <div class="panel-topline">FCI provisional recognition</div>
+            <strong>3 September 2024</strong>
+            <div class="hero-panel-grid">
+              <span>Group</span><b>10</b>
+              <span>Cycle</span><b>2024–2034</b>
+              <span>Evidence</span><b>5 generations</b>
+            </div>
+            <div class="mini-progress" aria-label="Evidence readiness 42 percent">
+              <span style="width: 42%"></span>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="intro-strip" aria-label="Platform summary">
+        <div>
+          <strong>8</strong>
+          <span>verification levels</span>
+        </div>
+        <div>
+          <strong>2034</strong>
+          <span>full recognition target</span>
+        </div>
+        <div>
+          <strong>3</strong>
+          <span>public languages</span>
+        </div>
+        <div>
+          <strong>FCI</strong>
+          <span>standard data export</span>
+        </div>
+      </section>
+
+      <section class="section evidence-section" id="registry" aria-labelledby="registry-title">
+        <div class="section-heading">
+          <p>Evidence registry</p>
+          <h2 id="registry-title">Одна карточка собаки вместо разрозненных справок.</h2>
+          <span>
+            Публичный профиль показывает происхождение, здоровье, ДНК, результаты полевых испытаний и
+            готовность к международному экспорту данных.
+          </span>
+        </div>
+
+        <div class="registry-layout">
+          <div class="dog-selector" role="tablist" aria-label="Dog profiles">
+            <button type="button" class="active" data-dog="0" role="tab" aria-selected="true">
+              <img src="./assets/tazy-profile-1.jpg" alt="" />
+              <span><strong>Akzhel Barys</strong><small>DNA-parentage · field-tested</small></span>
+            </button>
+            <button type="button" data-dog="1" role="tab" aria-selected="false">
+              <img src="./assets/tazy-profile-2.jpg" alt="" />
+              <span><strong>Saumal Koke</strong><small>pedigree-verified · health-tested</small></span>
+            </button>
+          </div>
+
+          <article class="dog-card" aria-live="polite">
+            <div class="dog-photo-frame">
+              <img data-dog-photo src="./assets/tazy-profile-1.jpg" alt="Akzhel Barys profile" />
+              <div class="qr-card">
+                <span>QR</span>
+                <b>TZY-2034-0182</b>
+              </div>
+            </div>
+            <div class="dog-card-body">
+              <div class="dog-card-header">
+                <div>
+                  <h3 data-dog-name>Akzhel Barys</h3>
+                  <p data-dog-meta>Male · born 2022 · Almaty region</p>
+                </div>
+                <strong data-dog-score>86%</strong>
+              </div>
+              <div class="verification-list" data-verification-list></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section intelligence-section" id="breeding" aria-labelledby="breeding-title">
+        <div class="section-heading align-left">
+          <p>Breeding intelligence</p>
+          <h2 id="breeding-title">Разведение как управление популяцией, а не только вязками.</h2>
+          <span>
+            Платформа считает COI, моделирует помёт, видит Popular Sire Effect и показывает риски до
+            решения заводчика.
+          </span>
+        </div>
+
+        <div class="breeding-console">
+          <div class="pair-panel">
+            <label>
+              Sire
+              <select data-sire>
+                <option value="barys">Akzhel Barys</option>
+                <option value="temir">Temir Sunkar</option>
+                <option value="arkan">Arkan Zhel</option>
+              </select>
+            </label>
+            <label>
+              Dam
+              <select data-dam>
+                <option value="koke">Saumal Koke</option>
+                <option value="aiym">Aiym Shanyrak</option>
+                <option value="sulu">Sary Sulu</option>
+              </select>
+            </label>
+            <button class="primary-button compact" type="button" data-run-match>Model litter</button>
+          </div>
+
+          <div class="risk-grid" aria-live="polite">
+            <article>
+              <span>Coefficient of inbreeding</span>
+              <strong data-coi>4.8%</strong>
+              <div class="meter"><i data-coi-meter style="width: 32%"></i></div>
+            </article>
+            <article>
+              <span>Popular sire pressure</span>
+              <strong data-sire-risk>Low</strong>
+              <div class="meter blue"><i data-sire-meter style="width: 24%"></i></div>
+            </article>
+            <article>
+              <span>Genetic diversity signal</span>
+              <strong data-diversity>Stable</strong>
+              <div class="meter green"><i data-diversity-meter style="width: 68%"></i></div>
+            </article>
+          </div>
+
+          <div class="recommendation">
+            <h3 data-recommendation-title>Recommended with monitoring</h3>
+            <p data-recommendation>
+              Pair is acceptable for the 2034 FCI evidence cycle. Add ophthalmology and field-trial
+              video before export-ready status.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section passport-section" id="passport" aria-labelledby="passport-title">
+        <div class="passport-card">
+          <div class="passport-copy">
+            <p>Digital passport</p>
+            <h2 id="passport-title">Паспорт тазы для дипломатии, рынка и культурного наследия.</h2>
+            <span>
+              QR-код, криптографический хэш, неизменяемый журнал событий и ссылка на открытый профиль
+              превращают символический жест в проверяемый документ.
+            </span>
+          </div>
+
+          <div class="passport-visual" aria-label="Digital passport preview">
+            <div class="passport-header">
+              <div class="passport-logo">T</div>
+              <div>
+                <strong>TAZY DIGITAL PASSPORT</strong>
+                <span>TZY-KZ-000182</span>
+              </div>
+            </div>
+            <div class="passport-qr" aria-hidden="true">
+              <span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span>
+            </div>
+            <ol class="event-log">
+              <li><b>DNA parentage</b><span>Verified · 2026-05-17</span></li>
+              <li><b>Health package</b><span>Ophthalmology pending</span></li>
+              <li><b>Field trial</b><span>Video evidence attached</span></li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <section class="section fci-section" id="fci" aria-labelledby="fci-title">
+        <div class="section-heading">
+          <p>FCI Data Room</p>
+          <h2 id="fci-title">Десятилетний цикл признания виден как работающая система.</h2>
+          <span>
+            Экспорт в FCI строится из живых данных: родословные, здоровье, ДНК, темперамент, полевые
+            испытания, популяционная статистика.
+          </span>
+        </div>
+
+        <div class="timeline">
+          <article class="done">
+            <span>2024</span>
+            <h3>Preliminary recognition</h3>
+            <p>FCI General Assembly, Amsterdam. Tazy enters Group 10.</p>
+          </article>
+          <article class="active">
+            <span>2026</span>
+            <h3>Evidence registry launch</h3>
+            <p>First verified dogs, breeder workflow, annual export package.</p>
+          </article>
+          <article>
+            <span>2029</span>
+            <h3>UNESCO evidence base</h3>
+            <p>Salburyn culture dossier with hunting, genealogy and field records.</p>
+          </article>
+          <article>
+            <span>2034</span>
+            <h3>Definitive recognition</h3>
+            <p>Five generations, health testing and population stability.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section launch-section" id="launch" aria-labelledby="launch-title">
+        <div>
+          <h2 id="launch-title">Запустить волну до Дня тазы, а не в день анонса.</h2>
+          <p>
+            Период с 17 мая до 3 сентября работает как набор регистраций, проверка сценариев,
+            консолидация заводчиков и медийная кампания, где TAZY.PRO становится точкой действия.
+          </p>
+        </div>
+        <a class="primary-button" href="#registry">Начать регистрацию</a>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <strong>TAZY.PRO</strong>
+        <span>Доказательная цифровая инфраструктура казахской тазы.</span>
+      </div>
+      <nav aria-label="Footer navigation">
+        <a href="#registry">Registry</a>
+        <a href="#breeding">Breeding</a>
+        <a href="#passport">Passport</a>
+        <a href="#fci">FCI</a>
+      </nav>
+    </footer>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
