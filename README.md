@@ -14,8 +14,8 @@ Static first prototype for the national digital Tazy platform.
 
 ## Source material
 
-- `/Users/belilovsky/Downloads/Национальная цифровая платформа TAZY (1).pdf`
-- `/Users/belilovsky/Downloads/naiza.html`
+- Project brief: "Национальная цифровая платформа TAZY".
+- Visual/reference prototype: `naiza.html`.
 
 ## Run
 
