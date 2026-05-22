@@ -13,10 +13,10 @@ Implemented backend surfaces:
 - SQLAdmin mounted at `/admin`;
 - SQLite-by-default local storage with `TAZY_DATABASE_URL` for Postgres.
 
-The live frontend can still run as a static site. The next integration step is
-to switch the reviewer workspace and public read models from `src/api/mockApi.js`
-to the real `/api/v1` adapter once the backend is deployed behind the same
-origin.
+The live frontend still runs as a static site, but route-level data now goes
+through `src/api/tazyApi.js`. That client uses same-origin `/api/v1` in
+production, prompts for a reviewer key on protected routes, and falls back to
+local seed data when the app is opened as a standalone static prototype.
 
 ## Recommended next architecture
 

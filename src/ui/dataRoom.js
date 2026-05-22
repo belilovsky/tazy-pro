@@ -1,4 +1,5 @@
-import { getFciDataRoomSnapshot } from "../domain/dataRoom.js";
+import { tazyApi } from "../api/tazyApi.js";
+import { createReviewerKeyPanel, isAuthError } from "./reviewerAuth.js";
 
 function createElement(documentRef, tag, className, text) {
   const node = documentRef.createElement(tag);
@@ -77,9 +78,8 @@ function createExportPanel(documentRef, exportPackages) {
   return panel;
 }
 
-export function createDataRoomView(documentRef) {
-  const snapshot = getFciDataRoomSnapshot();
-  const section = createElement(documentRef, "section", "route-shell data-room-view");
+function renderDataRoom(documentRef, section, snapshot) {
+  section.replaceChildren();
   const back = createElement(documentRef, "a", "route-back", "Back to platform");
   back.href = "#fci";
 
@@ -110,5 +110,45 @@ export function createDataRoomView(documentRef) {
   );
 
   section.append(back, heading, cycle, createMetricGrid(documentRef, snapshot.metrics), grid);
+}
+
+function renderLoading(documentRef, section) {
+  section.replaceChildren(
+    createElement(documentRef, "a", "route-back", "Back to platform"),
+    createElement(documentRef, "article", "route-panel", "Loading FCI data room..."),
+  );
+  section.querySelector(".route-back").href = "#fci";
+}
+
+function renderError(documentRef, section, error) {
+  const back = createElement(documentRef, "a", "route-back", "Back to platform");
+  back.href = "#fci";
+  const panel = createElement(documentRef, "article", "route-panel");
+  panel.append(
+    createElement(documentRef, "h2", "", "FCI Data Room unavailable"),
+    createElement(documentRef, "p", "", error?.message || "Could not load the recognition evidence package."),
+  );
+  section.replaceChildren(back, panel);
+}
+
+export function createDataRoomView(documentRef, api = tazyApi) {
+  const section = createElement(documentRef, "section", "route-shell data-room-view");
+
+  async function loadSnapshot() {
+    renderLoading(documentRef, section);
+    try {
+      renderDataRoom(documentRef, section, await api.getFciDataRoomSnapshot());
+    } catch (error) {
+      if (isAuthError(error)) {
+        const back = createElement(documentRef, "a", "route-back", "Back to platform");
+        back.href = "#fci";
+        section.replaceChildren(back, createReviewerKeyPanel(documentRef, api, loadSnapshot, error));
+        return;
+      }
+      renderError(documentRef, section, error);
+    }
+  }
+
+  loadSnapshot();
   return section;
 }

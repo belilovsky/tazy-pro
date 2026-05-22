@@ -1,6 +1,7 @@
-import { mockApi } from "../api/mockApi.js";
+import { tazyApi } from "../api/tazyApi.js";
 import { DECISION_TYPE, EVIDENCE_PRIORITY } from "../domain/contracts.js";
 import { createVerificationRow } from "./evidence.js";
+import { createReviewerKeyPanel, isAuthError } from "./reviewerAuth.js";
 
 function createElement(documentRef, tag, className, text) {
   const node = documentRef.createElement(tag);
@@ -92,7 +93,7 @@ function renderDetail(documentRef, detail, item, onDecision) {
   const log = createElement(documentRef, "p", "admin-event-log");
   log.setAttribute("aria-live", "polite");
   log.textContent = decision
-    ? `${decision.decisionLabel} · reviewer event saved in the local mock API.`
+    ? `${decision.decisionLabel} · reviewer event saved as an append-only decision.`
     : "No decision yet. Choose an action to prepare an audit-log event.";
 
   evidence.append(noteLabel, actions, log);
@@ -115,13 +116,13 @@ function renderDetail(documentRef, detail, item, onDecision) {
   detail.replaceChildren(panel);
 }
 
-function renderStats(documentRef, stats, reviewQueue) {
+function renderStats(documentRef, stats, reviewQueue, api) {
   stats.replaceChildren();
   [
     ["Queue", `${reviewQueue.length} items`],
     ["Dogs affected", `${new Set(reviewQueue.map((item) => item.dogId)).size}`],
     ["High priority", `${reviewQueue.filter((item) => item.priority === EVIDENCE_PRIORITY.high).length}`],
-    ["Audit mode", "Mock API"],
+    ["Audit mode", api.getSourceLabel?.() || "Backend API"],
   ].forEach(([label, value]) => {
     const item = createElement(documentRef, "div");
     item.append(createElement(documentRef, "span", "", label), createElement(documentRef, "strong", "", value));
@@ -143,7 +144,7 @@ function renderError(documentRef, detail, error) {
   detail.replaceChildren(panel);
 }
 
-export function createAdminWorkspace(documentRef, api = mockApi) {
+export function createAdminWorkspace(documentRef, api = tazyApi) {
   let reviewQueue = [];
   let selectedId;
 
@@ -164,7 +165,7 @@ export function createAdminWorkspace(documentRef, api = mockApi) {
   );
 
   const stats = createElement(documentRef, "div", "route-stat-grid admin-stat-grid");
-  renderStats(documentRef, stats, reviewQueue);
+  renderStats(documentRef, stats, reviewQueue, api);
 
   const layout = createElement(documentRef, "div", "admin-layout");
   const queuePanel = createElement(documentRef, "aside", "route-panel admin-queue-panel");
@@ -181,17 +182,32 @@ export function createAdminWorkspace(documentRef, api = mockApi) {
     refresh();
   }
 
+  function renderAuth(error) {
+    queue.replaceChildren(createElement(documentRef, "p", "admin-empty", "Protected backend queue."));
+    detail.replaceChildren(createReviewerKeyPanel(documentRef, api, () => {
+      renderLoading(documentRef, queue, detail);
+      loadQueue().catch((nextError) => {
+        if (isAuthError(nextError)) {
+          renderAuth(nextError);
+          return;
+        }
+        renderError(documentRef, detail, nextError);
+      });
+    }, error));
+    renderStats(documentRef, stats, reviewQueue, api);
+  }
+
   function refresh() {
     const selected = reviewQueue.find((item) => item.id === selectedId) || reviewQueue[0];
     if (!selected) {
       queue.replaceChildren(createElement(documentRef, "p", "admin-empty", "No evidence items in the queue."));
       detail.replaceChildren(createElement(documentRef, "article", "route-panel", "The reviewer queue is empty."));
-      renderStats(documentRef, stats, reviewQueue);
+      renderStats(documentRef, stats, reviewQueue, api);
       return;
     }
 
     selectedId = selected.id;
-    renderStats(documentRef, stats, reviewQueue);
+    renderStats(documentRef, stats, reviewQueue, api);
     renderQueue(documentRef, queue, reviewQueue, selectedId, (nextId) => {
       selectedId = nextId;
       refresh();
@@ -201,13 +217,23 @@ export function createAdminWorkspace(documentRef, api = mockApi) {
         await api.createVerificationDecision({ evidenceItemId: itemId, decision, note });
         await loadQueue();
       } catch (error) {
+        if (isAuthError(error)) {
+          renderAuth(error);
+          return;
+        }
         renderError(documentRef, detail, error);
       }
     });
   }
 
   renderLoading(documentRef, queue, detail);
-  loadQueue().catch((error) => renderError(documentRef, detail, error));
+  loadQueue().catch((error) => {
+    if (isAuthError(error)) {
+      renderAuth(error);
+      return;
+    }
+    renderError(documentRef, detail, error);
+  });
   section.append(back, heading, stats, layout);
   return section;
 }

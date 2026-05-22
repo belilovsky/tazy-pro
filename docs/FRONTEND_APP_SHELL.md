@@ -32,8 +32,13 @@ src/i18n/messages.js
   Owns the first RU/KZ/EN copy catalog for shell and landing sections.
 
 src/api/mockApi.js
-  Owns async mock API methods and local reviewer-decision persistence. This is
-  the replacement point for the future backend client.
+  Owns local fallback methods and browser-only reviewer-decision persistence for
+  static development.
+
+src/api/tazyApi.js
+  Owns the production browser API boundary. It calls same-origin `/api/v1`,
+  handles reviewer-key storage, and falls back to `mockApi` only when the backend
+  is unavailable in local static mode.
 
 src/ui/shell.js
   Owns header scroll state, theme toggle, language switch, and mobile menu.
@@ -55,8 +60,8 @@ src/ui/evidence.js
   Owns shared evidence row rendering used by registry and route views.
 
 src/ui/admin.js
-  Owns the reviewer workspace demo: queue selection, profile impact, reviewer
-  notes, and persisted mock API decision state.
+  Owns the reviewer workspace: queue selection, profile impact, reviewer notes,
+  reviewer-key prompt, and append-only backend decision creation.
 ```
 
 ## Migration path to React/Vite
@@ -66,7 +71,7 @@ When package tooling is available, these modules can move directly into React:
 - `src/data/platform.js` becomes seed/domain data.
 - `src/domain/contracts.js` becomes shared schema/types.
 - `src/domain/readModels.js` becomes generated API clients or selector helpers.
-- `src/api/mockApi.js` becomes the real HTTP client boundary.
+- `src/api/tazyApi.js` remains the real HTTP client boundary.
 - `src/i18n/messages.js` becomes the application translation catalog.
 - `src/ui/registry.js` becomes `RegistrySection`.
 - `src/ui/breeding.js` becomes `BreedingConsole`.

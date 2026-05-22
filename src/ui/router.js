@@ -1,10 +1,11 @@
+import { tazyApi } from "../api/tazyApi.js";
 import { dogProfiles } from "../data/platform.js";
-import { getPublicDogProfile, getPublicDogProfileByPassportId } from "../domain/readModels.js";
 import { createAdminWorkspace } from "./admin.js";
 import { createDataRoomView } from "./dataRoom.js";
 import { createVerificationRow } from "./evidence.js";
 
 const routePrefix = "#/";
+let routeRequestId = 0;
 
 function createElement(documentRef, tag, className, text) {
   const node = documentRef.createElement(tag);
@@ -129,9 +130,52 @@ function createPassportView(documentRef, dog) {
   return section;
 }
 
+function createRouteLoading(documentRef, text = "Loading route...") {
+  const section = createElement(documentRef, "section", "route-shell");
+  section.append(createElement(documentRef, "article", "route-panel", text));
+  return section;
+}
+
+function createRouteError(documentRef, title, message) {
+  const section = createElement(documentRef, "section", "route-shell");
+  const back = createRouteButton(documentRef, "#/", "Back to platform", "route-back");
+  const panel = createElement(documentRef, "article", "route-panel");
+  panel.append(createElement(documentRef, "h1", "", title), createElement(documentRef, "p", "", message));
+  section.append(back, panel);
+  return section;
+}
+
+async function resolveRouteView(root, resource, slug) {
+  if (resource === "dogs") {
+    const dog = await tazyApi.getDog(slug || dogProfiles[0].id);
+    return dog
+      ? createDogProfile(root, dog)
+      : createRouteError(root, "Dog profile not found", "This public registry profile is not available.");
+  }
+
+  if (resource === "passport") {
+    const dog = await tazyApi.getDogByPassport(slug || dogProfiles[0].passportId);
+    return dog
+      ? createPassportView(root, dog)
+      : createRouteError(root, "Passport not found", "This digital passport is not available.");
+  }
+
+  if (resource === "admin") {
+    return createAdminWorkspace(root);
+  }
+
+  if (resource === "data-room") {
+    return createDataRoomView(root);
+  }
+
+  return null;
+}
+
 function renderRoute(root, homeView, routeView) {
   const hash = window.location.hash;
   const isAppRoute = hash.startsWith(routePrefix);
+  const requestId = routeRequestId + 1;
+  routeRequestId = requestId;
 
   if (!isAppRoute || hash === routePrefix) {
     routeView.hidden = true;
@@ -148,33 +192,28 @@ function renderRoute(root, homeView, routeView) {
   }
 
   const [resource, slug] = hash.slice(routePrefix.length).split("/");
-  let view = null;
-
-  if (resource === "dogs") {
-    view = createDogProfile(root, getPublicDogProfile(slug) || getPublicDogProfile(dogProfiles[0].id));
-  }
-
-  if (resource === "passport") {
-    view = createPassportView(root, getPublicDogProfileByPassportId(slug) || getPublicDogProfile(dogProfiles[0].id));
-  }
-
-  if (resource === "admin") {
-    view = createAdminWorkspace(root);
-  }
-
-  if (resource === "data-room") {
-    view = createDataRoomView(root);
-  }
-
-  if (!view) {
-    window.location.hash = "#/";
-    return;
-  }
-
   homeView.hidden = true;
   routeView.hidden = false;
-  routeView.replaceChildren(view);
+  routeView.replaceChildren(createRouteLoading(root));
   window.requestAnimationFrame(() => window.scrollTo({ top: 0 }));
+
+  resolveRouteView(root, resource, slug)
+    .then((view) => {
+      if (requestId !== routeRequestId) {
+        return;
+      }
+      if (!view) {
+        window.location.hash = "#/";
+        return;
+      }
+      routeView.replaceChildren(view);
+    })
+    .catch((error) => {
+      if (requestId !== routeRequestId) {
+        return;
+      }
+      routeView.replaceChildren(createRouteError(root, "Route unavailable", error?.message || "Could not load this route."));
+    });
 }
 
 export function initRouter(root = document) {
