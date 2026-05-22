@@ -21,10 +21,16 @@ def _bearer_value(authorization: str | None) -> str:
 
 
 async def require_reviewer(
+    request: Request,
     authorization: Annotated[str | None, Header()] = None,
     x_reviewer_key: Annotated[str | None, Header(alias="X-Reviewer-Key")] = None,
     settings: Settings = Depends(get_settings),
 ) -> str:
+    if request.session.get("reviewer_authenticated") is True:
+        return str(request.session.get("reviewer_user") or "reviewer")
+    if request.session.get("admin_authenticated") is True:
+        return str(request.session.get("admin_user") or "admin")
+
     expected = settings.reviewer_api_key
     provided = x_reviewer_key or _bearer_value(authorization)
     if settings.debug and not provided:
@@ -33,8 +39,12 @@ async def require_reviewer(
         return "reviewer"
     raise HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
-        detail={"code": "unauthorized", "message": "Reviewer API key is required"},
+        detail={"code": "unauthorized", "message": "Reviewer login is required"},
     )
+
+
+def credentials_match(username: str, password: str, *, expected_username: str, expected_password: str) -> bool:
+    return secrets.compare_digest(username, expected_username) and secrets.compare_digest(password, expected_password)
 
 
 class TazyAdminAuth(AuthenticationBackend):

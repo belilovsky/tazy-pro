@@ -37,8 +37,8 @@ src/api/mockApi.js
 
 src/api/tazyApi.js
   Owns the production browser API boundary. It calls same-origin `/api/v1`,
-  handles reviewer-key storage, and falls back to `mockApi` only when the backend
-  is unavailable in local static mode.
+  handles reviewer session login, and falls back to `mockApi` only when the
+  backend is unavailable in local static mode.
 
 src/ui/shell.js
   Owns header scroll state, theme toggle, language switch, and mobile menu.

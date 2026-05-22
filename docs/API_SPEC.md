@@ -99,6 +99,33 @@ Response:
 
 ## Reviewer Workspace
 
+### `GET /review/session`
+
+Returns the current reviewer session state.
+
+```json
+{
+  "authenticated": true,
+  "reviewerId": "admin"
+}
+```
+
+### `POST /review/login`
+
+Creates a same-origin reviewer session cookie. The MVP uses the configured admin
+credentials until role-specific reviewer accounts are split out.
+
+```json
+{
+  "username": "admin",
+  "password": "..."
+}
+```
+
+### `POST /review/logout`
+
+Clears the reviewer session.
+
 ### `GET /review/queue`
 
 Role: reviewer/admin.

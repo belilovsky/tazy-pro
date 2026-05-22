@@ -85,8 +85,8 @@ Postgres drafts instead of introducing a parallel model:
 - SQLAdmin at `/admin`
 
 The static app uses the same-origin `/api/v1` client in `src/api/tazyApi.js`.
-Reviewer routes prompt for a reviewer API key and keep it in session storage,
-not in source code.
+Reviewer routes authenticate through a backend session cookie; `X-Reviewer-Key`
+remains available only as a service fallback.
 
 Local backend run:
 

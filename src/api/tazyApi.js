@@ -1,5 +1,5 @@
-import { getFciDataRoomSnapshot as getLocalFciDataRoomSnapshot } from "../domain/dataRoom.js?v=20260522T1040";
-import { mockApi } from "./mockApi.js?v=20260522T1040";
+import { getFciDataRoomSnapshot as getLocalFciDataRoomSnapshot } from "../domain/dataRoom.js?v=20260522T143930Z";
+import { mockApi } from "./mockApi.js?v=20260522T143930Z";
 
 const REVIEWER_KEY_STORAGE = "tazy-pro.reviewer-key.v1";
 const DEFAULT_API_BASE = "";
@@ -117,6 +117,7 @@ async function requestJson(path, options = {}) {
         method: options.method || "GET",
         headers,
         body,
+        credentials: "same-origin",
       });
     } else {
       response = await requestJsonWithXhr(url, {
@@ -196,6 +197,22 @@ export const tazyApi = {
 
   getReviewerKey,
   setReviewerKey,
+
+  async getReviewerSession() {
+    return requestJson("/review/session");
+  },
+
+  async loginReviewer({ username, password }) {
+    return requestJson("/review/login", {
+      method: "POST",
+      body: { username, password },
+    });
+  },
+
+  async logoutReviewer() {
+    setReviewerKey("");
+    return requestJson("/review/logout", { method: "POST" });
+  },
 
   getSourceLabel() {
     return this.source === "local" ? "Local demo data" : "Backend API";

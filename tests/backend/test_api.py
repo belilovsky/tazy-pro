@@ -22,7 +22,7 @@ def client(tmp_path, monkeypatch):
 
     from backend.app.main import create_app
 
-    with TestClient(create_app()) as test_client:
+    with TestClient(create_app(), base_url="https://testserver") as test_client:
         yield test_client
 
     get_settings.cache_clear()
@@ -88,9 +88,58 @@ def test_reviewer_queue_requires_key_outside_debug(tmp_path, monkeypatch):
 
     from backend.app.main import create_app
 
-    with TestClient(create_app()) as test_client:
+    with TestClient(create_app(), base_url="https://testserver") as test_client:
         response = test_client.get("/api/v1/review/queue")
         assert response.status_code == 401
+        assert response.json()["error"]["message"] == "Reviewer login is required"
+
+    get_settings.cache_clear()
+    asyncio.run(dispose_engine())
+
+
+def test_reviewer_session_login_unlocks_queue(tmp_path, monkeypatch):
+    monkeypatch.setenv("TAZY_DEBUG", "false")
+    monkeypatch.setenv("TAZY_DATABASE_URL", f"sqlite+aiosqlite:///{tmp_path / 'session.db'}")
+    monkeypatch.setenv("TAZY_SECRET_KEY", "prod-session-secret")
+    monkeypatch.setenv("TAZY_ADMIN_USERNAME", "admin")
+    monkeypatch.setenv("TAZY_ADMIN_PASSWORD", "prod-admin-password")
+    monkeypatch.setenv("TAZY_REVIEWER_API_KEY", "prod-reviewer-key")
+
+    from backend.app.config import get_settings
+    from backend.app.database import dispose_engine
+
+    get_settings.cache_clear()
+    asyncio.run(dispose_engine())
+
+    from backend.app.main import create_app
+
+    with TestClient(create_app(), base_url="https://testserver") as test_client:
+        bad_login = test_client.post(
+            "/api/v1/review/login",
+            json={"username": "admin", "password": "wrong-password"},
+        )
+        assert bad_login.status_code == 401
+
+        login = test_client.post(
+            "/api/v1/review/login",
+            json={"username": "admin", "password": "prod-admin-password"},
+        )
+        assert login.status_code == 200
+        assert login.json() == {"authenticated": True, "reviewerId": "admin"}
+
+        session = test_client.get("/api/v1/review/session")
+        assert session.json() == {"authenticated": True, "reviewerId": "admin"}
+
+        queue = test_client.get("/api/v1/review/queue")
+        assert queue.status_code == 200
+        assert len(queue.json()["items"]) == 3
+
+        logout = test_client.post("/api/v1/review/logout")
+        assert logout.status_code == 200
+        assert logout.json() == {"authenticated": False, "reviewerId": ""}
+
+        locked = test_client.get("/api/v1/review/queue")
+        assert locked.status_code == 401
 
     get_settings.cache_clear()
     asyncio.run(dispose_engine())

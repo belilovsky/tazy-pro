@@ -78,7 +78,7 @@ Expected:
 - HTTPS returns `200`.
 - HTTP returns `301` to `https://tazy.qdev.run/`.
 - API dog registry returns `200`.
-- `/api/v1/review/queue` returns `401` without `X-Reviewer-Key`.
+- `/api/v1/review/queue` returns `401` without reviewer session credentials.
 - Admin login returns `200`.
 - `strict-transport-security`, `x-content-type-options`, and
   `referrer-policy` are present on HTTPS.

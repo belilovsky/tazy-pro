@@ -20,8 +20,8 @@ src/api/mockApi.js
 
 src/api/tazyApi.js
   Production browser API client. It calls same-origin `/api/v1`, sends
-  reviewer keys from sessionStorage for protected routes, and falls back to
-  `mockApi` when the backend is not available in local static development.
+  backend reviewer session cookies for protected routes, and falls back to
+  `mockApi` only when the backend is not available in local static development.
 
 src/data/platform.js
   Temporary seed data shaped like future API records.

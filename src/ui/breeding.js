@@ -1,4 +1,4 @@
-import { pairScores } from "../data/platform.js?v=20260522T1040";
+import { pairScores } from "../data/platform.js?v=20260522T143930Z";
 
 export function initBreeding(root = document) {
   const sire = root.querySelector("[data-sire]");

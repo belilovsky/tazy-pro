@@ -80,8 +80,16 @@ globalThis.fetch = async (url, options) => {
     });
   }
   if (url.endsWith("/api/v1/review/queue")) {
-    assert(options.headers["X-Reviewer-Key"] === "review-key", "Reviewer key header was not sent");
+    assert(options.credentials === "same-origin", "Reviewer queue did not use same-origin credentials");
     return response(200, { items: [] });
+  }
+  if (url.endsWith("/api/v1/review/login")) {
+    assert(options.credentials === "same-origin", "Reviewer login did not use same-origin credentials");
+    assert(JSON.parse(options.body).username === "reviewer", "Reviewer login username was not sent");
+    return response(200, { authenticated: true, reviewerId: "reviewer" });
+  }
+  if (url.endsWith("/api/v1/review/session")) {
+    return response(200, { authenticated: true, reviewerId: "reviewer" });
   }
   return response(404, { error: { code: "not_found", message: "Not found" } });
 };
@@ -91,7 +99,8 @@ assert(dogs.length === 1, "Backend dog list was not used");
 assert(dogs[0].score === "86%", "Dog score was not normalized");
 assert(dogs[0].meta.includes("Almaty region"), "Dog meta was not normalized");
 
-tazyApi.setReviewerKey("review-key");
+const login = await tazyApi.loginReviewer({ username: "reviewer", password: "secret" });
+assert(login.authenticated === true, "Reviewer login did not return an authenticated session");
 const queue = await tazyApi.listReviewQueue();
 assert(Array.isArray(queue), "Reviewer queue did not return an array");
 assert(calls.some((call) => call.url.endsWith("/api/v1/review/queue")), "Reviewer queue endpoint was not called");
@@ -118,4 +127,4 @@ assert(fallbackDogs.length === 2, "Local fallback did not return seed dogs");
 assert(tazyApi.getSourceLabel() === "Local demo data", "Fallback source label was not set");
 
 restoreGlobals();
-console.log("API client verified: backend path, reviewer auth header, and local fallback.");
+console.log("API client verified: backend path, reviewer session credentials, and local fallback.");

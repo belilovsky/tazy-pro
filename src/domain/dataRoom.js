@@ -1,5 +1,5 @@
-import { dogProfiles, evidenceItems } from "../data/platform.js?v=20260522T1040";
-import { EVIDENCE_PRIORITY, EVIDENCE_STATUS, EVIDENCE_TYPE, formatEvidenceStatus, formatPriority } from "./contracts.js?v=20260522T1040";
+import { dogProfiles, evidenceItems } from "../data/platform.js?v=20260522T143930Z";
+import { EVIDENCE_PRIORITY, EVIDENCE_STATUS, EVIDENCE_TYPE, formatEvidenceStatus, formatPriority } from "./contracts.js?v=20260522T143930Z";
 
 const evidenceLabels = {
   [EVIDENCE_TYPE.ownership]: "Ownership",

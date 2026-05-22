@@ -15,44 +15,57 @@ export function isAuthError(error) {
 
 export function createReviewerKeyPanel(documentRef, api, onSubmit, error) {
   const panel = createElement(documentRef, "article", "route-panel reviewer-key-panel");
+  const message = createElement(
+    documentRef,
+    "p",
+    "",
+    error?.message || "Sign in to load protected evidence and FCI data from the backend.",
+  );
   panel.append(
     createElement(documentRef, "p", "section-label", "Protected workspace"),
-    createElement(documentRef, "h2", "", "Reviewer key required"),
-    createElement(
-      documentRef,
-      "p",
-      "",
-      error?.message || "Enter the reviewer API key to load protected evidence and FCI data from the backend.",
-    ),
+    createElement(documentRef, "h2", "", "Reviewer login required"),
+    message,
   );
 
   const form = createElement(documentRef, "form", "reviewer-key-form");
-  const label = createElement(documentRef, "label", "reviewer-key-label", "Reviewer API key");
-  const input = createElement(documentRef, "input", "reviewer-key-input");
-  input.type = "password";
-  input.name = "reviewer-key";
-  input.autocomplete = "current-password";
-  input.placeholder = "Paste key";
-  input.value = api.getReviewerKey?.() || "";
-  label.append(input);
+  const usernameLabel = createElement(documentRef, "label", "reviewer-key-label", "Username");
+  const username = createElement(documentRef, "input", "reviewer-key-input");
+  username.type = "text";
+  username.name = "username";
+  username.autocomplete = "username";
+  username.placeholder = "Reviewer username";
+  usernameLabel.append(username);
+
+  const passwordLabel = createElement(documentRef, "label", "reviewer-key-label", "Password");
+  const password = createElement(documentRef, "input", "reviewer-key-input");
+  password.type = "password";
+  password.name = "password";
+  password.autocomplete = "current-password";
+  password.placeholder = "Password";
+  passwordLabel.append(password);
 
   const actions = createElement(documentRef, "div", "admin-actions");
-  const save = createElement(documentRef, "button", "primary-button compact", "Unlock");
-  save.type = "submit";
-  const clear = createElement(documentRef, "button", "secondary-button", "Clear key");
-  clear.type = "button";
-  clear.addEventListener("click", () => {
-    api.setReviewerKey?.("");
-    input.value = "";
-    input.focus();
-  });
-  actions.append(save, clear);
+  const submit = createElement(documentRef, "button", "primary-button compact", "Sign in");
+  submit.type = "submit";
+  const reset = createElement(documentRef, "button", "secondary-button", "Reset");
+  reset.type = "reset";
+  actions.append(submit, reset);
 
-  form.append(label, actions);
-  form.addEventListener("submit", (event) => {
+  form.append(usernameLabel, passwordLabel, actions);
+  form.addEventListener("submit", async (event) => {
     event.preventDefault();
-    api.setReviewerKey?.(input.value);
-    onSubmit();
+    submit.disabled = true;
+    message.textContent = "Signing in...";
+    try {
+      await api.loginReviewer?.({ username: username.value, password: password.value });
+      onSubmit();
+    } catch (nextError) {
+      message.textContent = nextError?.message || "Reviewer login failed.";
+      password.value = "";
+      password.focus();
+    } finally {
+      submit.disabled = false;
+    }
   });
 
   panel.append(form);

@@ -47,8 +47,13 @@ TAZY_DATABASE_URL=postgresql+asyncpg://...
 curl http://localhost:8181/health
 curl http://localhost:8181/api/v1/dogs
 curl http://localhost:8181/api/v1/dogs/akzhel-barys
+curl http://localhost:8181/api/v1/review/session
 curl -H "X-Reviewer-Key: dev-reviewer-key" http://localhost:8181/api/v1/review/queue
 ```
+
+The browser reviewer workspace should use `/api/v1/review/login` and the
+same-origin session cookie. `X-Reviewer-Key` is kept for scripted smoke checks
+and operational fallback.
 
 ## Deploy
 

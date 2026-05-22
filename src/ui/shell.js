@@ -1,4 +1,4 @@
-import { copyCatalog } from "../i18n/messages.js?v=20260522T1040";
+import { copyCatalog } from "../i18n/messages.js?v=20260522T143930Z";
 
 export function initShell(root = document) {
   const header = root.querySelector("[data-header]");
