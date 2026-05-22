@@ -1,4 +1,4 @@
-const dogProfiles = [
+export const dogProfiles = [
   {
     name: "Akzhel Barys",
     meta: "Male · born 2022 · Almaty region",
@@ -33,7 +33,7 @@ const dogProfiles = [
   },
 ];
 
-const pairScores = {
+export const pairScores = {
   "barys-koke": {
     coi: "4.8%",
     coiMeter: "32%",
@@ -126,7 +126,7 @@ const pairScores = {
   },
 };
 
-const copy = {
+export const heroCopy = {
   ru: {
     heroTitle: "TAZY.PRO",
     heroText:
@@ -144,100 +144,3 @@ const copy = {
   },
 };
 
-const header = document.querySelector("[data-header]");
-const html = document.documentElement;
-const menu = document.querySelector("[data-mobile-menu]");
-const menuToggle = document.querySelector("[data-menu-toggle]");
-
-window.addEventListener("scroll", () => {
-  header.classList.toggle("scrolled", window.scrollY > 18);
-});
-
-document.querySelector("[data-theme-toggle]").addEventListener("click", () => {
-  const next = html.dataset.theme === "dark" ? "light" : "dark";
-  html.dataset.theme = next;
-});
-
-menuToggle.addEventListener("click", () => {
-  const open = !menu.classList.contains("open");
-  menu.classList.toggle("open", open);
-  document.body.classList.toggle("no-scroll", open);
-  menuToggle.setAttribute("aria-expanded", String(open));
-});
-
-menu.querySelectorAll("a").forEach((link) => {
-  link.addEventListener("click", () => {
-    menu.classList.remove("open");
-    document.body.classList.remove("no-scroll");
-    menuToggle.setAttribute("aria-expanded", "false");
-  });
-});
-
-document.querySelectorAll("[data-lang]").forEach((button) => {
-  button.addEventListener("click", () => {
-    const lang = button.dataset.lang;
-    document.querySelectorAll("[data-lang]").forEach((item) => {
-      item.classList.toggle("active", item === button);
-    });
-    document.documentElement.lang = lang === "kk" ? "kk" : lang;
-    document.querySelectorAll("[data-copy]").forEach((node) => {
-      const key = node.dataset.copy;
-      node.textContent = copy[lang][key];
-    });
-  });
-});
-
-function renderDog(index) {
-  const profile = dogProfiles[index];
-  document.querySelector("[data-dog-photo]").src = profile.photo;
-  document.querySelector("[data-dog-photo]").alt = profile.alt;
-  document.querySelector("[data-dog-name]").textContent = profile.name;
-  document.querySelector("[data-dog-meta]").textContent = profile.meta;
-  document.querySelector("[data-dog-score]").textContent = profile.score;
-
-  const list = document.querySelector("[data-verification-list]");
-  list.innerHTML = profile.steps
-    .map(([label, status, state]) => {
-      const icon = state === "done" ? "✓" : "•";
-      return `
-        <div class="verification-row ${state === "pending" ? "pending" : ""}">
-          <span class="verification-dot" aria-hidden="true">${icon}</span>
-          <span><b>${label}</b><small>${status}</small></span>
-          <b>${state}</b>
-        </div>
-      `;
-    })
-    .join("");
-}
-
-document.querySelectorAll("[data-dog]").forEach((button) => {
-  button.addEventListener("click", () => {
-    document.querySelectorAll("[data-dog]").forEach((item) => {
-      item.classList.toggle("active", item === button);
-      item.setAttribute("aria-selected", String(item === button));
-    });
-    renderDog(Number(button.dataset.dog));
-  });
-});
-
-function updateBreeding() {
-  const sire = document.querySelector("[data-sire]").value;
-  const dam = document.querySelector("[data-dam]").value;
-  const data = pairScores[`${sire}-${dam}`] || pairScores["barys-koke"];
-
-  document.querySelector("[data-coi]").textContent = data.coi;
-  document.querySelector("[data-coi-meter]").style.width = data.coiMeter;
-  document.querySelector("[data-sire-risk]").textContent = data.sireRisk;
-  document.querySelector("[data-sire-meter]").style.width = data.sireMeter;
-  document.querySelector("[data-diversity]").textContent = data.diversity;
-  document.querySelector("[data-diversity-meter]").style.width = data.diversityMeter;
-  document.querySelector("[data-recommendation-title]").textContent = data.title;
-  document.querySelector("[data-recommendation]").textContent = data.text;
-}
-
-document.querySelector("[data-run-match]").addEventListener("click", updateBreeding);
-document.querySelector("[data-sire]").addEventListener("change", updateBreeding);
-document.querySelector("[data-dam]").addEventListener("change", updateBreeding);
-
-renderDog(0);
-updateBreeding();

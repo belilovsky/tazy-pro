@@ -10,6 +10,7 @@ static, while the product direction is captured in:
 - [ROADMAP.md](./ROADMAP.md)
 - [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md)
 - [docs/DATA_MODEL.md](./docs/DATA_MODEL.md)
+- [docs/FRONTEND_APP_SHELL.md](./docs/FRONTEND_APP_SHELL.md)
 
 ## What is included
 
@@ -35,3 +36,15 @@ python3 -m http.server 4173
 ```
 
 Then open `http://localhost:4173`.
+
+If Node/npm is available, the same server can be started with:
+
+```bash
+npm run dev
+```
+
+Check JavaScript module syntax with:
+
+```bash
+npm run check
+```

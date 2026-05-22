@@ -1,0 +1,46 @@
+# Frontend App Shell
+
+## Decision
+
+The first app shell uses native ES modules instead of introducing a framework
+immediately. This keeps the existing prototype blocks intact, avoids a package
+manager dependency during the first cleanup, and leaves a clear migration path to
+React/Vite later.
+
+## Current module map
+
+```text
+index.html
+  Loads the existing page sections and starts src/main.js.
+
+src/main.js
+  Bootstraps the page.
+
+src/data/platform.js
+  Contains current prototype data: dog profiles, breeding pair scores, and hero
+  language copy.
+
+src/ui/shell.js
+  Owns header scroll state, theme toggle, language switch, and mobile menu.
+
+src/ui/registry.js
+  Owns the registry dog selector and verification rows.
+
+src/ui/breeding.js
+  Owns the breeding pair model controls and recommendation output.
+```
+
+## Migration path to React/Vite
+
+When package tooling is available, these modules can move directly into React:
+
+- `src/data/platform.js` becomes seed/domain data.
+- `src/ui/registry.js` becomes `RegistrySection`.
+- `src/ui/breeding.js` becomes `BreedingConsole`.
+- `src/ui/shell.js` splits into `Header`, `MobileMenu`, `ThemeToggle`, and
+  `LanguageSwitch`.
+- `index.html` sections become route/page components.
+
+The important rule is to preserve the existing product blocks and behavior while
+changing the implementation layer.
+
