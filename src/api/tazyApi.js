@@ -69,6 +69,19 @@ function authHeaders() {
   return key ? { "X-Reviewer-Key": key } : {};
 }
 
+function canUseLocalFallback() {
+  const location = globalThis.location;
+  if (!location) {
+    return true;
+  }
+  return (
+    location.protocol === "file:" ||
+    location.hostname === "localhost" ||
+    location.hostname === "127.0.0.1" ||
+    location.hostname === "::1"
+  );
+}
+
 async function parseError(response) {
   const contentType = response.headers.get("content-type") || "";
   if (!contentType.includes("application/json")) {
@@ -170,7 +183,7 @@ async function withFallback(request, fallback, options = {}) {
       tazyApi.source = "backend";
       throw error;
     }
-    if (error.canFallback && fallback) {
+    if (error.canFallback && fallback && canUseLocalFallback()) {
       tazyApi.source = "local";
       return fallback();
     }

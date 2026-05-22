@@ -1,6 +1,7 @@
 import { tazyApi } from "../src/api/tazyApi.js";
 
 const originalFetch = globalThis.fetch;
+const originalLocation = globalThis.location;
 const originalSessionStorage = globalThis.sessionStorage;
 const calls = [];
 const store = new Map();
@@ -28,6 +29,10 @@ function restoreGlobals() {
     value: originalSessionStorage,
   });
   globalThis.fetch = originalFetch;
+  Object.defineProperty(globalThis, "location", {
+    configurable: true,
+    value: originalLocation,
+  });
 }
 
 function response(status, payload, contentType = "application/json") {
@@ -92,6 +97,22 @@ assert(Array.isArray(queue), "Reviewer queue did not return an array");
 assert(calls.some((call) => call.url.endsWith("/api/v1/review/queue")), "Reviewer queue endpoint was not called");
 
 globalThis.fetch = undefined;
+Object.defineProperty(globalThis, "location", {
+  configurable: true,
+  value: { protocol: "https:", hostname: "tazy.qdev.run" },
+});
+let blockedProductionFallback = false;
+try {
+  await tazyApi.listDogs();
+} catch (error) {
+  blockedProductionFallback = error.code === "network_error";
+}
+assert(blockedProductionFallback, "Production origins must not fall back to local seed data");
+
+Object.defineProperty(globalThis, "location", {
+  configurable: true,
+  value: { protocol: "http:", hostname: "127.0.0.1" },
+});
 const fallbackDogs = await tazyApi.listDogs();
 assert(fallbackDogs.length === 2, "Local fallback did not return seed dogs");
 assert(tazyApi.getSourceLabel() === "Local demo data", "Fallback source label was not set");
