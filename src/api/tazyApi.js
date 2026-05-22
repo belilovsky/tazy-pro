@@ -1,5 +1,5 @@
-import { getFciDataRoomSnapshot as getLocalFciDataRoomSnapshot } from "../domain/dataRoom.js";
-import { mockApi } from "./mockApi.js";
+import { getFciDataRoomSnapshot as getLocalFciDataRoomSnapshot } from "../domain/dataRoom.js?v=20260522T1040";
+import { mockApi } from "./mockApi.js?v=20260522T1040";
 
 const REVIEWER_KEY_STORAGE = "tazy-pro.reviewer-key.v1";
 const DEFAULT_API_BASE = "";

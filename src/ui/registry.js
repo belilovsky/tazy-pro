@@ -1,7 +1,7 @@
-import { dogProfiles } from "../data/platform.js";
-import { getPublicDogProfile } from "../domain/readModels.js";
-import { createVerificationRow } from "./evidence.js";
-import { updateDogRouteLinks } from "./router.js";
+import { dogProfiles } from "../data/platform.js?v=20260522T1040";
+import { getPublicDogProfile } from "../domain/readModels.js?v=20260522T1040";
+import { createVerificationRow } from "./evidence.js?v=20260522T1040";
+import { updateDogRouteLinks } from "./router.js?v=20260522T1040";
 
 export function initRegistry(root = document) {
   const photo = root.querySelector("[data-dog-photo]");

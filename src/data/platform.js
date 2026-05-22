@@ -1,4 +1,4 @@
-import { DOG_SEX, EVIDENCE_PRIORITY, EVIDENCE_STATUS, EVIDENCE_TYPE, VISIBILITY } from "../domain/contracts.js";
+import { DOG_SEX, EVIDENCE_PRIORITY, EVIDENCE_STATUS, EVIDENCE_TYPE, VISIBILITY } from "../domain/contracts.js?v=20260522T1040";
 
 export const dogProfiles = [
   {

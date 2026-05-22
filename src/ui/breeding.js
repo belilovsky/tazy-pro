@@ -1,4 +1,4 @@
-import { pairScores } from "../data/platform.js";
+import { pairScores } from "../data/platform.js?v=20260522T1040";
 
 export function initBreeding(root = document) {
   const sire = root.querySelector("[data-sire]");
@@ -36,4 +36,3 @@ export function initBreeding(root = document) {
   dam.addEventListener("change", updateBreeding);
   updateBreeding();
 }
-

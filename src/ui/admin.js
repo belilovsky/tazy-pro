@@ -1,7 +1,7 @@
-import { tazyApi } from "../api/tazyApi.js";
-import { DECISION_TYPE, EVIDENCE_PRIORITY } from "../domain/contracts.js";
-import { createVerificationRow } from "./evidence.js";
-import { createReviewerKeyPanel, isAuthError } from "./reviewerAuth.js";
+import { tazyApi } from "../api/tazyApi.js?v=20260522T1040";
+import { DECISION_TYPE, EVIDENCE_PRIORITY } from "../domain/contracts.js?v=20260522T1040";
+import { createVerificationRow } from "./evidence.js?v=20260522T1040";
+import { createReviewerKeyPanel, isAuthError } from "./reviewerAuth.js?v=20260522T1040";
 
 function createElement(documentRef, tag, className, text) {
   const node = documentRef.createElement(tag);

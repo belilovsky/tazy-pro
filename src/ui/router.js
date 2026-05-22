@@ -1,8 +1,8 @@
-import { tazyApi } from "../api/tazyApi.js";
-import { dogProfiles } from "../data/platform.js";
-import { createAdminWorkspace } from "./admin.js";
-import { createDataRoomView } from "./dataRoom.js";
-import { createVerificationRow } from "./evidence.js";
+import { tazyApi } from "../api/tazyApi.js?v=20260522T1040";
+import { dogProfiles } from "../data/platform.js?v=20260522T1040";
+import { createAdminWorkspace } from "./admin.js?v=20260522T1040";
+import { createDataRoomView } from "./dataRoom.js?v=20260522T1040";
+import { createVerificationRow } from "./evidence.js?v=20260522T1040";
 
 const routePrefix = "#/";
 let routeRequestId = 0;

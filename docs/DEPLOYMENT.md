@@ -48,6 +48,11 @@ The current nginx config proxies:
 
 - `/api/` -> `http://127.0.0.1:8182`
 - `/admin/` -> `http://127.0.0.1:8182`
+- `.css`, `.js`, and `.mjs` static modules use `Cache-Control: no-cache`
+  because the app is not bundled with hashed filenames yet.
+- image assets keep the seven-day static cache.
+- The current static module graph also carries a deployment query string to
+  force-refresh browsers that saw the earlier seven-day JS cache.
 
 ## Nginx
 

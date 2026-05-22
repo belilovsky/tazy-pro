@@ -1,5 +1,5 @@
-import { tazyApi } from "../api/tazyApi.js";
-import { createReviewerKeyPanel, isAuthError } from "./reviewerAuth.js";
+import { tazyApi } from "../api/tazyApi.js?v=20260522T1040";
+import { createReviewerKeyPanel, isAuthError } from "./reviewerAuth.js?v=20260522T1040";
 
 function createElement(documentRef, tag, className, text) {
   const node = documentRef.createElement(tag);
