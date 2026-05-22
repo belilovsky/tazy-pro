@@ -1,5 +1,12 @@
 import { dogProfiles, evidenceItems } from "../data/platform.js";
-import { DECISION_TYPE, formatDecisionLabel, formatEvidenceStatus, formatPriority } from "./contracts.js";
+import { DECISION_TYPE, VISIBILITY, formatDecisionLabel, formatEvidenceStatus, formatPriority } from "./contracts.js";
+
+function createDecisionId(evidenceItemId) {
+  if (globalThis.crypto?.randomUUID) {
+    return `decision-${globalThis.crypto.randomUUID()}`;
+  }
+  return `decision-${evidenceItemId}-${Date.now()}`;
+}
 
 export function getDogById(id) {
   return dogProfiles.find((dog) => dog.id === id);
@@ -22,6 +29,10 @@ export function getEvidenceByDogId(dogId) {
   return evidenceItems.filter((item) => item.dogId === dogId);
 }
 
+export function getPublicEvidenceByDogId(dogId) {
+  return getEvidenceByDogId(dogId).filter((item) => item.visibility === VISIBILITY.public);
+}
+
 export function getReviewQueue() {
   return evidenceItems.map((item) => ({
     ...item,
@@ -40,7 +51,8 @@ export function getPublicDogProfile(id) {
     ...dog,
     score: `${dog.completenessScore}%`,
     verificationLabel: `Level ${dog.verificationLevel}`,
-    evidence: getEvidenceByDogId(dog.id),
+    evidence: getPublicEvidenceByDogId(dog.id),
+    passportEvents: dog.passportEvents.filter((event) => event.visibility === VISIBILITY.public),
   };
 }
 
@@ -55,7 +67,7 @@ export function getPassportEventsByDogId(dogId) {
 
 export function createVerificationDecision({ evidenceItemId, decision, note, reviewerId = "demo-reviewer" }) {
   return {
-    id: `decision-${evidenceItemId}-${Date.now()}`,
+    id: createDecisionId(evidenceItemId),
     evidenceItemId,
     decision,
     decisionLabel: formatDecisionLabel(decision),

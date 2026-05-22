@@ -1,19 +1,56 @@
 :root {
   color-scheme: dark;
-  --bg: #071014;
-  --bg-2: #0d1c21;
-  --surface: #10262c;
-  --surface-2: #16333b;
-  --text: #f3f7f2;
-  --muted: #afc0bd;
-  --quiet: #78908e;
-  --line: rgba(220, 235, 229, 0.16);
-  --blue: #6fb7c9;
-  --blue-2: #2f7f95;
-  --gold: #d0ad57;
-  --green: #73c68c;
-  --red: #d97765;
-  --shadow: 0 24px 80px rgba(0, 0, 0, 0.34);
+
+  /* AV DS semantic token boundary. Component styles below use these tokens only. */
+  --surface-base: #071014;
+  --surface-subtle: #0d1c21;
+  --surface-raised: #10262c;
+  --surface-muted: #16333b;
+  --surface-header: rgba(7, 16, 20, 0.92);
+  --surface-header-transparent: rgba(7, 16, 20, 0);
+  --surface-control: rgba(255, 255, 255, 0.06);
+  --surface-control-strong: rgba(255, 255, 255, 0.1);
+  --surface-card-subtle: rgba(255, 255, 255, 0.04);
+  --surface-media-overlay: rgba(7, 16, 20, 0.78);
+  --surface-brand-subtle: rgba(208, 173, 87, 0.12);
+  --surface-brand-muted: rgba(208, 173, 87, 0.14);
+  --surface-warning-subtle: rgba(208, 173, 87, 0.18);
+  --surface-success-subtle: rgba(115, 198, 140, 0.18);
+  --surface-danger-subtle: rgba(217, 119, 101, 0.12);
+  --surface-accent-subtle: rgba(111, 183, 201, 0.1);
+  --surface-accent-muted: rgba(111, 183, 201, 0.12);
+  --surface-accent-panel: rgba(111, 183, 201, 0.14);
+  --surface-accent-panel-strong: rgba(111, 183, 201, 0.18);
+  --surface-hero-overlay-x-strong: rgba(7, 16, 20, 0.9);
+  --surface-hero-overlay-x-mid: rgba(7, 16, 20, 0.58);
+  --surface-hero-overlay-x-soft: rgba(7, 16, 20, 0.08);
+  --surface-hero-overlay-y-strong: rgba(7, 16, 20, 0.9);
+  --surface-hero-overlay-y-clear: rgba(7, 16, 20, 0);
+  --surface-hero-mobile-x-strong: rgba(7, 16, 20, 0.92);
+  --surface-hero-mobile-x-mid: rgba(7, 16, 20, 0.48);
+  --surface-hero-mobile-y-strong: rgba(7, 16, 20, 0.92);
+  --surface-hero-mobile-y-soft: rgba(7, 16, 20, 0.08);
+  --color-text-primary: #f3f7f2;
+  --color-text-secondary: #afc0bd;
+  --color-text-muted: #78908e;
+  --color-text-on-accent: #071014;
+  --color-text-inverse: #ffffff;
+  --color-text-on-hero: #f3f7f2;
+  --color-text-on-hero-muted: rgba(243, 247, 242, 0.91);
+  --color-accent-primary: #d0ad57;
+  --color-accent-secondary: #6fb7c9;
+  --color-status-success: #73c68c;
+  --color-status-danger: #d97765;
+  --border-subtle: rgba(220, 235, 229, 0.16);
+  --border-on-media: rgba(255, 255, 255, 0.3);
+  --border-brand-subtle: color-mix(in srgb, var(--color-accent-primary), transparent 45%);
+  --border-control-subtle: color-mix(in srgb, var(--color-text-primary), transparent 72%);
+  --border-accent-medium: color-mix(in srgb, var(--color-accent-secondary), transparent 38%);
+  --border-accent-strong: color-mix(in srgb, var(--color-accent-secondary), transparent 36%);
+  --border-danger-subtle: color-mix(in srgb, var(--color-status-danger), transparent 45%);
+  --surface-raised-soft: color-mix(in srgb, var(--surface-raised), transparent 8%);
+  --graphic-qr-block: #ffffff;
+  --shadow-elevation-lg: 0 24px 80px rgba(0, 0, 0, 0.34);
   --radius: 18px;
   --radius-sm: 10px;
   --max: 1180px;
@@ -23,15 +60,17 @@
 
 [data-theme="light"] {
   color-scheme: light;
-  --bg: #f8fbf8;
-  --bg-2: #edf5f2;
-  --surface: #ffffff;
-  --surface-2: #e7f0ed;
-  --text: #102026;
-  --muted: #516567;
-  --quiet: #7a8b8d;
-  --line: rgba(16, 32, 38, 0.14);
-  --shadow: 0 24px 80px rgba(17, 45, 52, 0.12);
+  --surface-base: #f8fbf8;
+  --surface-subtle: #edf5f2;
+  --surface-raised: #ffffff;
+  --surface-muted: #e7f0ed;
+  --surface-header: rgba(248, 251, 248, 0.92);
+  --surface-header-transparent: rgba(248, 251, 248, 0);
+  --color-text-primary: #102026;
+  --color-text-secondary: #516567;
+  --color-text-muted: #7a8b8d;
+  --border-subtle: rgba(16, 32, 38, 0.14);
+  --shadow-elevation-lg: 0 24px 80px rgba(17, 45, 52, 0.12);
 }
 
 * {
@@ -46,8 +85,8 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
-  background: var(--bg);
-  color: var(--text);
+  background: var(--surface-base);
+  color: var(--color-text-primary);
   font-family: var(--font-sans);
   line-height: 1.55;
 }
@@ -77,7 +116,7 @@ button {
 }
 
 :focus-visible {
-  outline: 2px solid var(--blue);
+  outline: 2px solid var(--color-accent-secondary);
   outline-offset: 3px;
 }
 
@@ -88,8 +127,8 @@ button {
   z-index: 1000;
   padding: 10px 14px;
   border-radius: var(--radius-sm);
-  background: var(--gold);
-  color: #071014;
+  background: var(--color-accent-primary);
+  color: var(--color-text-on-accent);
   font-weight: 800;
   transition: top 180ms ease;
 }
@@ -107,22 +146,22 @@ button {
   justify-content: space-between;
   gap: 24px;
   padding: 18px max(24px, calc((100vw - var(--max)) / 2));
-  background: linear-gradient(to bottom, rgba(7, 16, 20, 0.92), rgba(7, 16, 20, 0));
+  background: linear-gradient(to bottom, var(--surface-header), var(--surface-header-transparent));
   transition: background 180ms ease, border-color 180ms ease;
 }
 
 .site-header.scrolled {
-  background: rgba(7, 16, 20, 0.92);
-  border-bottom: 1px solid var(--line);
+  background: var(--surface-header);
+  border-bottom: 1px solid var(--border-subtle);
   backdrop-filter: blur(14px);
 }
 
 [data-theme="light"] .site-header {
-  background: linear-gradient(to bottom, rgba(248, 251, 248, 0.94), rgba(248, 251, 248, 0));
+  background: linear-gradient(to bottom, var(--surface-header), var(--surface-header-transparent));
 }
 
 [data-theme="light"] .site-header.scrolled {
-  background: rgba(248, 251, 248, 0.92);
+  background: var(--surface-header);
 }
 
 .brand,
@@ -144,10 +183,10 @@ button {
   width: 42px;
   height: 42px;
   place-items: center;
-  border: 1px solid color-mix(in srgb, var(--gold), transparent 45%);
+  border: 1px solid var(--border-brand-subtle);
   border-radius: 50%;
-  background: rgba(208, 173, 87, 0.12);
-  color: var(--gold);
+  background: var(--surface-brand-subtle);
+  color: var(--color-accent-primary);
 }
 
 .brand-mark svg {
@@ -170,7 +209,7 @@ button {
 .brand small,
 .site-footer span {
   display: block;
-  color: var(--muted);
+  color: var(--color-text-secondary);
   font-size: 0.78rem;
 }
 
@@ -180,7 +219,7 @@ button {
 
 .desktop-nav a,
 .site-footer a {
-  color: var(--muted);
+  color: var(--color-text-secondary);
   font-size: 0.9rem;
   font-weight: 650;
   transition: color 160ms ease;
@@ -188,7 +227,7 @@ button {
 
 .desktop-nav a:hover,
 .site-footer a:hover {
-  color: var(--text);
+  color: var(--color-text-primary);
 }
 
 .header-actions {
@@ -198,9 +237,9 @@ button {
 .language-switch {
   gap: 2px;
   padding: 3px;
-  border: 1px solid var(--line);
+  border: 1px solid var(--border-subtle);
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.06);
+  background: var(--surface-control);
 }
 
 .language-switch button {
@@ -208,14 +247,14 @@ button {
   min-height: 30px;
   border-radius: 999px;
   background: transparent;
-  color: var(--muted);
+  color: var(--color-text-secondary);
   font-size: 0.75rem;
   font-weight: 750;
 }
 
 .language-switch button.active {
-  background: var(--surface-2);
-  color: var(--text);
+  background: var(--surface-muted);
+  color: var(--color-text-primary);
 }
 
 .mobile-language-switch {
@@ -227,17 +266,17 @@ button {
 .mobile-language-switch button {
   min-height: 38px;
   flex: 1;
-  border: 1px solid var(--line);
+  border: 1px solid var(--border-subtle);
   border-radius: 999px;
   background: transparent;
-  color: var(--muted);
+  color: var(--color-text-secondary);
   font-size: 0.78rem;
   font-weight: 850;
 }
 
 .mobile-language-switch button.active {
-  background: var(--surface-2);
-  color: var(--text);
+  background: var(--surface-muted);
+  color: var(--color-text-primary);
 }
 
 .theme-button,
@@ -246,10 +285,10 @@ button {
   width: 40px;
   height: 40px;
   place-items: center;
-  border: 1px solid var(--line);
+  border: 1px solid var(--border-subtle);
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.06);
-  color: var(--text);
+  background: var(--surface-control);
+  color: var(--color-text-primary);
 }
 
 .theme-button svg,
@@ -276,8 +315,8 @@ button {
 
 .header-cta,
 .primary-button {
-  background: var(--gold);
-  color: #071014;
+  background: var(--color-accent-primary);
+  color: var(--color-text-on-accent);
 }
 
 .header-cta {
@@ -294,10 +333,10 @@ button {
 }
 
 .secondary-button {
-  border: 1px solid color-mix(in srgb, var(--text), transparent 72%);
+  border: 1px solid var(--border-control-subtle);
   padding: 0 22px;
-  color: var(--text);
-  background: rgba(255, 255, 255, 0.07);
+  color: var(--color-text-primary);
+  background: var(--surface-control);
 }
 
 .menu-button {
@@ -314,10 +353,10 @@ button {
   flex-direction: column;
   gap: 10px;
   padding: 18px;
-  border: 1px solid var(--line);
+  border: 1px solid var(--border-subtle);
   border-radius: 22px;
-  background: var(--surface);
-  box-shadow: var(--shadow);
+  background: var(--surface-raised);
+  box-shadow: var(--shadow-elevation-lg);
 }
 
 .mobile-menu.open {
@@ -326,7 +365,7 @@ button {
 
 .mobile-menu a {
   padding: 12px 8px;
-  color: var(--muted);
+  color: var(--color-text-secondary);
   font-weight: 750;
 }
 
@@ -335,7 +374,7 @@ button {
   display: grid;
   min-height: 92vh;
   overflow: hidden;
-  background: #071014;
+  background: var(--surface-base);
 }
 
 .hero-image,
@@ -353,8 +392,8 @@ button {
 
 .hero-shade {
   background:
-    linear-gradient(90deg, rgba(7, 16, 20, 0.9) 0%, rgba(7, 16, 20, 0.58) 45%, rgba(7, 16, 20, 0.08) 100%),
-    linear-gradient(0deg, rgba(7, 16, 20, 0.9) 0%, rgba(7, 16, 20, 0) 34%);
+    linear-gradient(90deg, var(--surface-hero-overlay-x-strong) 0%, var(--surface-hero-overlay-x-mid) 45%, var(--surface-hero-overlay-x-soft) 100%),
+    linear-gradient(0deg, var(--surface-hero-overlay-x-strong) 0%, var(--surface-header-transparent) 34%);
 }
 
 .hero-content {
@@ -371,7 +410,7 @@ button {
 
 .hero-copy h1 {
   margin: 0;
-  color: #f3f7f2;
+  color: var(--color-text-on-hero);
   font-family: var(--font-display);
   font-size: 5.8rem;
   line-height: 0.92;
@@ -381,7 +420,7 @@ button {
 .hero-copy p {
   max-width: 650px;
   margin: 26px 0 0;
-  color: rgba(243, 247, 242, 0.91);
+  color: var(--color-text-on-hero-muted);
   font-size: 1.2rem;
 }
 
@@ -396,10 +435,10 @@ button {
 .dog-card,
 .breeding-console,
 .passport-visual {
-  border: 1px solid var(--line);
+  border: 1px solid var(--border-subtle);
   border-radius: var(--radius);
-  background: color-mix(in srgb, var(--surface), transparent 8%);
-  box-shadow: var(--shadow);
+  background: var(--surface-raised-soft);
+  box-shadow: var(--shadow-elevation-lg);
 }
 
 .hero-panel {
@@ -408,7 +447,7 @@ button {
 }
 
 .panel-topline {
-  color: var(--gold);
+  color: var(--color-accent-primary);
   font-size: 0.78rem;
   font-weight: 800;
   text-transform: uppercase;
@@ -427,11 +466,11 @@ button {
   grid-template-columns: 1fr auto;
   gap: 12px;
   margin-top: 24px;
-  color: var(--muted);
+  color: var(--color-text-secondary);
 }
 
 .hero-panel-grid b {
-  color: var(--text);
+  color: var(--color-text-primary);
 }
 
 .mini-progress,
@@ -439,7 +478,7 @@ button {
   height: 8px;
   overflow: hidden;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--surface-control-strong);
 }
 
 .mini-progress {
@@ -451,7 +490,7 @@ button {
   display: block;
   height: 100%;
   border-radius: inherit;
-  background: var(--gold);
+  background: var(--color-accent-primary);
   transition: width 280ms ease;
 }
 
@@ -462,17 +501,17 @@ button {
   gap: 1px;
   margin: -34px auto 0;
   overflow: hidden;
-  border: 1px solid var(--line);
+  border: 1px solid var(--border-subtle);
   border-radius: var(--radius);
-  background: var(--line);
-  box-shadow: var(--shadow);
+  background: var(--border-subtle);
+  box-shadow: var(--shadow-elevation-lg);
   position: relative;
   z-index: 2;
 }
 
 .intro-strip div {
   padding: 22px;
-  background: var(--surface);
+  background: var(--surface-raised);
 }
 
 .intro-strip strong {
@@ -482,7 +521,7 @@ button {
 }
 
 .intro-strip span {
-  color: var(--muted);
+  color: var(--color-text-secondary);
   font-size: 0.9rem;
 }
 
@@ -506,7 +545,7 @@ button {
 .section-heading p,
 .passport-copy p {
   margin: 0 0 12px;
-  color: var(--blue);
+  color: var(--color-accent-secondary);
   font-size: 0.8rem;
   font-weight: 850;
   text-transform: uppercase;
@@ -526,7 +565,7 @@ button {
 .launch-section p {
   display: block;
   margin-top: 18px;
-  color: var(--muted);
+  color: var(--color-text-secondary);
   font-size: 1.05rem;
 }
 
@@ -549,16 +588,16 @@ button {
   align-items: center;
   width: 100%;
   padding: 12px;
-  border: 1px solid var(--line);
+  border: 1px solid var(--border-subtle);
   border-radius: 16px;
   background: transparent;
-  color: var(--text);
+  color: var(--color-text-primary);
   text-align: left;
 }
 
 .dog-selector button.active {
-  background: var(--surface);
-  border-color: color-mix(in srgb, var(--blue), transparent 38%);
+  background: var(--surface-raised);
+  border-color: var(--border-accent-medium);
 }
 
 .dog-selector img {
@@ -571,7 +610,7 @@ button {
 .dog-selector small,
 .dog-card-header p {
   display: block;
-  color: var(--muted);
+  color: var(--color-text-secondary);
   font-size: 0.84rem;
 }
 
@@ -584,7 +623,7 @@ button {
 .dog-photo-frame {
   position: relative;
   min-height: 470px;
-  background: var(--bg-2);
+  background: var(--surface-subtle);
 }
 
 .dog-photo-frame img {
@@ -601,10 +640,10 @@ button {
   gap: 5px;
   min-width: 144px;
   padding: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid var(--border-on-media);
   border-radius: 14px;
-  background: rgba(7, 16, 20, 0.78);
-  color: #fff;
+  background: var(--surface-media-overlay);
+  color: var(--color-text-inverse);
   backdrop-filter: blur(12px);
 }
 
@@ -614,10 +653,10 @@ button {
   display: grid;
   place-items: center;
   background:
-    linear-gradient(90deg, #fff 50%, transparent 50%),
-    linear-gradient(#fff 50%, transparent 50%);
+    linear-gradient(90deg, var(--graphic-qr-block) 50%, transparent 50%),
+    linear-gradient(var(--graphic-qr-block) 50%, transparent 50%);
   background-size: 10px 10px;
-  color: #071014;
+  color: var(--color-text-on-accent);
   font-size: 0.7rem;
   font-weight: 900;
 }
@@ -631,7 +670,7 @@ button {
   justify-content: space-between;
   gap: 20px;
   padding-bottom: 24px;
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid var(--border-subtle);
 }
 
 .dog-card-header h3 {
@@ -645,7 +684,7 @@ button {
   display: inline-flex;
   width: fit-content;
   align-items: center;
-  color: var(--blue);
+  color: var(--color-accent-secondary);
   font-size: 0.86rem;
   font-weight: 800;
 }
@@ -655,7 +694,7 @@ button {
 }
 
 .dog-card-header > strong {
-  color: var(--gold);
+  color: var(--color-accent-primary);
   font-family: var(--font-display);
   font-size: 2.5rem;
 }
@@ -672,9 +711,9 @@ button {
   gap: 12px;
   align-items: center;
   padding: 12px;
-  border: 1px solid var(--line);
+  border: 1px solid var(--border-subtle);
   border-radius: 14px;
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--surface-card-subtle);
 }
 
 .verification-dot {
@@ -683,23 +722,23 @@ button {
   display: grid;
   place-items: center;
   border-radius: 50%;
-  background: rgba(115, 198, 140, 0.18);
-  color: var(--green);
+  background: var(--surface-success-subtle);
+  color: var(--color-status-success);
 }
 
 .verification-row.pending .verification-dot {
-  background: rgba(208, 173, 87, 0.18);
-  color: var(--gold);
+  background: var(--surface-warning-subtle);
+  color: var(--color-accent-primary);
 }
 
 .verification-row small {
   display: block;
   margin-top: 2px;
-  color: var(--muted);
+  color: var(--color-text-secondary);
 }
 
 .verification-row b:last-child {
-  color: var(--quiet);
+  color: var(--color-text-muted);
   font-size: 0.84rem;
 }
 
@@ -723,7 +762,7 @@ button {
 label {
   display: grid;
   gap: 8px;
-  color: var(--muted);
+  color: var(--color-text-secondary);
   font-size: 0.82rem;
   font-weight: 780;
 }
@@ -731,11 +770,11 @@ label {
 select {
   min-width: 0;
   min-height: 44px;
-  border: 1px solid var(--line);
+  border: 1px solid var(--border-subtle);
   border-radius: 999px;
   padding: 0 16px;
-  background: var(--bg-2);
-  color: var(--text);
+  background: var(--surface-subtle);
+  color: var(--color-text-primary);
 }
 
 .risk-grid {
@@ -747,14 +786,14 @@ select {
 
 .risk-grid article,
 .recommendation {
-  border: 1px solid var(--line);
+  border: 1px solid var(--border-subtle);
   border-radius: 16px;
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--surface-card-subtle);
   padding: 18px;
 }
 
 .risk-grid span {
-  color: var(--muted);
+  color: var(--color-text-secondary);
   font-size: 0.84rem;
 }
 
@@ -766,15 +805,15 @@ select {
 }
 
 .meter i {
-  background: var(--gold);
+  background: var(--color-accent-primary);
 }
 
 .meter.blue i {
-  background: var(--blue);
+  background: var(--color-accent-secondary);
 }
 
 .meter.green i {
-  background: var(--green);
+  background: var(--color-status-success);
 }
 
 .recommendation {
@@ -789,12 +828,12 @@ select {
 
 .recommendation p {
   margin: 10px 0 0;
-  color: var(--muted);
+  color: var(--color-text-secondary);
 }
 
 .passport-section {
   width: 100%;
-  background: var(--bg-2);
+  background: var(--surface-subtle);
 }
 
 .passport-card {
@@ -814,8 +853,8 @@ select {
 .passport-visual {
   padding: 26px;
   background:
-    linear-gradient(135deg, rgba(111, 183, 201, 0.18), transparent 42%),
-    var(--surface);
+    linear-gradient(135deg, var(--surface-accent-panel-strong), transparent 42%),
+    var(--surface-raised);
 }
 
 .passport-header {
@@ -830,8 +869,8 @@ select {
   height: 54px;
   place-items: center;
   border-radius: 16px;
-  background: var(--gold);
-  color: #071014;
+  background: var(--color-accent-primary);
+  color: var(--color-text-on-accent);
   font-family: var(--font-display);
   font-size: 2rem;
   font-weight: 900;
@@ -839,7 +878,7 @@ select {
 
 .passport-header span {
   display: block;
-  color: var(--muted);
+  color: var(--color-text-secondary);
   font-size: 0.86rem;
 }
 
@@ -858,7 +897,7 @@ select {
 .passport-qr span {
   aspect-ratio: 1;
   border-radius: 6px;
-  background: var(--text);
+  background: var(--color-text-primary);
 }
 
 .passport-qr span:nth-child(3n) {
@@ -878,11 +917,11 @@ select {
   justify-content: space-between;
   gap: 20px;
   padding: 12px 0;
-  border-top: 1px solid var(--line);
+  border-top: 1px solid var(--border-subtle);
 }
 
 .event-log span {
-  color: var(--muted);
+  color: var(--color-text-secondary);
   text-align: right;
 }
 
@@ -891,26 +930,26 @@ select {
   grid-template-columns: repeat(4, 1fr);
   gap: 1px;
   overflow: hidden;
-  border: 1px solid var(--line);
+  border: 1px solid var(--border-subtle);
   border-radius: var(--radius);
-  background: var(--line);
+  background: var(--border-subtle);
 }
 
 .timeline article {
   min-height: 260px;
   padding: 24px;
-  background: var(--surface);
+  background: var(--surface-raised);
 }
 
 .timeline article.done,
 .timeline article.active {
   background:
-    linear-gradient(180deg, rgba(111, 183, 201, 0.16), transparent),
-    var(--surface);
+    linear-gradient(180deg, var(--surface-accent-panel), transparent),
+    var(--surface-raised);
 }
 
 .timeline span {
-  color: var(--gold);
+  color: var(--color-accent-primary);
   font-family: var(--font-display);
   font-size: 2rem;
   font-weight: 800;
@@ -926,7 +965,7 @@ select {
 
 .timeline p {
   margin: 16px 0 0;
-  color: var(--muted);
+  color: var(--color-text-secondary);
 }
 
 .section-actions {
@@ -940,7 +979,7 @@ select {
   align-items: center;
   justify-content: space-between;
   gap: 36px;
-  border-top: 1px solid var(--line);
+  border-top: 1px solid var(--border-subtle);
 }
 
 .launch-section p {
@@ -964,7 +1003,7 @@ select {
 }
 
 .route-back {
-  color: var(--muted);
+  color: var(--color-text-secondary);
 }
 
 .route-hero {
@@ -972,12 +1011,12 @@ select {
   grid-template-columns: 330px minmax(0, 1fr);
   gap: 28px;
   align-items: stretch;
-  border: 1px solid var(--line);
+  border: 1px solid var(--border-subtle);
   border-radius: var(--radius);
   background:
-    linear-gradient(135deg, rgba(111, 183, 201, 0.14), transparent 42%),
-    var(--surface);
-  box-shadow: var(--shadow);
+    linear-gradient(135deg, var(--surface-accent-panel), transparent 42%),
+    var(--surface-raised);
+  box-shadow: var(--shadow-elevation-lg);
   overflow: hidden;
 }
 
@@ -994,7 +1033,7 @@ select {
 
 .section-label {
   margin: 0 0 12px;
-  color: var(--blue);
+  color: var(--color-accent-secondary);
   font-size: 0.8rem;
   font-weight: 850;
   text-transform: uppercase;
@@ -1011,7 +1050,7 @@ select {
 .route-meta {
   max-width: 620px;
   margin: 18px 0 0;
-  color: var(--muted);
+  color: var(--color-text-secondary);
   font-size: 1.05rem;
 }
 
@@ -1022,20 +1061,20 @@ select {
   gap: 1px;
   margin: 0 28px 28px 0;
   overflow: hidden;
-  border: 1px solid var(--line);
+  border: 1px solid var(--border-subtle);
   border-radius: 16px;
-  background: var(--line);
+  background: var(--border-subtle);
 }
 
 .route-stat-grid div {
   min-width: 0;
   padding: 18px;
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--surface-card-subtle);
 }
 
 .route-stat-grid span {
   display: block;
-  color: var(--muted);
+  color: var(--color-text-secondary);
   font-size: 0.82rem;
 }
 
@@ -1050,7 +1089,7 @@ select {
 .route-stat-grid small {
   display: block;
   margin-top: 8px;
-  color: var(--muted);
+  color: var(--color-text-secondary);
   font-size: 0.76rem;
 }
 
@@ -1061,9 +1100,9 @@ select {
 }
 
 .route-panel {
-  border: 1px solid var(--line);
+  border: 1px solid var(--border-subtle);
   border-radius: var(--radius);
-  background: var(--surface);
+  background: var(--surface-raised);
   padding: 24px;
 }
 
@@ -1075,16 +1114,16 @@ select {
 
 .route-panel p {
   margin: 10px 0 0;
-  color: var(--muted);
+  color: var(--color-text-secondary);
 }
 
 .route-passport-card {
   width: 100%;
   padding: 36px;
-  border: 1px solid var(--line);
+  border: 1px solid var(--border-subtle);
   border-radius: var(--radius);
-  background: var(--bg-2);
-  box-shadow: var(--shadow);
+  background: var(--surface-subtle);
+  box-shadow: var(--shadow-elevation-lg);
 }
 
 .admin-heading {
@@ -1100,7 +1139,7 @@ select {
 
 .admin-heading > p:last-child {
   margin: 18px 0 0;
-  color: var(--muted);
+  color: var(--color-text-secondary);
   font-size: 1.06rem;
 }
 
@@ -1134,20 +1173,20 @@ select {
   gap: 8px;
   width: 100%;
   padding: 14px;
-  border: 1px solid var(--line);
+  border: 1px solid var(--border-subtle);
   border-radius: 16px;
   background: transparent;
-  color: var(--text);
+  color: var(--color-text-primary);
   text-align: left;
 }
 
 .admin-queue-button.active {
-  border-color: color-mix(in srgb, var(--blue), transparent 36%);
-  background: rgba(111, 183, 201, 0.1);
+  border-color: var(--border-accent-strong);
+  background: var(--surface-accent-subtle);
 }
 
 .admin-queue-button small {
-  color: var(--muted);
+  color: var(--color-text-secondary);
   font-size: 0.8rem;
 }
 
@@ -1164,16 +1203,16 @@ select {
 .admin-status {
   border-radius: 999px;
   padding: 5px 9px;
-  background: rgba(208, 173, 87, 0.14);
-  color: var(--gold);
+  background: var(--surface-brand-muted);
+  color: var(--color-accent-primary);
   font-size: 0.72rem;
   font-weight: 850;
   text-transform: uppercase;
 }
 
 .admin-status {
-  background: rgba(111, 183, 201, 0.12);
-  color: var(--blue);
+  background: var(--surface-accent-muted);
+  color: var(--color-accent-secondary);
 }
 
 .admin-detail-grid {
@@ -1193,20 +1232,20 @@ select {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1px;
   overflow: hidden;
-  border: 1px solid var(--line);
+  border: 1px solid var(--border-subtle);
   border-radius: 16px;
-  background: var(--line);
+  background: var(--border-subtle);
 }
 
 .admin-meta-grid div {
   min-width: 0;
   padding: 14px;
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--surface-card-subtle);
 }
 
 .admin-meta-grid span {
   display: block;
-  color: var(--muted);
+  color: var(--color-text-secondary);
   font-size: 0.78rem;
 }
 
@@ -1217,17 +1256,17 @@ select {
 }
 
 .admin-note-label {
-  color: var(--muted);
+  color: var(--color-text-secondary);
 }
 
 .admin-note {
   width: 100%;
   resize: vertical;
-  border: 1px solid var(--line);
+  border: 1px solid var(--border-subtle);
   border-radius: 14px;
   padding: 14px;
-  background: var(--bg-2);
-  color: var(--text);
+  background: var(--surface-subtle);
+  color: var(--color-text-primary);
   font: inherit;
   line-height: 1.45;
 }
@@ -1250,19 +1289,19 @@ select {
   min-height: 44px;
   align-items: center;
   justify-content: center;
-  border: 1px solid color-mix(in srgb, var(--red), transparent 45%);
+  border: 1px solid var(--border-danger-subtle);
   border-radius: 999px;
-  background: rgba(217, 119, 101, 0.12);
-  color: var(--text);
+  background: var(--surface-danger-subtle);
+  color: var(--color-text-primary);
   font-weight: 800;
   line-height: 1;
 }
 
 .admin-event-log {
   margin: 0;
-  border-top: 1px solid var(--line);
+  border-top: 1px solid var(--border-subtle);
   padding-top: 14px;
-  color: var(--muted);
+  color: var(--color-text-secondary);
 }
 
 .admin-dog-panel {
@@ -1281,13 +1320,13 @@ select {
   display: grid;
   gap: 8px;
   background:
-    linear-gradient(135deg, rgba(208, 173, 87, 0.14), transparent 44%),
-    var(--surface);
+    linear-gradient(135deg, var(--surface-brand-muted), transparent 44%),
+    var(--surface-raised);
 }
 
 .data-room-cycle span,
 .data-room-cycle small {
-  color: var(--muted);
+  color: var(--color-text-secondary);
 }
 
 .data-room-cycle strong {
@@ -1323,9 +1362,9 @@ select {
   justify-content: space-between;
   gap: 16px;
   padding: 14px;
-  border: 1px solid var(--line);
+  border: 1px solid var(--border-subtle);
   border-radius: 14px;
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--surface-card-subtle);
 }
 
 .data-room-row span {
@@ -1336,13 +1375,13 @@ select {
 
 .data-room-row small,
 .data-room-row > span:last-child {
-  color: var(--muted);
+  color: var(--color-text-secondary);
 }
 
 .data-room-row em {
   flex: 0 0 auto;
   max-width: 150px;
-  color: var(--gold);
+  color: var(--color-accent-primary);
   font-size: 0.78rem;
   font-style: normal;
   font-weight: 850;
@@ -1357,7 +1396,7 @@ select {
   gap: 24px;
   margin: 0 auto;
   padding: 34px 0 48px;
-  border-top: 1px solid var(--line);
+  border-top: 1px solid var(--border-subtle);
 }
 
 .site-footer nav {
@@ -1483,8 +1522,8 @@ select {
 
   .hero-shade {
     background:
-      linear-gradient(90deg, rgba(7, 16, 20, 0.92) 0%, rgba(7, 16, 20, 0.48) 100%),
-      linear-gradient(0deg, rgba(7, 16, 20, 0.92) 0%, rgba(7, 16, 20, 0.08) 55%);
+      linear-gradient(90deg, var(--surface-header) 0%, var(--surface-hero-mobile-x-mid) 100%),
+      linear-gradient(0deg, var(--surface-header) 0%, var(--surface-hero-overlay-x-soft) 55%);
   }
 
   .hero-copy h1 {

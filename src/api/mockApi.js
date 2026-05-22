@@ -1,7 +1,7 @@
 import {
   createVerificationDecision as buildVerificationDecision,
   getDogByPassportId,
-  getEvidenceByDogId,
+  getPublicEvidenceByDogId,
   getPublicDogProfile,
   getPublicDogProfileByPassportId,
   getReviewQueue,
@@ -84,7 +84,7 @@ export const mockApi = Object.freeze({
   },
 
   async listEvidenceForDog(dogId) {
-    return delay(getEvidenceByDogId(dogId));
+    return delay(getPublicEvidenceByDogId(dogId));
   },
 
   async listReviewQueue() {

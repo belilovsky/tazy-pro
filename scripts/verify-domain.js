@@ -1,6 +1,6 @@
 import { dogProfiles, evidenceItems } from "../src/data/platform.js";
 import { mockApi } from "../src/api/mockApi.js";
-import { DECISION_TYPE, validateDog, validateEvidenceItem, validatePassportEvent, validateVerificationDecision } from "../src/domain/contracts.js";
+import { DECISION_TYPE, VISIBILITY, validateDog, validateEvidenceItem, validatePassportEvent, validateVerificationDecision } from "../src/domain/contracts.js";
 import { getFciDataRoomSnapshot } from "../src/domain/dataRoom.js";
 import { copyCatalog } from "../src/i18n/messages.js";
 
@@ -35,6 +35,14 @@ if (queue.length !== evidenceItems.length) {
 const sampleDog = await mockApi.getDog(dogProfiles[0]?.id);
 if (sampleDog?.id !== dogProfiles[0]?.id) {
   errors.push("Mock API could not resolve the first public dog profile");
+}
+if (sampleDog?.evidence?.some((item) => item.visibility !== VISIBILITY.public)) {
+  errors.push("Public dog profile leaked non-public evidence");
+}
+
+const publicEvidence = await mockApi.listEvidenceForDog(dogProfiles[0]?.id);
+if (publicEvidence.some((item) => item.visibility !== VISIBILITY.public)) {
+  errors.push("Mock API public evidence endpoint leaked non-public evidence");
 }
 
 const sampleDecision = await mockApi.createVerificationDecision({
