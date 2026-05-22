@@ -12,6 +12,7 @@ static, while the product direction is captured in:
 - [docs/API_SPEC.md](./docs/API_SPEC.md)
 - [docs/DATA_MODEL.md](./docs/DATA_MODEL.md)
 - [docs/DATA_CONTRACT.md](./docs/DATA_CONTRACT.md)
+- [docs/DEPLOYMENT.md](./docs/DEPLOYMENT.md)
 - [docs/FRONTEND_APP_SHELL.md](./docs/FRONTEND_APP_SHELL.md)
 - [docs/POSTGRES_SCHEMA.sql](./docs/POSTGRES_SCHEMA.sql)
 
