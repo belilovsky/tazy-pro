@@ -28,6 +28,9 @@ src/domain/readModels.js
   Owns read helpers used by UI modules so screens do not depend on raw seed
   arrays.
 
+src/i18n/messages.js
+  Owns the first RU/KZ/EN copy catalog for shell and landing sections.
+
 src/api/mockApi.js
   Owns async mock API methods and local reviewer-decision persistence. This is
   the replacement point for the future backend client.
@@ -64,6 +67,7 @@ When package tooling is available, these modules can move directly into React:
 - `src/domain/contracts.js` becomes shared schema/types.
 - `src/domain/readModels.js` becomes generated API clients or selector helpers.
 - `src/api/mockApi.js` becomes the real HTTP client boundary.
+- `src/i18n/messages.js` becomes the application translation catalog.
 - `src/ui/registry.js` becomes `RegistrySection`.
 - `src/ui/breeding.js` becomes `BreedingConsole`.
 - `src/ui/admin.js` becomes `ReviewerWorkspace`.

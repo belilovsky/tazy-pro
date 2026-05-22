@@ -35,11 +35,11 @@
       </a>
 
       <nav class="desktop-nav" aria-label="Primary navigation">
-        <a href="#registry">Registry</a>
-        <a href="#breeding">Breeding</a>
-        <a href="#passport">Passport</a>
-        <a href="#/data-room">FCI Data Room</a>
-        <a href="#/admin">Review</a>
+        <a href="#registry" data-copy="nav.registry">Registry</a>
+        <a href="#breeding" data-copy="nav.breeding">Breeding</a>
+        <a href="#passport" data-copy="nav.passport">Passport</a>
+        <a href="#/data-room" data-copy="nav.fci">FCI Data Room</a>
+        <a href="#/admin" data-copy="nav.review">Review</a>
       </nav>
 
       <div class="header-actions">
@@ -53,7 +53,7 @@
             <path d="M12 4a8 8 0 1 0 8 8 6 6 0 0 1-8-8z" />
           </svg>
         </button>
-        <a class="header-cta" href="#registry">Register</a>
+        <a class="header-cta" href="#registry" data-copy="cta.register">Register</a>
         <button class="menu-button" type="button" data-menu-toggle aria-label="Открыть меню" aria-expanded="false">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M4 7h16M4 12h16M4 17h16" />
@@ -63,12 +63,17 @@
     </header>
 
     <div class="mobile-menu" data-mobile-menu>
-      <a href="#registry">Registry</a>
-      <a href="#breeding">Breeding</a>
-      <a href="#passport">Passport</a>
-      <a href="#/data-room">FCI Data Room</a>
-      <a href="#/admin">Review</a>
-      <a href="#launch">Launch</a>
+      <a href="#registry" data-copy="nav.registry">Registry</a>
+      <a href="#breeding" data-copy="nav.breeding">Breeding</a>
+      <a href="#passport" data-copy="nav.passport">Passport</a>
+      <a href="#/data-room" data-copy="nav.fci">FCI Data Room</a>
+      <a href="#/admin" data-copy="nav.review">Review</a>
+      <a href="#launch" data-copy="nav.launch">Launch</a>
+      <div class="mobile-language-switch" aria-label="Language">
+        <button type="button" data-lang="ru" class="active">RU</button>
+        <button type="button" data-lang="kk">KZ</button>
+        <button type="button" data-lang="en">EN</button>
+      </div>
     </div>
 
     <main id="top" data-home-view>
@@ -83,8 +88,8 @@
               полевые испытания, разведение и FCI Data Room к полному признанию в 2034 году.
             </p>
             <div class="hero-actions">
-              <a class="primary-button" href="#registry">Открыть реестр</a>
-              <a class="secondary-button" href="#fci">FCI roadmap</a>
+              <a class="primary-button" href="#registry" data-copy="hero.registryCta">Открыть реестр</a>
+              <a class="secondary-button" href="#fci" data-copy="hero.fciCta">FCI roadmap</a>
             </div>
           </div>
 
@@ -106,27 +111,27 @@
       <section class="intro-strip" aria-label="Platform summary">
         <div>
           <strong>8</strong>
-          <span>verification levels</span>
+          <span data-copy="intro.levels">verification levels</span>
         </div>
         <div>
           <strong>2034</strong>
-          <span>full recognition target</span>
+          <span data-copy="intro.target">full recognition target</span>
         </div>
         <div>
           <strong>3</strong>
-          <span>public languages</span>
+          <span data-copy="intro.languages">public languages</span>
         </div>
         <div>
           <strong>FCI</strong>
-          <span>standard data export</span>
+          <span data-copy="intro.export">standard data export</span>
         </div>
       </section>
 
       <section class="section evidence-section" id="registry" aria-labelledby="registry-title">
         <div class="section-heading">
-          <p>Evidence registry</p>
-          <h2 id="registry-title">Одна карточка собаки вместо разрозненных справок.</h2>
-          <span>
+          <p data-copy="registry.eyebrow">Evidence registry</p>
+          <h2 id="registry-title" data-copy="registry.title">Одна карточка собаки вместо разрозненных справок.</h2>
+          <span data-copy="registry.text">
             Публичный профиль показывает происхождение, здоровье, ДНК, результаты полевых испытаний и
             готовность к международному экспорту данных.
           </span>
@@ -157,7 +162,7 @@
                 <div>
                   <h3 data-dog-name>Akzhel Barys</h3>
                   <p data-dog-meta>Male · born 2022 · Almaty region</p>
-                  <a class="profile-link" data-dog-profile-link href="#/dogs/akzhel-barys">Open public profile</a>
+                  <a class="profile-link" data-dog-profile-link data-copy="registry.openProfile" href="#/dogs/akzhel-barys">Open public profile</a>
                 </div>
                 <strong data-dog-score>86%</strong>
               </div>
@@ -169,9 +174,9 @@
 
       <section class="section intelligence-section" id="breeding" aria-labelledby="breeding-title">
         <div class="section-heading align-left">
-          <p>Breeding intelligence</p>
-          <h2 id="breeding-title">Разведение как управление популяцией, а не только вязками.</h2>
-          <span>
+          <p data-copy="breeding.eyebrow">Breeding intelligence</p>
+          <h2 id="breeding-title" data-copy="breeding.title">Разведение как управление популяцией, а не только вязками.</h2>
+          <span data-copy="breeding.text">
             Платформа считает COI, моделирует помёт, видит Popular Sire Effect и показывает риски до
             решения заводчика.
           </span>
@@ -195,7 +200,7 @@
                 <option value="sulu">Sary Sulu</option>
               </select>
             </label>
-            <button class="primary-button compact" type="button" data-run-match>Model litter</button>
+            <button class="primary-button compact" type="button" data-run-match data-copy="breeding.run">Model litter</button>
           </div>
 
           <div class="risk-grid" aria-live="polite">
@@ -229,9 +234,9 @@
       <section class="section passport-section" id="passport" aria-labelledby="passport-title">
         <div class="passport-card">
           <div class="passport-copy">
-            <p>Digital passport</p>
-            <h2 id="passport-title">Паспорт тазы для дипломатии, рынка и культурного наследия.</h2>
-            <span>
+            <p data-copy="passport.eyebrow">Digital passport</p>
+            <h2 id="passport-title" data-copy="passport.title">Паспорт тазы для дипломатии, рынка и культурного наследия.</h2>
+            <span data-copy="passport.text">
               QR-код, криптографический хэш, неизменяемый журнал событий и ссылка на открытый профиль
               превращают символический жест в проверяемый документ.
             </span>
@@ -262,9 +267,9 @@
 
       <section class="section fci-section" id="fci" aria-labelledby="fci-title">
         <div class="section-heading">
-          <p>FCI Data Room</p>
-          <h2 id="fci-title">Десятилетний цикл признания виден как работающая система.</h2>
-          <span>
+          <p data-copy="fci.eyebrow">FCI Data Room</p>
+          <h2 id="fci-title" data-copy="fci.title">Десятилетний цикл признания виден как работающая система.</h2>
+          <span data-copy="fci.text">
             Экспорт в FCI строится из живых данных: родословные, здоровье, ДНК, темперамент, полевые
             испытания, популяционная статистика.
           </span>
@@ -293,19 +298,19 @@
           </article>
         </div>
         <div class="section-actions">
-          <a class="primary-button" href="#/data-room">Open FCI Data Room</a>
+          <a class="primary-button" href="#/data-room" data-copy="fci.open">Open FCI Data Room</a>
         </div>
       </section>
 
       <section class="section launch-section" id="launch" aria-labelledby="launch-title">
         <div>
-          <h2 id="launch-title">Запустить волну до Дня тазы, а не в день анонса.</h2>
-          <p>
+          <h2 id="launch-title" data-copy="launch.title">Запустить волну до Дня тазы, а не в день анонса.</h2>
+          <p data-copy="launch.text">
             Период с 17 мая до 3 сентября работает как набор регистраций, проверка сценариев,
             консолидация заводчиков и медийная кампания, где TAZY.PRO становится точкой действия.
           </p>
         </div>
-        <a class="primary-button" href="#registry">Начать регистрацию</a>
+        <a class="primary-button" href="#registry" data-copy="launch.cta">Начать регистрацию</a>
       </section>
     </main>
 
@@ -314,14 +319,14 @@
     <footer class="site-footer">
       <div>
         <strong>TAZY.PRO</strong>
-        <span>Доказательная цифровая инфраструктура казахской тазы.</span>
+        <span data-copy="footer.summary">Доказательная цифровая инфраструктура казахской тазы.</span>
       </div>
       <nav aria-label="Footer navigation">
-        <a href="#registry">Registry</a>
-        <a href="#breeding">Breeding</a>
-        <a href="#passport">Passport</a>
-        <a href="#/data-room">FCI</a>
-        <a href="#/admin">Review</a>
+        <a href="#registry" data-copy="nav.registry">Registry</a>
+        <a href="#breeding" data-copy="nav.breeding">Breeding</a>
+        <a href="#passport" data-copy="nav.passport">Passport</a>
+        <a href="#/data-room" data-copy="nav.fci">FCI</a>
+        <a href="#/admin" data-copy="nav.review">Review</a>
       </nav>
     </footer>
 

@@ -26,6 +26,7 @@ static, while the product direction is captured in:
 - FCI Data Room route with seed-derived evidence metrics.
 - FCI recognition roadmap.
 - RU/KZ/EN hero copy switch.
+- RU/KZ/EN shell and landing copy catalog.
 - Dark/light theme switch.
 
 ## Source material

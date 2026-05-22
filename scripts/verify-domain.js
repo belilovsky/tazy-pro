@@ -2,10 +2,12 @@ import { dogProfiles, evidenceItems } from "../src/data/platform.js";
 import { mockApi } from "../src/api/mockApi.js";
 import { DECISION_TYPE, validateDog, validateEvidenceItem, validatePassportEvent, validateVerificationDecision } from "../src/domain/contracts.js";
 import { getFciDataRoomSnapshot } from "../src/domain/dataRoom.js";
+import { copyCatalog } from "../src/i18n/messages.js";
 
 const errors = [];
 const dogIds = new Set(dogProfiles.map((dog) => dog.id));
 const evidenceIds = new Set(evidenceItems.map((item) => item.id));
+const requiredCopyKeys = Object.keys(copyCatalog.ru);
 
 dogProfiles.forEach((dog) => {
   validateDog(dog).forEach((field) => {
@@ -58,6 +60,14 @@ if (dataRoom.metrics.length < 4) {
 if (dataRoom.priorityQueue.length === 0) {
   errors.push("FCI Data Room snapshot should expose open evidence items");
 }
+
+Object.entries(copyCatalog).forEach(([lang, messages]) => {
+  requiredCopyKeys.forEach((key) => {
+    if (!messages[key]) {
+      errors.push(`Missing ${lang} localization key: ${key}`);
+    }
+  });
+});
 
 if (errors.length > 0) {
   console.error(errors.join("\n"));

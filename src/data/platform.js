@@ -264,21 +264,3 @@ export const pairScores = {
     text: "Projected diversity is borderline. Require curator approval and a comparison with two alternative sires before proceeding.",
   },
 };
-
-export const heroCopy = {
-  ru: {
-    heroTitle: "TAZY.PRO",
-    heroText:
-      "Национальная цифровая платформа для доказательного реестра тазы: шежіре, здоровье, ДНК, полевые испытания, разведение и FCI Data Room к полному признанию в 2034 году.",
-  },
-  kk: {
-    heroTitle: "TAZY.PRO",
-    heroText:
-      "Қазақ тазысына арналған ұлттық цифрлық платформа: шежіре, денсаулық, ДНҚ, дала сынақтары, өсіру жүйесі және 2034 жылға дейінгі FCI Data Room.",
-  },
-  en: {
-    heroTitle: "TAZY.PRO",
-    heroText:
-      "A national digital platform for verified Tazy evidence: pedigree, health, DNA, field trials, breeding intelligence and the FCI Data Room for 2034 recognition.",
-  },
-};

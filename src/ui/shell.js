@@ -1,4 +1,4 @@
-import { heroCopy } from "../data/platform.js";
+import { copyCatalog } from "../i18n/messages.js";
 
 export function initShell(root = document) {
   const header = root.querySelector("[data-header]");
@@ -40,10 +40,10 @@ export function initShell(root = document) {
   root.querySelectorAll("[data-lang]").forEach((button) => {
     button.addEventListener("click", () => {
       const lang = button.dataset.lang;
-      const localizedCopy = heroCopy[lang] || heroCopy.ru;
+      const localizedCopy = copyCatalog[lang] || copyCatalog.ru;
 
       root.querySelectorAll("[data-lang]").forEach((item) => {
-        item.classList.toggle("active", item === button);
+        item.classList.toggle("active", item.dataset.lang === lang);
       });
       html.lang = lang === "kk" ? "kk" : lang;
 
@@ -56,4 +56,3 @@ export function initShell(root = document) {
     });
   });
 }
-

@@ -218,6 +218,28 @@ button {
   color: var(--text);
 }
 
+.mobile-language-switch {
+  display: flex;
+  gap: 8px;
+  padding-top: 8px;
+}
+
+.mobile-language-switch button {
+  min-height: 38px;
+  flex: 1;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 850;
+}
+
+.mobile-language-switch button.active {
+  background: var(--surface-2);
+  color: var(--text);
+}
+
 .theme-button,
 .menu-button {
   display: grid;
