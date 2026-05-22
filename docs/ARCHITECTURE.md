@@ -15,8 +15,12 @@ Implemented backend surfaces:
 
 The live frontend still runs as a static site, but route-level data now goes
 through `src/api/tazyApi.js`. That client uses same-origin `/api/v1` in
-production, prompts for a reviewer key on protected routes, and falls back to
-local seed data when the app is opened as a standalone static prototype.
+production, authenticates reviewer routes through a backend session cookie, and
+falls back to local seed data only on local/static development origins.
+
+Production also has DB health checks, reviewer-login throttling, no-store
+headers for protected API responses, and daily SQLite snapshots while Postgres
+migration remains open.
 
 ## Recommended next architecture
 

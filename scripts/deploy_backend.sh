@@ -11,7 +11,7 @@ REMOTE_RELEASE="${REMOTE_ROOT}/releases/${RELEASE_ID}"
 ssh -o StrictHostKeyChecking=no -o ConnectTimeout=15 "${DEPLOY_HOST}" \
   "install -d -m 0755 '${REMOTE_RELEASE}' '${REMOTE_ROOT}/shared' /etc/tazy-pro"
 
-COPYFILE_DISABLE=1 tar -czf - backend pyproject.toml index.html styles.css assets src | ssh -o StrictHostKeyChecking=no -o ConnectTimeout=15 "${DEPLOY_HOST}" \
+COPYFILE_DISABLE=1 tar -czf - backend pyproject.toml index.html styles.css assets src scripts/backup_backend_db.sh | ssh -o StrictHostKeyChecking=no -o ConnectTimeout=15 "${DEPLOY_HOST}" \
   "tar -xzf - -C '${REMOTE_RELEASE}' && chown -R root:root '${REMOTE_RELEASE}'"
 
 ssh -o StrictHostKeyChecking=no -o ConnectTimeout=15 "${DEPLOY_HOST}" "REMOTE_ROOT='${REMOTE_ROOT}' REMOTE_RELEASE='${REMOTE_RELEASE}' BACKEND_PORT='${BACKEND_PORT}' bash -s" <<'REMOTE'
@@ -20,8 +20,10 @@ set -euo pipefail
 VENV="${REMOTE_ROOT}/shared/.venv"
 ENV_FILE="/etc/tazy-pro/backend.env"
 DATA_DIR="${REMOTE_ROOT}/shared/data"
+BACKUP_DIR="${REMOTE_ROOT}/shared/backups"
 
 install -d -m 0750 "${DATA_DIR}"
+install -d -m 0750 "${BACKUP_DIR}"
 
 if [ ! -x "${VENV}/bin/python" ]; then
   python3.12 -m venv "${VENV}"
@@ -79,8 +81,31 @@ User=root
 WantedBy=multi-user.target
 UNIT
 
+cat > /etc/systemd/system/tazy-pro-backup.service <<UNIT
+[Unit]
+Description=TAZY.PRO SQLite database backup
+
+[Service]
+Type=oneshot
+EnvironmentFile=${ENV_FILE}
+ExecStart=${REMOTE_ROOT}/current/scripts/backup_backend_db.sh --local
+UNIT
+
+cat > /etc/systemd/system/tazy-pro-backup.timer <<UNIT
+[Unit]
+Description=Run TAZY.PRO SQLite database backup daily
+
+[Timer]
+OnCalendar=*-*-* 02:30:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target
+UNIT
+
 systemctl daemon-reload
 systemctl enable tazy-pro-backend.service >/dev/null
+systemctl enable --now tazy-pro-backup.timer >/dev/null
 systemctl restart tazy-pro-backend.service
 sleep 2
 curl -fsS "http://127.0.0.1:${BACKEND_PORT}/health" >/dev/null

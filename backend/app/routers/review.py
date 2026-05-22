@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import uuid
+from time import monotonic
 
 from fastapi import APIRouter, Depends, HTTPException, Request, status
 from pydantic import BaseModel, Field
@@ -17,6 +18,9 @@ from backend.app.security import credentials_match, require_reviewer
 from backend.app.services import decision_dict, review_queue
 
 router = APIRouter(prefix="/api/v1/review", tags=["review"])
+LOGIN_WINDOW_SECONDS = 600
+LOGIN_MAX_FAILURES = 5
+_login_failures: dict[str, list[float]] = {}
 
 
 class ReviewerLogin(BaseModel):
@@ -29,6 +33,39 @@ class DecisionCreate(BaseModel):
     decision: str = Field(pattern="^(approved|changes_requested|rejected)$")
     note: str = Field(min_length=1, max_length=5000)
     reviewerId: str | None = None
+
+
+def _login_key(request: Request, username: str) -> str:
+    host = request.client.host if request.client else "unknown"
+    return f"{host}:{username.strip().lower()}"
+
+
+def _recent_login_failures(key: str) -> list[float]:
+    cutoff = monotonic() - LOGIN_WINDOW_SECONDS
+    failures = [timestamp for timestamp in _login_failures.get(key, []) if timestamp >= cutoff]
+    if failures:
+        _login_failures[key] = failures
+    else:
+        _login_failures.pop(key, None)
+    return failures
+
+
+def _assert_login_allowed(key: str) -> None:
+    if len(_recent_login_failures(key)) >= LOGIN_MAX_FAILURES:
+        raise HTTPException(
+            status_code=status.HTTP_429_TOO_MANY_REQUESTS,
+            detail={"code": "rate_limited", "message": "Too many reviewer login attempts"},
+        )
+
+
+def _record_login_failure(key: str) -> None:
+    failures = _recent_login_failures(key)
+    failures.append(monotonic())
+    _login_failures[key] = failures
+
+
+def _clear_login_failures(key: str) -> None:
+    _login_failures.pop(key, None)
 
 
 def reviewer_session_payload(request: Request) -> dict[str, object]:
@@ -51,17 +88,21 @@ async def login_reviewer(
     request: Request,
     settings: Settings = Depends(get_settings),
 ):
+    key = _login_key(request, payload.username)
+    _assert_login_allowed(key)
     if not credentials_match(
         payload.username,
         payload.password,
         expected_username=settings.admin_username,
         expected_password=settings.admin_password,
     ):
+        _record_login_failure(key)
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail={"code": "unauthorized", "message": "Reviewer credentials are invalid"},
         )
 
+    _clear_login_failures(key)
     request.session["reviewer_authenticated"] = True
     request.session["reviewer_user"] = payload.username
     request.session["reviewer_role"] = "reviewer"

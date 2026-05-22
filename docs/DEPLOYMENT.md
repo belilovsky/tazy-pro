@@ -13,6 +13,7 @@ Current production target:
 - Backend service: `tazy-pro-backend.service`
 - Backend bind: `127.0.0.1:8182`
 - Backend env: `/etc/tazy-pro/backend.env`
+- Backend backups: `/opt/tazy-pro/shared/backups`
 - Nginx config: `/etc/nginx/sites-available/tazy.qdev.run`
 - TLS certificate: `/etc/letsencrypt/live/tazy.qdev.run/`
 
@@ -42,7 +43,8 @@ the `current` symlink, and keeps the latest five releases.
 The backend deploy creates a timestamped release under `/opt/tazy-pro/releases`,
 installs Python dependencies into `/opt/tazy-pro/shared/.venv`, keeps generated
 production secrets in `/etc/tazy-pro/backend.env`, and restarts the systemd
-service.
+service. It also installs `tazy-pro-backup.timer`, which snapshots the current
+SQLite database daily while the MVP is not yet on Postgres.
 
 The current nginx config proxies:
 
@@ -70,6 +72,7 @@ The production host serves the static app with:
 curl -I https://tazy.qdev.run/
 curl -I http://tazy.qdev.run/
 curl -fsS https://tazy.qdev.run/api/v1/dogs
+curl -fsS https://tazy.qdev.run/api/v1/health/db
 curl -fsS https://tazy.qdev.run/admin/login
 ```
 
@@ -78,6 +81,7 @@ Expected:
 - HTTPS returns `200`.
 - HTTP returns `301` to `https://tazy.qdev.run/`.
 - API dog registry returns `200`.
+- API DB health returns `200`.
 - `/api/v1/review/queue` returns `401` without reviewer session credentials.
 - Admin login returns `200`.
 - `strict-transport-security`, `x-content-type-options`, and
@@ -91,3 +95,15 @@ Browser smoke should cover:
 - `#/data-room`
 - `#/admin` reviewer decision persistence
 - desktop and mobile overflow checks
+
+## Backup
+
+Run a manual production SQLite backup with:
+
+```bash
+./scripts/backup_backend_db.sh
+```
+
+The backup command never prints database contents or secrets. It stores gzip
+snapshots under `/opt/tazy-pro/shared/backups` and keeps the latest 14 by
+default.

@@ -5,6 +5,7 @@ from __future__ import annotations
 from collections.abc import AsyncGenerator
 from pathlib import Path
 
+from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
 from sqlalchemy.orm import DeclarativeBase
 
@@ -59,6 +60,11 @@ async def create_tables() -> None:
         from backend.app import models  # noqa: F401
 
         await conn.run_sync(Base.metadata.create_all)
+
+
+async def check_database() -> None:
+    async with get_engine().connect() as conn:
+        await conn.execute(text("select 1"))
 
 
 async def get_db() -> AsyncGenerator[AsyncSession, None]:

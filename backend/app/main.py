@@ -16,7 +16,7 @@ from starlette.middleware.sessions import SessionMiddleware
 
 from backend.app.admin import init_admin
 from backend.app.config import get_settings
-from backend.app.database import create_tables, get_engine, get_sessionmaker
+from backend.app.database import check_database, create_tables, get_engine, get_sessionmaker
 from backend.app.middleware import RequestIdMiddleware
 from backend.app.routers import fci, public, review
 from backend.app.seed import ensure_seed_data
@@ -101,6 +101,11 @@ def create_app() -> FastAPI:
     @app.get("/api/v1/health", tags=["health"])
     async def api_health():
         return {"status": "ok", "service": "tazy-api"}
+
+    @app.get("/api/v1/health/db", tags=["health"])
+    async def api_db_health():
+        await check_database()
+        return {"status": "ok", "service": "tazy-api", "database": "ok"}
 
     app.include_router(public.router)
     app.include_router(review.router)

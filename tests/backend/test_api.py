@@ -37,6 +37,13 @@ def test_health_echoes_request_id(client: TestClient):
     assert response.json()["status"] == "ok"
 
 
+def test_db_health_checks_database(client: TestClient):
+    response = client.get("/api/v1/health/db")
+
+    assert response.status_code == 200
+    assert response.json() == {"status": "ok", "service": "tazy-api", "database": "ok"}
+
+
 def test_public_dogs_seeded(client: TestClient):
     response = client.get("/api/v1/dogs")
 
@@ -142,6 +149,44 @@ def test_reviewer_session_login_unlocks_queue(tmp_path, monkeypatch):
         locked = test_client.get("/api/v1/review/queue")
         assert locked.status_code == 401
 
+    get_settings.cache_clear()
+    asyncio.run(dispose_engine())
+
+
+def test_reviewer_login_rate_limit(tmp_path, monkeypatch):
+    monkeypatch.setenv("TAZY_DEBUG", "false")
+    monkeypatch.setenv("TAZY_DATABASE_URL", f"sqlite+aiosqlite:///{tmp_path / 'login-limit.db'}")
+    monkeypatch.setenv("TAZY_SECRET_KEY", "prod-login-limit-secret")
+    monkeypatch.setenv("TAZY_ADMIN_USERNAME", "admin")
+    monkeypatch.setenv("TAZY_ADMIN_PASSWORD", "prod-admin-password")
+    monkeypatch.setenv("TAZY_REVIEWER_API_KEY", "prod-reviewer-key")
+
+    from backend.app.config import get_settings
+    from backend.app.database import dispose_engine
+    from backend.app.routers.review import LOGIN_MAX_FAILURES, _login_failures
+
+    get_settings.cache_clear()
+    _login_failures.clear()
+    asyncio.run(dispose_engine())
+
+    from backend.app.main import create_app
+
+    with TestClient(create_app(), base_url="https://testserver") as test_client:
+        for _ in range(LOGIN_MAX_FAILURES):
+            response = test_client.post(
+                "/api/v1/review/login",
+                json={"username": "admin", "password": "wrong-password"},
+            )
+            assert response.status_code == 401
+
+        limited = test_client.post(
+            "/api/v1/review/login",
+            json={"username": "admin", "password": "prod-admin-password"},
+        )
+        assert limited.status_code == 429
+        assert limited.json()["error"]["code"] == "rate_limited"
+
+    _login_failures.clear()
     get_settings.cache_clear()
     asyncio.run(dispose_engine())
 

@@ -26,6 +26,7 @@ static, while the product direction is captured in:
 - Mock API adapter with persisted local reviewer decisions.
 - FastAPI backend skeleton with SQLAlchemy models, seeded public API, reviewer endpoints, and SQLAdmin.
 - Browser HTTP client that uses `/api/v1` in production and falls back to local seed data for static development.
+- DB health checks, protected-response no-store headers, reviewer login throttling, and daily SQLite backups.
 - FCI Data Room route with seed-derived evidence metrics.
 - FCI recognition roadmap.
 - RU/KZ/EN hero copy switch.
@@ -83,6 +84,7 @@ Postgres drafts instead of introducing a parallel model:
 - `POST /api/v1/review/decisions`
 - `GET /api/v1/fci/data-room`
 - SQLAdmin at `/admin`
+- `GET /api/v1/health/db`
 
 The static app uses the same-origin `/api/v1` client in `src/api/tazyApi.js`.
 Reviewer routes authenticate through a backend session cookie; `X-Reviewer-Key`
