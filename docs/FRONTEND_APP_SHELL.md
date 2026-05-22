@@ -17,8 +17,16 @@ src/main.js
   Bootstraps the page.
 
 src/data/platform.js
-  Contains current prototype data: dog profiles, breeding pair scores, and hero
-  language copy.
+  Contains API-shaped seed data: dog profiles, evidence items, breeding pair
+  scores, and hero language copy.
+
+src/domain/contracts.js
+  Owns JSDoc domain typedefs, enum-like constants, display labels, and seed
+  validators.
+
+src/domain/readModels.js
+  Owns read helpers used by UI modules so screens do not depend on raw seed
+  arrays.
 
 src/ui/shell.js
   Owns header scroll state, theme toggle, language switch, and mobile menu.
@@ -46,6 +54,8 @@ src/ui/admin.js
 When package tooling is available, these modules can move directly into React:
 
 - `src/data/platform.js` becomes seed/domain data.
+- `src/domain/contracts.js` becomes shared schema/types.
+- `src/domain/readModels.js` becomes generated API clients or selector helpers.
 - `src/ui/registry.js` becomes `RegistrySection`.
 - `src/ui/breeding.js` becomes `BreedingConsole`.
 - `src/ui/admin.js` becomes `ReviewerWorkspace`.

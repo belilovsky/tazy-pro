@@ -1,4 +1,5 @@
-import { dogProfiles, getDogById, getDogByPassportId } from "../data/platform.js";
+import { dogProfiles } from "../data/platform.js";
+import { getPublicDogProfile, getPublicDogProfileByPassportId } from "../domain/readModels.js";
 import { createAdminWorkspace } from "./admin.js";
 import { createVerificationRow } from "./evidence.js";
 
@@ -57,7 +58,7 @@ function createDogProfile(documentRef, dog) {
   [
     ["Registry", dog.registryNumber],
     ["Completeness", dog.score],
-    ["Verification", dog.verificationLevel],
+    ["Verification", dog.verificationLabel],
     ["Passport", dog.passportId],
   ].forEach(([label, value]) => {
     const item = createElement(documentRef, "div");
@@ -115,7 +116,7 @@ function createPassportView(documentRef, dog) {
   }
 
   const eventLog = createElement(documentRef, "ol", "event-log");
-  dog.passportEvents.forEach(([title, value]) => {
+  dog.passportEvents.forEach(({ title, value }) => {
     const item = createElement(documentRef, "li");
     item.append(createElement(documentRef, "b", "", title), createElement(documentRef, "span", "", value));
     eventLog.append(item);
@@ -149,11 +150,11 @@ function renderRoute(root, homeView, routeView) {
   let view = null;
 
   if (resource === "dogs") {
-    view = createDogProfile(root, getDogById(slug) || dogProfiles[0]);
+    view = createDogProfile(root, getPublicDogProfile(slug) || getPublicDogProfile(dogProfiles[0].id));
   }
 
   if (resource === "passport") {
-    view = createPassportView(root, getDogByPassportId(slug) || dogProfiles[0]);
+    view = createPassportView(root, getPublicDogProfileByPassportId(slug) || getPublicDogProfile(dogProfiles[0].id));
   }
 
   if (resource === "admin") {

@@ -1,23 +1,54 @@
+import { DOG_SEX, EVIDENCE_PRIORITY, EVIDENCE_STATUS, EVIDENCE_TYPE, VISIBILITY } from "../domain/contracts.js";
+
 export const dogProfiles = [
   {
     id: "akzhel-barys",
     name: "Akzhel Barys",
+    sex: DOG_SEX.male,
+    dateOfBirth: "2022-04-18",
     meta: "Male · born 2022 · Almaty region",
     registryNumber: "TZY-2034-0182",
     passportId: "TZY-KZ-000182",
-    verificationLevel: "Level 7",
+    verificationLevel: 7,
     breeder: "Altyn Dala Breeding Group",
     kennel: "Zhetysu Line Registry",
     region: "Almaty region",
     summary:
       "A field-tested male with verified parentage and strong export readiness. Health package is almost complete, with ophthalmology still pending.",
-    score: "86%",
+    completenessScore: 86,
     photo: "./assets/tazy-profile-1.jpg",
     alt: "Akzhel Barys profile",
     passportEvents: [
-      ["DNA parentage", "Verified · 2026-05-17"],
-      ["Health package", "Ophthalmology pending"],
-      ["Field trial", "Video evidence attached"],
+      {
+        id: "passport-barys-dna",
+        dogId: "akzhel-barys",
+        type: EVIDENCE_TYPE.dna,
+        title: "DNA parentage",
+        value: "Verified · 2026-05-17",
+        eventAt: "2026-05-17",
+        visibility: VISIBILITY.public,
+        evidenceItemId: "dna-barys-parentage",
+      },
+      {
+        id: "passport-barys-health",
+        dogId: "akzhel-barys",
+        type: EVIDENCE_TYPE.health,
+        title: "Health package",
+        value: "Ophthalmology pending",
+        eventAt: "2026-05-17",
+        visibility: VISIBILITY.public,
+        evidenceItemId: "health-barys-ophthalmology",
+      },
+      {
+        id: "passport-barys-field",
+        dogId: "akzhel-barys",
+        type: EVIDENCE_TYPE.fieldTrial,
+        title: "Field trial",
+        value: "Video evidence attached",
+        eventAt: "2026-05-17",
+        visibility: VISIBILITY.public,
+        evidenceItemId: "field-barys-video",
+      },
     ],
     steps: [
       ["Owner claim", "signed by breeder", "done"],
@@ -32,22 +63,51 @@ export const dogProfiles = [
   {
     id: "saumal-koke",
     name: "Saumal Koke",
+    sex: DOG_SEX.female,
+    dateOfBirth: "2023-06-02",
     meta: "Female · born 2023 · Turkistan region",
     registryNumber: "TZY-2034-0194",
     passportId: "TZY-KZ-000194",
-    verificationLevel: "Level 5",
+    verificationLevel: 5,
     breeder: "Turkistan Tazy Club",
     kennel: "Saumal Kennel",
     region: "Turkistan region",
     summary:
       "A young female with confirmed identity, kennel-signed ownership, and a complete health package. DNA sample and field trial are still in progress.",
-    score: "74%",
+    completenessScore: 74,
     photo: "./assets/tazy-profile-2.jpg",
     alt: "Saumal Koke profile",
     passportEvents: [
-      ["Identity", "Microchip verified"],
-      ["Health package", "Complete"],
-      ["DNA parentage", "Sample in lab"],
+      {
+        id: "passport-koke-identity",
+        dogId: "saumal-koke",
+        type: EVIDENCE_TYPE.microchip,
+        title: "Identity",
+        value: "Microchip verified",
+        eventAt: "2026-05-17",
+        visibility: VISIBILITY.public,
+        evidenceItemId: "microchip-koke-identity",
+      },
+      {
+        id: "passport-koke-health",
+        dogId: "saumal-koke",
+        type: EVIDENCE_TYPE.health,
+        title: "Health package",
+        value: "Complete",
+        eventAt: "2026-05-18",
+        visibility: VISIBILITY.public,
+        evidenceItemId: "health-koke-package",
+      },
+      {
+        id: "passport-koke-dna",
+        dogId: "saumal-koke",
+        type: EVIDENCE_TYPE.dna,
+        title: "DNA parentage",
+        value: "Sample in lab",
+        eventAt: "2026-05-19",
+        visibility: VISIBILITY.public,
+        evidenceItemId: "dna-koke-parentage",
+      },
     ],
     steps: [
       ["Owner claim", "signed by kennel", "done"],
@@ -61,25 +121,18 @@ export const dogProfiles = [
   },
 ];
 
-export function getDogById(id) {
-  return dogProfiles.find((dog) => dog.id === id);
-}
-
-export function getDogByPassportId(passportId) {
-  const normalized = passportId?.toLowerCase();
-  return dogProfiles.find((dog) => dog.passportId.toLowerCase() === normalized);
-}
-
-export const reviewQueue = [
+export const evidenceItems = [
   {
     id: "health-barys-ophthalmology",
     dogId: "akzhel-barys",
-    evidenceType: "Health package",
+    type: EVIDENCE_TYPE.health,
+    label: "Health package",
     title: "Ophthalmology certificate",
     submittedBy: "Altyn Dala Breeding Group",
     receivedAt: "2026-05-17",
-    priority: "Medium",
-    status: "Needs review",
+    priority: EVIDENCE_PRIORITY.medium,
+    status: EVIDENCE_STATUS.needsReview,
+    visibility: VISIBILITY.reviewerOnly,
     summary:
       "Breeder submitted the preliminary ophthalmology result. The export-ready profile still needs a signed final certificate.",
     reviewerNote:
@@ -88,12 +141,14 @@ export const reviewQueue = [
   {
     id: "dna-koke-parentage",
     dogId: "saumal-koke",
-    evidenceType: "DNA parentage",
+    type: EVIDENCE_TYPE.dna,
+    label: "DNA parentage",
     title: "Lab sample confirmation",
     submittedBy: "Turkistan Tazy Club",
     receivedAt: "2026-05-19",
-    priority: "High",
-    status: "Waiting lab",
+    priority: EVIDENCE_PRIORITY.high,
+    status: EVIDENCE_STATUS.waitingExternal,
+    visibility: VISIBILITY.reviewerOnly,
     summary:
       "Lab sample was received, but parentage confirmation is not attached yet. This blocks Level 6 verification.",
     reviewerNote:
@@ -102,12 +157,14 @@ export const reviewQueue = [
   {
     id: "field-koke-trial",
     dogId: "saumal-koke",
-    evidenceType: "Field trial",
+    type: EVIDENCE_TYPE.fieldTrial,
+    label: "Field trial",
     title: "Spring field-trial video",
     submittedBy: "Saumal Kennel",
     receivedAt: "2026-05-21",
-    priority: "Low",
-    status: "Needs review",
+    priority: EVIDENCE_PRIORITY.low,
+    status: EVIDENCE_STATUS.needsReview,
+    visibility: VISIBILITY.reviewerOnly,
     summary:
       "Video evidence was uploaded for the spring field-trial event. Reviewer must confirm dog identity and event metadata.",
     reviewerNote:

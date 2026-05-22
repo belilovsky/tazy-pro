@@ -10,6 +10,7 @@ static, while the product direction is captured in:
 - [ROADMAP.md](./ROADMAP.md)
 - [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md)
 - [docs/DATA_MODEL.md](./docs/DATA_MODEL.md)
+- [docs/DATA_CONTRACT.md](./docs/DATA_CONTRACT.md)
 - [docs/FRONTEND_APP_SHELL.md](./docs/FRONTEND_APP_SHELL.md)
 
 ## What is included
@@ -54,4 +55,10 @@ Check JavaScript module syntax with:
 
 ```bash
 npm run check
+```
+
+Check only the domain seed contract with:
+
+```bash
+npm run verify:domain
 ```

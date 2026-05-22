@@ -1,4 +1,5 @@
 import { dogProfiles } from "../data/platform.js";
+import { getPublicDogProfile } from "../domain/readModels.js";
 import { createVerificationRow } from "./evidence.js";
 import { updateDogRouteLinks } from "./router.js";
 
@@ -15,7 +16,8 @@ export function initRegistry(root = document) {
   }
 
   function renderDog(index) {
-    const profile = dogProfiles[index] || dogProfiles[0];
+    const seedProfile = dogProfiles[index] || dogProfiles[0];
+    const profile = getPublicDogProfile(seedProfile.id);
     photo.src = profile.photo;
     photo.alt = profile.alt;
     name.textContent = profile.name;

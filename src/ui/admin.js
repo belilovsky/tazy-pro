@@ -1,4 +1,5 @@
-import { getDogById, reviewQueue } from "../data/platform.js";
+import { DECISION_TYPE, EVIDENCE_PRIORITY } from "../domain/contracts.js";
+import { createVerificationDecision, getReviewQueue } from "../domain/readModels.js";
 import { createVerificationRow } from "./evidence.js";
 
 const decisions = new Map();
@@ -15,7 +16,6 @@ function createElement(documentRef, tag, className, text) {
 }
 
 function createQueueButton(documentRef, item, selectedId) {
-  const dog = getDogById(item.dogId);
   const decision = decisions.get(item.id);
   const button = createElement(documentRef, "button", "admin-queue-button");
   button.type = "button";
@@ -23,19 +23,19 @@ function createQueueButton(documentRef, item, selectedId) {
   button.classList.toggle("active", item.id === selectedId);
 
   const top = createElement(documentRef, "span", "admin-queue-top");
-  top.append(createElement(documentRef, "strong", "", item.evidenceType), createElement(documentRef, "small", "", item.priority));
+  top.append(createElement(documentRef, "strong", "", item.label), createElement(documentRef, "small", "", item.priorityLabel));
 
   button.append(
     top,
-    createElement(documentRef, "b", "", dog?.name || "Unknown dog"),
-    createElement(documentRef, "small", "", decision || item.status),
+    createElement(documentRef, "b", "", item.dog?.name || "Unknown dog"),
+    createElement(documentRef, "small", "", decision?.decisionLabel || item.statusLabel),
   );
   return button;
 }
 
 function renderQueue(documentRef, queue, selectedId, onSelect) {
   queue.replaceChildren(
-    ...reviewQueue.map((item) => {
+    ...getReviewQueue().map((item) => {
       const button = createQueueButton(documentRef, item, selectedId);
       button.addEventListener("click", () => onSelect(item.id));
       return button;
@@ -44,19 +44,19 @@ function renderQueue(documentRef, queue, selectedId, onSelect) {
 }
 
 function renderDetail(documentRef, detail, item, onDecision) {
-  const dog = getDogById(item.dogId);
+  const dog = item.dog;
   const decision = decisions.get(item.id);
   const panel = createElement(documentRef, "div", "admin-detail-grid");
 
   const evidence = createElement(documentRef, "article", "route-panel admin-evidence-panel");
   const evidenceTop = createElement(documentRef, "div", "admin-panel-top");
   evidenceTop.append(
-    createElement(documentRef, "span", "admin-pill", item.priority),
-    createElement(documentRef, "span", "admin-status", decision || item.status),
+    createElement(documentRef, "span", "admin-pill", item.priorityLabel),
+    createElement(documentRef, "span", "admin-status", decision?.decisionLabel || item.statusLabel),
   );
   evidence.append(
     evidenceTop,
-    createElement(documentRef, "p", "section-label", item.evidenceType),
+    createElement(documentRef, "p", "section-label", item.label),
     createElement(documentRef, "h2", "", item.title),
     createElement(documentRef, "p", "", item.summary),
   );
@@ -82,9 +82,9 @@ function renderDetail(documentRef, detail, item, onDecision) {
 
   const actions = createElement(documentRef, "div", "admin-actions");
   [
-    ["Approved", "Approve", "primary-button compact"],
-    ["Changes requested", "Request changes", "secondary-button"],
-    ["Rejected", "Reject", "danger-button"],
+    [DECISION_TYPE.approved, "Approve", "primary-button compact"],
+    [DECISION_TYPE.changesRequested, "Request changes", "secondary-button"],
+    [DECISION_TYPE.rejected, "Reject", "danger-button"],
   ].forEach(([value, label, className]) => {
     const button = createElement(documentRef, "button", className, label);
     button.type = "button";
@@ -95,7 +95,7 @@ function renderDetail(documentRef, detail, item, onDecision) {
   const log = createElement(documentRef, "p", "admin-event-log");
   log.setAttribute("aria-live", "polite");
   log.textContent = decision
-    ? `${decision} · local reviewer event prepared for audit log.`
+    ? `${decision.decisionLabel} · local reviewer event prepared for audit log.`
     : "No decision yet. Choose an action to prepare an audit-log event.";
 
   evidence.append(noteLabel, actions, log);
@@ -119,6 +119,7 @@ function renderDetail(documentRef, detail, item, onDecision) {
 }
 
 export function createAdminWorkspace(documentRef) {
+  const reviewQueue = getReviewQueue();
   let selectedId = reviewQueue[0]?.id;
 
   const section = createElement(documentRef, "section", "route-shell admin-workspace");
@@ -141,7 +142,7 @@ export function createAdminWorkspace(documentRef) {
   [
     ["Queue", `${reviewQueue.length} items`],
     ["Dogs affected", `${new Set(reviewQueue.map((item) => item.dogId)).size}`],
-    ["High priority", `${reviewQueue.filter((item) => item.priority === "High").length}`],
+    ["High priority", `${reviewQueue.filter((item) => item.priority === EVIDENCE_PRIORITY.high).length}`],
     ["Audit mode", "Local demo"],
   ].forEach(([label, value]) => {
     const item = createElement(documentRef, "div");
@@ -165,8 +166,8 @@ export function createAdminWorkspace(documentRef) {
       selectedId = nextId;
       refresh();
     });
-    renderDetail(documentRef, detail, selected, (itemId, decision) => {
-      decisions.set(itemId, decision);
+    renderDetail(documentRef, detail, selected, (itemId, decision, note) => {
+      decisions.set(itemId, createVerificationDecision({ evidenceItemId: itemId, decision, note }));
       refresh();
     });
   }
@@ -175,4 +176,3 @@ export function createAdminWorkspace(documentRef) {
   section.append(back, heading, stats, layout);
   return section;
 }
-
