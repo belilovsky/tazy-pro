@@ -10,6 +10,10 @@ export function getDogByPassportId(passportId) {
   return dogProfiles.find((dog) => dog.passportId.toLowerCase() === normalized);
 }
 
+export function listPublicDogProfiles() {
+  return dogProfiles.map((dog) => getPublicDogProfile(dog.id));
+}
+
 export function getEvidenceById(id) {
   return evidenceItems.find((item) => item.id === id);
 }
@@ -64,4 +68,3 @@ export function createVerificationDecision({ evidenceItemId, decision, note, rev
 export function getDecisionLabel(decision) {
   return formatDecisionLabel(decision?.decision || decision || DECISION_TYPE.changesRequested);
 }
-

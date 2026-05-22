@@ -1,8 +1,10 @@
 import { dogProfiles, evidenceItems } from "../src/data/platform.js";
-import { validateDog, validateEvidenceItem, validatePassportEvent } from "../src/domain/contracts.js";
+import { mockApi } from "../src/api/mockApi.js";
+import { DECISION_TYPE, validateDog, validateEvidenceItem, validatePassportEvent, validateVerificationDecision } from "../src/domain/contracts.js";
 
 const errors = [];
 const dogIds = new Set(dogProfiles.map((dog) => dog.id));
+const evidenceIds = new Set(evidenceItems.map((item) => item.id));
 
 dogProfiles.forEach((dog) => {
   validateDog(dog).forEach((field) => {
@@ -21,10 +23,36 @@ evidenceItems.forEach((item) => {
   });
 });
 
+await mockApi.clearVerificationDecisions();
+const queue = await mockApi.listReviewQueue();
+if (queue.length !== evidenceItems.length) {
+  errors.push(`Mock API queue returned ${queue.length} items instead of ${evidenceItems.length}`);
+}
+
+const sampleDog = await mockApi.getDog(dogProfiles[0]?.id);
+if (sampleDog?.id !== dogProfiles[0]?.id) {
+  errors.push("Mock API could not resolve the first public dog profile");
+}
+
+const sampleDecision = await mockApi.createVerificationDecision({
+  evidenceItemId: evidenceItems[0]?.id,
+  decision: DECISION_TYPE.approved,
+  note: "Verification smoke decision.",
+  reviewerId: "domain-smoke",
+});
+validateVerificationDecision(sampleDecision, evidenceIds).forEach((field) => {
+  errors.push(`VerificationDecision ${sampleDecision.id || "<missing id>"} is missing ${field}`);
+});
+
+const savedDecision = await mockApi.getVerificationDecision(evidenceItems[0]?.id);
+if (savedDecision?.decision !== DECISION_TYPE.approved) {
+  errors.push("Mock API did not persist the verification decision");
+}
+await mockApi.clearVerificationDecisions();
+
 if (errors.length > 0) {
   console.error(errors.join("\n"));
   process.exit(1);
 }
 
 console.log(`Domain seed verified: ${dogProfiles.length} dogs, ${evidenceItems.length} evidence items.`);
-

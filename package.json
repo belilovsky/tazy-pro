@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "python3 -m http.server 4173",
-    "check": "node --check src/main.js && node --check src/data/platform.js && node --check src/domain/contracts.js && node --check src/domain/readModels.js && node --check src/ui/admin.js && node --check src/ui/breeding.js && node --check src/ui/evidence.js && node --check src/ui/registry.js && node --check src/ui/router.js && node --check src/ui/shell.js && node scripts/verify-domain.js",
+    "check": "node --check src/main.js && node --check src/api/mockApi.js && node --check src/data/platform.js && node --check src/domain/contracts.js && node --check src/domain/readModels.js && node --check src/ui/admin.js && node --check src/ui/breeding.js && node --check src/ui/evidence.js && node --check src/ui/registry.js && node --check src/ui/router.js && node --check src/ui/shell.js && node scripts/verify-domain.js",
     "verify:domain": "node scripts/verify-domain.js"
   }
 }

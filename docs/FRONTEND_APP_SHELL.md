@@ -28,6 +28,10 @@ src/domain/readModels.js
   Owns read helpers used by UI modules so screens do not depend on raw seed
   arrays.
 
+src/api/mockApi.js
+  Owns async mock API methods and local reviewer-decision persistence. This is
+  the replacement point for the future backend client.
+
 src/ui/shell.js
   Owns header scroll state, theme toggle, language switch, and mobile menu.
 
@@ -46,7 +50,7 @@ src/ui/evidence.js
 
 src/ui/admin.js
   Owns the reviewer workspace demo: queue selection, profile impact, reviewer
-  notes, and local decision state.
+  notes, and persisted mock API decision state.
 ```
 
 ## Migration path to React/Vite
@@ -56,6 +60,7 @@ When package tooling is available, these modules can move directly into React:
 - `src/data/platform.js` becomes seed/domain data.
 - `src/domain/contracts.js` becomes shared schema/types.
 - `src/domain/readModels.js` becomes generated API clients or selector helpers.
+- `src/api/mockApi.js` becomes the real HTTP client boundary.
 - `src/ui/registry.js` becomes `RegistrySection`.
 - `src/ui/breeding.js` becomes `BreedingConsole`.
 - `src/ui/admin.js` becomes `ReviewerWorkspace`.

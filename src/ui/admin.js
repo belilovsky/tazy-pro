@@ -1,8 +1,6 @@
+import { mockApi } from "../api/mockApi.js";
 import { DECISION_TYPE, EVIDENCE_PRIORITY } from "../domain/contracts.js";
-import { createVerificationDecision, getReviewQueue } from "../domain/readModels.js";
 import { createVerificationRow } from "./evidence.js";
-
-const decisions = new Map();
 
 function createElement(documentRef, tag, className, text) {
   const node = documentRef.createElement(tag);
@@ -16,7 +14,6 @@ function createElement(documentRef, tag, className, text) {
 }
 
 function createQueueButton(documentRef, item, selectedId) {
-  const decision = decisions.get(item.id);
   const button = createElement(documentRef, "button", "admin-queue-button");
   button.type = "button";
   button.dataset.reviewItem = item.id;
@@ -28,14 +25,14 @@ function createQueueButton(documentRef, item, selectedId) {
   button.append(
     top,
     createElement(documentRef, "b", "", item.dog?.name || "Unknown dog"),
-    createElement(documentRef, "small", "", decision?.decisionLabel || item.statusLabel),
+    createElement(documentRef, "small", "", item.statusLabel),
   );
   return button;
 }
 
-function renderQueue(documentRef, queue, selectedId, onSelect) {
+function renderQueue(documentRef, queue, items, selectedId, onSelect) {
   queue.replaceChildren(
-    ...getReviewQueue().map((item) => {
+    ...items.map((item) => {
       const button = createQueueButton(documentRef, item, selectedId);
       button.addEventListener("click", () => onSelect(item.id));
       return button;
@@ -45,7 +42,7 @@ function renderQueue(documentRef, queue, selectedId, onSelect) {
 
 function renderDetail(documentRef, detail, item, onDecision) {
   const dog = item.dog;
-  const decision = decisions.get(item.id);
+  const decision = item.currentDecision;
   const panel = createElement(documentRef, "div", "admin-detail-grid");
 
   const evidence = createElement(documentRef, "article", "route-panel admin-evidence-panel");
@@ -95,7 +92,7 @@ function renderDetail(documentRef, detail, item, onDecision) {
   const log = createElement(documentRef, "p", "admin-event-log");
   log.setAttribute("aria-live", "polite");
   log.textContent = decision
-    ? `${decision.decisionLabel} · local reviewer event prepared for audit log.`
+    ? `${decision.decisionLabel} · reviewer event saved in the local mock API.`
     : "No decision yet. Choose an action to prepare an audit-log event.";
 
   evidence.append(noteLabel, actions, log);
@@ -118,9 +115,37 @@ function renderDetail(documentRef, detail, item, onDecision) {
   detail.replaceChildren(panel);
 }
 
-export function createAdminWorkspace(documentRef) {
-  const reviewQueue = getReviewQueue();
-  let selectedId = reviewQueue[0]?.id;
+function renderStats(documentRef, stats, reviewQueue) {
+  stats.replaceChildren();
+  [
+    ["Queue", `${reviewQueue.length} items`],
+    ["Dogs affected", `${new Set(reviewQueue.map((item) => item.dogId)).size}`],
+    ["High priority", `${reviewQueue.filter((item) => item.priority === EVIDENCE_PRIORITY.high).length}`],
+    ["Audit mode", "Mock API"],
+  ].forEach(([label, value]) => {
+    const item = createElement(documentRef, "div");
+    item.append(createElement(documentRef, "span", "", label), createElement(documentRef, "strong", "", value));
+    stats.append(item);
+  });
+}
+
+function renderLoading(documentRef, queue, detail) {
+  queue.replaceChildren(createElement(documentRef, "p", "admin-empty", "Loading verification queue..."));
+  detail.replaceChildren(createElement(documentRef, "article", "route-panel", "Preparing reviewer workspace..."));
+}
+
+function renderError(documentRef, detail, error) {
+  const panel = createElement(documentRef, "article", "route-panel");
+  panel.append(
+    createElement(documentRef, "h2", "", "Reviewer workspace unavailable"),
+    createElement(documentRef, "p", "", error?.message || "Could not load the verification queue."),
+  );
+  detail.replaceChildren(panel);
+}
+
+export function createAdminWorkspace(documentRef, api = mockApi) {
+  let reviewQueue = [];
+  let selectedId;
 
   const section = createElement(documentRef, "section", "route-shell admin-workspace");
   const back = createElement(documentRef, "a", "route-back", "Back to platform");
@@ -139,16 +164,7 @@ export function createAdminWorkspace(documentRef) {
   );
 
   const stats = createElement(documentRef, "div", "route-stat-grid admin-stat-grid");
-  [
-    ["Queue", `${reviewQueue.length} items`],
-    ["Dogs affected", `${new Set(reviewQueue.map((item) => item.dogId)).size}`],
-    ["High priority", `${reviewQueue.filter((item) => item.priority === EVIDENCE_PRIORITY.high).length}`],
-    ["Audit mode", "Local demo"],
-  ].forEach(([label, value]) => {
-    const item = createElement(documentRef, "div");
-    item.append(createElement(documentRef, "span", "", label), createElement(documentRef, "strong", "", value));
-    stats.append(item);
-  });
+  renderStats(documentRef, stats, reviewQueue);
 
   const layout = createElement(documentRef, "div", "admin-layout");
   const queuePanel = createElement(documentRef, "aside", "route-panel admin-queue-panel");
@@ -159,20 +175,39 @@ export function createAdminWorkspace(documentRef) {
   const detail = createElement(documentRef, "div", "admin-detail");
   layout.append(queuePanel, detail);
 
+  async function loadQueue() {
+    reviewQueue = await api.listReviewQueue();
+    selectedId = selectedId || reviewQueue[0]?.id;
+    refresh();
+  }
+
   function refresh() {
     const selected = reviewQueue.find((item) => item.id === selectedId) || reviewQueue[0];
+    if (!selected) {
+      queue.replaceChildren(createElement(documentRef, "p", "admin-empty", "No evidence items in the queue."));
+      detail.replaceChildren(createElement(documentRef, "article", "route-panel", "The reviewer queue is empty."));
+      renderStats(documentRef, stats, reviewQueue);
+      return;
+    }
+
     selectedId = selected.id;
-    renderQueue(documentRef, queue, selectedId, (nextId) => {
+    renderStats(documentRef, stats, reviewQueue);
+    renderQueue(documentRef, queue, reviewQueue, selectedId, (nextId) => {
       selectedId = nextId;
       refresh();
     });
-    renderDetail(documentRef, detail, selected, (itemId, decision, note) => {
-      decisions.set(itemId, createVerificationDecision({ evidenceItemId: itemId, decision, note }));
-      refresh();
+    renderDetail(documentRef, detail, selected, async (itemId, decision, note) => {
+      try {
+        await api.createVerificationDecision({ evidenceItemId: itemId, decision, note });
+        await loadQueue();
+      } catch (error) {
+        renderError(documentRef, detail, error);
+      }
     });
   }
 
-  refresh();
+  renderLoading(documentRef, queue, detail);
+  loadQueue().catch((error) => renderError(documentRef, detail, error));
   section.append(back, heading, stats, layout);
   return section;
 }

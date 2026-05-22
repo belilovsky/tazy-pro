@@ -20,6 +20,7 @@ static, while the product direction is captured in:
 - Interactive breeding intelligence model.
 - Digital passport preview.
 - Lightweight app routes for public dog profiles and QR passports.
+- Mock API adapter with persisted local reviewer decisions.
 - FCI recognition roadmap.
 - RU/KZ/EN hero copy switch.
 - Dark/light theme switch.
