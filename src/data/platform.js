@@ -1,10 +1,24 @@
 export const dogProfiles = [
   {
+    id: "akzhel-barys",
     name: "Akzhel Barys",
     meta: "Male · born 2022 · Almaty region",
+    registryNumber: "TZY-2034-0182",
+    passportId: "TZY-KZ-000182",
+    verificationLevel: "Level 7",
+    breeder: "Altyn Dala Breeding Group",
+    kennel: "Zhetysu Line Registry",
+    region: "Almaty region",
+    summary:
+      "A field-tested male with verified parentage and strong export readiness. Health package is almost complete, with ophthalmology still pending.",
     score: "86%",
     photo: "./assets/tazy-profile-1.jpg",
     alt: "Akzhel Barys profile",
+    passportEvents: [
+      ["DNA parentage", "Verified · 2026-05-17"],
+      ["Health package", "Ophthalmology pending"],
+      ["Field trial", "Video evidence attached"],
+    ],
     steps: [
       ["Owner claim", "signed by breeder", "done"],
       ["Microchip", "KZ-3980-42A", "done"],
@@ -16,11 +30,25 @@ export const dogProfiles = [
     ],
   },
   {
+    id: "saumal-koke",
     name: "Saumal Koke",
     meta: "Female · born 2023 · Turkistan region",
+    registryNumber: "TZY-2034-0194",
+    passportId: "TZY-KZ-000194",
+    verificationLevel: "Level 5",
+    breeder: "Turkistan Tazy Club",
+    kennel: "Saumal Kennel",
+    region: "Turkistan region",
+    summary:
+      "A young female with confirmed identity, kennel-signed ownership, and a complete health package. DNA sample and field trial are still in progress.",
     score: "74%",
     photo: "./assets/tazy-profile-2.jpg",
     alt: "Saumal Koke profile",
+    passportEvents: [
+      ["Identity", "Microchip verified"],
+      ["Health package", "Complete"],
+      ["DNA parentage", "Sample in lab"],
+    ],
     steps: [
       ["Owner claim", "signed by kennel", "done"],
       ["Microchip", "KZ-7741-09C", "done"],
@@ -32,6 +60,15 @@ export const dogProfiles = [
     ],
   },
 ];
+
+export function getDogById(id) {
+  return dogProfiles.find((dog) => dog.id === id);
+}
+
+export function getDogByPassportId(passportId) {
+  const normalized = passportId?.toLowerCase();
+  return dogProfiles.find((dog) => dog.passportId.toLowerCase() === normalized);
+}
 
 export const pairScores = {
   "barys-koke": {
@@ -143,4 +180,3 @@ export const heroCopy = {
       "A national digital platform for verified Tazy evidence: pedigree, health, DNA, field trials, breeding intelligence and the FCI Data Room for 2034 recognition.",
   },
 };
-

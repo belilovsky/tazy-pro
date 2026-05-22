@@ -1,27 +1,6 @@
 import { dogProfiles } from "../data/platform.js";
-
-function createVerificationRow(documentRef, [label, status, state]) {
-  const row = documentRef.createElement("div");
-  row.className = `verification-row${state === "pending" ? " pending" : ""}`;
-
-  const dot = documentRef.createElement("span");
-  dot.className = "verification-dot";
-  dot.setAttribute("aria-hidden", "true");
-  dot.textContent = state === "done" ? "✓" : "•";
-
-  const text = documentRef.createElement("span");
-  const title = documentRef.createElement("b");
-  const subtitle = documentRef.createElement("small");
-  title.textContent = label;
-  subtitle.textContent = status;
-  text.append(title, subtitle);
-
-  const stateLabel = documentRef.createElement("b");
-  stateLabel.textContent = state;
-
-  row.append(dot, text, stateLabel);
-  return row;
-}
+import { createVerificationRow } from "./evidence.js";
+import { updateDogRouteLinks } from "./router.js";
 
 export function initRegistry(root = document) {
   const photo = root.querySelector("[data-dog-photo]");
@@ -42,6 +21,7 @@ export function initRegistry(root = document) {
     name.textContent = profile.name;
     meta.textContent = profile.meta;
     score.textContent = profile.score;
+    updateDogRouteLinks(root, profile);
 
     list.replaceChildren(
       ...profile.steps.map((step) => createVerificationRow(root, step)),
@@ -61,4 +41,3 @@ export function initRegistry(root = document) {
 
   renderDog(0);
 }
-

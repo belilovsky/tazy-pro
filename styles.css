@@ -94,7 +94,7 @@ button {
   transition: top 180ms ease;
 }
 
-.skip-link:focus {
+.skip-link:focus-visible {
   top: 18px;
 }
 
@@ -618,6 +618,20 @@ button {
   font-size: 2.2rem;
 }
 
+.profile-link,
+.route-back {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  color: var(--blue);
+  font-size: 0.86rem;
+  font-weight: 800;
+}
+
+.profile-link {
+  margin-top: 10px;
+}
+
 .dog-card-header > strong {
   color: var(--gold);
   font-family: var(--font-display);
@@ -802,8 +816,13 @@ select {
 }
 
 .passport-header span {
+  display: block;
   color: var(--muted);
   font-size: 0.86rem;
+}
+
+.passport-header strong {
+  display: block;
 }
 
 .passport-qr {
@@ -900,6 +919,139 @@ select {
   max-width: 760px;
 }
 
+.route-view[hidden] {
+  display: none;
+}
+
+.route-view {
+  width: min(var(--max), calc(100% - 48px));
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 128px 0 96px;
+}
+
+.route-shell {
+  display: grid;
+  gap: 26px;
+}
+
+.route-back {
+  color: var(--muted);
+}
+
+.route-hero {
+  display: grid;
+  grid-template-columns: 330px minmax(0, 1fr);
+  gap: 28px;
+  align-items: stretch;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(135deg, rgba(111, 183, 201, 0.14), transparent 42%),
+    var(--surface);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.route-hero-image {
+  width: 100%;
+  height: 100%;
+  min-height: 360px;
+  object-fit: cover;
+}
+
+.route-hero-copy {
+  padding: 34px 34px 28px 0;
+}
+
+.section-label {
+  margin: 0 0 12px;
+  color: var(--blue);
+  font-size: 0.8rem;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.route-hero-copy h1,
+.passport-copy h1 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 3.6rem;
+  line-height: 0.98;
+}
+
+.route-meta {
+  max-width: 620px;
+  margin: 18px 0 0;
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+.route-stat-grid {
+  display: grid;
+  grid-column: 2;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  margin: 0 28px 28px 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--line);
+}
+
+.route-stat-grid div {
+  min-width: 0;
+  padding: 18px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.route-stat-grid span {
+  display: block;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.route-stat-grid strong {
+  display: block;
+  margin-top: 8px;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  line-height: 1.05;
+}
+
+.route-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr 0.9fr;
+  gap: 18px;
+}
+
+.route-panel {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  padding: 24px;
+}
+
+.route-panel h2 {
+  margin: 0 0 16px;
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+}
+
+.route-panel p {
+  margin: 10px 0 0;
+  color: var(--muted);
+}
+
+.route-passport-card {
+  width: 100%;
+  padding: 36px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--bg-2);
+  box-shadow: var(--shadow);
+}
+
 .site-footer {
   display: flex;
   width: min(var(--max), calc(100% - 48px));
@@ -929,6 +1081,9 @@ select {
   .hero-content,
   .registry-layout,
   .dog-card,
+  .route-hero,
+  .route-grid,
+  .route-stat-grid,
   .intelligence-section,
   .passport-card {
     grid-template-columns: 1fr;
@@ -937,6 +1092,15 @@ select {
   .hero-content {
     align-items: end;
     padding-top: 140px;
+  }
+
+  .route-hero-copy {
+    padding: 28px;
+  }
+
+  .route-stat-grid {
+    grid-column: auto;
+    margin: 0 28px 28px;
   }
 
   .hero-copy h1 {
@@ -972,8 +1136,25 @@ select {
   .section,
   .intro-strip,
   .passport-card,
+  .route-view,
   .site-footer {
     width: min(100% - 32px, var(--max));
+  }
+
+  .route-view {
+    padding-top: 112px;
+  }
+
+  .route-hero-copy h1,
+  .passport-copy h1 {
+    font-size: 2.7rem;
+  }
+
+  .route-passport-card {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
   }
 
   .hero-content {

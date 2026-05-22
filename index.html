@@ -69,7 +69,7 @@
       <a href="#launch">Launch</a>
     </div>
 
-    <main id="top">
+    <main id="top" data-home-view>
       <section class="hero" aria-labelledby="hero-title">
         <img class="hero-image" src="./assets/tazy-hero.png" alt="Казахская тазы в степном пейзаже" />
         <div class="hero-shade" aria-hidden="true"></div>
@@ -145,16 +145,17 @@
           <article class="dog-card" aria-live="polite">
             <div class="dog-photo-frame">
               <img data-dog-photo src="./assets/tazy-profile-1.jpg" alt="Akzhel Barys profile" />
-              <div class="qr-card">
+              <a class="qr-card" data-dog-passport-link href="#/passport/tzy-kz-000182" aria-label="Open digital passport">
                 <span>QR</span>
-                <b>TZY-2034-0182</b>
-              </div>
+                <b data-dog-registry-number>TZY-2034-0182</b>
+              </a>
             </div>
             <div class="dog-card-body">
               <div class="dog-card-header">
                 <div>
                   <h3 data-dog-name>Akzhel Barys</h3>
                   <p data-dog-meta>Male · born 2022 · Almaty region</p>
+                  <a class="profile-link" data-dog-profile-link href="#/dogs/akzhel-barys">Open public profile</a>
                 </div>
                 <strong data-dog-score>86%</strong>
               </div>
@@ -302,6 +303,8 @@
         <a class="primary-button" href="#registry">Начать регистрацию</a>
       </section>
     </main>
+
+    <main class="route-view" data-route-view hidden></main>
 
     <footer class="site-footer">
       <div>

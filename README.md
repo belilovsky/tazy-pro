@@ -18,6 +18,7 @@ static, while the product direction is captured in:
 - Evidence registry dog profile demo.
 - Interactive breeding intelligence model.
 - Digital passport preview.
+- Lightweight app routes for public dog profiles and QR passports.
 - FCI recognition roadmap.
 - RU/KZ/EN hero copy switch.
 - Dark/light theme switch.
@@ -36,6 +37,11 @@ python3 -m http.server 4173
 ```
 
 Then open `http://localhost:4173`.
+
+Useful local routes:
+
+- `http://localhost:4173/#/dogs/akzhel-barys`
+- `http://localhost:4173/#/passport/tzy-kz-000182`
 
 If Node/npm is available, the same server can be started with:
 
