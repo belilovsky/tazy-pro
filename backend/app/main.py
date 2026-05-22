@@ -76,6 +76,8 @@ def create_app() -> FastAPI:
         response.headers["X-Frame-Options"] = "SAMEORIGIN"
         response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
         response.headers["Permissions-Policy"] = "camera=(), microphone=(), geolocation=()"
+        if request.url.path.startswith(("/api/v1/review", "/api/v1/fci")):
+            response.headers["Cache-Control"] = "no-store"
         return response
 
     @app.exception_handler(StarletteHTTPException)

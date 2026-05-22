@@ -132,6 +132,7 @@ def test_reviewer_session_login_unlocks_queue(tmp_path, monkeypatch):
 
         queue = test_client.get("/api/v1/review/queue")
         assert queue.status_code == 200
+        assert queue.headers["Cache-Control"] == "no-store"
         assert len(queue.json()["items"]) == 3
 
         logout = test_client.post("/api/v1/review/logout")
