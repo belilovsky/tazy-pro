@@ -30,10 +30,15 @@ src/ui/breeding.js
   Owns the breeding pair model controls and recommendation output.
 
 src/ui/router.js
-  Owns lightweight hash routes for public dog profiles and digital passports.
+  Owns lightweight hash routes for public dog profiles, digital passports, and
+  reviewer workspace views.
 
 src/ui/evidence.js
   Owns shared evidence row rendering used by registry and route views.
+
+src/ui/admin.js
+  Owns the reviewer workspace demo: queue selection, profile impact, reviewer
+  notes, and local decision state.
 ```
 
 ## Migration path to React/Vite
@@ -43,7 +48,9 @@ When package tooling is available, these modules can move directly into React:
 - `src/data/platform.js` becomes seed/domain data.
 - `src/ui/registry.js` becomes `RegistrySection`.
 - `src/ui/breeding.js` becomes `BreedingConsole`.
-- `src/ui/router.js` becomes the route map for `/dogs/:id` and `/passport/:id`.
+- `src/ui/admin.js` becomes `ReviewerWorkspace`.
+- `src/ui/router.js` becomes the route map for `/dogs/:id`, `/passport/:id`,
+  and `/admin`.
 - `src/ui/shell.js` splits into `Header`, `MobileMenu`, `ThemeToggle`, and
   `LanguageSwitch`.
 - `index.html` sections become route/page components.

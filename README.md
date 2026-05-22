@@ -42,6 +42,7 @@ Useful local routes:
 
 - `http://localhost:4173/#/dogs/akzhel-barys`
 - `http://localhost:4173/#/passport/tzy-kz-000182`
+- `http://localhost:4173/#/admin`
 
 If Node/npm is available, the same server can be started with:
 

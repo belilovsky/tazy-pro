@@ -70,6 +70,51 @@ export function getDogByPassportId(passportId) {
   return dogProfiles.find((dog) => dog.passportId.toLowerCase() === normalized);
 }
 
+export const reviewQueue = [
+  {
+    id: "health-barys-ophthalmology",
+    dogId: "akzhel-barys",
+    evidenceType: "Health package",
+    title: "Ophthalmology certificate",
+    submittedBy: "Altyn Dala Breeding Group",
+    receivedAt: "2026-05-17",
+    priority: "Medium",
+    status: "Needs review",
+    summary:
+      "Breeder submitted the preliminary ophthalmology result. The export-ready profile still needs a signed final certificate.",
+    reviewerNote:
+      "Request the signed PDF and issuer contact before moving the health package to approved status.",
+  },
+  {
+    id: "dna-koke-parentage",
+    dogId: "saumal-koke",
+    evidenceType: "DNA parentage",
+    title: "Lab sample confirmation",
+    submittedBy: "Turkistan Tazy Club",
+    receivedAt: "2026-05-19",
+    priority: "High",
+    status: "Waiting lab",
+    summary:
+      "Lab sample was received, but parentage confirmation is not attached yet. This blocks Level 6 verification.",
+    reviewerNote:
+      "Hold public DNA claim until lab confirmation arrives. Keep the profile visible as sample-in-lab.",
+  },
+  {
+    id: "field-koke-trial",
+    dogId: "saumal-koke",
+    evidenceType: "Field trial",
+    title: "Spring field-trial video",
+    submittedBy: "Saumal Kennel",
+    receivedAt: "2026-05-21",
+    priority: "Low",
+    status: "Needs review",
+    summary:
+      "Video evidence was uploaded for the spring field-trial event. Reviewer must confirm dog identity and event metadata.",
+    reviewerNote:
+      "Check microchip confirmation in the event sheet before approving the video evidence.",
+  },
+];
+
 export const pairScores = {
   "barys-koke": {
     coi: "4.8%",

@@ -1,4 +1,5 @@
 import { dogProfiles, getDogById, getDogByPassportId } from "../data/platform.js";
+import { createAdminWorkspace } from "./admin.js";
 import { createVerificationRow } from "./evidence.js";
 
 const routePrefix = "#/";
@@ -153,6 +154,10 @@ function renderRoute(root, homeView, routeView) {
 
   if (resource === "passport") {
     view = createPassportView(root, getDogByPassportId(slug) || dogProfiles[0]);
+  }
+
+  if (resource === "admin") {
+    view = createAdminWorkspace(root);
   }
 
   if (!view) {

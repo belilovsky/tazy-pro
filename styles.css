@@ -1052,6 +1052,196 @@ select {
   box-shadow: var(--shadow);
 }
 
+.admin-heading {
+  max-width: 820px;
+}
+
+.admin-heading h1 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 3.6rem;
+  line-height: 0.98;
+}
+
+.admin-heading > p:last-child {
+  margin: 18px 0 0;
+  color: var(--muted);
+  font-size: 1.06rem;
+}
+
+.admin-stat-grid {
+  grid-column: auto;
+  width: 100%;
+  margin: 0;
+}
+
+.admin-layout {
+  display: grid;
+  grid-template-columns: 340px minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.admin-queue-panel h2,
+.admin-evidence-panel h2 {
+  margin: 0 0 18px;
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+}
+
+.admin-queue {
+  display: grid;
+  gap: 12px;
+}
+
+.admin-queue-button {
+  display: grid;
+  gap: 8px;
+  width: 100%;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: transparent;
+  color: var(--text);
+  text-align: left;
+}
+
+.admin-queue-button.active {
+  border-color: color-mix(in srgb, var(--blue), transparent 36%);
+  background: rgba(111, 183, 201, 0.1);
+}
+
+.admin-queue-button small {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.admin-queue-top,
+.admin-panel-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.admin-queue-top small,
+.admin-pill,
+.admin-status {
+  border-radius: 999px;
+  padding: 5px 9px;
+  background: rgba(208, 173, 87, 0.14);
+  color: var(--gold);
+  font-size: 0.72rem;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.admin-status {
+  background: rgba(111, 183, 201, 0.12);
+  color: var(--blue);
+}
+
+.admin-detail-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  gap: 20px;
+}
+
+.admin-evidence-panel {
+  display: grid;
+  align-content: start;
+  gap: 18px;
+}
+
+.admin-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--line);
+}
+
+.admin-meta-grid div {
+  min-width: 0;
+  padding: 14px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.admin-meta-grid span {
+  display: block;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.admin-meta-grid strong {
+  display: block;
+  margin-top: 5px;
+  overflow-wrap: anywhere;
+}
+
+.admin-note-label {
+  color: var(--muted);
+}
+
+.admin-note {
+  width: 100%;
+  resize: vertical;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 14px;
+  background: var(--bg-2);
+  color: var(--text);
+  font: inherit;
+  line-height: 1.45;
+}
+
+.admin-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.admin-actions .primary-button,
+.admin-actions .secondary-button,
+.danger-button {
+  min-width: 150px;
+  padding: 0 18px;
+}
+
+.danger-button {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid color-mix(in srgb, var(--red), transparent 45%);
+  border-radius: 999px;
+  background: rgba(217, 119, 101, 0.12);
+  color: var(--text);
+  font-weight: 800;
+  line-height: 1;
+}
+
+.admin-event-log {
+  margin: 0;
+  border-top: 1px solid var(--line);
+  padding-top: 14px;
+  color: var(--muted);
+}
+
+.admin-dog-panel {
+  display: grid;
+  gap: 18px;
+}
+
+.admin-dog-image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 14px;
+  object-fit: cover;
+}
+
 .site-footer {
   display: flex;
   width: min(var(--max), calc(100% - 48px));
@@ -1084,6 +1274,8 @@ select {
   .route-hero,
   .route-grid,
   .route-stat-grid,
+  .admin-layout,
+  .admin-detail-grid,
   .intelligence-section,
   .passport-card {
     grid-template-columns: 1fr;
@@ -1101,6 +1293,10 @@ select {
   .route-stat-grid {
     grid-column: auto;
     margin: 0 28px 28px;
+  }
+
+  .admin-stat-grid {
+    margin: 0;
   }
 
   .hero-copy h1 {
@@ -1146,8 +1342,13 @@ select {
   }
 
   .route-hero-copy h1,
-  .passport-copy h1 {
+  .passport-copy h1,
+  .admin-heading h1 {
     font-size: 2.7rem;
+  }
+
+  .admin-meta-grid {
+    grid-template-columns: 1fr;
   }
 
   .route-passport-card {
