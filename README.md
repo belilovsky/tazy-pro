@@ -24,6 +24,7 @@ static, while the product direction is captured in:
 - Digital passport preview.
 - Lightweight app routes for public dog profiles and QR passports.
 - Mock API adapter with persisted local reviewer decisions.
+- FastAPI backend skeleton with SQLAlchemy models, seeded public API, reviewer endpoints, and SQLAdmin.
 - FCI Data Room route with seed-derived evidence metrics.
 - FCI recognition roadmap.
 - RU/KZ/EN hero copy switch.
@@ -67,4 +68,26 @@ Check only the domain seed contract with:
 
 ```bash
 npm run verify:domain
+```
+
+## Backend
+
+The first backend is in [backend/](./backend). It follows the existing API and
+Postgres drafts instead of introducing a parallel model:
+
+- `GET /api/v1/dogs`
+- `GET /api/v1/dogs/{id}`
+- `GET /api/v1/passports/{passportId}`
+- `GET /api/v1/review/queue`
+- `POST /api/v1/review/decisions`
+- `GET /api/v1/fci/data-room`
+- SQLAdmin at `/admin`
+
+Local backend run:
+
+```bash
+python3 -m venv .venv
+. .venv/bin/activate
+pip install -r backend/requirements.txt
+uvicorn backend.app.main:app --reload --port 8181
 ```

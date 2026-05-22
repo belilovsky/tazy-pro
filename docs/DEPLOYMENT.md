@@ -9,10 +9,14 @@ Current production target:
 - VPS: `root@62.72.32.112`
 - Static root: `/var/www/tazy.qdev.run/current`
 - Releases: `/var/www/tazy.qdev.run/releases/<timestamp>`
+- Backend root: `/opt/tazy-pro/current`
+- Backend service: `tazy-pro-backend.service`
+- Backend bind: `127.0.0.1:8182`
+- Backend env: `/etc/tazy-pro/backend.env`
 - Nginx config: `/etc/nginx/sites-available/tazy.qdev.run`
 - TLS certificate: `/etc/letsencrypt/live/tazy.qdev.run/`
 
-## Deploy
+## Deploy Static
 
 From the repository root:
 
@@ -29,6 +33,22 @@ DEPLOY_HOST=root@62.72.32.112 DEPLOY_DOMAIN=tazy.qdev.run ./scripts/deploy_stati
 The script uploads the static app files, creates a timestamped release, updates
 the `current` symlink, and keeps the latest five releases.
 
+## Deploy Backend
+
+```bash
+./scripts/deploy_backend.sh
+```
+
+The backend deploy creates a timestamped release under `/opt/tazy-pro/releases`,
+installs Python dependencies into `/opt/tazy-pro/shared/.venv`, keeps generated
+production secrets in `/etc/tazy-pro/backend.env`, and restarts the systemd
+service.
+
+The current nginx config proxies:
+
+- `/api/` -> `http://127.0.0.1:8182`
+- `/admin/` -> `http://127.0.0.1:8182`
+
 ## Nginx
 
 The production host serves the static app with:
@@ -44,12 +64,17 @@ The production host serves the static app with:
 ```bash
 curl -I https://tazy.qdev.run/
 curl -I http://tazy.qdev.run/
+curl -I https://tazy.qdev.run/api/v1/dogs
+curl -I https://tazy.qdev.run/admin/login
 ```
 
 Expected:
 
 - HTTPS returns `200`.
 - HTTP returns `301` to `https://tazy.qdev.run/`.
+- API dog registry returns `200`.
+- `/api/v1/review/queue` returns `401` without `X-Reviewer-Key`.
+- Admin login returns `200`.
 - `strict-transport-security`, `x-content-type-options`, and
   `referrer-policy` are present on HTTPS.
 

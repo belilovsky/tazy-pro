@@ -2,9 +2,21 @@
 
 ## Current state
 
-The repository currently contains a static HTML/CSS/JS prototype. It is useful for
-product direction and visual language, but it is not yet a production
-application.
+The repository started as a static HTML/CSS/JS prototype and now includes the
+first FastAPI backend in `backend/`.
+
+Implemented backend surfaces:
+
+- public registry and passport reads under `/api/v1`;
+- reviewer queue and append-only decisions;
+- FCI data-room snapshot;
+- SQLAdmin mounted at `/admin`;
+- SQLite-by-default local storage with `TAZY_DATABASE_URL` for Postgres.
+
+The live frontend can still run as a static site. The next integration step is
+to switch the reviewer workspace and public read models from `src/api/mockApi.js`
+to the real `/api/v1` adapter once the backend is deployed behind the same
+origin.
 
 ## Recommended next architecture
 

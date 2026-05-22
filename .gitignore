@@ -2,6 +2,10 @@
 .env
 .env.*
 node_modules/
+.venv/
+.tazy/
+__pycache__/
+*.pyc
 dist/
 coverage/
 qa-*.png
