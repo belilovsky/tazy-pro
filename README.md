@@ -2,6 +2,15 @@
 
 Static first prototype for the national digital Tazy platform.
 
+## Repository status
+
+This is the first product prototype and planning repository. The current app is
+static, while the product direction is captured in:
+
+- [ROADMAP.md](./ROADMAP.md)
+- [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md)
+- [docs/DATA_MODEL.md](./docs/DATA_MODEL.md)
+
 ## What is included
 
 - Full responsive landing page.
