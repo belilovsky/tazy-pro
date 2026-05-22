@@ -11,7 +11,7 @@ REMOTE_RELEASE="${REMOTE_ROOT}/releases/${RELEASE_ID}"
 ssh -o StrictHostKeyChecking=no -o ConnectTimeout=15 "${DEPLOY_HOST}" \
   "install -d -m 0755 '${REMOTE_RELEASE}' '${REMOTE_ROOT}/shared' /etc/tazy-pro"
 
-COPYFILE_DISABLE=1 tar -czf - backend pyproject.toml index.html styles.css assets src scripts/backup_backend_db.sh | ssh -o StrictHostKeyChecking=no -o ConnectTimeout=15 "${DEPLOY_HOST}" \
+COPYFILE_DISABLE=1 tar --no-xattrs -czf - backend pyproject.toml index.html styles.css assets src scripts/backup_backend_db.sh | ssh -o StrictHostKeyChecking=no -o ConnectTimeout=15 "${DEPLOY_HOST}" \
   "tar -xzf - -C '${REMOTE_RELEASE}' && chown -R root:root '${REMOTE_RELEASE}'"
 
 ssh -o StrictHostKeyChecking=no -o ConnectTimeout=15 "${DEPLOY_HOST}" "REMOTE_ROOT='${REMOTE_ROOT}' REMOTE_RELEASE='${REMOTE_RELEASE}' BACKEND_PORT='${BACKEND_PORT}' bash -s" <<'REMOTE'
