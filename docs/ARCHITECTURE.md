@@ -87,6 +87,8 @@ clear domain model and audit trail from day one.
 - Language: TypeScript.
 - API schema: OpenAPI or tRPC-style typed contract.
 - Database: Postgres.
+- Backend draft contracts: [API_SPEC.md](./API_SPEC.md) and
+  [POSTGRES_SCHEMA.sql](./POSTGRES_SCHEMA.sql).
 - Files: object storage with private originals and public derived assets.
 - Auth: role-based access for admins, reviewers, breeders, and public users.
 - Tests: unit tests for domain rules, integration tests for API flows,
@@ -100,4 +102,3 @@ clear domain model and audit trail from day one.
 - Role checks on every admin endpoint.
 - Rate limits on public profile and search endpoints.
 - Backups tested before launch.
-

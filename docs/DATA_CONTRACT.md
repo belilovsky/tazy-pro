@@ -115,6 +115,11 @@ The adapter is intentionally narrow. It gives UI modules a backend-like boundary
 without committing the repository to a framework or backend service before the
 MVP schema is approved.
 
+The matching backend draft is captured in:
+
+- [API_SPEC.md](./API_SPEC.md)
+- [POSTGRES_SCHEMA.sql](./POSTGRES_SCHEMA.sql)
+
 ## Verification
 
 ```bash
