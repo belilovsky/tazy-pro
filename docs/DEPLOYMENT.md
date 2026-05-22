@@ -64,8 +64,8 @@ The production host serves the static app with:
 ```bash
 curl -I https://tazy.qdev.run/
 curl -I http://tazy.qdev.run/
-curl -I https://tazy.qdev.run/api/v1/dogs
-curl -I https://tazy.qdev.run/admin/login
+curl -fsS https://tazy.qdev.run/api/v1/dogs
+curl -fsS https://tazy.qdev.run/admin/login
 ```
 
 Expected:
