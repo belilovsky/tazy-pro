@@ -21,6 +21,7 @@ static, while the product direction is captured in:
 - Digital passport preview.
 - Lightweight app routes for public dog profiles and QR passports.
 - Mock API adapter with persisted local reviewer decisions.
+- FCI Data Room route with seed-derived evidence metrics.
 - FCI recognition roadmap.
 - RU/KZ/EN hero copy switch.
 - Dark/light theme switch.

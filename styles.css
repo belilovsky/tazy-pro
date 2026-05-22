@@ -907,6 +907,12 @@ select {
   color: var(--muted);
 }
 
+.section-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 26px;
+}
+
 .launch-section {
   display: flex;
   align-items: center;
@@ -1017,6 +1023,13 @@ select {
   font-family: var(--font-display);
   font-size: 1.35rem;
   line-height: 1.05;
+}
+
+.route-stat-grid small {
+  display: block;
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 0.76rem;
 }
 
 .route-grid {
@@ -1242,6 +1255,79 @@ select {
   object-fit: cover;
 }
 
+.data-room-cycle {
+  display: grid;
+  gap: 8px;
+  background:
+    linear-gradient(135deg, rgba(208, 173, 87, 0.14), transparent 44%),
+    var(--surface);
+}
+
+.data-room-cycle span,
+.data-room-cycle small {
+  color: var(--muted);
+}
+
+.data-room-cycle strong {
+  font-family: var(--font-display);
+  font-size: 2rem;
+}
+
+.data-room-stats {
+  grid-column: auto;
+  width: 100%;
+  margin: 0;
+}
+
+.data-room-grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.2fr 0.9fr;
+  gap: 18px;
+  align-items: start;
+}
+
+.data-room-panel {
+  min-width: 0;
+}
+
+.data-room-list {
+  display: grid;
+  gap: 12px;
+}
+
+.data-room-row {
+  display: flex;
+  min-width: 0;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.data-room-row span {
+  display: grid;
+  min-width: 0;
+  gap: 3px;
+}
+
+.data-room-row small,
+.data-room-row > span:last-child {
+  color: var(--muted);
+}
+
+.data-room-row em {
+  flex: 0 0 auto;
+  max-width: 150px;
+  color: var(--gold);
+  font-size: 0.78rem;
+  font-style: normal;
+  font-weight: 850;
+  text-align: right;
+  text-transform: uppercase;
+}
+
 .site-footer {
   display: flex;
   width: min(var(--max), calc(100% - 48px));
@@ -1276,6 +1362,7 @@ select {
   .route-stat-grid,
   .admin-layout,
   .admin-detail-grid,
+  .data-room-grid,
   .intelligence-section,
   .passport-card {
     grid-template-columns: 1fr;
@@ -1295,8 +1382,18 @@ select {
     margin: 0 28px 28px;
   }
 
-  .admin-stat-grid {
+  .admin-stat-grid,
+  .data-room-stats {
     margin: 0;
+  }
+
+  .data-room-row {
+    flex-direction: column;
+  }
+
+  .data-room-row em {
+    max-width: none;
+    text-align: left;
   }
 
   .hero-copy h1 {

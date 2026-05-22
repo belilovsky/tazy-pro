@@ -1,6 +1,7 @@
 import { dogProfiles, evidenceItems } from "../src/data/platform.js";
 import { mockApi } from "../src/api/mockApi.js";
 import { DECISION_TYPE, validateDog, validateEvidenceItem, validatePassportEvent, validateVerificationDecision } from "../src/domain/contracts.js";
+import { getFciDataRoomSnapshot } from "../src/domain/dataRoom.js";
 
 const errors = [];
 const dogIds = new Set(dogProfiles.map((dog) => dog.id));
@@ -49,6 +50,14 @@ if (savedDecision?.decision !== DECISION_TYPE.approved) {
   errors.push("Mock API did not persist the verification decision");
 }
 await mockApi.clearVerificationDecisions();
+
+const dataRoom = getFciDataRoomSnapshot();
+if (dataRoom.metrics.length < 4) {
+  errors.push("FCI Data Room snapshot is missing core metrics");
+}
+if (dataRoom.priorityQueue.length === 0) {
+  errors.push("FCI Data Room snapshot should expose open evidence items");
+}
 
 if (errors.length > 0) {
   console.error(errors.join("\n"));

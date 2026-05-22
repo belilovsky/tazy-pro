@@ -43,7 +43,10 @@ src/ui/breeding.js
 
 src/ui/router.js
   Owns lightweight hash routes for public dog profiles, digital passports, and
-  reviewer workspace views.
+  reviewer workspace / FCI Data Room views.
+
+src/ui/dataRoom.js
+  Owns the FCI Data Room route and evidence package snapshot rendering.
 
 src/ui/evidence.js
   Owns shared evidence row rendering used by registry and route views.
@@ -64,6 +67,7 @@ When package tooling is available, these modules can move directly into React:
 - `src/ui/registry.js` becomes `RegistrySection`.
 - `src/ui/breeding.js` becomes `BreedingConsole`.
 - `src/ui/admin.js` becomes `ReviewerWorkspace`.
+- `src/ui/dataRoom.js` becomes `FciDataRoom`.
 - `src/ui/router.js` becomes the route map for `/dogs/:id`, `/passport/:id`,
   and `/admin`.
 - `src/ui/shell.js` splits into `Header`, `MobileMenu`, `ThemeToggle`, and

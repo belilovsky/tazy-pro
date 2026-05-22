@@ -1,6 +1,7 @@
 import { dogProfiles } from "../data/platform.js";
 import { getPublicDogProfile, getPublicDogProfileByPassportId } from "../domain/readModels.js";
 import { createAdminWorkspace } from "./admin.js";
+import { createDataRoomView } from "./dataRoom.js";
 import { createVerificationRow } from "./evidence.js";
 
 const routePrefix = "#/";
@@ -159,6 +160,10 @@ function renderRoute(root, homeView, routeView) {
 
   if (resource === "admin") {
     view = createAdminWorkspace(root);
+  }
+
+  if (resource === "data-room") {
+    view = createDataRoomView(root);
   }
 
   if (!view) {
