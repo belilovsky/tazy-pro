@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import asyncio
-import os
 
 import pytest
 from fastapi.testclient import TestClient
@@ -245,3 +244,10 @@ def test_admin_login_page_is_available(client: TestClient):
 
     assert response.status_code == 200
     assert "TAZY.PRO Admin" in response.text or "Login" in response.text
+
+
+def test_admin_login_head_is_available(client: TestClient):
+    response = client.head("/admin/login")
+
+    assert response.status_code == 200
+    assert response.headers["content-type"].startswith("text/html")

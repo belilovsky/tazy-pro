@@ -83,7 +83,7 @@ Expected:
 - API dog registry returns `200`.
 - API DB health returns `200`.
 - `/api/v1/review/queue` returns `401` without reviewer session credentials.
-- Admin login returns `200`.
+- `GET /admin/login` and `HEAD /admin/login` return `200`.
 - `strict-transport-security`, `x-content-type-options`, and
   `referrer-policy` are present on HTTPS.
 

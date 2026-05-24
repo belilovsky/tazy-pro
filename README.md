@@ -1,11 +1,12 @@
-# TAZY.PRO prototype
+# TAZY.PRO
 
-Static first prototype for the national digital Tazy platform.
+Working MVP for the national digital Tazy platform: public registry, digital
+passport, reviewer workspace, FCI data room, and SQLAdmin-backed operations.
 
 ## Repository status
 
-This is the first product prototype and planning repository. The current app is
-static, while the product direction is captured in:
+This repository already contains the current frontend MVP, the FastAPI backend,
+deployment helpers, and the planning docs that shape the next rounds:
 
 - [ROADMAP.md](./ROADMAP.md)
 - [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md)
@@ -38,7 +39,7 @@ static, while the product direction is captured in:
 - Project brief: "Национальная цифровая платформа TAZY".
 - Visual/reference prototype: `naiza.html`.
 
-## Run
+## Run frontend
 
 Open `index.html` directly in a browser, or run a simple local server:
 
@@ -60,16 +61,10 @@ If Node/npm is available, the same server can be started with:
 npm run dev
 ```
 
-Check JavaScript module syntax with:
+Check JavaScript modules, API contract expectations, and AV DS token usage with:
 
 ```bash
 npm run check
-```
-
-Check only the domain seed contract with:
-
-```bash
-npm run verify:domain
 ```
 
 ## Backend
@@ -98,3 +93,15 @@ python3 -m venv .venv
 pip install -r backend/requirements.txt
 uvicorn backend.app.main:app --reload --port 8181
 ```
+
+Backend verification:
+
+```bash
+.venv/bin/python -m py_compile $(find backend tests -name '*.py' -print)
+.venv/bin/python -m pytest -q
+.venv/bin/python -m pip install ruff
+.venv/bin/python -m ruff check backend tests
+```
+
+GitHub Actions runs the same backend checks plus the frontend contract and AV DS
+audits on every push to `main` and on pull requests.

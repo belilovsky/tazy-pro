@@ -9,7 +9,7 @@ from typing import Any
 from fastapi import FastAPI, Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import FileResponse, JSONResponse
+from fastapi.responses import FileResponse, JSONResponse, Response
 from fastapi.staticfiles import StaticFiles
 from starlette.exceptions import HTTPException as StarletteHTTPException
 from starlette.middleware.sessions import SessionMiddleware
@@ -110,6 +110,10 @@ def create_app() -> FastAPI:
     app.include_router(public.router)
     app.include_router(review.router)
     app.include_router(fci.router)
+
+    @app.head("/admin/login", include_in_schema=False)
+    async def admin_login_head():
+        return Response(status_code=200, media_type="text/html")
 
     init_admin(app, get_engine(), settings)
 

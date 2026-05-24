@@ -55,6 +55,18 @@ The browser reviewer workspace should use `/api/v1/review/login` and the
 same-origin session cookie. `X-Reviewer-Key` is kept for scripted smoke checks
 and operational fallback.
 
+## Local verification
+
+```bash
+.venv/bin/python -m py_compile $(find backend tests -name '*.py' -print)
+.venv/bin/python -m pytest -q
+.venv/bin/python -m pip install ruff
+.venv/bin/python -m ruff check backend tests
+node scripts/verify-domain.js
+node scripts/verify-api-client.js
+node scripts/audit-avds-tokens.js
+```
+
 ## Deploy
 
 The production helper installs the backend as a systemd service on
