@@ -1,0 +1,45 @@
+name: CI
+
+"on":
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Install backend checks
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r backend/requirements.txt ruff
+
+      - name: Compile backend sources
+        run: python -m py_compile $(find backend tests -name '*.py' -print)
+
+      - name: Run backend tests
+        run: python -m pytest -q
+
+      - name: Run backend lint
+        run: python -m ruff check backend tests
+
+      - name: Run frontend and AV DS checks
+        run: |
+          node scripts/verify-domain.js
+          node scripts/verify-api-client.js
+          node scripts/audit-avds-tokens.js
