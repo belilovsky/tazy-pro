@@ -67,6 +67,12 @@ Check JavaScript modules, API contract expectations, and AV DS token usage with:
 npm run check
 ```
 
+Run the full repository verification gate locally with:
+
+```bash
+./scripts/verify_repo.sh
+```
+
 ## Backend
 
 The first backend is in [backend/](./backend). It follows the existing API and
@@ -97,10 +103,7 @@ uvicorn backend.app.main:app --reload --port 8181
 Backend verification:
 
 ```bash
-.venv/bin/python -m py_compile $(find backend tests -name '*.py' -print)
-.venv/bin/python -m pytest -q
-.venv/bin/python -m pip install ruff
-.venv/bin/python -m ruff check backend tests
+./scripts/verify_repo.sh
 ```
 
 GitHub Actions runs the same backend checks plus the frontend contract and AV DS

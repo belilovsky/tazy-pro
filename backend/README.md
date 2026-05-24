@@ -58,13 +58,7 @@ and operational fallback.
 ## Local verification
 
 ```bash
-.venv/bin/python -m py_compile $(find backend tests -name '*.py' -print)
-.venv/bin/python -m pytest -q
-.venv/bin/python -m pip install ruff
-.venv/bin/python -m ruff check backend tests
-node scripts/verify-domain.js
-node scripts/verify-api-client.js
-node scripts/audit-avds-tokens.js
+./scripts/verify_repo.sh
 ```
 
 ## Deploy
