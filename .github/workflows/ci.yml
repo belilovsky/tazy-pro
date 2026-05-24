@@ -29,17 +29,5 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install -r backend/requirements.txt ruff
 
-      - name: Compile backend sources
-        run: python -m py_compile $(find backend tests -name '*.py' -print)
-
-      - name: Run backend tests
-        run: python -m pytest -q
-
-      - name: Run backend lint
-        run: python -m ruff check backend tests
-
-      - name: Run frontend and AV DS checks
-        run: |
-          node scripts/verify-domain.js
-          node scripts/verify-api-client.js
-          node scripts/audit-avds-tokens.js
+      - name: Run repository verification
+        run: bash ./scripts/verify_repo.sh
