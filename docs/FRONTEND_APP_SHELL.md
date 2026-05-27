@@ -98,7 +98,10 @@ important platform idea is visible before a user enters protected workflows.
 
 `scripts/audit-avds-tokens.js` enforces the AV DS boundary: component CSS below
 the token block must use semantic variables instead of raw colors or legacy
-tokens.
+tokens. The shell also ships the AV DS local font bundle from `assets/fonts/avds`
+and maps type roles to the current AV DS stack: `IBM Plex Sans` for UI/display,
+`IBM Plex Mono` for metrics, identifiers, and tabular data, and `IBM Plex Serif`
+reserved only for future editorial/report surfaces.
 
 ## Migration path to React/Vite
 
