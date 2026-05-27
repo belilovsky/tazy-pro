@@ -93,6 +93,8 @@ important platform idea is visible before a user enters protected workflows.
 
 - every static `data-copy*` key and code-level copy key exists in RU/KZ/EN;
 - every static hash link points to a known page anchor or app route.
+- browser state uses `tazy-dog.*` storage keys while still reading and migrating
+  the legacy `tazy-pro.*` keys created before the domain split.
 
 `scripts/audit-avds-tokens.js` enforces the AV DS boundary: component CSS below
 the token block must use semantic variables instead of raw colors or legacy

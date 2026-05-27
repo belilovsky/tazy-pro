@@ -21,7 +21,7 @@
     <script>
       (() => {
         try {
-          const storedTheme = localStorage.getItem("tazy-pro.theme");
+          const storedTheme = localStorage.getItem("tazy-dog.theme") || localStorage.getItem("tazy-pro.theme");
           const preferredTheme = window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
           const theme = storedTheme === "light" || storedTheme === "dark" ? storedTheme : preferredTheme;
           document.documentElement.dataset.theme = theme;
@@ -33,7 +33,7 @@
       })();
     </script>
     <title data-copy="meta.title">TAZY.DOG · Национальная цифровая платформа казахской тазы</title>
-    <link rel="stylesheet" href="./styles.css?v=20260527T004500Z" />
+    <link rel="stylesheet" href="./styles.css?v=20260527T111000Z" />
   </head>
   <body>
     <a class="skip-link" href="#registry" data-copy="a11y.skipToRegistry">Перейти к реестру</a>
@@ -68,8 +68,12 @@
           <button type="button" data-lang="en">EN</button>
         </div>
         <button class="theme-button" type="button" data-theme-toggle aria-label="Переключить тему" data-copy-aria-label="a11y.toggleTheme">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
+          <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true">
             <path d="M12 4a8 8 0 1 0 8 8 6 6 0 0 1-8-8z" />
+          </svg>
+          <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="4" />
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42" />
           </svg>
         </button>
         <a class="header-cta" href="#registry" data-copy="cta.register">Начать регистрацию</a>
@@ -81,7 +85,15 @@
       </div>
     </header>
 
-    <div class="mobile-menu" data-mobile-menu aria-hidden="true">
+    <div class="mobile-menu" data-mobile-menu role="dialog" aria-modal="true" aria-hidden="true" aria-label="Мобильное меню" data-copy-aria-label="a11y.mobileMenu">
+      <div class="mobile-menu-top">
+        <strong data-copy="nav.menu">Меню</strong>
+        <button class="mobile-menu-close" type="button" data-menu-close aria-label="Закрыть меню" data-copy-aria-label="a11y.closeMenu">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M6 6l12 12M18 6 6 18" />
+          </svg>
+        </button>
+      </div>
       <a href="#registry" data-copy="nav.registry">Реестр</a>
       <a href="#/breeders" data-copy="nav.breeders">Заводчики</a>
       <a href="#/ecosystem" data-copy="nav.ecosystem">Карта</a>
@@ -89,6 +101,18 @@
       <a href="#/heritage" data-copy="nav.heritage">Наследие</a>
       <a href="#/fci-progress" data-copy="nav.fci">FCI</a>
       <a href="#launch" data-copy="nav.launch">Запуск</a>
+      <button class="mobile-theme-button" type="button" data-theme-toggle aria-label="Переключить тему" data-copy-aria-label="a11y.toggleTheme">
+        <span data-copy="a11y.toggleTheme">Переключить тему</span>
+        <span class="mobile-theme-icon" aria-hidden="true">
+          <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24">
+            <path d="M12 4a8 8 0 1 0 8 8 6 6 0 0 1-8-8z" />
+          </svg>
+          <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="4" />
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42" />
+          </svg>
+        </span>
+      </button>
       <div class="mobile-language-switch" aria-label="Язык" data-copy-aria-label="a11y.language">
         <button type="button" data-lang="ru" class="active">RU</button>
         <button type="button" data-lang="kk">KZ</button>
@@ -621,6 +645,10 @@
             <p data-copy="world.tourismText">Meet the Tazy, полевые испытания, гостевые питомники, World Nomad Games и QR-паспорт наследия для туристов.</p>
           </article>
           <article>
+            <h3 data-copy="world.standardTitle">Breed Standard</h3>
+            <p data-copy="world.standardText">Отдельная EN-страница стандарта FCI с иллюстрациями, понятным словарем экстерьера и ссылками на проверяемые профили.</p>
+          </article>
+          <article>
             <h3 data-copy="world.importTitle">How to Import a Tazy</h3>
             <p data-copy="world.importText">EN-слой для FCI-клубов, будущих владельцев и посольств: требования стран, документы, ветеринарные правила и контакты.</p>
           </article>
@@ -796,6 +824,6 @@
       </div>
     </footer>
 
-    <script type="module" src="./src/main.js?v=20260527T004500Z"></script>
+    <script type="module" src="./src/main.js?v=20260527T111000Z"></script>
   </body>
 </html>

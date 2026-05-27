@@ -2,18 +2,32 @@ import {
   LANGUAGE_EVENT,
   applyLanguage,
   resolveInitialLang,
-} from "../i18n/runtime.js?v=20260527T004500Z";
+} from "../i18n/runtime.js?v=20260527T111000Z";
 
-const THEME_STORAGE_KEY = "tazy-pro.theme";
+const THEME_STORAGE_KEY = "tazy-dog.theme";
+const LEGACY_THEME_STORAGE_KEY = "tazy-pro.theme";
 
-function resolveInitialTheme(root = document) {
+function readStoredTheme() {
   try {
-    const stored = globalThis.localStorage?.getItem(THEME_STORAGE_KEY);
-    if (stored === "light" || stored === "dark") {
-      return stored;
-    }
+    return globalThis.localStorage?.getItem(THEME_STORAGE_KEY) || globalThis.localStorage?.getItem(LEGACY_THEME_STORAGE_KEY) || "";
+  } catch {
+    return "";
+  }
+}
+
+function writeStoredTheme(theme) {
+  try {
+    globalThis.localStorage?.setItem(THEME_STORAGE_KEY, theme);
+    globalThis.localStorage?.removeItem(LEGACY_THEME_STORAGE_KEY);
   } catch {
     // Ignore storage failures in locked-down browsers.
+  }
+}
+
+function resolveInitialTheme(root = document) {
+  const stored = readStoredTheme();
+  if (stored === "light" || stored === "dark") {
+    return stored;
   }
 
   if (root.defaultView?.matchMedia?.("(prefers-color-scheme: light)").matches) {
@@ -31,17 +45,13 @@ function syncThemeColor(root = document) {
   }
 }
 
-function applyTheme(root = document, theme = "dark", themeToggle = null) {
+function applyTheme(root = document, theme = "dark", themeToggles = []) {
   const next = theme === "light" ? "light" : "dark";
   root.documentElement.dataset.theme = next;
-  try {
-    globalThis.localStorage?.setItem(THEME_STORAGE_KEY, next);
-  } catch {
-    // Ignore storage failures in locked-down browsers.
-  }
-  if (themeToggle) {
+  writeStoredTheme(next);
+  themeToggles.forEach((themeToggle) => {
     themeToggle.setAttribute("aria-pressed", String(next === "light"));
-  }
+  });
   syncThemeColor(root);
 }
 
@@ -85,6 +95,15 @@ function setMobileMenuState(root, menu, menuToggle, open) {
   root.body.classList.toggle("no-scroll", open);
   menuToggle.setAttribute("aria-expanded", String(open));
   menu.setAttribute("aria-hidden", String(!open));
+  if (open) {
+    root.defaultView?.requestAnimationFrame(() => getFocusableMenuItems(menu)[0]?.focus());
+  } else if (menu.contains(root.activeElement)) {
+    menuToggle.focus();
+  }
+}
+
+function getFocusableMenuItems(menu) {
+  return [...menu.querySelectorAll('a[href], button:not([disabled])')];
 }
 
 export function initShell(root = document) {
@@ -92,7 +111,8 @@ export function initShell(root = document) {
   const html = root.documentElement;
   const menu = root.querySelector("[data-mobile-menu]");
   const menuToggle = root.querySelector("[data-menu-toggle]");
-  const themeToggle = root.querySelector("[data-theme-toggle]");
+  const menuClose = root.querySelector("[data-menu-close]");
+  const themeToggles = [...root.querySelectorAll("[data-theme-toggle]")];
   const setScrolled = () => {
     header?.classList.toggle("scrolled", window.scrollY > 18);
   };
@@ -105,12 +125,12 @@ export function initShell(root = document) {
     window.requestAnimationFrame(setScrolled);
   }
 
-  if (themeToggle) {
-    applyTheme(root, resolveInitialTheme(root), themeToggle);
-    themeToggle.addEventListener("click", () => {
+  if (themeToggles.length > 0) {
+    applyTheme(root, resolveInitialTheme(root), themeToggles);
+    themeToggles.forEach((themeToggle) => themeToggle.addEventListener("click", () => {
       const next = html.dataset.theme === "dark" ? "light" : "dark";
-      applyTheme(root, next, themeToggle);
-    });
+      applyTheme(root, next, themeToggles);
+    }));
   } else {
     syncThemeColor(root);
   }
@@ -119,6 +139,10 @@ export function initShell(root = document) {
     menuToggle.addEventListener("click", () => {
       const open = !menu.classList.contains("open");
       setMobileMenuState(root, menu, menuToggle, open);
+    });
+
+    menuClose?.addEventListener("click", () => {
+      setMobileMenuState(root, menu, menuToggle, false);
     });
 
     menu.querySelectorAll("a").forEach((link) => {
@@ -131,6 +155,21 @@ export function initShell(root = document) {
       if (event.key === "Escape" && menu.classList.contains("open")) {
         setMobileMenuState(root, menu, menuToggle, false);
         menuToggle.focus();
+      }
+      if (event.key === "Tab" && menu.classList.contains("open")) {
+        const focusable = getFocusableMenuItems(menu);
+        if (focusable.length === 0) {
+          return;
+        }
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (event.shiftKey && root.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && root.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
       }
     });
 

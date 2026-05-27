@@ -1,5 +1,7 @@
 import { readFileSync } from "node:fs";
+import { mockApi } from "../src/api/mockApi.js";
 import { copyCatalog } from "../src/i18n/messages.js";
+import { readStoredLang, writeStoredLang } from "../src/i18n/runtime.js";
 
 const html = readFileSync("index.html", "utf8");
 const sourceFiles = [
@@ -120,9 +122,58 @@ function verifyLinks() {
   }
 }
 
+function assert(condition, message) {
+  if (!condition) {
+    throw new Error(message);
+  }
+}
+
+async function verifyBrowserStateMigration() {
+  const originalLocalStorage = globalThis.localStorage;
+  const store = new Map();
+  Object.defineProperty(globalThis, "localStorage", {
+    configurable: true,
+    value: {
+      getItem(key) {
+        return store.get(key) || null;
+      },
+      setItem(key, value) {
+        store.set(key, value);
+      },
+      removeItem(key) {
+        store.delete(key);
+      },
+    },
+  });
+
+  try {
+    store.set("tazy-pro.lang", "kk");
+    assert(readStoredLang() === "kk", "Language runtime did not read the legacy tazy-pro storage key");
+    writeStoredLang("en");
+    assert(store.get("tazy-dog.lang") === "en", "Language runtime did not write the tazy-dog storage key");
+    assert(!store.has("tazy-pro.lang"), "Legacy language key was not cleared after migration");
+
+    store.set(
+      "tazy-pro.verification-decisions.v1",
+      JSON.stringify([{ evidenceItemId: "legacy-evidence", decision: "approve" }]),
+    );
+    const decisions = await mockApi.listVerificationDecisions();
+    assert(decisions[0]?.evidenceItemId === "legacy-evidence", "Mock API did not read legacy reviewer decisions");
+    await mockApi.clearVerificationDecisions();
+    assert(store.get("tazy-dog.verification-decisions.v1") === "[]", "Mock API did not write reviewer decisions to tazy-dog storage");
+    assert(!store.has("tazy-pro.verification-decisions.v1"), "Legacy reviewer decisions were not cleared after migration");
+  } finally {
+    Object.defineProperty(globalThis, "localStorage", {
+      configurable: true,
+      value: originalLocalStorage,
+    });
+  }
+}
+
 const copyKeys = new Set([...collectHtmlCopyKeys(), ...collectCodeCopyKeys()]);
 verifyCopyKeys(copyKeys);
 verifyLinks();
+await verifyBrowserStateMigration();
 
 if (errors.length > 0) {
   console.error(errors.join("\n"));

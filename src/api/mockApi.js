@@ -6,9 +6,10 @@ import {
   getPublicDogProfileByPassportId,
   getReviewQueue,
   listPublicDogProfiles,
-} from "../domain/readModels.js?v=20260527T004500Z";
+} from "../domain/readModels.js?v=20260527T111000Z";
 
-const DECISIONS_STORAGE_KEY = "tazy-pro.verification-decisions.v1";
+const DECISIONS_STORAGE_KEY = "tazy-dog.verification-decisions.v1";
+const LEGACY_DECISIONS_STORAGE_KEY = "tazy-pro.verification-decisions.v1";
 const NETWORK_DELAY_MS = 80;
 
 let memoryDecisions = [];
@@ -38,7 +39,8 @@ function readDecisionList() {
   }
 
   try {
-    const parsed = JSON.parse(storage.getItem(DECISIONS_STORAGE_KEY) || "[]");
+    const stored = storage.getItem(DECISIONS_STORAGE_KEY) || storage.getItem(LEGACY_DECISIONS_STORAGE_KEY) || "[]";
+    const parsed = JSON.parse(stored);
     return Array.isArray(parsed) ? parsed : [];
   } catch {
     return [];
@@ -55,6 +57,7 @@ function writeDecisionList(decisions) {
   }
 
   storage.setItem(DECISIONS_STORAGE_KEY, JSON.stringify(next));
+  storage.removeItem(LEGACY_DECISIONS_STORAGE_KEY);
 }
 
 function getLatestDecisionMap() {

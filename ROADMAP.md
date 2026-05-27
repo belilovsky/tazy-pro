@@ -1,10 +1,14 @@
-# TAZY.PRO Roadmap
+# TAZY.DOG Roadmap
 
 ## Product thesis
 
-TAZY.PRO should become the trusted digital infrastructure for the Kazakh Tazy:
+TAZY.DOG should become the trusted digital infrastructure for the Kazakh Tazy:
 registry, evidence, digital passports, breeding quality, and FCI readiness in one
 system.
+
+`tazy.pro` is now a separate feed and nutrition product. This roadmap covers the
+breed platform on `tazy.dog`; nutrition-specific product work should stay in the
+separate feed backlog.
 
 The platform should not look like a campaign page only. Its strongest position is
 proof-first infrastructure: every public claim about a dog, kennel, pedigree, or

@@ -9,6 +9,8 @@ export const copyCatalog = {
     "a11y.language": "Язык",
     "a11y.toggleTheme": "Переключить тему",
     "a11y.openMenu": "Открыть меню",
+    "a11y.closeMenu": "Закрыть меню",
+    "a11y.mobileMenu": "Мобильное меню",
     "a11y.launchStatus": "Статус запуска платформы",
     "a11y.platformSummary": "Краткая сводка платформы",
     "a11y.dogProfiles": "Профили собак",
@@ -29,6 +31,7 @@ export const copyCatalog = {
     "nav.heritage": "Наследие",
     "nav.fci": "FCI",
     "nav.launch": "Запуск",
+    "nav.menu": "Меню",
     "cta.register": "Начать регистрацию",
     heroTitle: "TAZY.DOG",
     heroText:
@@ -308,6 +311,9 @@ export const copyCatalog = {
     "world.tourismTitle": "Tazy-туризм",
     "world.tourismText":
       "Meet the Tazy, полевые испытания, гостевые питомники, World Nomad Games и QR-паспорт наследия для туристов.",
+    "world.standardTitle": "Breed Standard",
+    "world.standardText":
+      "Отдельная EN-страница стандарта FCI с иллюстрациями, понятным словарем экстерьера и ссылками на проверяемые профили.",
     "world.importTitle": "How to Import a Tazy",
     "world.importText":
       "EN-слой для FCI-клубов, будущих владельцев и посольств: требования стран, документы, ветеринарные правила и контакты.",
@@ -650,6 +656,8 @@ export const copyCatalog = {
     "a11y.language": "Тіл",
     "a11y.toggleTheme": "Тақырыпты ауыстыру",
     "a11y.openMenu": "Мәзірді ашу",
+    "a11y.closeMenu": "Мәзірді жабу",
+    "a11y.mobileMenu": "Мобильді мәзір",
     "a11y.launchStatus": "Платформаны іске қосу мәртебесі",
     "a11y.platformSummary": "Платформаның қысқаша мазмұны",
     "a11y.dogProfiles": "Ит профильдері",
@@ -674,6 +682,7 @@ export const copyCatalog = {
     "nav.heritage": "Мұра",
     "nav.fci": "FCI",
     "nav.launch": "Іске қосу",
+    "nav.menu": "Мәзір",
     "cta.register": "Тіркеуді бастау",
     heroTitle: "TAZY.DOG",
     heroText:
@@ -766,6 +775,9 @@ export const copyCatalog = {
       "Бейнеинтервьюлер, ауызша тарих, геотегтер, музейлер, жартастағы суреттер және UNESCO Intangible Cultural Heritage үшін материалдар.",
     "world.tourismTitle": "Tazy туризмі",
     "world.tourismText": "Tazy-ны тану, дала сынақтары, қонақ питомниктері, World Nomad Games және туристер үшін мұра паспорты.",
+    "world.standardTitle": "Тұқым стандарты",
+    "world.standardText":
+      "FCI стандартына арналған жеке EN-бет: иллюстрациялар, экстерьер сөздігі және тексерілген профильдерге сілтемелер.",
     "world.importTitle": "Тазыны импорттау тәртібі",
     "world.importText":
       "FCI-клубтар, болашақ иелер және елшіліктер үшін EN-қабат: ел талаптары, құжаттар, ветеринарлық ережелер мен байланыстар.",
@@ -1292,6 +1304,8 @@ export const copyCatalog = {
     "a11y.language": "Language",
     "a11y.toggleTheme": "Toggle theme",
     "a11y.openMenu": "Open menu",
+    "a11y.closeMenu": "Close menu",
+    "a11y.mobileMenu": "Mobile menu",
     "a11y.launchStatus": "Platform launch status",
     "a11y.platformSummary": "Platform summary",
     "a11y.dogProfiles": "Dog profiles",
@@ -1316,6 +1330,7 @@ export const copyCatalog = {
     "nav.heritage": "Heritage",
     "nav.fci": "FCI",
     "nav.launch": "Launch",
+    "nav.menu": "Menu",
     "cta.register": "Start registration",
     heroTitle: "TAZY.DOG",
     heroText:
@@ -1408,6 +1423,8 @@ export const copyCatalog = {
       "Video interviews, oral histories, geotags, museums, rock art, and materials for UNESCO Intangible Cultural Heritage.",
     "world.tourismTitle": "Tazy tourism",
     "world.tourismText": "Meet the Tazy, field trials, hosted kennels, World Nomad Games and heritage passports for tourists.",
+    "world.standardTitle": "Breed Standard",
+    "world.standardText": "A dedicated EN page for the FCI standard with illustrations, clear conformation vocabulary, and links to verified profiles.",
     "world.importTitle": "How to Import a Tazy",
     "world.importText": "EN layer for FCI clubs, future owners, and embassies: country requirements, documents, veterinary rules, and contacts.",
     "science.eyebrow": "Data for science and decisions",

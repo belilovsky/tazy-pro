@@ -300,7 +300,8 @@ button {
 }
 
 .theme-button,
-.menu-button {
+.menu-button,
+.mobile-menu-close {
   display: grid;
   width: 40px;
   height: 40px;
@@ -312,13 +313,27 @@ button {
 }
 
 .theme-button svg,
-.menu-button svg {
+.menu-button svg,
+.mobile-theme-button svg,
+.mobile-menu-close svg {
   width: 20px;
   height: 20px;
   fill: none;
   stroke: currentColor;
   stroke-linecap: round;
   stroke-width: 2;
+}
+
+.theme-icon-sun {
+  display: none;
+}
+
+[data-theme="dark"] .theme-icon-moon {
+  display: none;
+}
+
+[data-theme="dark"] .theme-icon-sun {
+  display: block;
 }
 
 .header-cta,
@@ -378,8 +393,8 @@ button {
 
 .mobile-menu {
   position: fixed;
-  z-index: 99;
-  top: 78px;
+  z-index: 120;
+  top: 82px;
   right: 18px;
   left: 18px;
   display: none;
@@ -396,8 +411,26 @@ button {
   display: flex;
 }
 
+.mobile-menu-top {
+  display: flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 8px;
+}
+
+.mobile-menu-top strong {
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 .mobile-menu a {
-  padding: 12px 8px;
+  display: flex;
+  min-height: 46px;
+  align-items: center;
+  padding: 12px;
   border-radius: 14px;
   color: var(--color-text-secondary);
   font-weight: 750;
@@ -407,6 +440,30 @@ button {
 .mobile-menu a[aria-current="page"] {
   background: var(--surface-control);
   color: var(--color-text-primary);
+}
+
+.mobile-theme-button {
+  display: flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 14px;
+  padding: 0 12px;
+  background: var(--surface-control);
+  color: var(--color-text-primary);
+  font-weight: 750;
+  text-align: left;
+}
+
+.mobile-theme-icon {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--surface-control-strong);
 }
 
 .hero {

@@ -1,8 +1,9 @@
-import { getFciDataRoomSnapshot as getLocalFciDataRoomSnapshot } from "../domain/dataRoom.js?v=20260527T004500Z";
-import { getCopy, getCurrentLang } from "../i18n/runtime.js?v=20260527T004500Z";
-import { mockApi } from "./mockApi.js?v=20260527T004500Z";
+import { getFciDataRoomSnapshot as getLocalFciDataRoomSnapshot } from "../domain/dataRoom.js?v=20260527T111000Z";
+import { getCopy, getCurrentLang } from "../i18n/runtime.js?v=20260527T111000Z";
+import { mockApi } from "./mockApi.js?v=20260527T111000Z";
 
-const REVIEWER_KEY_STORAGE = "tazy-pro.reviewer-key.v1";
+const REVIEWER_KEY_STORAGE = "tazy-dog.reviewer-key.v1";
+const LEGACY_REVIEWER_KEY_STORAGE = "tazy-pro.reviewer-key.v1";
 const DEFAULT_API_BASE = "";
 
 class ApiError extends Error {
@@ -37,7 +38,8 @@ function getApiCopy(key) {
 }
 
 function getReviewerKey() {
-  return getSessionStorage()?.getItem(REVIEWER_KEY_STORAGE) || "";
+  const storage = getSessionStorage();
+  return storage?.getItem(REVIEWER_KEY_STORAGE) || storage?.getItem(LEGACY_REVIEWER_KEY_STORAGE) || "";
 }
 
 function setReviewerKey(value) {
@@ -48,8 +50,10 @@ function setReviewerKey(value) {
   const key = value.trim();
   if (key) {
     storage.setItem(REVIEWER_KEY_STORAGE, key);
+    storage.removeItem(LEGACY_REVIEWER_KEY_STORAGE);
   } else {
     storage.removeItem(REVIEWER_KEY_STORAGE);
+    storage.removeItem(LEGACY_REVIEWER_KEY_STORAGE);
   }
 }
 
@@ -61,12 +65,19 @@ function normalizeDogProfile(dog) {
     ...dog,
     photo: dog.photo || "",
     alt: dog.alt || dog.name,
-    meta: dog.meta || [dog.sex, dog.dateOfBirth, dog.region].filter(Boolean).join(" · "),
+    meta: dog.meta || buildDogMeta(dog),
     score: dog.score || `${dog.completenessScore}%`,
     verificationLabel: dog.verificationLabel || `Level ${dog.verificationLevel}`,
     steps: Array.isArray(dog.steps) ? dog.steps : [],
     passportEvents: Array.isArray(dog.passportEvents) ? dog.passportEvents : [],
   };
+}
+
+function buildDogMeta(dog) {
+  const sex = dog.sex === "male" ? "Male" : dog.sex === "female" ? "Female" : dog.sex;
+  const year = typeof dog.dateOfBirth === "string" ? dog.dateOfBirth.slice(0, 4) : "";
+  const born = year ? `born ${year}` : dog.dateOfBirth;
+  return [sex, born, dog.region].filter(Boolean).join(" · ");
 }
 
 function normalizeDogList(payload) {

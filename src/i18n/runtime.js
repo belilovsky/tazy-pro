@@ -1,8 +1,9 @@
-import { copyCatalog } from "./messages.js?v=20260527T004500Z";
+import { copyCatalog } from "./messages.js?v=20260527T111000Z";
 
 export const DEFAULT_LANG = "ru";
 export const LANGUAGE_EVENT = "tazy:langchange";
-const LANGUAGE_STORAGE_KEY = "tazy-pro.lang";
+const LANGUAGE_STORAGE_KEY = "tazy-dog.lang";
+const LEGACY_LANGUAGE_STORAGE_KEY = "tazy-pro.lang";
 
 function languageCatalog(lang) {
   return copyCatalog[normalizeLang(lang)] || copyCatalog[DEFAULT_LANG];
@@ -20,7 +21,7 @@ export function normalizeLang(value) {
 
 export function readStoredLang() {
   try {
-    const value = globalThis.localStorage?.getItem(LANGUAGE_STORAGE_KEY) || "";
+    const value = globalThis.localStorage?.getItem(LANGUAGE_STORAGE_KEY) || globalThis.localStorage?.getItem(LEGACY_LANGUAGE_STORAGE_KEY) || "";
     return value ? normalizeLang(value) : "";
   } catch {
     return "";
@@ -38,6 +39,7 @@ export function resolveInitialLang(root = document) {
 export function writeStoredLang(lang) {
   try {
     globalThis.localStorage?.setItem(LANGUAGE_STORAGE_KEY, normalizeLang(lang));
+    globalThis.localStorage?.removeItem(LEGACY_LANGUAGE_STORAGE_KEY);
   } catch {
     // Ignore storage failures in locked-down browsers.
   }

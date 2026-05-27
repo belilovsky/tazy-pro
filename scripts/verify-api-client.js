@@ -59,6 +59,12 @@ function assert(condition, message) {
 
 installSessionStorage();
 
+store.set("tazy-pro.reviewer-key.v1", "legacy-reviewer-key");
+assert(tazyApi.getReviewerKey() === "legacy-reviewer-key", "Reviewer key did not read the legacy tazy-pro storage key");
+tazyApi.setReviewerKey("new-reviewer-key");
+assert(store.get("tazy-dog.reviewer-key.v1") === "new-reviewer-key", "Reviewer key was not written to the tazy-dog storage key");
+assert(!store.has("tazy-pro.reviewer-key.v1"), "Legacy reviewer key was not cleared after migration");
+
 globalThis.fetch = async (url, options) => {
   calls.push({ url, options });
   if (url.endsWith("/api/v1/dogs")) {
@@ -97,7 +103,7 @@ globalThis.fetch = async (url, options) => {
 const dogs = await tazyApi.listDogs();
 assert(dogs.length === 1, "Backend dog list was not used");
 assert(dogs[0].score === "86%", "Dog score was not normalized");
-assert(dogs[0].meta.includes("Almaty region"), "Dog meta was not normalized");
+assert(dogs[0].meta === "Male · born 2022 · Almaty region", "Dog meta was not normalized into a translatable seed string");
 
 const login = await tazyApi.loginReviewer({ username: "reviewer", password: "secret" });
 assert(login.authenticated === true, "Reviewer login did not return an authenticated session");

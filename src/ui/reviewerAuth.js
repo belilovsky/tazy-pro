@@ -1,4 +1,4 @@
-import { getCopy, getCurrentLang } from "../i18n/runtime.js?v=20260527T004500Z";
+import { getCopy, getCurrentLang } from "../i18n/runtime.js?v=20260527T111000Z";
 
 function createElement(documentRef, tag, className, text) {
   const node = documentRef.createElement(tag);
