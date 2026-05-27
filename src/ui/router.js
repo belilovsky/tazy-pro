@@ -1,15 +1,15 @@
-import { tazyApi } from "../api/tazyApi.js?v=20260527T212801Z";
-import { dogProfiles } from "../data/platform.js?v=20260527T212801Z";
+import { tazyApi } from "../api/tazyApi.js?v=20260528T004500Z";
+import { dogProfiles } from "../data/platform.js?v=20260528T004500Z";
 import {
   LANGUAGE_EVENT,
   formatCopy,
   getCopy,
   getCurrentLang,
   translateSeedText,
-} from "../i18n/runtime.js?v=20260527T212801Z";
-import { createAdminWorkspace } from "./admin.js?v=20260527T212801Z";
-import { createDataRoomView } from "./dataRoom.js?v=20260527T212801Z";
-import { createVerificationRow } from "./evidence.js?v=20260527T212801Z";
+} from "../i18n/runtime.js?v=20260528T004500Z";
+import { createAdminWorkspace } from "./admin.js?v=20260528T004500Z";
+import { createDataRoomView } from "./dataRoom.js?v=20260528T004500Z";
+import { createVerificationRow } from "./evidence.js?v=20260528T004500Z";
 
 const routePrefix = "#/";
 let routeRequestId = 0;

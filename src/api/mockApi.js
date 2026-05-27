@@ -6,7 +6,7 @@ import {
   getPublicDogProfileByPassportId,
   getReviewQueue,
   listPublicDogProfiles,
-} from "../domain/readModels.js?v=20260527T212801Z";
+} from "../domain/readModels.js?v=20260528T004500Z";
 
 const DECISIONS_STORAGE_KEY = "tazy-dog.verification-decisions.v1";
 const LEGACY_DECISIONS_STORAGE_KEY = "tazy-pro.verification-decisions.v1";

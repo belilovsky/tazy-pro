@@ -1,5 +1,5 @@
-import { LANGUAGE_EVENT, getCopy, getCurrentLang } from "../i18n/runtime.js?v=20260527T212801Z";
-import { mapBounds, mapViewBox, qazgeoRegions } from "../data/qazgeoMap.js?v=20260527T212801Z";
+import { LANGUAGE_EVENT, getCopy, getCurrentLang } from "../i18n/runtime.js?v=20260528T004500Z";
+import { mapBounds, mapViewBox, qazgeoRegions } from "../data/qazgeoMap.js?v=20260528T004500Z";
 
 const SVG_NS = "http://www.w3.org/2000/svg";
 const MAP_INSET = 24;

@@ -1,7 +1,7 @@
 export const copyCatalog = {
   ru: {
     "meta.title": "TAZY.DOG · Национальная цифровая платформа казахской тазы",
-    "meta.description": "TAZY.DOG — национальная цифровая платформа казахской тазы: реестр, заводчики, QR-паспорта, карта наследия и контур подготовки к FCI.",
+    "meta.description": "TAZY.DOG — национальная цифровая платформа казахской тазы: реестр собак, сеть заводчиков, QR-паспорта, операционная карта и FCI-прогресс.",
     "brand.subtitle": "Национальная цифровая платформа породы",
     "a11y.skipToRegistry": "Перейти к реестру",
     "a11y.home": "Главная TAZY.DOG",
@@ -35,9 +35,9 @@ export const copyCatalog = {
     "cta.register": "Начать регистрацию",
     heroTitle: "TAZY.DOG",
     heroText:
-      "Национальная цифровая платформа казахской тазы: реестр собак, сеть заводчиков, цифровые паспорта, карта породы и контур данных для FCI.",
+      "Национальная цифровая платформа казахской тазы: реестр собак, сеть заводчиков, цифровые паспорта, карта породы и данные для FCI.",
     "hero.registryCta": "Открыть реестр",
-    "hero.fciCta": "Смотреть FCI-контур",
+    "hero.fciCta": "Открыть FCI-прогресс",
     "hero.panel.title": "Национальный запуск",
     "hero.panel.date": "3 сентября 2026",
     "hero.panel.window": "Окно",
@@ -59,7 +59,7 @@ export const copyCatalog = {
     "intro.passports": "публичные QR-паспорта",
     "intro.target": "цель полного признания",
     "platform.eyebrow": "Рабочая платформа",
-    "platform.title": "TAZY.DOG объединяет реестр, племенную работу, карту и FCI-контур.",
+    "platform.title": "TAZY.DOG объединяет реестр, племенную работу, карту и FCI-прогресс.",
     "platform.text":
       "С главной страницы доступны ключевые сервисы: профили собак, сеть заводчиков, операционная карта, селекционный блок и кабинет данных.",
     "platform.servicesAria": "Рабочие сервисы TAZY.DOG",
@@ -88,18 +88,18 @@ export const copyCatalog = {
     "platform.servicePassportText":
       "Один объект связывает карточку собаки, культурный слой, экспорт и дипломатические кейсы.",
     "platform.servicePassportCta": "Открыть паспортный слой",
-    "platform.serviceInstitutionalEyebrow": "FCI и Data Room",
-    "platform.serviceInstitutionalTitle": "Публичный прогресс, кабинет данных и контур проверки",
+    "platform.serviceInstitutionalEyebrow": "FCI и кабинет данных",
+    "platform.serviceInstitutionalTitle": "FCI-прогресс, кабинет данных и проверка",
     "platform.serviceInstitutionalText":
-      "Вход для федерации, экспертов и партнеров, которым нужны живые данные, статусы и выгрузки.",
+      "Слой для федерации, экспертов и партнеров, которым нужны статусы, выгрузки и доказательства.",
     "platform.serviceInstitutionalCta": "Открыть институциональный слой",
     "platform.statusAria": "Состояние ядра платформы",
     "platform.statusEyebrow": "Рабочее ядро",
-    "platform.statusTitle": "Публичный и экспертный контуры работают на одной модели данных.",
+    "platform.statusTitle": "Публичный сайт и экспертный кабинет работают на одной модели данных.",
     "platform.statusText":
       "Профили, доказательства, география, селекция и отчеты используют общие правила верификации и один журнал событий.",
     "platform.statusItemOne": "публичный профиль собаки и QR-паспорт",
-    "platform.statusItemTwo": "контур проверки доказательств и ролей доступа",
+    "platform.statusItemTwo": "очередь проверки доказательств и ролей доступа",
     "platform.statusItemThree": "операционная карта по регионам и сценариям",
     "platform.statusItemFour": "племенной калькулятор и паспорт здоровья",
     "mapdash.eyebrow": "Операционная карта",
@@ -121,7 +121,7 @@ export const copyCatalog = {
     "mapdash.nodeRegistryTurkistan": "питомники и молодые линии",
     "mapdash.nodeRegistryAktobe": "региональный набор профилей",
     "mapdash.nodeFieldZhetysu": "весенний коридор испытаний",
-    "mapdash.nodeFieldSaryarka": "полевые выезды и offline check",
+    "mapdash.nodeFieldSaryarka": "полевые выезды и офлайн-проверка",
     "mapdash.nodeFieldMangystau": "гостевой маршрут и контроль паспорта",
     "mapdash.nodeHeritageUlytau": "устные истории и линии",
     "mapdash.nodeHeritageAlmaty": "паспорт, архив и медиа-слой",
@@ -137,14 +137,14 @@ export const copyCatalog = {
     "mapdash.fieldEyebrow": "Полевой слой",
     "mapdash.fieldTitle": "Испытания, пометы и паспортные проверки работают на местности.",
     "mapdash.fieldText":
-      "Полевая логика показывает, где нужен offline-first сценарий, где проходят события и где публичный паспорт должен работать без ручной пересылки файлов.",
-    "mapdash.fieldMetricOne": "коридора испытаний в демо-контуре",
-    "mapdash.fieldMetricTwo": "режим для steppe и выездных точек",
+      "Полевая логика показывает, где нужен офлайн-сценарий, где проходят события и где публичный паспорт должен работать без ручной пересылки файлов.",
+    "mapdash.fieldMetricOne": "коридора испытаний на рабочей карте",
+    "mapdash.fieldMetricTwo": "офлайн-режим для степи и выездных точек",
     "mapdash.fieldMetricThree": "маршрут проверки от события до профиля",
     "mapdash.heritageEyebrow": "Слой наследия",
     "mapdash.heritageTitle": "Культурный контур привязан к географии, линиям и международным историям.",
     "mapdash.heritageText":
-      "Наследие не висит отдельно. Оно связано с регионами, линиями, паспортами, архивами и будущими международными досье.",
+      "Наследие не висит отдельно. Оно связано с регионами, линиями, паспортами, архивами и международными досье.",
     "mapdash.heritageMetricOne": "международная витрина на тех же данных",
     "mapdash.heritageMetricTwo": "дипломатический кейс как опорный формат",
     "mapdash.heritageMetricThree": "маршрут материалов без ручной сборки",
@@ -197,19 +197,19 @@ export const copyCatalog = {
     "benchmark.diplomacy": "Дипломатия",
     "journey.eyebrow": "Путь участника",
     "journey.title":
-      "Путь участника читается сразу: от первой заявки до публичного профиля и экспортного пакета.",
+      "Путь участника читается как рабочий процесс: от первой заявки до публичного профиля и экспортного пакета.",
     "journey.text":
-      "Владелец, заводчик, эксперт и институциональный партнер проходят один и тот же процесс: заявка, доказательства, проверка, публикация, племенное решение и экспорт.",
+      "Владелец, заводчик, эксперт и партнер проходят один понятный цикл: заявка, доказательства, проверка, публикация, племенное решение и экспорт.",
     "journey.ownerLabel": "Владелец",
     "journey.ownerTitle": "Заявка и базовый профиль",
     "journey.ownerText":
-      "Фото, микрочип, регион, происхождение и базовый пакет документов собираются в черновик профиля.",
+      "Фото, микрочип, регион, происхождение и базовый пакет документов собираются в профиль на проверке.",
     "journey.evidenceLabel": "Доказательства",
     "journey.evidenceTitle": "Здоровье, ДНК и поле",
     "journey.evidenceText":
       "Каждое доказательство получает источник, дату, статус, вложение и ответственного проверяющего.",
     "journey.reviewLabel": "Проверка",
-    "journey.reviewTitle": "Ревью без ручного хаоса",
+    "journey.reviewTitle": "Проверка по журналу решений",
     "journey.reviewText":
       "Очередь проверки отделяет частные данные от публичных утверждений и сохраняет полный аудит решений.",
     "journey.publicLabel": "Публикация",
@@ -298,7 +298,7 @@ export const copyCatalog = {
     "ecosystem.eventsLabel": "События",
     "ecosystem.eventsTitle": "Испытания и выставки",
     "ecosystem.eventsText":
-      "Онлайн-регистрация, статусы событий, QR-валидация паспортов и будущие GPS-треки полевых маршрутов.",
+      "Онлайн-регистрация, статусы событий, QR-валидация паспортов и GPS-маршруты полевых сценариев.",
     "ecosystem.heritageLabel": "Наследие",
     "ecosystem.heritageTitle": "Архив живого наследия",
     "ecosystem.heritageText":
@@ -306,7 +306,7 @@ export const copyCatalog = {
     "ecosystem.tourismLabel": "Туризм",
     "ecosystem.tourismTitle": "Точка входа в Tazy-туризм",
     "ecosystem.tourismText":
-      "Питомники, гостевые маршруты, День Тазы и будущие сервисы Tazy-туризма растут из тех же проверенных данных.",
+      "Питомники, гостевые маршруты, День Тазы и культурные сценарии растут из тех же проверенных данных.",
     "ecosystem.open": "Открыть гео-контур",
     "ecosystem.routeEyebrow": "Гео-контур",
     "ecosystem.routeTitle": "Порода видна на карте: по регионам, событиям, маршрутам и культурным точкам.",
@@ -343,7 +343,7 @@ export const copyCatalog = {
     "architecture.title":
       "Технически TAZY.DOG — операционная система породы: данные один раз входят в ядро и дальше расходятся по публичным, экспертным и институциональным слоям.",
     "architecture.text":
-      "Ядро разделяет публичные профили, защищенные доказательства, ревью, экспортные пакеты и будущие мобильные сценарии, чтобы витрина не превращалась в склад приватных документов.",
+      "Ядро разделяет публичные профили, защищенные доказательства, ревью, экспортные пакеты и мобильные сценарии, чтобы витрина не превращалась в склад приватных документов.",
     "architecture.open": "Открыть техническую карту",
     "architecture.coreLabel": "Ядро",
     "architecture.coreTitle": "Единое ядро доказательств",
@@ -379,9 +379,9 @@ export const copyCatalog = {
     "architecture.routePanelOfflineTitle": "Полевой режим планируется заранее",
     "architecture.routePanelOfflineText":
       "События, сканирование QR, подтверждение микрочипа и черновики доказательств должны синхронизироваться после восстановления связи.",
-    "architecture.routePanelAvdsTitle": "AV DS связывает модули в один продукт",
+    "architecture.routePanelAvdsTitle": "Единый интерфейс и статусы",
     "architecture.routePanelAvdsText":
-      "Единые токены, состояния, фокус, плотность и локализация нужны, чтобы новые модули не выглядели как отдельные сайты.",
+      "Общие поверхности, статусы, фокус и локализация удерживают все модули в одном продукте.",
     "architecture.routeCtaRegistry": "Открыть реестр",
     "architecture.routeCtaDataRoom": "Открыть кабинет данных",
     "passport.eyebrow": "Наследие и дипломатия",
@@ -417,7 +417,7 @@ export const copyCatalog = {
       "Отдельная EN-страница стандарта FCI с иллюстрациями, понятным словарем экстерьера и ссылками на проверяемые профили.",
     "world.importTitle": "Как импортировать тазы",
     "world.importText":
-      "EN-слой для FCI-клубов, будущих владельцев и посольств: требования стран, документы, ветеринарные правила и контакты.",
+      "Англоязычный слой для FCI-клубов, зарубежных владельцев и посольств: требования стран, документы, ветеринарные правила и контакты.",
     "heritage.routeEyebrow": "Слой наследия",
     "heritage.routeTitle": "Культурный слой усиливает реестр, а не живет отдельно декоративной витриной.",
     "heritage.routeText":
@@ -537,25 +537,25 @@ export const copyCatalog = {
     "science.apiText":
       "CSV, PDF, FCI-совместимый XML, партнерский API и манифест доказательств для проверяемых пакетов.",
     "metrics.eyebrow": "План запуска",
-    "metrics.title": "К 3 сентября сайт показывает не мечту, а измеримый план запуска.",
+    "metrics.title": "К 3 сентября платформа показывает измеримый план запуска.",
     "metrics.text":
-      "Бета для заводчиков, открытый запуск, День Тазы и путь к 2034 читаются как операционная программа с понятными метриками.",
-    "metrics.dogs": "собак в реестре к запуску",
+      "Регистрация, запуск, День Тазы и путь к 2034 читаются как операционная программа с понятными метриками.",
+    "metrics.dogs": "собак в реестре на старте",
     "metrics.litters": "пометов через платформу к 2027",
     "metrics.health": "покрытие паспортов здоровья к 2028",
     "metrics.clubs": "FCI-клубов партнеров к 2027",
     "metrics.exports": "квартальные FCI-отчеты в год",
-    "design.eyebrow": "AV DS 4",
+    "design.eyebrow": "Единый интерфейс",
     "design.title":
-      "AV DS 4 задает единый язык для публичного сайта, кабинета проверки и полевого контура.",
+      "Один интерфейс удерживает публичный сайт, кабинет проверки и полевые сценарии в одной системе.",
     "design.text":
-      "Семантические токены, плотность, состояния и двуязычные компоненты удерживают платформу цельной по мере роста модулей.",
-    "design.tokenLabel": "Токены",
-    "design.tokenTitle": "Семантические поверхности",
+      "Общие поверхности, статусы, плотность и двуязычные компоненты не дают модулям распасться на отдельные сайты.",
+    "design.tokenLabel": "Поверхности",
+    "design.tokenTitle": "Единая визуальная логика",
     "design.tokenText":
-      "Темная и светлая темы собираются из одного токен-слоя AV DS 4, поэтому поверхности, границы и статусы ведут себя предсказуемо.",
+      "Темная и светлая темы, карточки, границы и рабочие состояния остаются согласованными во всех модулях.",
     "design.stateLabel": "Состояния",
-    "design.stateTitle": "Проверяемые статусы",
+    "design.stateTitle": "Статусы читаются одинаково",
     "design.stateText":
       "Готово, в работе, риск и ожидание внешнего подтверждения выглядят одинаково в реестре, ревью и кабинете данных.",
     "design.densityLabel": "Плотность",
@@ -563,12 +563,12 @@ export const copyCatalog = {
     "design.densityText":
       "Публичные разделы читаются спокойно, а рабочие поверхности остаются компактными для очередей, таблиц и проверок.",
     "design.localeLabel": "Языки",
-    "design.localeTitle": "RU/EN сейчас, KZ — следующим слоем",
+    "design.localeTitle": "Русский и английский без разрыва в навигации",
     "design.localeText":
-      "Публичный запуск открыт на русском и английском, а KZ-каталог сохраняется как следующий редакционный слой без риска для карточек, кнопок и мобильной навигации.",
-    "launch.title": "Сильный запуск начинается с работающей инфраструктуры, а не с шума вокруг нее.",
+      "Публичный запуск открыт на русском и английском, а языковой слой не ломает карточки, кнопки и мобильную навигацию.",
+    "launch.title": "Запуск начинается с работающей инфраструктуры.",
     "launch.text":
-      "Период с 17 мая до 3 сентября — это регистрация, обкатка сценариев, консолидация заводчиков и медийная кампания, в которой TAZY.DOG становится точкой действия.",
+      "Период с 17 мая до 3 сентября — это регистрация, обкатка сценариев, консолидация заводчиков и сбор работающих данных для публичного старта.",
     "launch.cta": "Начать регистрацию",
     "footer.summary": "Цифровая инфраструктура сохранения и признания казахской тазы.",
     "footer.dataRoom": "Кабинет данных FCI",
@@ -1549,7 +1549,7 @@ export const copyCatalog = {
   },
   en: {
     "meta.title": "TAZY.DOG · National Digital Platform for the Kazakh Tazy",
-    "meta.description": "TAZY.DOG is the national digital platform for the Kazakh Tazy: registry, breeder network, QR passports, heritage map, and the FCI readiness track.",
+    "meta.description": "TAZY.DOG is the national digital platform for the Kazakh Tazy: dog registry, breeder network, QR passports, operational map, and FCI progress.",
     "brand.subtitle": "National digital breed platform",
     "a11y.skipToRegistry": "Skip to registry",
     "a11y.home": "TAZY.DOG home",
@@ -1587,13 +1587,13 @@ export const copyCatalog = {
     "cta.register": "Start registration",
     heroTitle: "TAZY.DOG",
     heroText:
-      "National digital platform for the Kazakh Tazy: dog registry, breeder network, digital passports, breed map, and FCI data track.",
+      "National digital platform for the Kazakh Tazy: dog registry, breeder network, digital passports, breed map, and FCI data.",
     "hero.registryCta": "Open registry",
-    "hero.fciCta": "View FCI contour",
+    "hero.fciCta": "Open FCI progress",
     "hero.panel.title": "National launch",
     "hero.panel.date": "3 September 2026",
     "hero.panel.window": "Window",
-    "hero.panel.windowValue": "MVP to Tazy Day",
+    "hero.panel.windowValue": "Launch to Tazy Day",
     "hero.panel.contour": "Contour",
     "hero.panel.contourValue": "Registry · Breeders · FCI",
     "hero.panel.evidence": "Evidence",
@@ -1607,7 +1607,7 @@ export const copyCatalog = {
     "intro.passports": "public QR passports",
     "intro.target": "full recognition target",
     "platform.eyebrow": "Working platform",
-    "platform.title": "TAZY.DOG connects the registry, breeding operations, the map, and the FCI contour.",
+    "platform.title": "TAZY.DOG brings the registry, breeding operations, map, and FCI progress into one system.",
     "platform.text":
       "The homepage opens straight into the core services: dog profiles, breeder network, operations map, breeding block, and data room.",
     "platform.servicesAria": "TAZY.DOG working services",
@@ -1636,18 +1636,18 @@ export const copyCatalog = {
     "platform.servicePassportText":
       "One object links the dog card, the cultural layer, export, and diplomacy cases.",
     "platform.servicePassportCta": "Open passport layer",
-    "platform.serviceInstitutionalEyebrow": "FCI and Data Room",
-    "platform.serviceInstitutionalTitle": "Public progress, data room, and evidence review",
+    "platform.serviceInstitutionalEyebrow": "FCI and data room",
+    "platform.serviceInstitutionalTitle": "FCI progress, data room, and review",
     "platform.serviceInstitutionalText":
-      "An entry point for federation users, experts, and partners who need live data, statuses, and exports.",
+      "The workspace for federations, experts, and partners who need status, exports, and evidence.",
     "platform.serviceInstitutionalCta": "Open institutional layer",
     "platform.statusAria": "Platform core status",
     "platform.statusEyebrow": "Working core",
-    "platform.statusTitle": "Public and expert layers run on one data model.",
+    "platform.statusTitle": "The public site and expert workspace run on one data model.",
     "platform.statusText":
       "Profiles, evidence, geography, breeding, and reporting share one verification logic and one event log.",
     "platform.statusItemOne": "public dog profile and QR passport",
-    "platform.statusItemTwo": "evidence review contour and access roles",
+    "platform.statusItemTwo": "evidence and access-review queue",
     "platform.statusItemThree": "operational map across regions and scenarios",
     "platform.statusItemFour": "breeding calculator and Health Passport",
     "mapdash.eyebrow": "Operational map",
@@ -1685,14 +1685,14 @@ export const copyCatalog = {
     "mapdash.fieldEyebrow": "Field layer",
     "mapdash.fieldTitle": "Trials, litters, and passport checks work on location.",
     "mapdash.fieldText":
-      "The field layer shows where offline-first logic is needed, where events happen, and where the public passport must work without file handoffs.",
-    "mapdash.fieldMetricOne": "trial corridors in the demo contour",
-    "mapdash.fieldMetricTwo": "mode for steppe and roaming points",
+      "The field layer shows where offline flows are required, where events happen, and where the public passport must work without file handoffs.",
+    "mapdash.fieldMetricOne": "trial corridors on the working map",
+    "mapdash.fieldMetricTwo": "offline mode for steppe and roaming points",
     "mapdash.fieldMetricThree": "check path from event to profile",
     "mapdash.heritageEyebrow": "Heritage layer",
     "mapdash.heritageTitle": "The cultural contour is tied to geography, lines, and international stories.",
     "mapdash.heritageText":
-      "Heritage does not float separately. It is linked to regions, lines, passports, archives, and future international dossiers.",
+      "Heritage does not float separately. It is linked to regions, lines, passports, archives, and international dossiers.",
     "mapdash.heritageMetricOne": "international surface on the same data",
     "mapdash.heritageMetricTwo": "diplomacy case as a reusable format",
     "mapdash.heritageMetricThree": "materials path without manual assembly",
@@ -1767,7 +1767,7 @@ export const copyCatalog = {
     "world.standardTitle": "Breed Standard",
     "world.standardText": "A dedicated EN page for the FCI standard with illustrations, clear conformation vocabulary, and links to verified profiles.",
     "world.importTitle": "How to Import a Tazy",
-    "world.importText": "EN layer for FCI clubs, future owners, and embassies: country requirements, documents, veterinary rules, and contacts.",
+    "world.importText": "English layer for FCI clubs, overseas owners, and embassies: country requirements, documents, veterinary rules, and contacts.",
     "science.eyebrow": "Data for science and decisions",
     "science.title": "The Data Room should be a source of reports, partnerships, and breed-preservation policy, not a closed office.",
     "science.text":
@@ -1782,29 +1782,29 @@ export const copyCatalog = {
     "science.apiText":
       "CSV, PDF, FCI-compatible XML, partner API, and evidence manifests for verified packages.",
     "metrics.eyebrow": "Launch KPIs",
-    "metrics.title": "By 3 September, the site should communicate a measurable launch plan, not only an aspiration.",
+    "metrics.title": "By 3 September, the platform shows a measurable launch plan.",
     "metrics.text":
-      "Breeder beta, public launch, Tazy Day, and the path to 2034 should be visible as an operational program with clear metrics.",
-    "metrics.dogs": "dogs in registry by launch",
+      "Registration, launch, Tazy Day, and the path to 2034 read as an operating program with clear metrics.",
+    "metrics.dogs": "dogs in registry at launch",
     "metrics.litters": "litters through the platform by 2027",
     "metrics.health": "Health Passport coverage by 2028",
     "metrics.clubs": "partner FCI clubs by 2027",
     "metrics.exports": "quarterly FCI reports per year",
     "journey.eyebrow": "Participant journey",
     "journey.title":
-      "The platform must explain not only what it stores, but how a person moves from application to recognized evidence.",
+      "The participant journey reads as a working process: from first application to public profile and export package.",
     "journey.text":
-      "Owners, breeders, experts, and institutional partners see one process: application, evidence, review, public profile, breeding decision, and export package.",
+      "Owners, breeders, experts, and partners follow one clear cycle: application, evidence, review, publication, breeding decision, and export.",
     "journey.ownerLabel": "Owner",
     "journey.ownerTitle": "Application and base profile",
     "journey.ownerText":
-      "Photos, microchip, region, origin, and initial documents are assembled into a draft profile.",
+      "Photos, microchip, region, origin, and initial documents are assembled into a profile under review.",
     "journey.evidenceLabel": "Evidence",
     "journey.evidenceTitle": "Health, DNA, and field work",
     "journey.evidenceText":
       "Each layer receives a status, source, date, attachment, and responsible reviewer.",
     "journey.reviewLabel": "Review",
-    "journey.reviewTitle": "Review without manual chaos",
+    "journey.reviewTitle": "Review with a clear decision log",
     "journey.reviewText":
       "The review queue separates private data from public claims and preserves a decision audit.",
     "journey.publicLabel": "Publication",
@@ -1879,7 +1879,7 @@ export const copyCatalog = {
     "ecosystem.eventsLabel": "Events",
     "ecosystem.eventsTitle": "Trials and shows",
     "ecosystem.eventsText":
-      "Online registration, event status, QR passport validation, and future GPS field-route traces.",
+      "Online registration, event status, QR passport validation, and GPS field-route traces.",
     "ecosystem.heritageLabel": "Heritage",
     "ecosystem.heritageTitle": "Living heritage archive",
     "ecosystem.heritageText":
@@ -1887,7 +1887,7 @@ export const copyCatalog = {
     "ecosystem.tourismLabel": "Tourism",
     "ecosystem.tourismTitle": "An entry point into Tazy tourism",
     "ecosystem.tourismText":
-      "Kennels, hosted routes, Tazy Day, and future experience services should grow from the same verified data.",
+      "Kennels, hosted routes, Tazy Day, and cultural travel scenarios should grow from the same verified data.",
     "ecosystem.open": "Open the geo contour",
     "ecosystem.routeEyebrow": "Geo ecosystem",
     "ecosystem.routeTitle": "The platform should show where the breed lives: across regions, events, routes, and cultural points.",
@@ -1924,7 +1924,7 @@ export const copyCatalog = {
     "architecture.title":
       "Technically, TAZY.DOG should be the breed operating system: data enters the core once and then flows into public, expert, and institutional layers.",
     "architecture.text":
-      "The core separates public profiles, protected evidence, review, export packages, and future mobile workflows so the showcase never becomes a private-document store.",
+      "The core separates public profiles, protected evidence, review, export packages, and mobile workflows so the showcase never becomes a private-document store.",
     "architecture.open": "Open technical map",
     "architecture.coreLabel": "Evidence Core",
     "architecture.coreTitle": "One evidence core",
@@ -1960,9 +1960,9 @@ export const copyCatalog = {
     "architecture.routePanelOfflineTitle": "Field mode is planned up front",
     "architecture.routePanelOfflineText":
       "Events, QR scanning, microchip confirmation, and draft evidence should sync after connectivity returns.",
-    "architecture.routePanelAvdsTitle": "AV DS ties modules into one product",
+    "architecture.routePanelAvdsTitle": "One interface, one status language",
     "architecture.routePanelAvdsText":
-      "Shared tokens, states, focus, density, and localization keep new modules from feeling like separate sites.",
+      "Shared surfaces, status states, focus treatment, and localization keep modules inside one product.",
     "architecture.routeCtaRegistry": "Open registry",
     "architecture.routeCtaDataRoom": "Open data room",
     "passport.eyebrow": "Heritage and diplomacy",
@@ -2082,17 +2082,17 @@ export const copyCatalog = {
     "fci.routePanelReportsText":
       "The right institutional contour reduces manual reporting: pedigree depth, health coverage, and open gaps should be calculated from the live system.",
     "fci.routeCtaRegistry": "Open registry",
-    "design.eyebrow": "AV DS 4",
+    "design.eyebrow": "Unified interface",
     "design.title":
-      "AV DS 4 defines one language for the public site, review workspace, and field contour.",
+      "One interface keeps the public site, review workspace, and field flows inside a single system.",
     "design.text":
-      "Semantic tokens, density rules, states, and bilingual components keep the platform coherent as modules expand.",
-    "design.tokenLabel": "Tokens",
-    "design.tokenTitle": "Semantic surfaces",
+      "Shared surfaces, statuses, density, and bilingual components keep modules from fragmenting into separate sites.",
+    "design.tokenLabel": "Surfaces",
+    "design.tokenTitle": "One visual logic",
     "design.tokenText":
-      "Dark and light themes are built from one AV DS 4 token layer, so surfaces, borders, and statuses behave predictably.",
+      "Dark/light themes, cards, borders, and work states stay consistent across modules.",
     "design.stateLabel": "States",
-    "design.stateTitle": "Verifiable states",
+    "design.stateTitle": "Statuses read the same everywhere",
     "design.stateText":
       "Done, in progress, risk, and waiting for external confirmation look the same in the registry, review workspace, and data room.",
     "design.densityLabel": "Density",
@@ -2100,12 +2100,12 @@ export const copyCatalog = {
     "design.densityText":
       "Public sections stay calm and readable while work surfaces remain compact for queues, tables, and checks.",
     "design.localeLabel": "Locale",
-    "design.localeTitle": "RU/EN now, KZ-ready next",
+    "design.localeTitle": "Russian and English without navigation drift",
     "design.localeText":
-      "The public launch exposes Russian and English now, while the KZ catalog remains ready as the next editorial layer without breaking cards, buttons, or mobile navigation.",
-    "launch.title": "The right launch is working infrastructure first, then a media wave around it.",
+      "The public launch is open in Russian and English, and the language layer does not break cards, buttons, or mobile navigation.",
+    "launch.title": "Launch starts with working infrastructure.",
     "launch.text":
-      "The period from 17 May to 3 September should be used to gather registrations, test operating flows, align breeders, and make TAZY.DOG the action point of the campaign.",
+      "The period from 17 May to 3 September is for registration, scenario hardening, breeder alignment, and collecting live data for public launch.",
     "launch.cta": "Start registration",
     "footer.summary": "Evidence-grade digital infrastructure for the Kazakh Tazy.",
     "footer.dataRoom": "FCI Data Room",

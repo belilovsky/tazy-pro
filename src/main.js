@@ -1,8 +1,8 @@
-import { initBreeding } from "./ui/breeding.js?v=20260527T212801Z";
-import { initMapDashboard } from "./ui/mapDashboard.js?v=20260527T212801Z";
-import { initRegistry } from "./ui/registry.js?v=20260527T212801Z";
-import { initRouter } from "./ui/router.js?v=20260527T212801Z";
-import { initShell } from "./ui/shell.js?v=20260527T212801Z";
+import { initBreeding } from "./ui/breeding.js?v=20260528T004500Z";
+import { initMapDashboard } from "./ui/mapDashboard.js?v=20260528T004500Z";
+import { initRegistry } from "./ui/registry.js?v=20260528T004500Z";
+import { initRouter } from "./ui/router.js?v=20260528T004500Z";
+import { initShell } from "./ui/shell.js?v=20260528T004500Z";
 
 function boot() {
   initShell();
