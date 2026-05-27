@@ -146,7 +146,7 @@ Expected:
 Browser smoke should cover:
 
 - home page renders with hero image
-- RU/KZ/EN language switch
+- RU/EN language switch with a physical `/en/` entrypoint; the KZ catalog stays hidden until native copy review
 - desktop and mobile navigation include the public architecture route
 - `#/breeders`, `#/ecosystem`, `#/architecture`, `#/heritage`, and
   `#/fci-progress`

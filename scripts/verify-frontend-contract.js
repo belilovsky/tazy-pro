@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import { mockApi } from "../src/api/mockApi.js";
 import { copyCatalog } from "../src/i18n/messages.js";
-import { readStoredLang, writeStoredLang } from "../src/i18n/runtime.js";
+import { canonicalHref, localizedHref, readStoredLang, writeStoredLang } from "../src/i18n/runtime.js";
 
 const html = readFileSync("index.html", "utf8");
 const sourceFiles = [
@@ -122,6 +122,20 @@ function verifyLinks() {
   }
 }
 
+function verifyLanguageUrls() {
+  if (!html.includes('hreflang="en"') || !html.includes('https://tazy.dog/en/')) {
+    errors.push("Missing English hreflang entrypoint in index.html");
+  }
+  if (html.includes('data-lang="kk"')) {
+    errors.push("KZ language switch is still exposed before the public KZ version is ready");
+  }
+  assert(canonicalHref("ru") === "https://tazy.dog/", "RU canonical URL is wrong");
+  assert(canonicalHref("en") === "https://tazy.dog/en/", "EN canonical URL is wrong");
+  const mockLocation = { origin: "https://tazy.dog", pathname: "/", search: "?qa=1", hash: "#/fci-progress" };
+  assert(localizedHref("en", mockLocation) === "https://tazy.dog/en/?qa=1#/fci-progress", "EN localized URL did not preserve search and hash");
+  assert(localizedHref("ru", { ...mockLocation, pathname: "/en/" }) === "https://tazy.dog/?qa=1#/fci-progress", "RU localized URL did not normalize back to root");
+}
+
 function assert(condition, message) {
   if (!condition) {
     throw new Error(message);
@@ -173,6 +187,7 @@ async function verifyBrowserStateMigration() {
 const copyKeys = new Set([...collectHtmlCopyKeys(), ...collectCodeCopyKeys()]);
 verifyCopyKeys(copyKeys);
 verifyLinks();
+verifyLanguageUrls();
 await verifyBrowserStateMigration();
 
 if (errors.length > 0) {

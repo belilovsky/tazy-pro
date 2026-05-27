@@ -1,8 +1,8 @@
-import { dogProfiles } from "../data/platform.js?v=20260527T111000Z";
-import { getPublicDogProfile } from "../domain/readModels.js?v=20260527T111000Z";
-import { LANGUAGE_EVENT, getCurrentLang, translateSeedText } from "../i18n/runtime.js?v=20260527T111000Z";
-import { createVerificationRow } from "./evidence.js?v=20260527T111000Z";
-import { updateDogRouteLinks } from "./router.js?v=20260527T111000Z";
+import { dogProfiles } from "../data/platform.js?v=20260527T160500Z";
+import { getPublicDogProfile } from "../domain/readModels.js?v=20260527T160500Z";
+import { LANGUAGE_EVENT, getCurrentLang, translateSeedText } from "../i18n/runtime.js?v=20260527T160500Z";
+import { createVerificationRow } from "./evidence.js?v=20260527T160500Z";
+import { updateDogRouteLinks } from "./router.js?v=20260527T160500Z";
 
 export function initRegistry(root = document) {
   const photo = root.querySelector("[data-dog-photo]");

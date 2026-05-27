@@ -1,4 +1,4 @@
-import { DOG_SEX, EVIDENCE_PRIORITY, EVIDENCE_STATUS, EVIDENCE_TYPE, VISIBILITY } from "../domain/contracts.js?v=20260527T111000Z";
+import { DOG_SEX, EVIDENCE_PRIORITY, EVIDENCE_STATUS, EVIDENCE_TYPE, VISIBILITY } from "../domain/contracts.js?v=20260527T160500Z";
 
 export const dogProfiles = [
   {
@@ -16,7 +16,7 @@ export const dogProfiles = [
     summary:
       "A field-tested male with verified parentage and strong export readiness. Health package is almost complete, with ophthalmology still pending.",
     completenessScore: 86,
-    photo: "./assets/tazy-profile-1.jpg",
+    photo: "/assets/tazy-profile-1.jpg",
     alt: "Akzhel Barys profile",
     passportEvents: [
       {
@@ -75,7 +75,7 @@ export const dogProfiles = [
     summary:
       "A young female with confirmed identity, kennel-signed ownership, and a complete health package. DNA sample and field trial are still in progress.",
     completenessScore: 74,
-    photo: "./assets/tazy-profile-2.jpg",
+    photo: "/assets/tazy-profile-2.jpg",
     alt: "Saumal Koke profile",
     passportEvents: [
       {

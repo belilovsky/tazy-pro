@@ -34,7 +34,7 @@ deployment helpers, and the planning docs that shape the next rounds:
 - DB health checks, protected-response no-store headers, reviewer login throttling, and daily SQLite backups.
 - FCI Data Room route with seed-derived evidence metrics.
 - FCI recognition roadmap.
-- RU/KZ/EN shell, route, protected-workspace, and landing copy catalog.
+- Public RU/EN shell, route, protected-workspace, and landing copy catalog; KZ copy remains prepared for the next editorial localization pass.
 - Dark/light theme switch.
 - AV DS semantic-token audit for component CSS.
 - Frontend contract check for localized copy keys and static route links.

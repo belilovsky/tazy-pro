@@ -19,7 +19,7 @@ population should be backed by traceable records.
 - Evidence before promotion.
 - Public trust without exposing private owner data.
 - FCI-compatible records from the first MVP.
-- KZ/RU/EN as product-level languages, not only landing-page copy.
+- RU/EN as production-grade public languages now, with KZ kept as a product-level localization track rather than only landing-page copy.
 - Auditability for every verification decision.
 - Breeding intelligence as population governance, not just matchmaking.
 
@@ -35,7 +35,7 @@ Status: done.
 - Public breeder, geo ecosystem, heritage, architecture, and FCI progress
   surfaces.
 - AV DS semantic-token boundary and frontend contract checks.
-- Dark/light theme and RU/KZ/EN copy runtime.
+- Dark/light theme and RU/EN public copy runtime; KZ catalog remains ready but hidden until editorial/legal review.
 
 ## Phase 1: MVP Foundation
 
@@ -48,7 +48,7 @@ Goal: replace the static prototype with a working application skeleton.
   - `/passport/:id` QR passport view.
   - `/admin` verification workspace.
   - `/data-room` FCI export workspace.
-- Add full KZ/RU/EN localization.
+- Add full KZ/RU/EN localization, starting from the public RU/EN launch and then exposing KZ after native copy review.
 - Add design tokens and reusable UI components.
 - Define backend contract and seed data.
 - Add basic CI: lint, type check, build.

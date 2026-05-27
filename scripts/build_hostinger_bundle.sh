@@ -49,6 +49,8 @@ html = html.replace('content="./assets/tazy-hero.png"', 'content="https://tazy.d
 index_path.write_text(html, encoding="utf-8")
 PY
 
+node "${ROOT_DIR}/scripts/build_localized_entrypoints.js" "${MAIN_DIR}" "https://tazy.dog"
+
 cat > "${MAIN_DIR}/robots.txt" <<'ROBOTS'
 User-agent: *
 Allow: /
@@ -62,6 +64,11 @@ cat > "${MAIN_DIR}/sitemap.xml" <<'SITEMAP'
     <loc>https://tazy.dog/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://tazy.dog/en/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
   </url>
 </urlset>
 SITEMAP

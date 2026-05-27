@@ -29,12 +29,13 @@ src/domain/readModels.js
   arrays.
 
 src/i18n/messages.js
-  Owns the first RU/KZ/EN copy catalog for shell and landing sections.
+  Owns the public RU/EN copy catalog for shell and landing sections, plus the
+  hidden KZ draft catalog for the next editorial localization pass.
 
 src/i18n/runtime.js
-  Applies RU/KZ/EN copy to static HTML and app-route views, updates metadata,
-  aria-labels, placeholders, image alt text, active language state, and document
-  language.
+  Applies public RU/EN copy to static HTML and app-route views, updates
+  metadata, aria-labels, placeholders, image alt text, active language state,
+  canonical URLs, hreflang links, and document language.
 
 src/api/mockApi.js
   Owns local fallback methods and browser-only reviewer-decision persistence for
@@ -91,7 +92,8 @@ important platform idea is visible before a user enters protected workflows.
 
 `scripts/verify-frontend-contract.js` checks two production-sensitive surfaces:
 
-- every static `data-copy*` key and code-level copy key exists in RU/KZ/EN;
+- every static `data-copy*` key and code-level copy key exists in the catalog;
+- the public language switch exposes only RU/EN until the KZ copy passes review;
 - every static hash link points to a known page anchor or app route.
 - browser state uses `tazy-dog.*` storage keys while still reading and migrating
   the legacy `tazy-pro.*` keys created before the domain split.

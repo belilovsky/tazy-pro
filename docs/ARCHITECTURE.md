@@ -114,7 +114,7 @@ clear domain model and audit trail from day one.
    `styles.css`.
 2. Component CSS below the token block is checked by
    `scripts/audit-avds-tokens.js`.
-3. RU/KZ/EN copy is applied through `src/i18n/runtime.js`.
+3. Public RU/EN copy is applied through `src/i18n/runtime.js`; the KZ catalog remains in the codebase for the next editorial localization pass, but is not exposed in the public switch yet.
 4. `scripts/verify-frontend-contract.js` verifies that localized copy keys and
    static route links are complete.
 

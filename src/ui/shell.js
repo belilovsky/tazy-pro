@@ -1,8 +1,10 @@
 import {
   LANGUAGE_EVENT,
   applyLanguage,
+  localizedHref,
   resolveInitialLang,
-} from "../i18n/runtime.js?v=20260527T111000Z";
+  writeStoredLang,
+} from "../i18n/runtime.js?v=20260527T160500Z";
 
 const THEME_STORAGE_KEY = "tazy-dog.theme";
 const LEGACY_THEME_STORAGE_KEY = "tazy-pro.theme";
@@ -186,7 +188,14 @@ export function initShell(root = document) {
 
   root.querySelectorAll("[data-lang]").forEach((button) => {
     button.addEventListener("click", () => {
-      applyLanguage(root, button.dataset.lang);
+      const nextLang = button.dataset.lang;
+      const nextHref = localizedHref(nextLang, window.location);
+      writeStoredLang(nextLang);
+      if (nextHref !== window.location.href) {
+        window.location.assign(nextHref);
+        return;
+      }
+      applyLanguage(root, nextLang);
     });
   });
 

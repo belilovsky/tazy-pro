@@ -132,6 +132,8 @@ export const copyCatalog = {
     "registry.text":
       "Публичный профиль показывает происхождение, здоровье, ДНК, результаты полевых испытаний и готовность к международному экспорту данных.",
     "registry.openProfile": "Открыть публичный профиль",
+    "registry.selectorBarys": "ДНК подтверждено · полевые испытания",
+    "registry.selectorKoke": "родословная подтверждена · здоровье проверено",
     "registry.supportPassportTitle": "QR-паспорт как открытая точка входа",
     "registry.supportPassportText":
       "Выставка, дипломатический подарок, продажа щенка или международная сверка должны начинаться с одного проверяемого URL, а не с пересылки файлов.",
@@ -239,6 +241,11 @@ export const copyCatalog = {
     "breeding.metricCoi": "Коэффициент инбридинга",
     "breeding.metricSire": "Давление популярного производителя",
     "breeding.metricDiversity": "Сигнал генетического разнообразия",
+    "breeding.initialRiskLow": "Низкий",
+    "breeding.initialDiversityStable": "Стабильно",
+    "breeding.initialRecommendationTitle": "Рекомендуется с наблюдением",
+    "breeding.initialRecommendationText":
+      "Пара допустима для доказательного цикла FCI 2034. Добавьте офтальмологию и видео полевых испытаний до статуса готовности к экспорту.",
     "architecture.eyebrow": "Технический контур",
     "architecture.title":
       "Технически TAZY.DOG должен быть операционной системой породы: данные один раз входят в ядро и дальше расходятся по публичным, экспертным и институциональным слоям.",
@@ -432,9 +439,9 @@ export const copyCatalog = {
     "design.densityText":
       "Публичные разделы читаются спокойно, а рабочие поверхности остаются компактными для очередей, таблиц и проверок.",
     "design.localeLabel": "Locale",
-    "design.localeTitle": "RU/KZ/EN без поломки ритма",
+    "design.localeTitle": "RU/EN сейчас, KZ-ready дальше",
     "design.localeText":
-      "Компоненты рассчитываются на длинные казахские и английские строки, не ломая карточки, кнопки и мобильную навигацию.",
+      "Публичный запуск открыт на русском и английском, а KZ-каталог сохраняется как следующий редакционный слой без риска для карточек, кнопок и мобильной навигации.",
     "launch.title": "Правильный запуск — это сначала рабочая инфраструктура, потом медийная волна вокруг нее.",
     "launch.text":
       "Период с 17 мая до 3 сентября работает как набор регистраций, проверка сценариев, консолидация заводчиков и медийная кампания, где TAZY.DOG становится точкой действия.",
@@ -834,6 +841,8 @@ export const copyCatalog = {
     "registry.text":
       "Ашық профиль шығу тегі, денсаулық, ДНҚ, дала сынақтары және халықаралық дерек экспортына дайындықты көрсетеді.",
     "registry.openProfile": "Ашық профильді ашу",
+    "registry.selectorBarys": "ДНҚ расталды · дала сынағы",
+    "registry.selectorKoke": "шежіре расталды · денсаулық тексерілді",
     "registry.supportPassportTitle": "QR-паспорт ашық кіру нүктесі ретінде",
     "registry.supportPassportText":
       "Көрме, дипломатиялық сыйлық, күшік сату немесе халықаралық тексеру бір тексерілетін URL-дан басталуы керек.",
@@ -927,6 +936,11 @@ export const copyCatalog = {
     "breeding.metricCoi": "Инбридинг коэффициенті",
     "breeding.metricSire": "Танымал өндіруші қысымы",
     "breeding.metricDiversity": "Генетикалық әртүрлілік сигналы",
+    "breeding.initialRiskLow": "Төмен",
+    "breeding.initialDiversityStable": "Тұрақты",
+    "breeding.initialRecommendationTitle": "Бақылаумен ұсынылады",
+    "breeding.initialRecommendationText":
+      "Жұп 2034 FCI дәлел цикліне жарамды. Экспортқа дайын мәртебеге дейін офтальмологияны және дала сынағы видеосын қосыңыз.",
     "architecture.eyebrow": "Техникалық контур",
     "architecture.title":
       "Техникалық тұрғыдан TAZY.DOG тұқымның операциялық жүйесі болуы керек: деректер ядроға бір рет кіреді де, ашық, сарапшылық және институционалдық қабаттарға тарайды.",
@@ -1080,9 +1094,9 @@ export const copyCatalog = {
     "design.densityText":
       "Ашық бөлімдер тыныш оқылады, ал жұмыс беттері кезек, кесте және тексеру үшін жинақы болып қалады.",
     "design.localeLabel": "Locale",
-    "design.localeTitle": "RU/KZ/EN ырғақты бұзбайды",
+    "design.localeTitle": "RU/EN қазір, KZ-ready келесі қадам",
     "design.localeText":
-      "Компоненттер ұзын қазақ және ағылшын жолдарына есептелген, карточка, батырма және мобильді навигация бұзылмайды.",
+      "Ашық іске қосылым қазір орыс және ағылшын тілдерінде, ал KZ-каталог карточка, батырма және мобильді навигацияны бұзбайтын келесі редакциялық қабат ретінде сақталады.",
     "launch.title": "Дұрыс іске қосу — әуелі жұмыс істейтін инфрақұрылым, содан кейін соның айналасындағы медиа толқын.",
     "launch.text":
       "17 мамырдан 3 қыркүйекке дейінгі кезең тіркеулерді жинау, сценарийлерді тексеру, селекционерлерді біріктіру және TAZY.DOG-ды әрекет нүктесіне айналдыратын медиа кампания ретінде жүруі керек.",
@@ -1479,6 +1493,8 @@ export const copyCatalog = {
     "registry.text":
       "The public profile shows pedigree, health, DNA, field trials, and readiness for international data export.",
     "registry.openProfile": "Open public profile",
+    "registry.selectorBarys": "DNA verified · field tested",
+    "registry.selectorKoke": "pedigree verified · health checked",
     "registry.supportPassportTitle": "A QR passport as the public entry point",
     "registry.supportPassportText":
       "An event check, a diplomatic gift, a puppy sale, or an international review should start from one verifiable URL, not a chain of files.",
@@ -1572,6 +1588,11 @@ export const copyCatalog = {
     "breeding.metricCoi": "Coefficient of inbreeding",
     "breeding.metricSire": "Popular sire pressure",
     "breeding.metricDiversity": "Genetic diversity signal",
+    "breeding.initialRiskLow": "Low",
+    "breeding.initialDiversityStable": "Stable",
+    "breeding.initialRecommendationTitle": "Recommended with monitoring",
+    "breeding.initialRecommendationText":
+      "The pair is acceptable for the 2034 FCI evidence cycle. Add ophthalmology and field-trial video before export-ready status.",
     "architecture.eyebrow": "Technical contour",
     "architecture.title":
       "Technically, TAZY.DOG should be the breed operating system: data enters the core once and then flows into public, expert, and institutional layers.",
@@ -1725,9 +1746,9 @@ export const copyCatalog = {
     "design.densityText":
       "Public sections stay calm and readable while work surfaces remain compact for queues, tables, and checks.",
     "design.localeLabel": "Locale",
-    "design.localeTitle": "RU/KZ/EN without rhythm breaks",
+    "design.localeTitle": "RU/EN now, KZ-ready next",
     "design.localeText":
-      "Components account for longer Kazakh and English strings without breaking cards, buttons, and mobile navigation.",
+      "The public launch exposes Russian and English now, while the KZ catalog remains ready as the next editorial layer without breaking cards, buttons, or mobile navigation.",
     "launch.title": "The right launch is working infrastructure first, then a media wave around it.",
     "launch.text":
       "The period from 17 May to 3 September should be used to gather registrations, test operating flows, align breeders, and make TAZY.DOG the action point of the campaign.",

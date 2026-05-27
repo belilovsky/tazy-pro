@@ -15,10 +15,14 @@
       data-copy-content="meta.description"
     />
     <meta property="og:image" content="https://tazy.dog/assets/tazy-hero.png" />
-    <meta property="og:url" content="https://tazy.dog/" />
-    <link rel="canonical" href="https://tazy.dog/" />
+    <meta property="og:url" content="https://tazy.dog/" data-localized-url />
+    <meta property="og:locale" content="ru_RU" data-localized-locale />
+    <link rel="canonical" href="https://tazy.dog/" data-localized-url />
+    <link rel="alternate" hreflang="ru" href="https://tazy.dog/" data-hreflang="ru" />
+    <link rel="alternate" hreflang="en" href="https://tazy.dog/en/" data-hreflang="en" />
+    <link rel="alternate" hreflang="x-default" href="https://tazy.dog/" data-hreflang="x-default" />
     <meta name="theme-color" content="#071014" />
-    <link rel="preload" href="./assets/fonts/avds/ibm-plex-sans-002.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/assets/fonts/avds/ibm-plex-sans-002.woff2" as="font" type="font/woff2" crossorigin />
     <script>
       (() => {
         try {
@@ -34,8 +38,8 @@
       })();
     </script>
     <title data-copy="meta.title">TAZY.DOG · Национальная цифровая платформа казахской тазы</title>
-    <link rel="stylesheet" href="./assets/fonts/avds/avds-fonts.css?v=20260527T123500Z" />
-    <link rel="stylesheet" href="./styles.css?v=20260527T123500Z" />
+    <link rel="stylesheet" href="/assets/fonts/avds/avds-fonts.css?v=20260527T160500Z" />
+    <link rel="stylesheet" href="/styles.css?v=20260527T160500Z" />
   </head>
   <body>
     <a class="skip-link" href="#registry" data-copy="a11y.skipToRegistry">Перейти к реестру</a>
@@ -66,7 +70,6 @@
       <div class="header-actions">
         <div class="language-switch" aria-label="Язык" data-copy-aria-label="a11y.language">
           <button type="button" data-lang="ru" class="active">RU</button>
-          <button type="button" data-lang="kk">KZ</button>
           <button type="button" data-lang="en">EN</button>
         </div>
         <button class="theme-button" type="button" data-theme-toggle aria-label="Переключить тему" data-copy-aria-label="a11y.toggleTheme">
@@ -117,14 +120,13 @@
       </button>
       <div class="mobile-language-switch" aria-label="Язык" data-copy-aria-label="a11y.language">
         <button type="button" data-lang="ru" class="active">RU</button>
-        <button type="button" data-lang="kk">KZ</button>
         <button type="button" data-lang="en">EN</button>
       </div>
     </div>
 
     <main id="top" data-home-view>
       <section class="hero" aria-labelledby="hero-title">
-        <img class="hero-image" src="./assets/tazy-hero.png" alt="Казахская тазы в степном пейзаже" data-copy-alt="a11y.heroImage" />
+        <img class="hero-image" src="/assets/tazy-hero.png" alt="Казахская тазы в степном пейзаже" data-copy-alt="a11y.heroImage" />
         <div class="hero-shade" aria-hidden="true"></div>
         <div class="hero-content">
           <div class="hero-copy">
@@ -329,18 +331,18 @@
         <div class="registry-layout">
           <div class="dog-selector" role="tablist" aria-label="Профили собак" data-copy-aria-label="a11y.dogProfiles">
             <button type="button" class="active" data-dog="0" role="tab" aria-selected="true">
-              <img src="./assets/tazy-profile-1.jpg" alt="" />
-              <span><strong>Akzhel Barys</strong><small>ДНК подтверждено · полевые испытания</small></span>
+              <img src="/assets/tazy-profile-1.jpg" alt="" />
+              <span><strong>Akzhel Barys</strong><small data-copy="registry.selectorBarys">ДНК подтверждено · полевые испытания</small></span>
             </button>
             <button type="button" data-dog="1" role="tab" aria-selected="false">
-              <img src="./assets/tazy-profile-2.jpg" alt="" />
-              <span><strong>Saumal Koke</strong><small>родословная подтверждена · здоровье проверено</small></span>
+              <img src="/assets/tazy-profile-2.jpg" alt="" />
+              <span><strong>Saumal Koke</strong><small data-copy="registry.selectorKoke">родословная подтверждена · здоровье проверено</small></span>
             </button>
           </div>
 
           <article class="dog-card" aria-live="polite">
             <div class="dog-photo-frame">
-              <img data-dog-photo src="./assets/tazy-profile-1.jpg" alt="Профиль Akzhel Barys" />
+              <img data-dog-photo src="/assets/tazy-profile-1.jpg" alt="Профиль Akzhel Barys" />
               <a class="qr-card" data-dog-passport-link href="#/passport/tzy-kz-000182" aria-label="Открыть цифровой паспорт" data-copy-aria-label="a11y.openPassport">
                 <span>QR</span>
                 <b data-dog-registry-number>TZY-2034-0182</b>
@@ -502,19 +504,19 @@
             </article>
             <article>
               <span data-copy="breeding.metricSire">Давление популярного производителя</span>
-              <strong data-sire-risk>Низкий</strong>
+              <strong data-sire-risk data-copy="breeding.initialRiskLow">Низкий</strong>
               <div class="meter blue"><i data-sire-meter style="width: 24%"></i></div>
             </article>
             <article>
               <span data-copy="breeding.metricDiversity">Сигнал генетического разнообразия</span>
-              <strong data-diversity>Стабильно</strong>
+              <strong data-diversity data-copy="breeding.initialDiversityStable">Стабильно</strong>
               <div class="meter green"><i data-diversity-meter style="width: 68%"></i></div>
             </article>
           </div>
 
           <div class="recommendation">
-            <h3 data-recommendation-title>Рекомендуется с наблюдением</h3>
-            <p data-recommendation>
+            <h3 data-recommendation-title data-copy="breeding.initialRecommendationTitle">Рекомендуется с наблюдением</h3>
+            <p data-recommendation data-copy="breeding.initialRecommendationText">
               Пара допустима для доказательного цикла FCI 2034. Добавьте офтальмологию и видео
               полевых испытаний до статуса готовности к экспорту.
             </p>
@@ -785,8 +787,8 @@
           </article>
           <article class="design-system-card">
             <p data-copy="design.localeLabel">Locale</p>
-            <h3 data-copy="design.localeTitle">RU/KZ/EN без поломки ритма</h3>
-            <span data-copy="design.localeText">Компоненты рассчитываются на длинные казахские и английские строки, не ломая карточки, кнопки и мобильную навигацию.</span>
+            <h3 data-copy="design.localeTitle">RU/EN сейчас, KZ-ready дальше</h3>
+            <span data-copy="design.localeText">Публичный запуск открыт на русском и английском, а KZ-каталог сохраняется как следующий редакционный слой без риска для карточек, кнопок и мобильной навигации.</span>
           </article>
         </div>
       </section>
@@ -826,6 +828,6 @@
       </div>
     </footer>
 
-    <script type="module" src="./src/main.js?v=20260527T111000Z"></script>
+    <script type="module" src="/src/main.js?v=20260527T160500Z"></script>
   </body>
 </html>

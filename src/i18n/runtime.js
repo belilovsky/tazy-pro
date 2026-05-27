@@ -1,7 +1,9 @@
-import { copyCatalog } from "./messages.js?v=20260527T111000Z";
+import { copyCatalog } from "./messages.js?v=20260527T160500Z";
 
 export const DEFAULT_LANG = "ru";
+export const PUBLIC_LANGS = ["ru", "en"];
 export const LANGUAGE_EVENT = "tazy:langchange";
+const PRODUCTION_ORIGIN = "https://tazy.dog";
 const LANGUAGE_STORAGE_KEY = "tazy-dog.lang";
 const LEGACY_LANGUAGE_STORAGE_KEY = "tazy-pro.lang";
 
@@ -19,6 +21,39 @@ export function normalizeLang(value) {
   return DEFAULT_LANG;
 }
 
+function normalizePublicLang(value) {
+  const lang = normalizeLang(value);
+  return PUBLIC_LANGS.includes(lang) ? lang : DEFAULT_LANG;
+}
+
+function readPathLang(locationRef = globalThis.location) {
+  const firstSegment = locationRef?.pathname?.split("/").filter(Boolean)[0] || "";
+  if (firstSegment === "en") {
+    return "en";
+  }
+  if (firstSegment === "ru") {
+    return "ru";
+  }
+  return "";
+}
+
+function localizedPath(lang, locationRef = globalThis.location) {
+  const publicLang = normalizePublicLang(lang);
+  const search = locationRef?.search || "";
+  const hash = locationRef?.hash || "";
+  const path = publicLang === "en" ? "/en/" : "/";
+  return `${path}${search}${hash}`;
+}
+
+export function localizedHref(lang, locationRef = globalThis.location) {
+  const origin = locationRef?.origin || PRODUCTION_ORIGIN;
+  return `${origin}${localizedPath(lang, locationRef)}`;
+}
+
+export function canonicalHref(lang) {
+  return `${PRODUCTION_ORIGIN}${normalizePublicLang(lang) === "en" ? "/en/" : "/"}`;
+}
+
 export function readStoredLang() {
   try {
     const value = globalThis.localStorage?.getItem(LANGUAGE_STORAGE_KEY) || globalThis.localStorage?.getItem(LEGACY_LANGUAGE_STORAGE_KEY) || "";
@@ -33,7 +68,15 @@ export function getCurrentLang(root = document) {
 }
 
 export function resolveInitialLang(root = document) {
-  return normalizeLang(readStoredLang() || root?.documentElement?.lang || DEFAULT_LANG);
+  const pathLang = readPathLang(root?.defaultView?.location);
+  if (pathLang) {
+    return pathLang;
+  }
+  const pathname = root?.defaultView?.location?.pathname || "/";
+  if (pathname === "/" || pathname.endsWith("/index.html")) {
+    return DEFAULT_LANG;
+  }
+  return normalizePublicLang(readStoredLang() || root?.documentElement?.lang || DEFAULT_LANG);
 }
 
 export function writeStoredLang(lang) {
@@ -53,13 +96,37 @@ export function formatCopy(key, values = {}, lang = DEFAULT_LANG) {
   return getCopy(key, lang).replace(/\{(\w+)\}/g, (_, token) => String(values[token] ?? ""));
 }
 
+function syncLocalizedUrls(root, lang) {
+  const publicLang = normalizePublicLang(lang);
+  const currentCanonical = canonicalHref(publicLang);
+  root.querySelectorAll("[data-localized-url]").forEach((node) => {
+    if (node.tagName === "LINK") {
+      node.setAttribute("href", currentCanonical);
+    } else {
+      node.setAttribute("content", currentCanonical);
+    }
+  });
+  root.querySelectorAll("[data-hreflang]").forEach((node) => {
+    const hreflang = node.dataset.hreflang;
+    node.setAttribute("href", hreflang === "en" ? canonicalHref("en") : canonicalHref("ru"));
+  });
+  root.querySelector("[data-localized-locale]")?.setAttribute("content", publicLang === "en" ? "en_US" : "ru_RU");
+}
+
 export function translateSeedText(text, lang = DEFAULT_LANG) {
   if (!text) {
     return text;
   }
-  const localized = languageCatalog(lang)?.seed?.[text] || copyCatalog[DEFAULT_LANG]?.seed?.[text];
+  const normalizedLang = normalizeLang(lang);
+  const localized = languageCatalog(normalizedLang)?.seed?.[text];
   if (localized) {
     return localized;
+  }
+  if (normalizedLang === DEFAULT_LANG) {
+    const defaultText = copyCatalog[DEFAULT_LANG]?.seed?.[text];
+    if (defaultText) {
+      return defaultText;
+    }
   }
 
   const levelMatch = /^Level (\d+)$/.exec(text);
@@ -81,7 +148,7 @@ export function translateSeedText(text, lang = DEFAULT_LANG) {
 }
 
 export function applyLanguage(root = document, nextLang = DEFAULT_LANG) {
-  const lang = normalizeLang(nextLang);
+  const lang = normalizePublicLang(nextLang);
   root.documentElement.lang = lang;
   root.querySelectorAll("[data-lang]").forEach((item) => {
     const active = item.dataset.lang === lang;
@@ -127,6 +194,7 @@ export function applyLanguage(root = document, nextLang = DEFAULT_LANG) {
   if (title && title !== "meta.title") {
     root.title = title;
   }
+  syncLocalizedUrls(root, lang);
   writeStoredLang(lang);
   root.dispatchEvent(new CustomEvent(LANGUAGE_EVENT, { detail: { lang } }));
   return lang;

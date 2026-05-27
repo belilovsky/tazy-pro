@@ -1,4 +1,4 @@
-import { getCopy, getCurrentLang, translateSeedText } from "../i18n/runtime.js?v=20260527T111000Z";
+import { getCopy, getCurrentLang, translateSeedText } from "../i18n/runtime.js?v=20260527T160500Z";
 
 export function createVerificationRow(documentRef, [label, status, state]) {
   const lang = getCurrentLang(documentRef);
