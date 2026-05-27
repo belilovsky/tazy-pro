@@ -1,15 +1,15 @@
-import { tazyApi } from "../api/tazyApi.js?v=20260527T160500Z";
-import { dogProfiles } from "../data/platform.js?v=20260527T160500Z";
+import { tazyApi } from "../api/tazyApi.js?v=20260528T023600Z";
+import { dogProfiles } from "../data/platform.js?v=20260528T023600Z";
 import {
   LANGUAGE_EVENT,
   formatCopy,
   getCopy,
   getCurrentLang,
   translateSeedText,
-} from "../i18n/runtime.js?v=20260527T160500Z";
-import { createAdminWorkspace } from "./admin.js?v=20260527T160500Z";
-import { createDataRoomView } from "./dataRoom.js?v=20260527T160500Z";
-import { createVerificationRow } from "./evidence.js?v=20260527T160500Z";
+} from "../i18n/runtime.js?v=20260528T023600Z";
+import { createAdminWorkspace } from "./admin.js?v=20260528T023600Z";
+import { createDataRoomView } from "./dataRoom.js?v=20260528T023600Z";
+import { createVerificationRow } from "./evidence.js?v=20260528T023600Z";
 
 const routePrefix = "#/";
 let routeRequestId = 0;
@@ -297,7 +297,7 @@ function createPassportView(documentRef, dog) {
   const header = createElement(documentRef, "div", "passport-header");
   const logo = createElement(documentRef, "div", "passport-logo", "T");
   const headerText = createElement(documentRef, "div");
-  headerText.append(createElement(documentRef, "strong", "", "TAZY DIGITAL PASSPORT"), createElement(documentRef, "span", "", dog.passportId));
+  headerText.append(createElement(documentRef, "strong", "", t("passport.cardLabel")), createElement(documentRef, "span", "", dog.passportId));
   header.append(logo, headerText);
 
   const qr = createElement(documentRef, "div", "passport-qr");

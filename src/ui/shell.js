@@ -4,7 +4,7 @@ import {
   localizedHref,
   resolveInitialLang,
   writeStoredLang,
-} from "../i18n/runtime.js?v=20260527T160500Z";
+} from "../i18n/runtime.js?v=20260528T023600Z";
 
 const THEME_STORAGE_KEY = "tazy-dog.theme";
 const LEGACY_THEME_STORAGE_KEY = "tazy-pro.theme";

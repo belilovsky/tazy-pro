@@ -1,6 +1,6 @@
-import { tazyApi } from "../api/tazyApi.js?v=20260527T160500Z";
-import { formatCopy, getCopy, getCurrentLang, translateSeedText } from "../i18n/runtime.js?v=20260527T160500Z";
-import { createReviewerKeyPanel, isAuthError } from "./reviewerAuth.js?v=20260527T160500Z";
+import { tazyApi } from "../api/tazyApi.js?v=20260528T023600Z";
+import { formatCopy, getCopy, getCurrentLang, translateSeedText } from "../i18n/runtime.js?v=20260528T023600Z";
+import { createReviewerKeyPanel, isAuthError } from "./reviewerAuth.js?v=20260528T023600Z";
 
 function createElement(documentRef, tag, className, text) {
   const node = documentRef.createElement(tag);

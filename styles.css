@@ -530,6 +530,7 @@ button {
   font-size: 5.8rem;
   line-height: 1.02;
   font-weight: 700;
+  text-wrap: balance;
 }
 
 .hero-copy p {
@@ -537,6 +538,7 @@ button {
   margin: 26px 0 0;
   color: var(--color-text-on-hero-muted);
   font-size: 1.2rem;
+  text-wrap: pretty;
 }
 
 .hero-actions {
@@ -724,6 +726,7 @@ button {
   font-family: var(--font-display);
   font-size: 3rem;
   line-height: 1.04;
+  text-wrap: balance;
 }
 
 .section-heading span,
@@ -733,6 +736,7 @@ button {
   margin-top: 18px;
   color: var(--color-text-secondary);
   font-size: 1.05rem;
+  text-wrap: pretty;
 }
 
 .platform-grid,
@@ -840,6 +844,7 @@ button {
   font-family: var(--font-display);
   font-size: 2.5rem;
   line-height: 1.04;
+  text-wrap: balance;
 }
 
 .benchmark-copy span,
@@ -851,6 +856,7 @@ button {
   margin-top: 18px;
   color: var(--color-text-secondary);
   font-size: 1.02rem;
+  text-wrap: pretty;
 }
 
 .benchmark-matrix {
@@ -874,7 +880,8 @@ button {
   min-height: 58px;
   padding: 16px;
   border-right: 1px solid var(--border-subtle);
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
+  word-break: normal;
 }
 
 .benchmark-head span {
@@ -882,6 +889,8 @@ button {
   font-size: 0.78rem;
   font-weight: 800;
   text-transform: uppercase;
+  text-wrap: balance;
+  hyphens: manual;
 }
 
 .benchmark-matrix div:not(.benchmark-head) span {
@@ -950,6 +959,7 @@ button {
   display: block;
   margin-top: 14px;
   color: var(--color-text-secondary);
+  text-wrap: pretty;
 }
 
 .journey-section {
@@ -1014,6 +1024,7 @@ button {
   font-family: var(--font-display);
   font-size: 1.7rem;
   line-height: 1.08;
+  text-wrap: balance;
 }
 
 .journey-step em,
@@ -1024,6 +1035,7 @@ button {
   margin-top: 14px;
   color: var(--color-text-secondary);
   font-style: normal;
+  text-wrap: pretty;
 }
 
 .registry-support-grid {
@@ -1586,12 +1598,14 @@ select {
   font-family: var(--font-display);
   font-size: 1.55rem;
   line-height: 1.08;
+  text-wrap: balance;
 }
 
 .world-stack p,
 .science-grid p {
   margin: 12px 0 0;
   color: var(--color-text-secondary);
+  text-wrap: pretty;
 }
 
 .architecture-board {
@@ -1749,11 +1763,13 @@ select {
   font-family: var(--font-display);
   font-size: 1.7rem;
   line-height: 1.08;
+  text-wrap: balance;
 }
 
 .timeline p {
   margin: 16px 0 0;
   color: var(--color-text-secondary);
+  text-wrap: pretty;
 }
 
 .section-actions {
@@ -2504,14 +2520,14 @@ select {
   }
 
   .hero-copy h1 {
-    font-size: clamp(4.1rem, 5vw, 5.15rem);
+    font-size: clamp(3.9rem, 4.6vw, 4.8rem);
   }
 
   .hero-copy p {
-    max-width: 590px;
+    max-width: 540px;
     margin-top: 20px;
-    font-size: 1.05rem;
-    line-height: 1.55;
+    font-size: 1rem;
+    line-height: 1.52;
   }
 
   .hero-actions {
@@ -2586,12 +2602,12 @@ select {
   }
 
   .section-heading {
-    max-width: 760px;
-    margin-bottom: 32px;
+    max-width: 720px;
+    margin-bottom: 28px;
   }
 
   .platform-section .section-heading {
-    max-width: 900px;
+    max-width: 860px;
   }
 
   .section-heading p,
@@ -2608,8 +2624,8 @@ select {
   .section-heading h2,
   .passport-copy h2,
   .launch-section h2 {
-    font-size: clamp(2rem, 2.55vw, 2.55rem);
-    line-height: 1.07;
+    font-size: clamp(1.92rem, 2.25vw, 2.35rem);
+    line-height: 1.08;
   }
 
   .benchmark-copy h2,
@@ -2617,8 +2633,8 @@ select {
   .world-copy h2,
   .science-section .section-heading h2,
   .metrics-section h2 {
-    font-size: clamp(1.85rem, 2vw, 2.25rem);
-    line-height: 1.08;
+    font-size: clamp(1.72rem, 1.85vw, 2.02rem);
+    line-height: 1.1;
   }
 
   .section-heading span,
@@ -2630,40 +2646,54 @@ select {
   .science-section .section-heading span,
   .metrics-section > div > span {
     margin-top: 14px;
-    font-size: 0.95rem;
+    font-size: 0.92rem;
   }
 
   .module-spine {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 14px;
-    padding-top: 24px;
+    padding-top: 0;
   }
 
   .module-spine::before {
-    top: 43px;
+    display: none;
   }
 
   .module-spine article {
-    padding-top: 42px;
+    padding: 18px;
+    text-align: left;
+    border: 1px solid var(--border-subtle);
+    border-radius: 14px;
+    background:
+      linear-gradient(135deg, var(--surface-accent-panel), transparent 48%),
+      var(--surface-raised);
   }
 
   .module-spine article::before {
-    left: calc(50% - 17px);
-    width: 34px;
-    height: 34px;
+    display: none;
   }
 
   .module-spine span {
-    top: 8px;
-    font-size: 0.82rem;
+    position: static;
+    display: inline-flex;
+    width: 34px;
+    height: 34px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+    border: 1px solid var(--border-brand-subtle);
+    border-radius: 50%;
+    background: var(--surface-brand-subtle);
+    font-size: 0.74rem;
   }
 
   .module-spine h3 {
-    font-size: 1rem;
+    font-size: 1.02rem;
   }
 
   .module-spine p {
     margin-top: 8px;
-    font-size: 0.78rem;
+    font-size: 0.81rem;
     line-height: 1.45;
   }
 
@@ -2674,7 +2704,7 @@ select {
   }
 
   .benchmark-matrix > div {
-    grid-template-columns: 1.35fr repeat(5, minmax(60px, 1fr));
+    grid-template-columns: 1.45fr repeat(5, minmax(82px, 1fr));
   }
 
   .benchmark-matrix span,
@@ -2682,6 +2712,11 @@ select {
     min-height: 46px;
     padding: 12px 14px;
     font-size: 0.84rem;
+  }
+
+  .benchmark-head span {
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
   }
 
   .benchmark-matrix div:not(.benchmark-head) span {
