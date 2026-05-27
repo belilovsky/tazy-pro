@@ -107,6 +107,10 @@ body.no-scroll {
   overflow: hidden;
 }
 
+[hidden] {
+  display: none !important;
+}
+
 img,
 svg {
   display: block;
@@ -739,6 +743,118 @@ button {
   text-wrap: pretty;
 }
 
+.service-grid,
+.operations-workbench,
+.ops-milestones {
+  display: grid;
+  gap: 18px;
+}
+
+.service-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.service-card,
+.service-status,
+.map-stage,
+.map-inspector {
+  min-width: 0;
+  border: 1px solid var(--border-subtle);
+  border-radius: 18px;
+  background:
+    linear-gradient(135deg, var(--surface-accent-panel), transparent 42%),
+    var(--surface-raised);
+  box-shadow: var(--shadow-elevation-lg);
+}
+
+.service-card {
+  display: grid;
+  gap: 0;
+  padding: 22px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.service-card p,
+.service-status p,
+.map-summary p {
+  margin: 0 0 12px;
+  color: var(--color-accent-secondary);
+  font-size: 0.78rem;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.service-card h3,
+.service-status h3,
+.map-summary h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.34rem, 1.7vw, 1.54rem);
+  line-height: 1.08;
+  text-wrap: balance;
+}
+
+.service-card span,
+.service-status span,
+.map-summary > span {
+  display: block;
+  margin-top: 14px;
+  color: var(--color-text-secondary);
+  text-wrap: pretty;
+}
+
+.service-card b {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+  color: var(--color-accent-secondary);
+  font-size: 0.86rem;
+  font-weight: 800;
+}
+
+.service-card b::after {
+  content: "→";
+}
+
+.service-status {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.9fr) minmax(0, 1.1fr);
+  gap: 24px;
+  margin-top: 20px;
+  padding: 24px;
+}
+
+.service-status ul {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.service-status li {
+  position: relative;
+  padding: 14px 16px 14px 44px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 14px;
+  background: var(--surface-card-subtle);
+  color: var(--color-text-primary);
+}
+
+.service-status li::before {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--surface-success-subtle);
+  box-shadow: inset 0 0 0 4px var(--color-status-success);
+  content: "";
+}
+
 .platform-grid,
 .registry-support-grid,
 .tier-grid,
@@ -813,6 +929,174 @@ button {
   margin: 12px 0 0;
   color: var(--color-text-secondary);
   font-size: 0.86rem;
+}
+
+.map-dashboard {
+  display: grid;
+  grid-template-columns: minmax(0, 1.12fr) minmax(320px, 0.88fr);
+  gap: 20px;
+}
+
+.map-stage,
+.map-inspector {
+  padding: 22px;
+}
+
+.map-toolbar {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 6px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 999px;
+  background: var(--surface-card-subtle);
+}
+
+.map-toolbar button {
+  min-height: 40px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--color-text-secondary);
+  font-size: 0.86rem;
+  font-weight: 780;
+}
+
+.map-toolbar button.active {
+  background: var(--color-accent-primary);
+  color: var(--color-text-on-accent);
+}
+
+.map-canvas {
+  position: relative;
+  min-height: 470px;
+  margin-top: 18px;
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at top left, var(--surface-brand-subtle), transparent 38%),
+    linear-gradient(180deg, var(--surface-raised) 0%, var(--surface-card-subtle) 100%);
+}
+
+.map-shape {
+  width: 100%;
+  height: 100%;
+}
+
+.kz-shell {
+  fill: var(--surface-accent-panel);
+  stroke: var(--border-accent-medium);
+  stroke-width: 3;
+  stroke-linejoin: round;
+}
+
+.kz-ridge {
+  fill: none;
+  stroke: var(--border-accent-medium);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.map-node-layer[hidden],
+.map-summary[hidden] {
+  display: none !important;
+}
+
+.map-node-layer {
+  position: absolute;
+  inset: 0;
+}
+
+.map-node {
+  position: absolute;
+  top: var(--y);
+  left: var(--x);
+  min-width: 148px;
+  max-width: 188px;
+  padding: 12px 14px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 14px;
+  background: var(--surface-raised-soft);
+  box-shadow: var(--shadow-elevation-lg);
+  transform: translate(-18%, -50%);
+}
+
+.map-node::before {
+  position: absolute;
+  top: calc(50% - 6px);
+  left: -8px;
+  width: 12px;
+  height: 12px;
+  border: 2px solid var(--surface-raised);
+  border-radius: 50%;
+  background: var(--color-accent-primary);
+  content: "";
+}
+
+.map-node-primary::before {
+  box-shadow: 0 0 0 6px var(--surface-warning-subtle);
+}
+
+.map-node b,
+.map-metric-list b,
+.ops-milestones strong {
+  font-family: var(--font-data);
+  font-variant-numeric: tabular-nums;
+}
+
+.map-node b {
+  display: block;
+  font-size: 0.9rem;
+}
+
+.map-node small {
+  display: block;
+  margin-top: 4px;
+  color: var(--color-text-secondary);
+  font-size: 0.72rem;
+  line-height: 1.35;
+}
+
+.map-inspector {
+  display: grid;
+  gap: 18px;
+  align-content: start;
+}
+
+.map-summary {
+  display: grid;
+  gap: 0;
+}
+
+.map-metric-list {
+  display: grid;
+  gap: 10px;
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.map-metric-list li {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: 14px;
+  align-items: center;
+  padding: 14px 16px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 14px;
+  background: var(--surface-card-subtle);
+}
+
+.map-metric-list b {
+  font-size: 1.2rem;
+  color: var(--color-accent-primary);
+}
+
+.map-metric-list span {
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
 }
 
 .benchmark-section {
@@ -1114,6 +1398,45 @@ button {
 
 .ecosystem-card-large {
   grid-column: span 2;
+}
+
+.operations-workbench {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.operations-workbench article {
+  min-width: 0;
+  padding: 22px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  background: var(--surface-raised);
+}
+
+.operations-workbench .profile-link {
+  margin-top: 14px;
+}
+
+.ops-milestones {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-top: 18px;
+  gap: 1px;
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius);
+  background: var(--border-subtle);
+}
+
+.ops-milestones article {
+  display: grid;
+  gap: 10px;
+  min-height: 112px;
+  padding: 18px;
+  background: var(--surface-raised);
+}
+
+.ops-milestones span {
+  color: var(--color-text-secondary);
+  font-size: 0.88rem;
 }
 
 .registry-layout {
@@ -2610,6 +2933,50 @@ select {
     max-width: 860px;
   }
 
+  .service-card,
+  .service-status,
+  .map-stage,
+  .map-inspector,
+  .operations-workbench article {
+    border-radius: 14px;
+  }
+
+  .service-card,
+  .map-stage,
+  .map-inspector,
+  .operations-workbench article {
+    padding: 18px;
+  }
+
+  .service-card h3,
+  .service-status h3,
+  .map-summary h3 {
+    font-size: 1.18rem;
+  }
+
+  .service-card span,
+  .service-status span,
+  .map-summary > span {
+    margin-top: 10px;
+    font-size: 0.9rem;
+  }
+
+  .service-status {
+    gap: 18px;
+    margin-top: 18px;
+    padding: 18px;
+  }
+
+  .service-status li {
+    padding: 12px 14px 12px 40px;
+    font-size: 0.88rem;
+  }
+
+  .service-status li::before {
+    top: 12px;
+    left: 12px;
+  }
+
   .section-heading p,
   .passport-copy p,
   .benchmark-copy p,
@@ -2695,6 +3062,54 @@ select {
     margin-top: 8px;
     font-size: 0.81rem;
     line-height: 1.45;
+  }
+
+  .map-dashboard {
+    grid-template-columns: minmax(0, 1.04fr) minmax(320px, 0.96fr);
+    gap: 16px;
+  }
+
+  .map-toolbar button {
+    min-height: 36px;
+    padding: 0 14px;
+    font-size: 0.8rem;
+  }
+
+  .map-canvas {
+    min-height: 400px;
+    margin-top: 14px;
+  }
+
+  .map-node {
+    min-width: 130px;
+    max-width: 168px;
+    padding: 10px 12px;
+  }
+
+  .map-node b {
+    font-size: 0.82rem;
+  }
+
+  .map-node small {
+    font-size: 0.68rem;
+  }
+
+  .map-metric-list {
+    margin-top: 14px;
+  }
+
+  .map-metric-list li {
+    grid-template-columns: 60px 1fr;
+    gap: 12px;
+    padding: 12px 14px;
+  }
+
+  .map-metric-list b {
+    font-size: 1rem;
+  }
+
+  .map-metric-list span {
+    font-size: 0.84rem;
   }
 
   .benchmark-section {
@@ -2903,7 +3318,9 @@ select {
   .tier-grid,
   .ecosystem-grid,
   .science-grid,
-  .design-system-grid {
+  .design-system-grid,
+  .service-grid,
+  .operations-workbench {
     gap: 14px;
   }
 
@@ -2996,6 +3413,11 @@ select {
     padding: 18px;
   }
 
+  .ops-milestones article {
+    min-height: 92px;
+    padding: 14px;
+  }
+
   .timeline span {
     font-size: 1.5rem;
   }
@@ -3060,6 +3482,7 @@ select {
   .registry-layout,
   .dog-card,
   .trust-layout,
+  .map-dashboard,
   .public-route-card-grid,
   .public-route-panel-grid,
   .route-hero,
@@ -3124,16 +3547,27 @@ select {
   .module-spine,
   .tier-grid,
   .ecosystem-grid,
+  .service-grid,
   .registry-support-grid,
   .journey-map,
   .architecture-layers,
   .design-system-grid,
-  .public-route-stat-grid {
+  .public-route-stat-grid,
+  .operations-workbench,
+  .ops-milestones {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .operations-strip {
     grid-template-columns: 1fr;
+  }
+
+  .service-status {
+    grid-template-columns: 1fr;
+  }
+
+  .map-canvas {
+    min-height: 420px;
   }
 
   .module-spine::before {
@@ -3261,14 +3695,52 @@ select {
   .module-spine,
   .tier-grid,
   .ecosystem-grid,
+  .service-grid,
   .registry-support-grid,
   .journey-map,
   .architecture-layers,
   .design-system-grid,
   .science-grid,
   .metrics-rail,
-  .public-route-stat-grid {
+  .public-route-stat-grid,
+  .operations-workbench,
+  .ops-milestones {
     grid-template-columns: 1fr;
+  }
+
+  .map-toolbar {
+    display: grid;
+    grid-template-columns: 1fr;
+    border-radius: 18px;
+  }
+
+  .map-toolbar button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .map-canvas {
+    min-height: 360px;
+  }
+
+  .map-node {
+    min-width: 124px;
+    max-width: 144px;
+    padding: 10px;
+    transform: translate(-14%, -50%);
+  }
+
+  .map-node b {
+    font-size: 0.76rem;
+  }
+
+  .map-node small {
+    font-size: 0.64rem;
+  }
+
+  .map-metric-list li {
+    grid-template-columns: 1fr;
+    gap: 6px;
   }
 
   .benchmark-matrix {
