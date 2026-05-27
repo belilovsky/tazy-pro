@@ -1,7 +1,8 @@
 # TAZY.PRO
 
-Working MVP for the national digital Tazy platform: public registry, digital
-passport, reviewer workspace, FCI data room, and SQLAdmin-backed operations.
+Working MVP for the national digital Tazy platform: public registry, breeder
+network, geo/heritage surface, digital passport, technical architecture map,
+reviewer workspace, FCI data room, and SQLAdmin-backed operations.
 
 ## Repository status
 
@@ -19,20 +20,24 @@ deployment helpers, and the planning docs that shape the next rounds:
 
 ## What is included
 
-- Full responsive landing page.
+- Full responsive public platform page with registry, breeders, geo ecosystem,
+  technical architecture, AV DS interface, heritage, and FCI launch sections.
 - Evidence registry dog profile demo.
 - Interactive breeding intelligence model.
 - Digital passport preview.
 - Lightweight app routes for public dog profiles and QR passports.
+- Public content routes for breeders, ecosystem, architecture, heritage, and FCI
+  progress.
 - Mock API adapter with persisted local reviewer decisions.
 - FastAPI backend skeleton with SQLAlchemy models, seeded public API, reviewer endpoints, and SQLAdmin.
 - Browser HTTP client that uses `/api/v1` in production and falls back to local seed data for static development.
 - DB health checks, protected-response no-store headers, reviewer login throttling, and daily SQLite backups.
 - FCI Data Room route with seed-derived evidence metrics.
 - FCI recognition roadmap.
-- RU/KZ/EN hero copy switch.
-- RU/KZ/EN shell and landing copy catalog.
+- RU/KZ/EN shell, route, protected-workspace, and landing copy catalog.
 - Dark/light theme switch.
+- AV DS semantic-token audit for component CSS.
+- Frontend contract check for localized copy keys and static route links.
 
 ## Source material
 
@@ -41,7 +46,7 @@ deployment helpers, and the planning docs that shape the next rounds:
 
 ## Run frontend
 
-Open `index.html` directly in a browser, or run a simple local server:
+Run a simple local server:
 
 ```bash
 python3 -m http.server 4173
@@ -49,10 +54,20 @@ python3 -m http.server 4173
 
 Then open `http://localhost:4173`.
 
+Opening `index.html` directly is useful for a quick visual look, but the ES
+module graph, hash routes, and API fallback are verified against a local HTTP
+origin.
+
 Useful local routes:
 
+- `http://localhost:4173/#/breeders`
+- `http://localhost:4173/#/ecosystem`
+- `http://localhost:4173/#/architecture`
+- `http://localhost:4173/#/heritage`
+- `http://localhost:4173/#/fci-progress`
 - `http://localhost:4173/#/dogs/akzhel-barys`
 - `http://localhost:4173/#/passport/tzy-kz-000182`
+- `http://localhost:4173/#/data-room`
 - `http://localhost:4173/#/admin`
 
 If Node/npm is available, the same server can be started with:
@@ -61,7 +76,8 @@ If Node/npm is available, the same server can be started with:
 npm run dev
 ```
 
-Check JavaScript modules, API contract expectations, and AV DS token usage with:
+Check JavaScript modules, API contract expectations, localized frontend links,
+and AV DS token usage with:
 
 ```bash
 npm run check
@@ -72,6 +88,17 @@ Run the full repository verification gate locally with:
 ```bash
 ./scripts/verify_repo.sh
 ```
+
+Build static Hostinger upload bundles for the public domains:
+
+```bash
+npm run build:hostinger
+```
+
+This creates `dist/hostinger/tazy.dog-hostinger.zip` for the main site and
+`dist/hostinger/tazy.pro-redirect-hostinger.zip` for the temporary 301 redirect
+to `https://tazy.dog/`. The Hostinger bundle points the static frontend at the
+current backend API on `https://tazy.qdev.run`.
 
 ## Backend
 

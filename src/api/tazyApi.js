@@ -1,5 +1,6 @@
-import { getFciDataRoomSnapshot as getLocalFciDataRoomSnapshot } from "../domain/dataRoom.js?v=20260522T143930Z";
-import { mockApi } from "./mockApi.js?v=20260522T143930Z";
+import { getFciDataRoomSnapshot as getLocalFciDataRoomSnapshot } from "../domain/dataRoom.js?v=20260527T004500Z";
+import { getCopy, getCurrentLang } from "../i18n/runtime.js?v=20260527T004500Z";
+import { mockApi } from "./mockApi.js?v=20260527T004500Z";
 
 const REVIEWER_KEY_STORAGE = "tazy-pro.reviewer-key.v1";
 const DEFAULT_API_BASE = "";
@@ -25,6 +26,14 @@ function getSessionStorage() {
   } catch {
     return null;
   }
+}
+
+function getActiveLang() {
+  return typeof document !== "undefined" ? getCurrentLang(document) : "ru";
+}
+
+function getApiCopy(key) {
+  return getCopy(key, getActiveLang());
 }
 
 function getReviewerKey() {
@@ -82,10 +91,14 @@ function canUseLocalFallback() {
   );
 }
 
+function shouldPreferLocalFallback() {
+  return Boolean(globalThis.location) && canUseLocalFallback() && !getApiBase();
+}
+
 async function parseError(response) {
   const contentType = response.headers.get("content-type") || "";
   if (!contentType.includes("application/json")) {
-    throw new ApiError("Backend API is not available on this origin.", {
+    throw new ApiError(getApiCopy("api.originUnavailable"), {
       status: response.status,
       code: "api_unavailable",
       canFallback: true,
@@ -94,7 +107,7 @@ async function parseError(response) {
 
   const payload = await response.json().catch(() => null);
   const error = payload?.error || {};
-  throw new ApiError(error.message || response.statusText || "API request failed", {
+  throw new ApiError(error.message || response.statusText || getApiCopy("api.requestFailed"), {
     status: response.status,
     code: error.code || "api_error",
     canFallback: response.status === 404 && error.code !== "not_found",
@@ -127,7 +140,7 @@ async function requestJson(path, options = {}) {
       });
     }
   } catch (error) {
-    throw new ApiError(error?.message || "Backend API is not reachable.", {
+    throw new ApiError(error?.message || getApiCopy("api.backendUnreachable"), {
       code: "network_error",
       canFallback: true,
     });
@@ -142,12 +155,13 @@ async function requestJson(path, options = {}) {
 
 function requestJsonWithXhr(url, options) {
   if (typeof globalThis.XMLHttpRequest !== "function") {
-    throw new ApiError("No browser HTTP client is available.", { code: "http_unavailable", canFallback: true });
+    throw new ApiError(getApiCopy("api.httpUnavailable"), { code: "http_unavailable", canFallback: true });
   }
 
   return new Promise((resolve, reject) => {
     const xhr = new globalThis.XMLHttpRequest();
     xhr.open(options.method, url);
+    xhr.withCredentials = true;
     Object.entries(options.headers).forEach(([key, value]) => xhr.setRequestHeader(key, value));
     xhr.onload = () => {
       const headerMap = new Map();
@@ -169,12 +183,17 @@ function requestJsonWithXhr(url, options) {
         json: async () => JSON.parse(xhr.responseText),
       });
     };
-    xhr.onerror = () => reject(new ApiError("Backend API is not reachable.", { code: "network_error", canFallback: true }));
+    xhr.onerror = () => reject(new ApiError(getApiCopy("api.backendUnreachable"), { code: "network_error", canFallback: true }));
     xhr.send(options.body);
   });
 }
 
 async function withFallback(request, fallback, options = {}) {
+  if (fallback && shouldPreferLocalFallback()) {
+    tazyApi.source = "local";
+    return fallback();
+  }
+
   try {
     const value = await request();
     tazyApi.source = "backend";
@@ -214,8 +233,8 @@ export const tazyApi = {
     return requestJson("/review/logout", { method: "POST" });
   },
 
-  getSourceLabel() {
-    return this.source === "local" ? "Local demo data" : "Backend API";
+  getSourceLabel(lang = (typeof document !== "undefined" ? getCurrentLang(document) : "ru")) {
+    return this.source === "local" ? getCopy("source.local", lang) : getCopy("source.backend", lang);
   },
 
   async listDogs() {

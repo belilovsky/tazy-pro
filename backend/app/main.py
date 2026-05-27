@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from contextlib import asynccontextmanager
+import logging
 from pathlib import Path
 from typing import Any
 
@@ -22,6 +23,35 @@ from backend.app.routers import fci, public, review
 from backend.app.seed import ensure_seed_data
 
 ROOT_DIR = Path(__file__).resolve().parents[2]
+logger = logging.getLogger(__name__)
+
+
+def _is_expected_exception(exc: object) -> bool:
+    if isinstance(exc, (StarletteHTTPException, RequestValidationError)):
+        return True
+
+    nested = getattr(exc, "exceptions", None)
+    if nested is None:
+        return False
+    return all(_is_expected_exception(sub_exc) for sub_exc in nested)
+
+
+def _apply_security_headers(request: Request, response: Response) -> None:
+    response.headers["X-Content-Type-Options"] = "nosniff"
+    response.headers["X-Frame-Options"] = "SAMEORIGIN"
+    response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
+    response.headers["Permissions-Policy"] = "camera=(), microphone=(), geolocation=()"
+    response.headers["X-Request-ID"] = getattr(request.state, "request_id", "")
+    if request.url.path.startswith(("/api/v1/review", "/api/v1/fci")):
+        response.headers["Cache-Control"] = "no-store"
+
+
+def _message_from_detail(detail: object) -> str:
+    if isinstance(detail, dict):
+        return str(detail.get("message") or detail.get("detail") or "Request failed")
+    if isinstance(detail, str):
+        return detail
+    return "Request failed"
 
 
 def error_payload(request: Request, code: str, message: str, extra: dict[str, Any] | None = None) -> dict[str, Any]:
@@ -71,20 +101,29 @@ def create_app() -> FastAPI:
 
     @app.middleware("http")
     async def security_headers(request: Request, call_next):
-        response = await call_next(request)
-        response.headers["X-Content-Type-Options"] = "nosniff"
-        response.headers["X-Frame-Options"] = "SAMEORIGIN"
-        response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
-        response.headers["Permissions-Policy"] = "camera=(), microphone=(), geolocation=()"
-        if request.url.path.startswith(("/api/v1/review", "/api/v1/fci")):
-            response.headers["Cache-Control"] = "no-store"
+        try:
+            response = await call_next(request)
+        except Exception as exc:
+            if _is_expected_exception(exc):
+                # Let framework error handlers return proper status codes.
+                raise exc
+
+            logger.exception(
+                "Unhandled exception in API request",
+                extra={"path": request.url.path},
+            )
+            response = JSONResponse(error_payload(request, "internal_error", "Internal server error"), status_code=500)
+            _apply_security_headers(request, response)
+            return response
+
+        _apply_security_headers(request, response)
         return response
 
     @app.exception_handler(StarletteHTTPException)
     async def http_exception_handler(request: Request, exc: StarletteHTTPException):
         detail = exc.detail if isinstance(exc.detail, dict) else {}
         code = str(detail.get("code") or ("not_found" if exc.status_code == 404 else "http_error"))
-        message = str(detail.get("message") or exc.detail or "Request failed")
+        message = _message_from_detail(exc.detail)
         return JSONResponse(error_payload(request, code, message), status_code=exc.status_code)
 
     @app.exception_handler(RequestValidationError)
@@ -93,6 +132,11 @@ def create_app() -> FastAPI:
             error_payload(request, "validation_error", "Request validation failed", {"details": exc.errors()}),
             status_code=422,
         )
+
+    @app.exception_handler(Exception)
+    async def unhandled_exception_handler(request: Request, exc: Exception):
+        logger.exception("Unhandled exception in API request", extra={"path": request.url.path})
+        return JSONResponse(error_payload(request, "internal_error", "Internal server error"), status_code=500)
 
     @app.get("/health", tags=["health"])
     async def health():

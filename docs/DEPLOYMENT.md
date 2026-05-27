@@ -1,10 +1,12 @@
 # Deployment
 
-Production URL:
+Production URLs:
 
-- https://tazy.qdev.run
+- Public site: https://tazy.dog
+- Temporary redirect: https://tazy.pro -> https://tazy.dog
+- Backend/API origin: https://tazy.qdev.run
 
-Current production target:
+Current VPS target:
 
 - VPS: `root@62.72.32.112`
 - Static root: `/var/www/tazy.qdev.run/current`
@@ -33,6 +35,56 @@ DEPLOY_HOST=root@62.72.32.112 DEPLOY_DOMAIN=tazy.qdev.run ./scripts/deploy_stati
 
 The script uploads the static app files, creates a timestamped release, updates
 the `current` symlink, and keeps the latest five releases.
+
+## Hostinger Domains
+
+The public launch domain is hosted on Hostinger as a static site:
+
+```bash
+npm run build:hostinger
+```
+
+Upload the contents of `dist/hostinger/tazy.dog/` into the `public_html` (or
+domain root) for `tazy.dog`. The generated `.htaccess` forces HTTPS, redirects
+`www.tazy.dog` to `tazy.dog`, disables directory listings, applies conservative
+cache/security headers, and keeps SPA-style fallback to `index.html`.
+
+Upload the contents of `dist/hostinger/tazy.pro/` into the domain root for
+`tazy.pro`. Its `.htaccess` performs a temporary 301 redirect to
+`https://tazy.dog/`; `index.html` is only a noindex fallback for hosts where
+Apache rewrites are delayed or disabled.
+
+The Hostinger static bundle injects:
+
+```html
+<meta name="tazy-api-base" content="https://tazy.qdev.run" />
+<link rel="canonical" href="https://tazy.dog/" />
+```
+
+That keeps the public frontend on Hostinger while the current FastAPI backend
+and protected reviewer/FCI routes continue to run on the VPS. The backend CORS
+allowlist must include `https://tazy.dog`, `https://www.tazy.dog`,
+`https://tazy.pro`, and `https://www.tazy.pro`.
+
+If Hostinger is used as the registrar only, point DNS `A` records for
+`tazy.dog`, `www.tazy.dog`, `tazy.pro`, and `www.tazy.pro` to the VPS and use
+`ops/nginx/tazy.dog.conf`. In that mode the frontend and API are same-origin on
+`tazy.dog`, while `tazy.pro` stays a redirect-only domain.
+
+DNS records for the registrar-only setup:
+
+```text
+Type  Name  Value
+A     @     62.72.32.112
+A     www   62.72.32.112
+```
+
+Apply the same pair for both `tazy.dog` and `tazy.pro`. After `dig +short A
+tazy.dog` returns `62.72.32.112`, issue TLS on the VPS:
+
+```bash
+certbot --nginx -d tazy.dog -d www.tazy.dog -d tazy.pro -d www.tazy.pro
+```
 
 ## Deploy Backend
 
@@ -91,10 +143,29 @@ Browser smoke should cover:
 
 - home page renders with hero image
 - RU/KZ/EN language switch
-- `#/passport/tzy-kz-000194`
+- desktop and mobile navigation include the public architecture route
+- `#/breeders`, `#/ecosystem`, `#/architecture`, `#/heritage`, and
+  `#/fci-progress`
+- `#/passport/tzy-kz-000182`
 - `#/data-room`
 - `#/admin` reviewer decision persistence
 - desktop and mobile overflow checks
+
+For quick production health verification run:
+
+```bash
+./scripts/smoke_prod.sh
+./scripts/smoke_prod.sh https://tazy.qdev.run
+```
+
+Before deploying, run:
+
+```bash
+./scripts/verify_repo.sh
+```
+
+This includes Python tests, Ruff, domain/API contract checks, localized frontend
+link coverage, and the AV DS token audit.
 
 ## Backup
 

@@ -1,4 +1,7 @@
+import { getCopy, getCurrentLang, translateSeedText } from "../i18n/runtime.js?v=20260527T004500Z";
+
 export function createVerificationRow(documentRef, [label, status, state]) {
+  const lang = getCurrentLang(documentRef);
   const row = documentRef.createElement("div");
   row.className = `verification-row${state === "pending" ? " pending" : ""}`;
 
@@ -10,14 +13,13 @@ export function createVerificationRow(documentRef, [label, status, state]) {
   const text = documentRef.createElement("span");
   const title = documentRef.createElement("b");
   const subtitle = documentRef.createElement("small");
-  title.textContent = label;
-  subtitle.textContent = status;
+  title.textContent = translateSeedText(label, lang);
+  subtitle.textContent = translateSeedText(status, lang);
   text.append(title, subtitle);
 
   const stateLabel = documentRef.createElement("b");
-  stateLabel.textContent = state;
+  stateLabel.textContent = getCopy(`state.${state}`, lang);
 
   row.append(dot, text, stateLabel);
   return row;
 }
-

@@ -43,6 +43,23 @@ def test_db_health_checks_database(client: TestClient):
     assert response.json() == {"status": "ok", "service": "tazy-api", "database": "ok"}
 
 
+def test_internal_server_error_is_unified(monkeypatch, client: TestClient):
+    from backend.app.routers import public
+
+    async def _raise_db_error(session):
+        raise RuntimeError("critical-path failure")
+
+    monkeypatch.setattr(public, "get_dogs", _raise_db_error)
+
+    response = client.get("/api/v1/dogs", headers={"X-Request-ID": "error-route"})
+
+    assert response.status_code == 500
+    payload = response.json()
+    assert payload["error"]["code"] == "internal_error"
+    assert payload["error"]["message"] == "Internal server error"
+    assert payload["error"]["requestId"] == "error-route"
+
+
 def test_public_dogs_seeded(client: TestClient):
     response = client.get("/api/v1/dogs")
 
@@ -224,6 +241,21 @@ def test_fci_data_room_uses_seed_metrics(client: TestClient):
     assert payload["cycle"]["targetYear"] == "2034"
     assert payload["metrics"][0]["value"] == "2"
     assert payload["priorityQueue"][0]["priority"] == "High"
+
+
+
+
+def test_unauthorized_error_has_security_headers_and_json_shape(client: TestClient):
+    response = client.get('/api/v1/review/queue', headers={'X-Request-ID': 'req-unauth', 'X-Reviewer-Key': 'bad-key'})
+
+    assert response.status_code == 401
+    payload = response.json()
+    assert payload['error']['code'] == 'unauthorized'
+    assert payload['error']['message'] == 'Reviewer login is required'
+    assert payload['error']['requestId'] == 'req-unauth'
+    assert response.headers['x-content-type-options'] == 'nosniff'
+    assert 'x-request-id' in response.headers
+    assert response.headers.get('cache-control') == 'no-store'
 
 
 def test_unified_not_found_error(client: TestClient):

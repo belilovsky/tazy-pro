@@ -5,23 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="TAZY.PRO — национальная цифровая платформа для реестра, ДНК, здоровья, разведения и FCI Data Room казахской тазы."
+      content="TAZY.PRO — национальная цифровая платформа казахской тазы: реестр, заводчики, QR-паспорта, карта наследия и контур подготовки к FCI."
+      data-copy-content="meta.description"
     />
-    <meta property="og:title" content="TAZY.PRO — Национальная цифровая платформа тазы" />
+    <meta property="og:title" content="TAZY.PRO — Национальная цифровая платформа казахской тазы" data-copy-content="meta.title" />
     <meta
       property="og:description"
-      content="Доказательная инфраструктура для полного FCI-признания к 2034 году."
+      content="TAZY.PRO — национальная цифровая платформа казахской тазы: реестр, заводчики, QR-паспорта, карта наследия и контур подготовки к FCI."
+      data-copy-content="meta.description"
     />
-    <meta property="og:image" content="./assets/tazy-hero.png" />
+    <meta property="og:image" content="https://tazy.dog/assets/tazy-hero.png" />
+    <meta property="og:url" content="https://tazy.dog/" />
+    <link rel="canonical" href="https://tazy.dog/" />
     <meta name="theme-color" content="#071014" />
-    <title>TAZY.PRO · National Tazy Platform</title>
-    <link rel="stylesheet" href="./styles.css?v=20260522T143930Z" />
+    <script>
+      (() => {
+        try {
+          const storedTheme = localStorage.getItem("tazy-pro.theme");
+          const preferredTheme = window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+          const theme = storedTheme === "light" || storedTheme === "dark" ? storedTheme : preferredTheme;
+          document.documentElement.dataset.theme = theme;
+          const themeColor = theme === "light" ? "#f8fbf8" : "#071014";
+          document.querySelector('meta[name="theme-color"]')?.setAttribute("content", themeColor);
+        } catch (error) {
+          // Ignore storage and media-query failures before app bootstrap.
+        }
+      })();
+    </script>
+    <title data-copy="meta.title">TAZY.PRO · Национальная цифровая платформа казахской тазы</title>
+    <link rel="stylesheet" href="./styles.css?v=20260527T004500Z" />
   </head>
   <body>
-    <a class="skip-link" href="#registry">Перейти к реестру</a>
+    <a class="skip-link" href="#registry" data-copy="a11y.skipToRegistry">Перейти к реестру</a>
 
     <header class="site-header" data-header>
-      <a class="brand" href="#top" aria-label="TAZY.PRO home">
+      <a class="brand" href="#top" aria-label="Главная TAZY.PRO" data-copy-aria-label="a11y.home">
         <span class="brand-mark" aria-hidden="true">
           <svg viewBox="0 0 40 40" role="img">
             <path d="M7 23c5-10 15-15 26-13-5 2-8 6-10 11l8 9c-8 2-15 0-21-5l-3 2z" />
@@ -30,31 +48,32 @@
         </span>
         <span>
           <strong>TAZY.PRO</strong>
-          <small>National breed infrastructure</small>
+          <small data-copy="brand.subtitle">Национальная цифровая платформа породы</small>
         </span>
       </a>
 
-      <nav class="desktop-nav" aria-label="Primary navigation">
-        <a href="#registry" data-copy="nav.registry">Registry</a>
-        <a href="#breeding" data-copy="nav.breeding">Breeding</a>
-        <a href="#passport" data-copy="nav.passport">Passport</a>
-        <a href="#/data-room" data-copy="nav.fci">FCI Data Room</a>
-        <a href="#/admin" data-copy="nav.review">Review</a>
+      <nav class="desktop-nav" aria-label="Основная навигация" data-copy-aria-label="a11y.primaryNavigation">
+        <a href="#registry" data-copy="nav.registry">Реестр</a>
+        <a href="#/breeders" data-copy="nav.breeders">Заводчики</a>
+        <a href="#/ecosystem" data-copy="nav.ecosystem">Карта</a>
+        <a href="#/architecture" data-copy="nav.architecture">Архитектура</a>
+        <a href="#/heritage" data-copy="nav.heritage">Наследие</a>
+        <a href="#/fci-progress" data-copy="nav.fci">FCI</a>
       </nav>
 
       <div class="header-actions">
-        <div class="language-switch" aria-label="Language">
+        <div class="language-switch" aria-label="Язык" data-copy-aria-label="a11y.language">
           <button type="button" data-lang="ru" class="active">RU</button>
           <button type="button" data-lang="kk">KZ</button>
           <button type="button" data-lang="en">EN</button>
         </div>
-        <button class="theme-button" type="button" data-theme-toggle aria-label="Переключить тему">
+        <button class="theme-button" type="button" data-theme-toggle aria-label="Переключить тему" data-copy-aria-label="a11y.toggleTheme">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M12 4a8 8 0 1 0 8 8 6 6 0 0 1-8-8z" />
           </svg>
         </button>
-        <a class="header-cta" href="#registry" data-copy="cta.register">Register</a>
-        <button class="menu-button" type="button" data-menu-toggle aria-label="Открыть меню" aria-expanded="false">
+        <a class="header-cta" href="#registry" data-copy="cta.register">Начать регистрацию</a>
+        <button class="menu-button" type="button" data-menu-toggle aria-label="Открыть меню" data-copy-aria-label="a11y.openMenu" aria-expanded="false">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M4 7h16M4 12h16M4 17h16" />
           </svg>
@@ -62,14 +81,15 @@
       </div>
     </header>
 
-    <div class="mobile-menu" data-mobile-menu>
-      <a href="#registry" data-copy="nav.registry">Registry</a>
-      <a href="#breeding" data-copy="nav.breeding">Breeding</a>
-      <a href="#passport" data-copy="nav.passport">Passport</a>
-      <a href="#/data-room" data-copy="nav.fci">FCI Data Room</a>
-      <a href="#/admin" data-copy="nav.review">Review</a>
-      <a href="#launch" data-copy="nav.launch">Launch</a>
-      <div class="mobile-language-switch" aria-label="Language">
+    <div class="mobile-menu" data-mobile-menu aria-hidden="true">
+      <a href="#registry" data-copy="nav.registry">Реестр</a>
+      <a href="#/breeders" data-copy="nav.breeders">Заводчики</a>
+      <a href="#/ecosystem" data-copy="nav.ecosystem">Карта</a>
+      <a href="#/architecture" data-copy="nav.architecture">Архитектура</a>
+      <a href="#/heritage" data-copy="nav.heritage">Наследие</a>
+      <a href="#/fci-progress" data-copy="nav.fci">FCI</a>
+      <a href="#launch" data-copy="nav.launch">Запуск</a>
+      <div class="mobile-language-switch" aria-label="Язык" data-copy-aria-label="a11y.language">
         <button type="button" data-lang="ru" class="active">RU</button>
         <button type="button" data-lang="kk">KZ</button>
         <button type="button" data-lang="en">EN</button>
@@ -78,59 +98,202 @@
 
     <main id="top" data-home-view>
       <section class="hero" aria-labelledby="hero-title">
-        <img class="hero-image" src="./assets/tazy-hero.png" alt="Казахская тазы в степном пейзаже" />
+        <img class="hero-image" src="./assets/tazy-hero.png" alt="Казахская тазы в степном пейзаже" data-copy-alt="a11y.heroImage" />
         <div class="hero-shade" aria-hidden="true"></div>
         <div class="hero-content">
           <div class="hero-copy">
             <h1 id="hero-title" data-copy="heroTitle">TAZY.PRO</h1>
             <p data-copy="heroText">
-              Национальная цифровая платформа для доказательного реестра тазы: шежіре, здоровье, ДНК,
-              полевые испытания, разведение и FCI Data Room к полному признанию в 2034 году.
+              Национальная цифровая платформа для реестра, разведения, культурного наследия и
+              институциональной готовности тазы: от публичного профиля собаки до пакета
+              доказательств для FCI.
             </p>
             <div class="hero-actions">
               <a class="primary-button" href="#registry" data-copy="hero.registryCta">Открыть реестр</a>
-              <a class="secondary-button" href="#fci" data-copy="hero.fciCta">FCI roadmap</a>
+              <a class="secondary-button" href="#fci" data-copy="hero.fciCta">Смотреть FCI-контур</a>
             </div>
           </div>
 
-          <aside class="hero-panel" aria-label="FCI recognition status">
-            <div class="panel-topline">FCI provisional recognition</div>
-            <strong>3 September 2024</strong>
+          <aside class="hero-panel" aria-label="Статус запуска платформы" data-copy-aria-label="a11y.launchStatus">
+            <div class="panel-topline" data-copy="hero.panel.title">Национальный запуск</div>
+            <strong data-copy="hero.panel.date">3 сентября 2026</strong>
             <div class="hero-panel-grid">
-              <span>Group</span><b>10</b>
-              <span>Cycle</span><b>2024–2034</b>
-              <span>Evidence</span><b>5 generations</b>
+              <span data-copy="hero.panel.window">Окно</span><b data-copy="hero.panel.windowValue">MVP → День Тазы</b>
+              <span data-copy="hero.panel.contour">Контур</span><b data-copy="hero.panel.contourValue">Реестр · Заводчики · FCI</b>
+              <span data-copy="hero.panel.evidence">Доказательства</span><b data-copy="hero.panel.evidenceValue">8 уровней верификации</b>
             </div>
-            <div class="mini-progress" aria-label="Evidence readiness 42 percent">
+            <div class="mini-progress" aria-label="Готовность доказательной базы 42 процента" data-copy-aria-label="a11y.evidenceReadiness">
               <span style="width: 42%"></span>
             </div>
           </aside>
+
+          <div class="hero-proof-rail" aria-label="Путь признания FCI" data-copy-aria-label="a11y.fciProofRail">
+            <article>
+              <strong>2024</strong>
+              <span data-copy="hero.rail2024">Предварительное признание FCI, Group 10, стандарт 372.</span>
+            </article>
+            <article>
+              <strong>2024–2026</strong>
+              <span data-copy="hero.rail2026">Сбор базы: родословные, здоровье, ДНК и полевые испытания.</span>
+            </article>
+            <article>
+              <strong>2026–2030</strong>
+              <span data-copy="hero.rail2030">Обмен данными, квартальные отчеты и международная экспертиза.</span>
+            </article>
+            <article>
+              <strong>2034</strong>
+              <span data-copy="hero.rail2034">Цель — полное признание породы FCI.</span>
+            </article>
+          </div>
         </div>
       </section>
 
-      <section class="intro-strip" aria-label="Platform summary">
+      <section class="intro-strip" aria-label="Краткая сводка платформы" data-copy-aria-label="a11y.platformSummary">
         <div>
           <strong>8</strong>
-          <span data-copy="intro.levels">verification levels</span>
+          <span data-copy="intro.levels">уровней верификации</span>
+        </div>
+        <div>
+          <strong>17+3</strong>
+          <span data-copy="intro.regions">регионов и внешних узлов</span>
+        </div>
+        <div>
+          <strong>QR</strong>
+          <span data-copy="intro.passports">публичные QR-паспорта</span>
         </div>
         <div>
           <strong>2034</strong>
-          <span data-copy="intro.target">full recognition target</span>
+          <span data-copy="intro.target">цель полного признания</span>
         </div>
-        <div>
-          <strong>3</strong>
-          <span data-copy="intro.languages">public languages</span>
+      </section>
+
+      <section class="section platform-section" aria-labelledby="platform-title">
+        <div class="section-heading">
+          <p data-copy="platform.eyebrow">Платформа, а не лендинг</p>
+          <h2 id="platform-title" data-copy="platform.title">TAZY.PRO должен связывать публичное доверие, племенную работу, культурное наследие и институциональные данные.</h2>
+          <span data-copy="platform.text">
+            Пользователь должен сразу понимать, что перед ним не медийная витрина, а рабочая инфраструктура:
+            реестр, сеть заводчиков, гео-экосистема, дипломатический слой и контур подготовки к FCI.
+          </span>
         </div>
-        <div>
-          <strong>FCI</strong>
-          <span data-copy="intro.export">standard data export</span>
+
+        <div class="module-spine" aria-label="Полная карта модулей TAZY.PRO" data-copy-aria-label="a11y.moduleMap">
+          <article>
+            <span>01</span>
+            <h3 data-copy="modules.registryTitle">Реестр</h3>
+            <p data-copy="modules.registryText">Профили собак, QR-паспорта, родословные, журнал доказательств и статусы верификации.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3 data-copy="modules.geneticsTitle">Генетический интеллект</h3>
+            <p data-copy="modules.geneticsText">COI/AVK, trial mating, Health Passport, ДНК и риск Popular Sire Effect.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3 data-copy="modules.trustTitle">Доверие заводчиков</h3>
+            <p data-copy="modules.trustText">Три уровня участия, кодекс заводчика, декларации пометов и права экспертов.</p>
+          </article>
+          <article>
+            <span>04</span>
+            <h3 data-copy="modules.mapTitle">Карта</h3>
+            <p data-copy="modules.mapText">Регионы, питомники, события, культурные точки, туризм и маршруты испытаний.</p>
+          </article>
+          <article>
+            <span>05</span>
+            <h3 data-copy="modules.diplomacyTitle">Дипломатия</h3>
+            <p data-copy="modules.diplomacyText">Tazy Ambassadors Map, протокол дарения, EN/FR press kit и импортные справки.</p>
+          </article>
+          <article>
+            <span>06</span>
+            <h3 data-copy="modules.fieldTitle">Field App</h3>
+            <p data-copy="modules.fieldText">Offline-first PWA, GPS-треки, QR-валидация и регистрация пометов в поле.</p>
+          </article>
+          <article>
+            <span>07</span>
+            <h3 data-copy="modules.dataRoomTitle">Data Room</h3>
+            <p data-copy="modules.dataRoomText">FCI-экспорт, отчеты для государства, научные срезы и evidence manifests.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section benchmark-section" aria-labelledby="benchmark-title">
+        <div class="benchmark-copy">
+          <p data-copy="benchmark.eyebrow">Мировой benchmark</p>
+          <h2 id="benchmark-title" data-copy="benchmark.title">Наша позиция сильна только если сайт показывает, чем TAZY.PRO отличается от ZooEasy, PDO и AKC Marketplace.</h2>
+          <span data-copy="benchmark.text">Существующие решения закрывают реестр и родословные, но не объединяют FCI, здоровье, культуру, туризм, дипломатию и preservation в одну доказательную систему.</span>
+        </div>
+        <div class="benchmark-matrix" role="table" aria-label="Сравнение платформ" data-copy-aria-label="a11y.benchmark">
+          <div role="row" class="benchmark-head">
+            <span role="columnheader" data-copy="benchmark.platform">Платформа</span>
+            <span role="columnheader" data-copy="benchmark.pedigree">Родословные</span>
+            <span role="columnheader" data-copy="benchmark.health">Здоровье/ДНК</span>
+            <span role="columnheader" data-copy="benchmark.community">Сообщество</span>
+            <span role="columnheader" data-copy="benchmark.culture">Культура/туризм</span>
+            <span role="columnheader" data-copy="benchmark.diplomacy">Дипломатия</span>
+          </div>
+          <div role="row">
+            <strong role="cell">ZooEasy / PDO</strong>
+            <span role="cell">✓</span><span role="cell">✓</span><span role="cell">—</span><span role="cell">—</span><span role="cell">—</span>
+          </div>
+          <div role="row">
+            <strong role="cell">AKC Marketplace</strong>
+            <span role="cell">✓</span><span role="cell">—</span><span role="cell">✓</span><span role="cell">—</span><span role="cell">—</span>
+          </div>
+          <div role="row" class="benchmark-own">
+            <strong role="cell">TAZY.PRO</strong>
+            <span role="cell">✓</span><span role="cell">✓</span><span role="cell">✓</span><span role="cell">✓</span><span role="cell">✓</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section journey-section" aria-labelledby="journey-title">
+        <div class="section-heading align-left">
+          <p data-copy="journey.eyebrow">Путь участника</p>
+          <h2 id="journey-title" data-copy="journey.title">Платформа должна объяснять не только что она хранит, но и как человек проходит путь от заявки до признанного доказательства.</h2>
+          <span data-copy="journey.text">
+            Владелец, заводчик, эксперт и институциональный партнер видят один процесс: заявка, доказательства, проверка,
+            публичный профиль, племенное решение и экспортный пакет.
+          </span>
+        </div>
+
+        <div class="journey-map" aria-label="Путь регистрации и проверки" data-copy-aria-label="a11y.journey">
+          <article class="journey-step">
+            <span>01</span>
+            <p data-copy="journey.ownerLabel">Владелец</p>
+            <h3 data-copy="journey.ownerTitle">Заявка и базовый профиль</h3>
+            <em data-copy="journey.ownerText">Фото, микрочип, регион, происхождение и первичный пакет документов собираются в черновик профиля.</em>
+          </article>
+          <article class="journey-step">
+            <span>02</span>
+            <p data-copy="journey.evidenceLabel">Доказательства</p>
+            <h3 data-copy="journey.evidenceTitle">Здоровье, ДНК и поле</h3>
+            <em data-copy="journey.evidenceText">Каждый слой получает статус, источник, дату, вложение и ответственного проверяющего.</em>
+          </article>
+          <article class="journey-step">
+            <span>03</span>
+            <p data-copy="journey.reviewLabel">Проверка</p>
+            <h3 data-copy="journey.reviewTitle">Ревью без ручного хаоса</h3>
+            <em data-copy="journey.reviewText">Очередь проверки отделяет частные данные от публичных утверждений и сохраняет аудит решений.</em>
+          </article>
+          <article class="journey-step">
+            <span>04</span>
+            <p data-copy="journey.publicLabel">Публикация</p>
+            <h3 data-copy="journey.publicTitle">QR-паспорт и доверие</h3>
+            <em data-copy="journey.publicText">Публичный профиль показывает только подтвержденное, а чувствительные документы остаются в защищенном контуре.</em>
+          </article>
+          <article class="journey-step">
+            <span>05</span>
+            <p data-copy="journey.exportLabel">Экспорт</p>
+            <h3 data-copy="journey.exportTitle">FCI и партнеры</h3>
+            <em data-copy="journey.exportText">Из живого журнала собираются квартальные срезы, экспортные пакеты и доказательная история к 2034 году.</em>
+          </article>
         </div>
       </section>
 
       <section class="section evidence-section" id="registry" aria-labelledby="registry-title">
         <div class="section-heading">
-          <p data-copy="registry.eyebrow">Evidence registry</p>
-          <h2 id="registry-title" data-copy="registry.title">Одна карточка собаки вместо разрозненных справок.</h2>
+          <p data-copy="registry.eyebrow">Доказательный реестр</p>
+          <h2 id="registry-title" data-copy="registry.title">Публичный профиль собаки должен заменять папку из разрозненных справок.</h2>
           <span data-copy="registry.text">
             Публичный профиль показывает происхождение, здоровье, ДНК, результаты полевых испытаний и
             готовность к международному экспорту данных.
@@ -138,21 +301,21 @@
         </div>
 
         <div class="registry-layout">
-          <div class="dog-selector" role="tablist" aria-label="Dog profiles">
+          <div class="dog-selector" role="tablist" aria-label="Профили собак" data-copy-aria-label="a11y.dogProfiles">
             <button type="button" class="active" data-dog="0" role="tab" aria-selected="true">
               <img src="./assets/tazy-profile-1.jpg" alt="" />
-              <span><strong>Akzhel Barys</strong><small>DNA-parentage · field-tested</small></span>
+              <span><strong>Akzhel Barys</strong><small>ДНК подтверждено · полевые испытания</small></span>
             </button>
             <button type="button" data-dog="1" role="tab" aria-selected="false">
               <img src="./assets/tazy-profile-2.jpg" alt="" />
-              <span><strong>Saumal Koke</strong><small>pedigree-verified · health-tested</small></span>
+              <span><strong>Saumal Koke</strong><small>родословная подтверждена · здоровье проверено</small></span>
             </button>
           </div>
 
           <article class="dog-card" aria-live="polite">
             <div class="dog-photo-frame">
-              <img data-dog-photo src="./assets/tazy-profile-1.jpg" alt="Akzhel Barys profile" />
-              <a class="qr-card" data-dog-passport-link href="#/passport/tzy-kz-000182" aria-label="Open digital passport">
+              <img data-dog-photo src="./assets/tazy-profile-1.jpg" alt="Профиль Akzhel Barys" />
+              <a class="qr-card" data-dog-passport-link href="#/passport/tzy-kz-000182" aria-label="Открыть цифровой паспорт" data-copy-aria-label="a11y.openPassport">
                 <span>QR</span>
                 <b data-dog-registry-number>TZY-2034-0182</b>
               </a>
@@ -161,8 +324,8 @@
               <div class="dog-card-header">
                 <div>
                   <h3 data-dog-name>Akzhel Barys</h3>
-                  <p data-dog-meta>Male · born 2022 · Almaty region</p>
-                  <a class="profile-link" data-dog-profile-link data-copy="registry.openProfile" href="#/dogs/akzhel-barys">Open public profile</a>
+                  <p data-dog-meta>Кобель · рожден в 2022 году · Алматинская область</p>
+                  <a class="profile-link" data-dog-profile-link data-copy="registry.openProfile" href="#/dogs/akzhel-barys">Открыть публичный профиль</a>
                 </div>
                 <strong data-dog-score>86%</strong>
               </div>
@@ -170,14 +333,116 @@
             </div>
           </article>
         </div>
+
+        <div class="registry-support-grid">
+          <article class="support-card">
+            <h3 data-copy="registry.supportPassportTitle">QR-паспорт как открытая точка входа</h3>
+            <p data-copy="registry.supportPassportText">Выставка, дипломатический подарок, продажа щенка или международная сверка должны начинаться с одного проверяемого URL, а не с пересылки файлов.</p>
+          </article>
+          <article class="support-card">
+            <h3 data-copy="registry.supportEvidenceTitle">Каждое публичное утверждение привязано к доказательству</h3>
+            <p data-copy="registry.supportEvidenceText">Полнота профиля и уровень верификации видны публично, но приватные данные владельца остаются за защищенным контуром.</p>
+          </article>
+          <article class="support-card">
+            <h3 data-copy="registry.supportExportTitle">Реестр сразу думает про экспорт</h3>
+            <p data-copy="registry.supportExportText">Структура карточки и журнала событий изначально собрана так, чтобы из нее можно было получать выгрузки для FCI, а не собирать их вручную перед дедлайном.</p>
+          </article>
+        </div>
+
+        <div class="health-ledger" aria-label="Health Passport и генетические данные" data-copy-aria-label="a11y.healthLedger">
+          <div>
+            <p data-copy="health.eyebrow">Health Passport</p>
+            <h3 data-copy="health.title">Племенной статус нельзя выдавать без здоровья, ДНК и полевых данных.</h3>
+            <span data-copy="health.text">Сайт должен сразу показывать международную планку: дисплазия, офтальмология, ДНК, темперамент и результаты испытаний входят в один паспорт здоровья.</span>
+          </div>
+          <ul>
+            <li><b data-copy="health.hips">Дисплазия</b><span data-copy="health.hipsText">OFA/PennHIP или национальный эквивалент</span></li>
+            <li><b data-copy="health.dna">ДНК</b><span data-copy="health.dnaText">идентификация, аллели, генетические риски</span></li>
+            <li><b data-copy="health.eye">Офтальмология</b><span data-copy="health.eyeText">обязательный осмотр перед племенным допуском</span></li>
+            <li><b data-copy="health.field">Полевые испытания</b><span data-copy="health.fieldText">скорость, выносливость, интеллект и GPS-маршрут</span></li>
+            <li><b data-copy="health.temperament">Темперамент</b><span data-copy="health.temperamentText">поведение, устойчивость и работа с человеком</span></li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section trust-section" id="breeders" aria-labelledby="breeders-title">
+        <div class="trust-layout">
+        <div class="section-heading align-left trust-copy">
+          <p data-copy="breeders.eyebrow">Сеть заводчиков</p>
+          <h2 id="breeders-title" data-copy="breeders.title">Платформа не должна повторять ошибку каталогов, где виден факт регистрации, но не видно качество заводчика.</h2>
+            <span data-copy="breeders.text">
+              Трехуровневая верификация, кодекс ответственного заводчика, декларации пометов и прозрачные
+              требования к паспорту здоровья создают доверие к участникам сети, а не только к отдельной
+              собаке.
+            </span>
+            <div class="section-actions section-actions-left">
+              <a class="secondary-button" href="#/breeders" data-copy="breeders.open">Открыть каталог и уровни</a>
+            </div>
+          </div>
+
+          <div class="tier-grid" aria-label="Уровни верификации" data-copy-aria-label="a11y.verificationTiers">
+            <article class="tier-card">
+              <p data-copy="breeders.tierOwnerLabel">Владелец</p>
+              <h3 data-copy="breeders.tierOwnerTitle">Базовый уровень</h3>
+              <span data-copy="breeders.tierOwnerText">Владелец подтверждает профиль собаки, фото, базовые документы и может участвовать в событиях и публичной витрине.</span>
+            </article>
+            <article class="tier-card">
+              <p data-copy="breeders.tierBreederLabel">Заводчик</p>
+              <h3 data-copy="breeders.tierBreederTitle">Профессиональный уровень</h3>
+              <span data-copy="breeders.tierBreederText">Заводчик проходит проверку документов, принимает кодекс и получает доступ к декларациям пометов, предварительному подбору пары и каталогу.</span>
+            </article>
+            <article class="tier-card">
+              <p data-copy="breeders.tierExpertLabel">Эксперт</p>
+              <h3 data-copy="breeders.tierExpertTitle">Экспертный уровень</h3>
+              <span data-copy="breeders.tierExpertText">Судьи, ветеринары и кураторы подтверждают доказательства, медицинские данные и официальные отчеты для FCI и партнеров.</span>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section ecosystem-section" id="ecosystem" aria-labelledby="ecosystem-title">
+        <div class="section-heading">
+          <p data-copy="ecosystem.eyebrow">Гео-экосистема</p>
+          <h2 id="ecosystem-title" data-copy="ecosystem.title">Следующий слой после реестра — карта поголовья, событий и наследия, а не отдельные таблицы по разным людям.</h2>
+          <span data-copy="ecosystem.text">
+            Платформа должна соединять профили собак, питомники, полевые испытания, культурные объекты и
+            региональные маршруты в одну обозримую систему.
+          </span>
+          <div class="section-actions">
+            <a class="secondary-button" href="#/ecosystem" data-copy="ecosystem.open">Открыть гео-контур</a>
+          </div>
+        </div>
+
+        <div class="ecosystem-grid">
+          <article class="ecosystem-card ecosystem-card-large">
+            <p data-copy="ecosystem.mapLabel">Региональный контур</p>
+            <h3 data-copy="ecosystem.mapTitle">Карта поголовья и питомников</h3>
+            <span data-copy="ecosystem.mapText">17 регионов Казахстана, ключевые питомники, очаги разведения и приоритетные зоны для наращивания разнообразия.</span>
+          </article>
+          <article class="ecosystem-card">
+            <p data-copy="ecosystem.eventsLabel">События</p>
+            <h3 data-copy="ecosystem.eventsTitle">Испытания и выставки</h3>
+            <span data-copy="ecosystem.eventsText">Онлайн-регистрация, статусы событий, QR-валидация паспортов и будущие GPS-треки полевых маршрутов.</span>
+          </article>
+          <article class="ecosystem-card">
+            <p data-copy="ecosystem.heritageLabel">Наследие</p>
+            <h3 data-copy="ecosystem.heritageTitle">Архив живого наследия</h3>
+            <span data-copy="ecosystem.heritageText">Устные истории, музеи, наскальные рисунки, охотничьи практики и контент для заявки в ЮНЕСКО и международных медиа.</span>
+          </article>
+          <article class="ecosystem-card">
+            <p data-copy="ecosystem.tourismLabel">Туризм</p>
+            <h3 data-copy="ecosystem.tourismTitle">Точка входа в Tazy-туризм</h3>
+            <span data-copy="ecosystem.tourismText">Питомники, гостевые маршруты, День Тазы и будущие сервисы Tazy-туризма должны расти из тех же проверенных данных.</span>
+          </article>
+        </div>
       </section>
 
       <section class="section intelligence-section" id="breeding" aria-labelledby="breeding-title">
         <div class="section-heading align-left">
-          <p data-copy="breeding.eyebrow">Breeding intelligence</p>
-          <h2 id="breeding-title" data-copy="breeding.title">Разведение как управление популяцией, а не только вязками.</h2>
+          <p data-copy="breeding.eyebrow">Генетический центр</p>
+          <h2 id="breeding-title" data-copy="breeding.title">Разведение здесь должно выглядеть как управление популяцией, а не подбор пары вслепую.</h2>
           <span data-copy="breeding.text">
-            Платформа считает COI, моделирует помёт, видит Popular Sire Effect и показывает риски до
+            Платформа считает COI, моделирует помёт, видит эффект популярного производителя и показывает риски до
             решения заводчика.
           </span>
         </div>
@@ -200,49 +465,112 @@
                 <option value="sulu">Sary Sulu</option>
               </select>
             </label>
-            <button class="primary-button compact" type="button" data-run-match data-copy="breeding.run">Model litter</button>
+            <button class="primary-button compact" type="button" data-run-match data-copy="breeding.run">Смоделировать помет</button>
           </div>
 
           <div class="risk-grid" aria-live="polite">
             <article>
-              <span>Coefficient of inbreeding</span>
+              <span data-copy="breeding.metricCoi">Коэффициент инбридинга</span>
               <strong data-coi>4.8%</strong>
               <div class="meter"><i data-coi-meter style="width: 32%"></i></div>
             </article>
             <article>
-              <span>Popular sire pressure</span>
-              <strong data-sire-risk>Low</strong>
+              <span data-copy="breeding.metricSire">Давление популярного производителя</span>
+              <strong data-sire-risk>Низкий</strong>
               <div class="meter blue"><i data-sire-meter style="width: 24%"></i></div>
             </article>
             <article>
-              <span>Genetic diversity signal</span>
-              <strong data-diversity>Stable</strong>
+              <span data-copy="breeding.metricDiversity">Сигнал генетического разнообразия</span>
+              <strong data-diversity>Стабильно</strong>
               <div class="meter green"><i data-diversity-meter style="width: 68%"></i></div>
             </article>
           </div>
 
           <div class="recommendation">
-            <h3 data-recommendation-title>Recommended with monitoring</h3>
+            <h3 data-recommendation-title>Рекомендуется с наблюдением</h3>
             <p data-recommendation>
-              Pair is acceptable for the 2034 FCI evidence cycle. Add ophthalmology and field-trial
-              video before export-ready status.
+              Пара допустима для доказательного цикла FCI 2034. Добавьте офтальмологию и видео
+              полевых испытаний до статуса готовности к экспорту.
             </p>
           </div>
         </div>
       </section>
 
-      <section class="section passport-section" id="passport" aria-labelledby="passport-title">
+      <section class="section architecture-section" id="architecture" aria-labelledby="architecture-title">
+        <div class="architecture-board">
+          <div class="section-heading align-left">
+            <p data-copy="architecture.eyebrow">Технический контур</p>
+            <h2 id="architecture-title" data-copy="architecture.title">Технически TAZY.PRO должен быть операционной системой породы: данные один раз входят в ядро и дальше расходятся по публичным, экспертным и институциональным слоям.</h2>
+            <span data-copy="architecture.text">
+              Ядро разделяет публичные профили, защищенные доказательства, ревью, экспортные пакеты и будущие мобильные сценарии,
+              чтобы витрина не становилась хранилищем приватных документов.
+            </span>
+            <div class="section-actions section-actions-left">
+              <a class="secondary-button" href="#/architecture" data-copy="architecture.open">Открыть техническую карту</a>
+            </div>
+          </div>
+
+          <div class="architecture-flow" aria-label="Техническая архитектура платформы" data-copy-aria-label="a11y.architecture">
+            <article class="architecture-core">
+              <p data-copy="architecture.coreLabel">Evidence Core</p>
+              <h3 data-copy="architecture.coreTitle">Единое ядро доказательств</h3>
+              <span data-copy="architecture.coreText">Версионированные записи профиля, статусы проверки, владельцы данных, источники и журнал решений.</span>
+            </article>
+            <div class="architecture-layers">
+              <article class="architecture-layer">
+                <p data-copy="architecture.layerPublicLabel">Public API</p>
+                <h3 data-copy="architecture.layerPublicTitle">Публичные профили</h3>
+                <span data-copy="architecture.layerPublicText">QR-паспорта, карточки собак, открытые статусы, карта регионов и слой наследия.</span>
+              </article>
+              <article class="architecture-layer">
+                <p data-copy="architecture.layerReviewLabel">Review OS</p>
+                <h3 data-copy="architecture.layerReviewTitle">Проверка и роли</h3>
+                <span data-copy="architecture.layerReviewText">Очереди экспертов, решения, причины отказа, запросы доработок и неизменяемый аудит.</span>
+              </article>
+              <article class="architecture-layer">
+                <p data-copy="architecture.layerBreedingLabel">Breeding Engine</p>
+                <h3 data-copy="architecture.layerBreedingTitle">Племенная аналитика</h3>
+                <span data-copy="architecture.layerBreedingText">COI, риск популярного производителя, разнообразие линий и сценарии ответственного помета.</span>
+              </article>
+              <article class="architecture-layer">
+                <p data-copy="architecture.layerExportLabel">Data Room</p>
+                <h3 data-copy="architecture.layerExportTitle">Экспорт и отчеты</h3>
+                <span data-copy="architecture.layerExportText">FCI-срезы, государственные отчеты, пресс-пакеты, международные справки и evidence manifest.</span>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section passport-section" id="heritage" aria-labelledby="passport-title">
         <div class="passport-card">
           <div class="passport-copy">
-            <p data-copy="passport.eyebrow">Digital passport</p>
-            <h2 id="passport-title" data-copy="passport.title">Паспорт тазы для дипломатии, рынка и культурного наследия.</h2>
+            <p data-copy="passport.eyebrow">Наследие и дипломатия</p>
+            <h2 id="passport-title" data-copy="passport.title">Цифровой паспорт — это стык реестра, культурного наследия и международного трека, а не просто QR-картинка.</h2>
             <span data-copy="passport.text">
               QR-код, криптографический хэш, неизменяемый журнал событий и ссылка на открытый профиль
               превращают символический жест в проверяемый документ.
             </span>
+            <div class="passport-points">
+              <article>
+                <strong data-copy="passport.pointOneTitle">Карта послов</strong>
+                <span data-copy="passport.pointOneText">Публичные профили официально подаренных и экспортированных тазы, начиная с международных дипломатических кейсов.</span>
+              </article>
+              <article>
+                <strong data-copy="passport.pointTwoTitle">Протокол дарения</strong>
+                <span data-copy="passport.pointTwoText">Стандартизированные документы, история происхождения и ветеринарно-экспортные требования для МИД, посольств и партнеров.</span>
+              </article>
+              <article>
+                <strong data-copy="passport.pointThreeTitle">Живое наследие</strong>
+                <span data-copy="passport.pointThreeText">Паспорт связывается с полевыми испытаниями, культурным архивом и историей линии, а не живет отдельно от контекста.</span>
+              </article>
+            </div>
+            <div class="section-actions section-actions-left">
+              <a class="secondary-button" href="#/heritage" data-copy="passport.open">Открыть слой наследия</a>
+            </div>
           </div>
 
-          <div class="passport-visual" aria-label="Digital passport preview">
+          <div class="passport-visual" aria-label="Предпросмотр цифрового паспорта" data-copy-aria-label="a11y.passportPreview">
             <div class="passport-header">
               <div class="passport-logo">T</div>
               <div>
@@ -257,18 +585,52 @@
               <span></span><span></span><span></span><span></span>
             </div>
             <ol class="event-log">
-              <li><b>DNA parentage</b><span>Verified · 2026-05-17</span></li>
-              <li><b>Health package</b><span>Ophthalmology pending</span></li>
-              <li><b>Field trial</b><span>Video evidence attached</span></li>
+              <li><b>Подтвержденное происхождение по ДНК</b><span>Подтверждено · 2026-05-17</span></li>
+              <li><b>Пакет здоровья</b><span>Офтальмология в ожидании</span></li>
+              <li><b>Полевые испытания</b><span>Видео-доказательство приложено</span></li>
             </ol>
           </div>
         </div>
       </section>
 
+      <section class="section world-section" aria-labelledby="world-title">
+        <div class="world-map" aria-hidden="true">
+          <span class="pin pin-kz"></span>
+          <span class="pin pin-fr"></span>
+          <span class="pin pin-fi"></span>
+          <span class="pin pin-tr"></span>
+          <div class="map-line line-one"></div>
+          <div class="map-line line-two"></div>
+        </div>
+        <div class="world-copy">
+          <p data-copy="world.eyebrow">География, наследие и дипломатия</p>
+          <h2 id="world-title" data-copy="world.title">Тазы должна быть видна миру как порода, культурный код и проверяемая система происхождения.</h2>
+          <span data-copy="world.text">Витрина должна объяснять не только собак, но и маршруты: от питомника и полевых испытаний до дипломатического подарка, туристического опыта, архива аксакалов и заявки ЮНЕСКО.</span>
+        </div>
+        <div class="world-stack">
+          <article>
+            <h3 data-copy="world.ambassadorsTitle">Tazy Ambassadors Map</h3>
+            <p data-copy="world.ambassadorsText">Публичная карта официально подаренных и экспортированных тазы: страна, имя, история, актуальные фото и ссылка на цифровой паспорт.</p>
+          </article>
+          <article>
+            <h3 data-copy="world.heritageTitle">Живое наследие</h3>
+            <p data-copy="world.heritageText">Видеоинтервью, устные истории, геотеги, музеи, наскальные рисунки и материалы для UNESCO Intangible Cultural Heritage.</p>
+          </article>
+          <article>
+            <h3 data-copy="world.tourismTitle">Tazy-туризм</h3>
+            <p data-copy="world.tourismText">Meet the Tazy, полевые испытания, гостевые питомники, World Nomad Games и QR-паспорт наследия для туристов.</p>
+          </article>
+          <article>
+            <h3 data-copy="world.importTitle">How to Import a Tazy</h3>
+            <p data-copy="world.importText">EN-слой для FCI-клубов, будущих владельцев и посольств: требования стран, документы, ветеринарные правила и контакты.</p>
+          </article>
+        </div>
+      </section>
+
       <section class="section fci-section" id="fci" aria-labelledby="fci-title">
         <div class="section-heading">
-          <p data-copy="fci.eyebrow">FCI Data Room</p>
-          <h2 id="fci-title" data-copy="fci.title">Десятилетний цикл признания виден как работающая система.</h2>
+          <p data-copy="fci.eyebrow">Институциональный контур</p>
+          <h2 id="fci-title" data-copy="fci.title">FCI, государство и международные партнеры должны видеть живую систему, а не разовую кампанию перед дедлайном.</h2>
           <span data-copy="fci.text">
             Экспорт в FCI строится из живых данных: родословные, здоровье, ДНК, темперамент, полевые
             испытания, популяционная статистика.
@@ -278,33 +640,130 @@
         <div class="timeline">
           <article class="done">
             <span>2024</span>
-            <h3>Preliminary recognition</h3>
-            <p>FCI General Assembly, Amsterdam. Tazy enters Group 10.</p>
+            <h3 data-copy="fci.stepOneTitle">Предварительное признание</h3>
+            <p data-copy="fci.stepOneText">Генеральная ассамблея FCI. Тазы входит в 10 группу и получает формальный цикл до полного признания.</p>
           </article>
           <article class="active">
             <span>2026</span>
-            <h3>Evidence registry launch</h3>
-            <p>First verified dogs, breeder workflow, annual export package.</p>
+            <h3 data-copy="fci.stepTwoTitle">Запуск доказательного ядра</h3>
+            <p data-copy="fci.stepTwoText">Первые верифицированные собаки, рабочий контур заводчиков, выгрузки для FCI и запуск ко Дню Тазы.</p>
           </article>
           <article>
             <span>2029</span>
-            <h3>UNESCO evidence base</h3>
-            <p>Salburyn culture dossier with hunting, genealogy and field records.</p>
+            <h3 data-copy="fci.stepThreeTitle">Слой наследия и науки</h3>
+            <p data-copy="fci.stepThreeText">Полевые, генетические и культурные данные собираются в основу для ЮНЕСКО, научных партнеров и международного трека.</p>
           </article>
           <article>
             <span>2034</span>
-            <h3>Definitive recognition</h3>
-            <p>Five generations, health testing and population stability.</p>
+            <h3 data-copy="fci.stepFourTitle">Полное признание</h3>
+            <p data-copy="fci.stepFourText">К этому моменту платформа должна уже доказать пять поколений, здоровье, устойчивость популяции и международную прозрачность.</p>
           </article>
         </div>
-        <div class="section-actions">
-          <a class="primary-button" href="#/data-room" data-copy="fci.open">Open FCI Data Room</a>
+
+        <div class="operations-strip">
+          <article class="operations-card">
+            <p data-copy="fci.publicLabel">Публичный слой</p>
+            <h3 data-copy="fci.publicTitle">Публичный трек FCI</h3>
+            <span data-copy="fci.publicText">Публичный слой объясняет, что уже собрано, где есть пробелы, и почему система движется к 2034 как инфраструктура, а не как PR-обещание.</span>
+          </article>
+          <article class="operations-card">
+            <p data-copy="fci.protectedLabel">Защищенный контур</p>
+            <h3 data-copy="fci.protectedTitle">Защищенные рабочие поверхности</h3>
+            <span data-copy="fci.protectedText">Кабинет проверки и кабинет данных FCI остаются рабочими инструментами институционального контура, а не главным публичным сценарием входа.</span>
+          </article>
+        </div>
+
+        <div class="section-actions section-actions-split">
+          <a class="primary-button" href="#/fci-progress" data-copy="fci.publicCta">Открыть публичный трек FCI</a>
+          <a class="secondary-button" href="#/data-room" data-copy="fci.open">Открыть защищенный кабинет данных FCI</a>
+          <a class="secondary-button" href="#/admin" data-copy="fci.reviewCta">Открыть кабинет проверки</a>
+        </div>
+      </section>
+
+      <section class="section science-section" aria-labelledby="science-title">
+        <div class="section-heading align-left">
+          <p data-copy="science.eyebrow">Данные для науки и решений</p>
+          <h2 id="science-title" data-copy="science.title">Data Room нужен не как закрытый кабинет ради кабинета, а как источник отчетов, партнерств и политики сохранения породы.</h2>
+          <span data-copy="science.text">Анонимизированные срезы по COI, здоровью, регионам, ДНК-разнообразию и полевым испытаниям становятся языком для FCI, Минсельхоза, исследователей и международных клубов.</span>
+        </div>
+        <div class="science-grid">
+          <article>
+            <h3 data-copy="science.populationTitle">Дашборд популяции</h3>
+            <p data-copy="science.populationText">COI по когортам, региональное разнообразие, health passport coverage и динамика пометов.</p>
+          </article>
+          <article>
+            <h3 data-copy="science.labTitle">Лаборатории и ДНК</h3>
+            <p data-copy="science.labText">Короткий путь — интеграция Embark/Wisdom/VGL; длинный путь — собственная казахстанская база.</p>
+          </article>
+          <article>
+            <h3 data-copy="science.seedBankTitle">Семенной банк</h3>
+            <p data-copy="science.seedBankText">Долгосрочный preservation-контур с ветвузами, международными банками и редкими линиями.</p>
+          </article>
+          <article>
+            <h3 data-copy="science.apiTitle">API и экспорт</h3>
+            <p data-copy="science.apiText">CSV, PDF, FCI-совместимый XML, partner API и evidence manifest для проверяемых пакетов.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section metrics-section" aria-labelledby="metrics-title">
+        <div>
+          <p data-copy="metrics.eyebrow">KPI запуска</p>
+          <h2 id="metrics-title" data-copy="metrics.title">К 3 сентября сайт должен продавать не мечту, а измеримый план запуска.</h2>
+          <span data-copy="metrics.text">Бета для заводчиков, открытый запуск, День Тазы и путь к 2034 должны быть видны как операционная программа с понятными метриками.</span>
+        </div>
+        <div class="metrics-rail">
+          <article><strong>1 500</strong><span data-copy="metrics.dogs">собак в реестре к запуску</span></article>
+          <article><strong>70%</strong><span data-copy="metrics.litters">пометов через платформу к 2027</span></article>
+          <article><strong>40%</strong><span data-copy="metrics.health">Health Passport coverage к 2028</span></article>
+          <article><strong>10</strong><span data-copy="metrics.clubs">FCI-клубов партнеров к 2027</span></article>
+          <article><strong>4×</strong><span data-copy="metrics.exports">квартальные FCI-отчеты в год</span></article>
+        </div>
+      </section>
+
+      <section class="section design-system-section" id="avds" aria-labelledby="design-system-title">
+        <div class="section-heading">
+          <p data-copy="design.eyebrow">AV DS интерфейс</p>
+          <h2 id="design-system-title" data-copy="design.title">AV DS здесь не декор, а общий язык доверия для публичного сайта, кабинета проверки и будущего полевого приложения.</h2>
+          <span data-copy="design.text">
+            Один набор токенов, состояний, плотности и bilingual-компонентов должен удерживать платформу цельной,
+            даже когда появляются новые модули: регистрация, события, отчеты, карта и мобильная проверка.
+          </span>
+        </div>
+
+        <div class="design-system-grid" aria-label="Связь интерфейса с AV DS" data-copy-aria-label="a11y.designSystem">
+          <article class="design-system-card">
+            <p data-copy="design.tokenLabel">Tokens</p>
+            <h3 data-copy="design.tokenTitle">Семантические поверхности</h3>
+            <span data-copy="design.tokenText">Фон, карточки, акценты, границы и статусы берутся из AV DS-токенов, поэтому темная и светлая темы ведут себя одинаково.</span>
+            <div class="token-row" aria-hidden="true">
+              <i></i><i></i><i></i><i></i>
+            </div>
+          </article>
+          <article class="design-system-card">
+            <p data-copy="design.stateLabel">States</p>
+            <h3 data-copy="design.stateTitle">Проверяемые статусы</h3>
+            <span data-copy="design.stateText">Готово, в работе, риск и ожидание внешнего подтверждения выглядят одинаково в реестре, ревью и кабинете данных.</span>
+            <div class="state-row" aria-hidden="true">
+              <b></b><b></b><b></b>
+            </div>
+          </article>
+          <article class="design-system-card">
+            <p data-copy="design.densityLabel">Density</p>
+            <h3 data-copy="design.densityTitle">Операционная плотность</h3>
+            <span data-copy="design.densityText">Публичные разделы читаются спокойно, а рабочие поверхности остаются компактными для очередей, таблиц и проверок.</span>
+          </article>
+          <article class="design-system-card">
+            <p data-copy="design.localeLabel">Locale</p>
+            <h3 data-copy="design.localeTitle">RU/KZ/EN без поломки ритма</h3>
+            <span data-copy="design.localeText">Компоненты рассчитываются на длинные казахские и английские строки, не ломая карточки, кнопки и мобильную навигацию.</span>
+          </article>
         </div>
       </section>
 
       <section class="section launch-section" id="launch" aria-labelledby="launch-title">
         <div>
-          <h2 id="launch-title" data-copy="launch.title">Запустить волну до Дня тазы, а не в день анонса.</h2>
+          <h2 id="launch-title" data-copy="launch.title">Правильный запуск — это сначала рабочая инфраструктура, потом медийная волна вокруг нее.</h2>
           <p data-copy="launch.text">
             Период с 17 мая до 3 сентября работает как набор регистраций, проверка сценариев,
             консолидация заводчиков и медийная кампания, где TAZY.PRO становится точкой действия.
@@ -321,15 +780,22 @@
         <strong>TAZY.PRO</strong>
         <span data-copy="footer.summary">Доказательная цифровая инфраструктура казахской тазы.</span>
       </div>
-      <nav aria-label="Footer navigation">
-        <a href="#registry" data-copy="nav.registry">Registry</a>
-        <a href="#breeding" data-copy="nav.breeding">Breeding</a>
-        <a href="#passport" data-copy="nav.passport">Passport</a>
-        <a href="#/data-room" data-copy="nav.fci">FCI</a>
-        <a href="#/admin" data-copy="nav.review">Review</a>
-      </nav>
+      <div class="footer-columns">
+        <nav aria-label="Навигация футера" data-copy-aria-label="a11y.footerNavigation">
+          <a href="#registry" data-copy="nav.registry">Реестр</a>
+          <a href="#/breeders" data-copy="nav.breeders">Заводчики</a>
+          <a href="#/ecosystem" data-copy="nav.ecosystem">Карта</a>
+          <a href="#/architecture" data-copy="nav.architecture">Архитектура</a>
+          <a href="#/heritage" data-copy="nav.heritage">Наследие</a>
+          <a href="#/fci-progress" data-copy="nav.fci">FCI</a>
+        </nav>
+        <nav class="footer-ops" aria-label="Защищенная навигация" data-copy-aria-label="a11y.protectedNavigation">
+          <a href="#/data-room" data-copy="footer.dataRoom">Кабинет данных FCI</a>
+          <a href="#/admin" data-copy="footer.review">Кабинет проверки</a>
+        </nav>
+      </div>
     </footer>
 
-    <script type="module" src="./src/main.js?v=20260522T143930Z"></script>
+    <script type="module" src="./src/main.js?v=20260527T004500Z"></script>
   </body>
 </html>

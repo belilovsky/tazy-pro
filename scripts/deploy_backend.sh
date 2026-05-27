@@ -21,30 +21,42 @@ VENV="${REMOTE_ROOT}/shared/.venv"
 ENV_FILE="/etc/tazy-pro/backend.env"
 DATA_DIR="${REMOTE_ROOT}/shared/data"
 BACKUP_DIR="${REMOTE_ROOT}/shared/backups"
+PYTHON_BIN="${PYTHON_BIN:-python3.12}"
 
 install -d -m 0750 "${DATA_DIR}"
 install -d -m 0750 "${BACKUP_DIR}"
 
-if [ ! -x "${VENV}/bin/python" ]; then
-  python3.12 -m venv "${VENV}"
-fi
+  if [ ! -x "${VENV}/bin/python" ]; then
+    if command -v "${PYTHON_BIN}" >/dev/null 2>&1; then
+      :
+    elif command -v python3 >/dev/null 2>&1; then
+      PYTHON_BIN="python3"
+    elif command -v python >/dev/null 2>&1; then
+      PYTHON_BIN="python"
+    else
+      echo "Python runtime not found on target host. Please install python3 before deploy." >&2
+      exit 1
+    fi
+
+    "${PYTHON_BIN}" -m venv "${VENV}"
+  fi
 
 "${VENV}/bin/python" -m pip install --upgrade pip >/dev/null
 "${VENV}/bin/python" -m pip install -r "${REMOTE_RELEASE}/backend/requirements.txt" >/dev/null
 
 if [ ! -f "${ENV_FILE}" ]; then
   umask 077
-  TAZY_SECRET_KEY="$(python3.12 - <<'PY'
+  TAZY_SECRET_KEY="$("${PYTHON_BIN}" - <<'PY'
 import secrets
 print(secrets.token_urlsafe(48))
 PY
 )"
-  TAZY_ADMIN_PASSWORD="$(python3.12 - <<'PY'
+  TAZY_ADMIN_PASSWORD="$("${PYTHON_BIN}" - <<'PY'
 import secrets
 print(secrets.token_urlsafe(24))
 PY
 )"
-  TAZY_REVIEWER_API_KEY="$(python3.12 - <<'PY'
+  TAZY_REVIEWER_API_KEY="$("${PYTHON_BIN}" - <<'PY'
 import secrets
 print(secrets.token_urlsafe(32))
 PY
@@ -56,7 +68,7 @@ TAZY_ADMIN_USERNAME=admin
 TAZY_ADMIN_PASSWORD=${TAZY_ADMIN_PASSWORD}
 TAZY_REVIEWER_API_KEY=${TAZY_REVIEWER_API_KEY}
 TAZY_DATABASE_URL=sqlite+aiosqlite:///${DATA_DIR}/tazy.db
-TAZY_CORS_ORIGINS=https://tazy.qdev.run
+TAZY_CORS_ORIGINS=https://tazy.qdev.run,https://tazy.dog,https://www.tazy.dog,https://tazy.pro,https://www.tazy.pro
 TAZY_SEED_ON_STARTUP=true
 ENV
 fi

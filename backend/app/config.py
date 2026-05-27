@@ -23,7 +23,10 @@ class Settings:
     seed_on_startup: bool = field(default_factory=lambda: _bool_env("TAZY_SEED_ON_STARTUP", True))
     cors_origins: tuple[str, ...] = field(default_factory=lambda: tuple(
         origin.strip()
-        for origin in os.getenv("TAZY_CORS_ORIGINS", "http://localhost:4173,https://tazy.qdev.run").split(",")
+        for origin in os.getenv(
+            "TAZY_CORS_ORIGINS",
+            "http://localhost:4173,https://tazy.qdev.run,https://tazy.dog,https://www.tazy.dog,https://tazy.pro,https://www.tazy.pro",
+        ).split(",")
         if origin.strip()
     ))
     admin_username: str = field(default_factory=lambda: os.getenv("TAZY_ADMIN_USERNAME", "admin"))

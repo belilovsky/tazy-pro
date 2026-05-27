@@ -37,6 +37,9 @@ echo "==> Domain contract"
 echo "==> API client"
 "${NODE_BIN}" scripts/verify-api-client.js
 
+echo "==> Frontend contract"
+"${NODE_BIN}" scripts/verify-frontend-contract.js
+
 echo "==> AV DS token audit"
 "${NODE_BIN}" scripts/audit-avds-tokens.js
 

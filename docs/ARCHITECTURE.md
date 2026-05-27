@@ -18,6 +18,18 @@ through `src/api/tazyApi.js`. That client uses same-origin `/api/v1` in
 production, authenticates reviewer routes through a backend session cookie, and
 falls back to local seed data only on local/static development origins.
 
+The public shell now intentionally separates:
+
+- public trust surfaces: registry, dog profile, QR passport, breeders, geo map,
+  heritage, architecture, and FCI progress;
+- protected work surfaces: reviewer workspace and FCI Data Room;
+- institutional exports: generated reports, evidence package snapshots, and
+  future export runs.
+
+The `#/architecture` route explains this boundary in product terms so the public
+site does not look like a campaign landing page detached from the operating
+model.
+
 Production also has DB health checks, reviewer-login throttling, no-store
 headers for protected API responses, and daily SQLite snapshots while Postgres
 migration remains open.
@@ -87,6 +99,25 @@ clear domain model and audit trail from day one.
 3. Data can be exported as CSV/PDF packages.
 4. Reports are generated from verified records only.
 
+### Public architecture route
+
+1. Visitor opens `#/architecture`.
+2. UI explains the evidence core, public API, reviewer workflow, breeding
+   analytics, and export/data-room layers.
+3. The route links back to the public registry and protected data room without
+   exposing private evidence.
+4. Active navigation reflects the architecture surface on desktop and mobile.
+
+### AV DS interface layer
+
+1. Static page sections and app routes use the semantic token boundary in
+   `styles.css`.
+2. Component CSS below the token block is checked by
+   `scripts/audit-avds-tokens.js`.
+3. RU/KZ/EN copy is applied through `src/i18n/runtime.js`.
+4. `scripts/verify-frontend-contract.js` verifies that localized copy keys and
+   static route links are complete.
+
 ## Trust and audit model
 
 - Every public claim should have an evidence source.
@@ -108,7 +139,8 @@ clear domain model and audit trail from day one.
 - Files: object storage with private originals and public derived assets.
 - Auth: role-based access for admins, reviewers, breeders, and public users.
 - Tests: unit tests for domain rules, integration tests for API flows,
-  Playwright smoke for public pages.
+  frontend contract checks for localization/routes, AV DS token audit, and
+  rendered smoke for public pages.
 
 ## Security and privacy baseline
 

@@ -1,4 +1,5 @@
-import { pairScores } from "../data/platform.js?v=20260522T143930Z";
+import { pairScores } from "../data/platform.js?v=20260527T004500Z";
+import { LANGUAGE_EVENT, getCurrentLang, translateSeedText } from "../i18n/runtime.js?v=20260527T004500Z";
 
 export function initBreeding(root = document) {
   const sire = root.querySelector("[data-sire]");
@@ -20,19 +21,21 @@ export function initBreeding(root = document) {
   }
 
   function updateBreeding() {
+    const lang = getCurrentLang(root);
     const data = pairScores[`${sire.value}-${dam.value}`] || pairScores["barys-koke"];
     fields.coi.textContent = data.coi;
     fields.coiMeter.style.width = data.coiMeter;
-    fields.sireRisk.textContent = data.sireRisk;
+    fields.sireRisk.textContent = translateSeedText(data.sireRisk, lang);
     fields.sireMeter.style.width = data.sireMeter;
-    fields.diversity.textContent = data.diversity;
+    fields.diversity.textContent = translateSeedText(data.diversity, lang);
     fields.diversityMeter.style.width = data.diversityMeter;
-    fields.title.textContent = data.title;
-    fields.text.textContent = data.text;
+    fields.title.textContent = translateSeedText(data.title, lang);
+    fields.text.textContent = translateSeedText(data.text, lang);
   }
 
   runButton.addEventListener("click", updateBreeding);
   sire.addEventListener("change", updateBreeding);
   dam.addEventListener("change", updateBreeding);
+  root.addEventListener(LANGUAGE_EVENT, updateBreeding);
   updateBreeding();
 }

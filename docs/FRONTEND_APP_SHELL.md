@@ -31,6 +31,11 @@ src/domain/readModels.js
 src/i18n/messages.js
   Owns the first RU/KZ/EN copy catalog for shell and landing sections.
 
+src/i18n/runtime.js
+  Applies RU/KZ/EN copy to static HTML and app-route views, updates metadata,
+  aria-labels, placeholders, image alt text, active language state, and document
+  language.
+
 src/api/mockApi.js
   Owns local fallback methods and browser-only reviewer-decision persistence for
   static development.
@@ -41,7 +46,8 @@ src/api/tazyApi.js
   backend is unavailable in local static mode.
 
 src/ui/shell.js
-  Owns header scroll state, theme toggle, language switch, and mobile menu.
+  Owns header scroll state, theme toggle, language switch, active navigation,
+  and mobile menu behavior.
 
 src/ui/registry.js
   Owns the registry dog selector and verification rows.
@@ -50,8 +56,8 @@ src/ui/breeding.js
   Owns the breeding pair model controls and recommendation output.
 
 src/ui/router.js
-  Owns lightweight hash routes for public dog profiles, digital passports, and
-  reviewer workspace / FCI Data Room views.
+  Owns lightweight hash routes for public product routes, dog profiles, digital
+  passports, reviewer workspace, and FCI Data Room views.
 
 src/ui/dataRoom.js
   Owns the FCI Data Room route and evidence package snapshot rendering.
@@ -64,6 +70,34 @@ src/ui/admin.js
   reviewer-key prompt, and append-only backend decision creation.
 ```
 
+## Public route map
+
+```text
+#/breeders       Verification tiers, breeder code, litter declaration, trust marks
+#/ecosystem      Regional map, events, QR validation, field/offline planning
+#/architecture   Evidence core, public/protected boundary, API and AV DS contract
+#/heritage       Living heritage archive, diplomacy, import and press surfaces
+#/fci-progress   FCI recognition cycle and generated reporting posture
+#/dogs/:id       Public dog profile
+#/passport/:id   Public digital passport
+#/data-room      Protected FCI evidence package snapshot
+#/admin          Protected reviewer workspace
+```
+
+The static home page mirrors the same product map as sections, so every
+important platform idea is visible before a user enters protected workflows.
+
+## Frontend contracts
+
+`scripts/verify-frontend-contract.js` checks two production-sensitive surfaces:
+
+- every static `data-copy*` key and code-level copy key exists in RU/KZ/EN;
+- every static hash link points to a known page anchor or app route.
+
+`scripts/audit-avds-tokens.js` enforces the AV DS boundary: component CSS below
+the token block must use semantic variables instead of raw colors or legacy
+tokens.
+
 ## Migration path to React/Vite
 
 When package tooling is available, these modules can move directly into React:
@@ -72,13 +106,14 @@ When package tooling is available, these modules can move directly into React:
 - `src/domain/contracts.js` becomes shared schema/types.
 - `src/domain/readModels.js` becomes generated API clients or selector helpers.
 - `src/api/tazyApi.js` remains the real HTTP client boundary.
-- `src/i18n/messages.js` becomes the application translation catalog.
+- `src/i18n/messages.js` and `src/i18n/runtime.js` become the application
+  translation catalog and i18n runtime.
 - `src/ui/registry.js` becomes `RegistrySection`.
 - `src/ui/breeding.js` becomes `BreedingConsole`.
 - `src/ui/admin.js` becomes `ReviewerWorkspace`.
 - `src/ui/dataRoom.js` becomes `FciDataRoom`.
-- `src/ui/router.js` becomes the route map for `/dogs/:id`, `/passport/:id`,
-  and `/admin`.
+- `src/ui/router.js` becomes the route map for public product pages,
+  `/dogs/:id`, `/passport/:id`, `/data-room`, and `/admin`.
 - `src/ui/shell.js` splits into `Header`, `MobileMenu`, `ThemeToggle`, and
   `LanguageSwitch`.
 - `index.html` sections become route/page components.

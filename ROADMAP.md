@@ -28,7 +28,10 @@ Status: done.
 - Digital passport preview.
 - Breeding intelligence demo.
 - FCI 2024-2034 evidence narrative.
-- Dark/light theme and hero language switch.
+- Public breeder, geo ecosystem, heritage, architecture, and FCI progress
+  surfaces.
+- AV DS semantic-token boundary and frontend contract checks.
+- Dark/light theme and RU/KZ/EN copy runtime.
 
 ## Phase 1: MVP Foundation
 
@@ -45,6 +48,11 @@ Goal: replace the static prototype with a working application skeleton.
 - Add design tokens and reusable UI components.
 - Define backend contract and seed data.
 - Add basic CI: lint, type check, build.
+
+Current MVP note: the static shell already includes the first version of these
+surfaces and contract checks. The remaining Phase 1 work is primarily the
+framework/build-tool migration, route-level TypeScript, and production CI
+packaging once package tooling is available.
 
 Suggested success metric: a reviewer can open a real dog profile, inspect its
 evidence completeness, switch languages, and view a QR passport without reading
@@ -128,4 +136,3 @@ intermediary.
 - Whether blockchain-like public anchoring is needed, or cryptographic hashes
   inside the database and exported files are enough.
 - Initial launch scope for 17 May 2026 versus the 3 September Tazy Day milestone.
-

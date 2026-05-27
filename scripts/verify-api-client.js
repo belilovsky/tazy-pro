@@ -118,13 +118,20 @@ try {
 }
 assert(blockedProductionFallback, "Production origins must not fall back to local seed data");
 
+let localFetchCalled = false;
+globalThis.fetch = async () => {
+  localFetchCalled = true;
+  return response(404, { error: { code: "not_found", message: "Not found" } });
+};
 Object.defineProperty(globalThis, "location", {
   configurable: true,
   value: { protocol: "http:", hostname: "127.0.0.1" },
 });
 const fallbackDogs = await tazyApi.listDogs();
 assert(fallbackDogs.length === 2, "Local fallback did not return seed dogs");
-assert(tazyApi.getSourceLabel() === "Local demo data", "Fallback source label was not set");
+assert(localFetchCalled === false, "Local static fallback should not emit avoidable API requests");
+assert(tazyApi.getSourceLabel("en") === "Local demo data", "Fallback English source label was not set");
+assert(tazyApi.getSourceLabel("ru") === "Локальные демо-данные", "Fallback Russian source label was not set");
 
 restoreGlobals();
 console.log("API client verified: backend path, reviewer session credentials, and local fallback.");

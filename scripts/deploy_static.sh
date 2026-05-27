@@ -10,7 +10,7 @@ REMOTE_RELEASE="${REMOTE_ROOT}/releases/${RELEASE_ID}"
 ssh -o StrictHostKeyChecking=no -o ConnectTimeout=15 "${DEPLOY_HOST}" \
   "install -d -m 0755 '${REMOTE_RELEASE}' '${REMOTE_ROOT}/shared' /var/www/certbot"
 
-COPYFILE_DISABLE=1 tar --no-xattrs -czf - index.html styles.css assets src | ssh -o StrictHostKeyChecking=no -o ConnectTimeout=15 "${DEPLOY_HOST}" \
+COPYFILE_DISABLE=1 tar --no-xattrs -czf - index.html styles.css robots.txt sitemap.xml assets src | ssh -o StrictHostKeyChecking=no -o ConnectTimeout=15 "${DEPLOY_HOST}" \
   "tar -xzf - -C '${REMOTE_RELEASE}' \
     && chown -R www-data:www-data '${REMOTE_RELEASE}' \
     && ln -sfn '${REMOTE_RELEASE}' '${REMOTE_ROOT}/current' \

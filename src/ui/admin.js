@@ -1,7 +1,8 @@
-import { tazyApi } from "../api/tazyApi.js?v=20260522T143930Z";
-import { DECISION_TYPE, EVIDENCE_PRIORITY } from "../domain/contracts.js?v=20260522T143930Z";
-import { createVerificationRow } from "./evidence.js?v=20260522T143930Z";
-import { createReviewerKeyPanel, isAuthError } from "./reviewerAuth.js?v=20260522T143930Z";
+import { tazyApi } from "../api/tazyApi.js?v=20260527T004500Z";
+import { DECISION_TYPE, EVIDENCE_PRIORITY } from "../domain/contracts.js?v=20260527T004500Z";
+import { getCopy, getCurrentLang, translateSeedText } from "../i18n/runtime.js?v=20260527T004500Z";
+import { createVerificationRow } from "./evidence.js?v=20260527T004500Z";
+import { createReviewerKeyPanel, isAuthError } from "./reviewerAuth.js?v=20260527T004500Z";
 
 function createElement(documentRef, tag, className, text) {
   const node = documentRef.createElement(tag);
@@ -15,18 +16,22 @@ function createElement(documentRef, tag, className, text) {
 }
 
 function createQueueButton(documentRef, item, selectedId) {
+  const lang = getCurrentLang(documentRef);
   const button = createElement(documentRef, "button", "admin-queue-button");
   button.type = "button";
   button.dataset.reviewItem = item.id;
   button.classList.toggle("active", item.id === selectedId);
 
   const top = createElement(documentRef, "span", "admin-queue-top");
-  top.append(createElement(documentRef, "strong", "", item.label), createElement(documentRef, "small", "", item.priorityLabel));
+  top.append(
+    createElement(documentRef, "strong", "", translateSeedText(item.label, lang)),
+    createElement(documentRef, "small", "", translateSeedText(item.priorityLabel, lang)),
+  );
 
   button.append(
     top,
-    createElement(documentRef, "b", "", item.dog?.name || "Unknown dog"),
-    createElement(documentRef, "small", "", item.statusLabel),
+    createElement(documentRef, "b", "", item.dog?.name || t("admin.unknownDog")),
+    createElement(documentRef, "small", "", translateSeedText(item.statusLabel, lang)),
   );
   return button;
 }
@@ -42,6 +47,8 @@ function renderQueue(documentRef, queue, items, selectedId, onSelect) {
 }
 
 function renderDetail(documentRef, detail, item, onDecision) {
+  const lang = getCurrentLang(documentRef);
+  const t = (key) => getCopy(key, lang);
   const dog = item.dog;
   const decision = item.currentDecision;
   const panel = createElement(documentRef, "div", "admin-detail-grid");
@@ -49,22 +56,22 @@ function renderDetail(documentRef, detail, item, onDecision) {
   const evidence = createElement(documentRef, "article", "route-panel admin-evidence-panel");
   const evidenceTop = createElement(documentRef, "div", "admin-panel-top");
   evidenceTop.append(
-    createElement(documentRef, "span", "admin-pill", item.priorityLabel),
-    createElement(documentRef, "span", "admin-status", decision?.decisionLabel || item.statusLabel),
+    createElement(documentRef, "span", "admin-pill", translateSeedText(item.priorityLabel, lang)),
+    createElement(documentRef, "span", "admin-status", translateSeedText(decision?.decisionLabel || item.statusLabel, lang)),
   );
   evidence.append(
     evidenceTop,
-    createElement(documentRef, "p", "section-label", item.label),
-    createElement(documentRef, "h2", "", item.title),
-    createElement(documentRef, "p", "", item.summary),
+    createElement(documentRef, "p", "section-label", translateSeedText(item.label, lang)),
+    createElement(documentRef, "h2", "", translateSeedText(item.title, lang)),
+    createElement(documentRef, "p", "", translateSeedText(item.summary, lang)),
   );
 
   const metadata = createElement(documentRef, "div", "admin-meta-grid");
   [
-    ["Dog", dog?.name || "Unknown"],
-    ["Submitted by", item.submittedBy],
-    ["Received", item.receivedAt],
-    ["Registry", dog?.registryNumber || "Draft"],
+    [t("admin.detailDog"), dog?.name || t("admin.unknownValue")],
+    [t("admin.detailSubmittedBy"), item.submittedBy],
+    [t("admin.detailReceived"), item.receivedAt],
+    [t("admin.detailRegistry"), dog?.registryNumber || t("admin.draftRegistry")],
   ].forEach(([label, value]) => {
     const row = createElement(documentRef, "div");
     row.append(createElement(documentRef, "span", "", label), createElement(documentRef, "strong", "", value));
@@ -72,7 +79,7 @@ function renderDetail(documentRef, detail, item, onDecision) {
   });
   evidence.append(metadata);
 
-  const noteLabel = createElement(documentRef, "label", "admin-note-label", "Reviewer note");
+  const noteLabel = createElement(documentRef, "label", "admin-note-label", t("admin.noteLabel"));
   const note = createElement(documentRef, "textarea", "admin-note");
   note.rows = 4;
   note.value = item.reviewerNote;
@@ -80,9 +87,9 @@ function renderDetail(documentRef, detail, item, onDecision) {
 
   const actions = createElement(documentRef, "div", "admin-actions");
   [
-    [DECISION_TYPE.approved, "Approve", "primary-button compact"],
-    [DECISION_TYPE.changesRequested, "Request changes", "secondary-button"],
-    [DECISION_TYPE.rejected, "Reject", "danger-button"],
+    [DECISION_TYPE.approved, t("admin.actionApprove"), "primary-button compact"],
+    [DECISION_TYPE.changesRequested, t("admin.actionChanges"), "secondary-button"],
+    [DECISION_TYPE.rejected, t("admin.actionReject"), "danger-button"],
   ].forEach(([value, label, className]) => {
     const button = createElement(documentRef, "button", className, label);
     button.type = "button";
@@ -93,20 +100,20 @@ function renderDetail(documentRef, detail, item, onDecision) {
   const log = createElement(documentRef, "p", "admin-event-log");
   log.setAttribute("aria-live", "polite");
   log.textContent = decision
-    ? `${decision.decisionLabel} · reviewer event saved as an append-only decision.`
-    : "No decision yet. Choose an action to prepare an audit-log event.";
+    ? t("admin.decisionSaved")
+    : t("admin.noDecision");
 
   evidence.append(noteLabel, actions, log);
 
   const dogPanel = createElement(documentRef, "article", "route-panel admin-dog-panel");
   const image = createElement(documentRef, "img", "admin-dog-image");
   image.src = dog?.photo || "";
-  image.alt = dog?.alt || "";
+  image.alt = translateSeedText(dog?.alt || "", lang);
   const dogCopy = createElement(documentRef, "div");
   dogCopy.append(
-    createElement(documentRef, "p", "section-label", "Profile impact"),
-    createElement(documentRef, "h2", "", dog?.name || "Unknown dog"),
-    createElement(documentRef, "p", "", dog?.summary || "No profile summary available."),
+    createElement(documentRef, "p", "section-label", t("admin.profileImpact")),
+    createElement(documentRef, "h2", "", dog?.name || t("admin.unknownDog")),
+    createElement(documentRef, "p", "", translateSeedText(dog?.summary || t("admin.profileSummaryMissing"), lang)),
   );
   const statusList = createElement(documentRef, "div", "verification-list");
   statusList.append(...(dog?.steps || []).map((step) => createVerificationRow(documentRef, step)));
@@ -117,12 +124,13 @@ function renderDetail(documentRef, detail, item, onDecision) {
 }
 
 function renderStats(documentRef, stats, reviewQueue, api) {
+  const lang = getCurrentLang(documentRef);
   stats.replaceChildren();
   [
-    ["Queue", `${reviewQueue.length} items`],
-    ["Dogs affected", `${new Set(reviewQueue.map((item) => item.dogId)).size}`],
-    ["High priority", `${reviewQueue.filter((item) => item.priority === EVIDENCE_PRIORITY.high).length}`],
-    ["Audit mode", api.getSourceLabel?.() || "Backend API"],
+    [getCopy("admin.queue", lang), String(reviewQueue.length)],
+    [getCopy("admin.dogsAffected", lang), `${new Set(reviewQueue.map((item) => item.dogId)).size}`],
+    [getCopy("admin.highPriority", lang), `${reviewQueue.filter((item) => item.priority === EVIDENCE_PRIORITY.high).length}`],
+    [getCopy("admin.auditMode", lang), api.getSourceLabel?.(lang) || getCopy("source.backend", lang)],
   ].forEach(([label, value]) => {
     const item = createElement(documentRef, "div");
     item.append(createElement(documentRef, "span", "", label), createElement(documentRef, "strong", "", value));
@@ -131,37 +139,35 @@ function renderStats(documentRef, stats, reviewQueue, api) {
 }
 
 function renderLoading(documentRef, queue, detail) {
-  queue.replaceChildren(createElement(documentRef, "p", "admin-empty", "Loading verification queue..."));
-  detail.replaceChildren(createElement(documentRef, "article", "route-panel", "Preparing reviewer workspace..."));
+  const lang = getCurrentLang(documentRef);
+  queue.replaceChildren(createElement(documentRef, "p", "admin-empty", getCopy("admin.loadingQueue", lang)));
+  detail.replaceChildren(createElement(documentRef, "article", "route-panel", getCopy("admin.preparing", lang)));
 }
 
 function renderError(documentRef, detail, error) {
+  const lang = getCurrentLang(documentRef);
   const panel = createElement(documentRef, "article", "route-panel");
   panel.append(
-    createElement(documentRef, "h2", "", "Reviewer workspace unavailable"),
-    createElement(documentRef, "p", "", error?.message || "Could not load the verification queue."),
+    createElement(documentRef, "h2", "", getCopy("admin.unavailable", lang)),
+    createElement(documentRef, "p", "", error?.message || getCopy("admin.queueLoadFailed", lang)),
   );
   detail.replaceChildren(panel);
 }
 
 export function createAdminWorkspace(documentRef, api = tazyApi) {
+  const lang = getCurrentLang(documentRef);
   let reviewQueue = [];
   let selectedId;
 
   const section = createElement(documentRef, "section", "route-shell admin-workspace");
-  const back = createElement(documentRef, "a", "route-back", "Back to platform");
+  const back = createElement(documentRef, "a", "route-back", getCopy("route.backPlatform", lang));
   back.href = "#/";
 
   const heading = createElement(documentRef, "div", "admin-heading");
   heading.append(
-    createElement(documentRef, "p", "section-label", "Reviewer workspace"),
-    createElement(documentRef, "h1", "", "Evidence review queue"),
-    createElement(
-      documentRef,
-      "p",
-      "",
-      "Approve, reject, or request changes for registry evidence before public profile claims and FCI exports are updated.",
-    ),
+    createElement(documentRef, "p", "section-label", getCopy("admin.eyebrow", lang)),
+    createElement(documentRef, "h1", "", getCopy("admin.title", lang)),
+    createElement(documentRef, "p", "", getCopy("admin.text", lang)),
   );
 
   const stats = createElement(documentRef, "div", "route-stat-grid admin-stat-grid");
@@ -169,7 +175,7 @@ export function createAdminWorkspace(documentRef, api = tazyApi) {
 
   const layout = createElement(documentRef, "div", "admin-layout");
   const queuePanel = createElement(documentRef, "aside", "route-panel admin-queue-panel");
-  queuePanel.append(createElement(documentRef, "h2", "", "Verification queue"));
+  queuePanel.append(createElement(documentRef, "h2", "", getCopy("admin.queueTitle", lang)));
   const queue = createElement(documentRef, "div", "admin-queue");
   queuePanel.append(queue);
 
@@ -183,7 +189,7 @@ export function createAdminWorkspace(documentRef, api = tazyApi) {
   }
 
   function renderAuth(error) {
-    queue.replaceChildren(createElement(documentRef, "p", "admin-empty", "Protected backend queue."));
+    queue.replaceChildren(createElement(documentRef, "p", "admin-empty", getCopy("reviewer.protected", getCurrentLang(documentRef))));
     detail.replaceChildren(createReviewerKeyPanel(documentRef, api, () => {
       renderLoading(documentRef, queue, detail);
       loadQueue().catch((nextError) => {
@@ -200,8 +206,8 @@ export function createAdminWorkspace(documentRef, api = tazyApi) {
   function refresh() {
     const selected = reviewQueue.find((item) => item.id === selectedId) || reviewQueue[0];
     if (!selected) {
-      queue.replaceChildren(createElement(documentRef, "p", "admin-empty", "No evidence items in the queue."));
-      detail.replaceChildren(createElement(documentRef, "article", "route-panel", "The reviewer queue is empty."));
+      queue.replaceChildren(createElement(documentRef, "p", "admin-empty", getCopy("admin.emptyQueue", getCurrentLang(documentRef))));
+      detail.replaceChildren(createElement(documentRef, "article", "route-panel", getCopy("admin.emptyDetail", getCurrentLang(documentRef))));
       renderStats(documentRef, stats, reviewQueue, api);
       return;
     }

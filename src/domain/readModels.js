@@ -1,5 +1,5 @@
-import { dogProfiles, evidenceItems } from "../data/platform.js?v=20260522T143930Z";
-import { DECISION_TYPE, VISIBILITY, formatDecisionLabel, formatEvidenceStatus, formatPriority } from "./contracts.js?v=20260522T143930Z";
+import { dogProfiles, evidenceItems } from "../data/platform.js?v=20260527T004500Z";
+import { DECISION_TYPE, VISIBILITY, formatDecisionLabel, formatEvidenceStatus, formatPriority } from "./contracts.js?v=20260527T004500Z";
 
 function createDecisionId(evidenceItemId) {
   if (globalThis.crypto?.randomUUID) {
