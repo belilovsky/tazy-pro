@@ -1,1 +1,1 @@
-"""API routers for the TAZY.PRO backend."""
+"""API routers for the TAZY.DOG backend."""

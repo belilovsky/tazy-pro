@@ -82,7 +82,7 @@ queue = json.loads(open(queue_body, encoding="utf-8").read())
 assert queue["error"]["code"] == "unauthorized"
 
 admin_html = open(admin_body, encoding="utf-8").read()
-assert "TAZY.PRO Admin" in admin_html
+assert "TAZY.DOG Admin" in admin_html
 
 print("[smoke] JSON assertions passed")
 PY

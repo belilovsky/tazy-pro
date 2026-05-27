@@ -275,7 +275,7 @@ def test_admin_login_page_is_available(client: TestClient):
     response = client.get("/admin/login")
 
     assert response.status_code == 200
-    assert "TAZY.PRO Admin" in response.text or "Login" in response.text
+    assert "TAZY.DOG Admin" in response.text or "Login" in response.text
 
 
 def test_admin_login_head_is_available(client: TestClient):

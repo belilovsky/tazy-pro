@@ -1,1 +1,1 @@
-"""FastAPI application for the TAZY.PRO registry backend."""
+"""FastAPI application for the TAZY.DOG registry backend."""

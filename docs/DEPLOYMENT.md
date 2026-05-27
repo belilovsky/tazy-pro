@@ -2,15 +2,16 @@
 
 Production URLs:
 
-- Public site: https://tazy.dog
-- Temporary redirect: https://tazy.pro -> https://tazy.dog
+- Breed platform: https://tazy.dog
+- Feed/nutrition product: https://tazy.pro
 - Backend/API origin: https://tazy.qdev.run
 
 Current VPS target:
 
 - VPS: `root@62.72.32.112`
-- Static root: `/var/www/tazy.qdev.run/current`
-- Releases: `/var/www/tazy.qdev.run/releases/<timestamp>`
+- Breed static root: `/var/www/tazy.dog/current`
+- Feed static root: `/var/www/tazy.pro/current`
+- Staging static root: `/var/www/tazy.qdev.run/current`
 - Backend root: `/opt/tazy-pro/current`
 - Backend service: `tazy-pro-backend.service`
 - Backend bind: `127.0.0.1:8182`
@@ -44,15 +45,18 @@ The public launch domain is hosted on Hostinger as a static site:
 npm run build:hostinger
 ```
 
-Upload the contents of `dist/hostinger/tazy.dog/` into the `public_html` (or
-domain root) for `tazy.dog`. The generated `.htaccess` forces HTTPS, redirects
-`www.tazy.dog` to `tazy.dog`, disables directory listings, applies conservative
-cache/security headers, and keeps SPA-style fallback to `index.html`.
+Upload the contents of `dist/hostinger/tazy.dog/` into the domain root for
+`tazy.dog`. This is the breed platform: registry, breeders, heritage map,
+digital passports, and FCI readiness. The generated `.htaccess` forces HTTPS,
+redirects `www.tazy.dog` to `tazy.dog`, disables directory listings, applies
+conservative cache/security headers, and keeps SPA-style fallback to
+`index.html`.
 
 Upload the contents of `dist/hostinger/tazy.pro/` into the domain root for
-`tazy.pro`. Its `.htaccess` performs a temporary 301 redirect to
-`https://tazy.dog/`; `index.html` is only a noindex fallback for hosts where
-Apache rewrites are delayed or disabled.
+`tazy.pro`. This is now the feed/nutrition product: formulas, kennel programs,
+quality controls, and future feed-commerce/product work. It must not redirect
+to `tazy.dog`; the only cross-link is an editorial link back to the breed
+platform.
 
 The Hostinger static bundle injects:
 
@@ -61,15 +65,15 @@ The Hostinger static bundle injects:
 <link rel="canonical" href="https://tazy.dog/" />
 ```
 
-That keeps the public frontend on Hostinger while the current FastAPI backend
-and protected reviewer/FCI routes continue to run on the VPS. The backend CORS
-allowlist must include `https://tazy.dog`, `https://www.tazy.dog`,
-`https://tazy.pro`, and `https://www.tazy.pro`.
+That keeps the breed frontend deployable to Hostinger while the current FastAPI
+backend and protected reviewer/FCI routes continue to run on the VPS.
+`tazy.pro` is static-only until the feed product receives its own backend.
 
 If Hostinger is used as the registrar only, point DNS `A` records for
 `tazy.dog`, `www.tazy.dog`, `tazy.pro`, and `www.tazy.pro` to the VPS and use
-`ops/nginx/tazy.dog.conf`. In that mode the frontend and API are same-origin on
-`tazy.dog`, while `tazy.pro` stays a redirect-only domain.
+`ops/nginx/tazy.dog.conf`. In that mode the breed frontend and API are
+same-origin on `tazy.dog`, while `tazy.pro` is served from
+`/var/www/tazy.pro/current` as a separate static feed site.
 
 DNS records for the registrar-only setup:
 

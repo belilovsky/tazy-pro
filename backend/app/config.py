@@ -1,4 +1,4 @@
-"""Environment driven settings for the TAZY.PRO backend."""
+"""Environment driven settings for the TAZY.DOG backend."""
 
 from __future__ import annotations
 
@@ -16,7 +16,7 @@ def _bool_env(name: str, default: bool) -> bool:
 
 @dataclass(frozen=True)
 class Settings:
-    project_name: str = field(default_factory=lambda: os.getenv("TAZY_PROJECT_NAME", "TAZY.PRO"))
+    project_name: str = field(default_factory=lambda: os.getenv("TAZY_PROJECT_NAME", "TAZY.DOG"))
     debug: bool = field(default_factory=lambda: _bool_env("TAZY_DEBUG", True))
     database_url: str = field(default_factory=lambda: os.getenv("TAZY_DATABASE_URL", "sqlite+aiosqlite:///./.tazy/tazy.db"))
     secret_key: str = field(default_factory=lambda: os.getenv("TAZY_SECRET_KEY", "change-me-in-production"))

@@ -1,6 +1,6 @@
-# TAZY.PRO Backend
+# TAZY.DOG Backend
 
-FastAPI backend for the current TAZY.PRO MVP. It follows the existing project
+FastAPI backend for the current TAZY.DOG MVP. It follows the existing project
 contracts in `docs/API_SPEC.md` and `docs/POSTGRES_SCHEMA.sql`, and reuses the
 same admin direction as the QPet SQLAdmin stack.
 

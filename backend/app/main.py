@@ -1,4 +1,4 @@
-"""FastAPI entrypoint for the TAZY.PRO backend and admin surface."""
+"""FastAPI entrypoint for the TAZY.DOG backend and admin surface."""
 
 from __future__ import annotations
 
@@ -83,7 +83,7 @@ def create_app() -> FastAPI:
     app = FastAPI(
         title=f"{settings.project_name} API",
         version="0.1.0",
-        description="Registry, evidence review, digital passport, and FCI data-room API for TAZY.PRO.",
+        description="Registry, evidence review, digital passport, and FCI data-room API for TAZY.DOG.",
         docs_url="/api/docs" if settings.debug else None,
         redoc_url="/api/redoc" if settings.debug else None,
         lifespan=lifespan,

@@ -77,7 +77,7 @@ ln -sfn "${REMOTE_RELEASE}" "${REMOTE_ROOT}/current"
 
 cat > /etc/systemd/system/tazy-pro-backend.service <<UNIT
 [Unit]
-Description=TAZY.PRO FastAPI backend
+Description=TAZY.DOG FastAPI backend
 After=network.target
 
 [Service]
@@ -95,7 +95,7 @@ UNIT
 
 cat > /etc/systemd/system/tazy-pro-backup.service <<UNIT
 [Unit]
-Description=TAZY.PRO SQLite database backup
+Description=TAZY.DOG SQLite database backup
 
 [Service]
 Type=oneshot
@@ -105,7 +105,7 @@ UNIT
 
 cat > /etc/systemd/system/tazy-pro-backup.timer <<UNIT
 [Unit]
-Description=Run TAZY.PRO SQLite database backup daily
+Description=Run TAZY.DOG SQLite database backup daily
 
 [Timer]
 OnCalendar=*-*-* 02:30:00

@@ -1,1 +1,1 @@
-"""TAZY.PRO backend package."""
+"""TAZY.DOG backend package."""

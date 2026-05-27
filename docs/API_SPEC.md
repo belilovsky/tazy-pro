@@ -1,4 +1,4 @@
-# TAZY.PRO MVP API Contract
+# TAZY.DOG MVP API Contract
 
 Draft contract for the first backend. It mirrors the current frontend domain
 modules and is intentionally small enough to implement with FastAPI + Postgres.

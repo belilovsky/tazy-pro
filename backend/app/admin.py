@@ -1,4 +1,4 @@
-"""SQLAdmin setup for TAZY.PRO."""
+"""SQLAdmin setup for TAZY.DOG."""
 
 from __future__ import annotations
 
@@ -119,6 +119,6 @@ def init_admin(app, engine, settings: Settings) -> None:
         username=settings.admin_username,
         password=settings.admin_password,
     )
-    admin = Admin(app, engine, authentication_backend=auth, title="TAZY.PRO Admin")
+    admin = Admin(app, engine, authentication_backend=auth, title="TAZY.DOG Admin")
     for view in (DogAdmin, EvidenceAdmin, DecisionAdmin, PassportEventAdmin, BreederAdmin, KennelAdmin, OwnerAdmin, ExportPackageAdmin):
         admin.add_view(view)

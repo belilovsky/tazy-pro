@@ -1,4 +1,4 @@
--- TAZY.PRO MVP schema draft.
+-- TAZY.DOG MVP schema draft.
 -- Intended as a baseline for the first FastAPI + Postgres backend.
 
 create extension if not exists pgcrypto;

@@ -1,4 +1,4 @@
-"""SQLAlchemy models for the TAZY.PRO MVP schema."""
+"""SQLAlchemy models for the TAZY.DOG MVP schema."""
 
 from __future__ import annotations
 

@@ -1,4 +1,4 @@
-# TAZY.PRO MVP Architecture
+# TAZY.DOG MVP Architecture
 
 ## Current state
 

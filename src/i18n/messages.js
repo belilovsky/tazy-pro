@@ -1,10 +1,10 @@
 export const copyCatalog = {
   ru: {
-    "meta.title": "TAZY.PRO · Национальная цифровая платформа казахской тазы",
-    "meta.description": "TAZY.PRO — национальная цифровая платформа казахской тазы: реестр, заводчики, QR-паспорта, карта наследия и контур подготовки к FCI.",
+    "meta.title": "TAZY.DOG · Национальная цифровая платформа казахской тазы",
+    "meta.description": "TAZY.DOG — национальная цифровая платформа казахской тазы: реестр, заводчики, QR-паспорта, карта наследия и контур подготовки к FCI.",
     "brand.subtitle": "Национальная цифровая платформа породы",
     "a11y.skipToRegistry": "Перейти к реестру",
-    "a11y.home": "Главная TAZY.PRO",
+    "a11y.home": "Главная TAZY.DOG",
     "a11y.primaryNavigation": "Основная навигация",
     "a11y.language": "Язык",
     "a11y.toggleTheme": "Переключить тему",
@@ -30,7 +30,7 @@ export const copyCatalog = {
     "nav.fci": "FCI",
     "nav.launch": "Запуск",
     "cta.register": "Начать регистрацию",
-    heroTitle: "TAZY.PRO",
+    heroTitle: "TAZY.DOG",
     heroText:
       "Национальная цифровая платформа для реестра, разведения, культурного наследия и институциональной готовности тазы: от публичного профиля собаки до пакета доказательств для FCI.",
     "hero.registryCta": "Открыть реестр",
@@ -44,7 +44,7 @@ export const copyCatalog = {
     "hero.panel.evidence": "Доказательства",
     "hero.panel.evidenceValue": "8 уровней верификации",
     "a11y.fciProofRail": "Путь признания FCI",
-    "a11y.moduleMap": "Полная карта модулей TAZY.PRO",
+    "a11y.moduleMap": "Полная карта модулей TAZY.DOG",
     "a11y.benchmark": "Сравнение платформ",
     "a11y.healthLedger": "Health Passport и генетические данные",
     "hero.rail2024": "Предварительное признание FCI, Group 10, стандарт 372.",
@@ -56,7 +56,7 @@ export const copyCatalog = {
     "intro.passports": "публичные QR-паспорта",
     "intro.target": "цель полного признания",
     "platform.eyebrow": "Платформа, а не лендинг",
-    "platform.title": "TAZY.PRO должен связывать публичное доверие, племенную работу, культурное наследие и институциональные данные.",
+    "platform.title": "TAZY.DOG должен связывать публичное доверие, племенную работу, культурное наследие и институциональные данные.",
     "platform.text":
       "Пользователь должен сразу понимать, что перед ним не медийная витрина, а рабочая инфраструктура: реестр, сеть заводчиков, гео-экосистема, дипломатический слой и контур подготовки к FCI.",
     "platform.cardRegistryLabel": "Публичный слой",
@@ -90,7 +90,7 @@ export const copyCatalog = {
     "modules.dataRoomTitle": "Data Room",
     "modules.dataRoomText": "FCI-экспорт, отчеты для государства, научные срезы и evidence manifests.",
     "benchmark.eyebrow": "Мировой benchmark",
-    "benchmark.title": "Наша позиция сильна только если сайт показывает, чем TAZY.PRO отличается от ZooEasy, PDO и AKC Marketplace.",
+    "benchmark.title": "Наша позиция сильна только если сайт показывает, чем TAZY.DOG отличается от ZooEasy, PDO и AKC Marketplace.",
     "benchmark.text":
       "Существующие решения закрывают реестр и родословные, но не объединяют FCI, здоровье, культуру, туризм, дипломатию и preservation в одну доказательную систему.",
     "benchmark.platform": "Платформа",
@@ -238,7 +238,7 @@ export const copyCatalog = {
     "breeding.metricDiversity": "Сигнал генетического разнообразия",
     "architecture.eyebrow": "Технический контур",
     "architecture.title":
-      "Технически TAZY.PRO должен быть операционной системой породы: данные один раз входят в ядро и дальше расходятся по публичным, экспертным и институциональным слоям.",
+      "Технически TAZY.DOG должен быть операционной системой породы: данные один раз входят в ядро и дальше расходятся по публичным, экспертным и институциональным слоям.",
     "architecture.text":
       "Ядро разделяет публичные профили, защищенные доказательства, ревью, экспортные пакеты и будущие мобильные сценарии, чтобы витрина не становилась хранилищем приватных документов.",
     "architecture.open": "Открыть техническую карту",
@@ -431,7 +431,7 @@ export const copyCatalog = {
       "Компоненты рассчитываются на длинные казахские и английские строки, не ломая карточки, кнопки и мобильную навигацию.",
     "launch.title": "Правильный запуск — это сначала рабочая инфраструктура, потом медийная волна вокруг нее.",
     "launch.text":
-      "Период с 17 мая до 3 сентября работает как набор регистраций, проверка сценариев, консолидация заводчиков и медийная кампания, где TAZY.PRO становится точкой действия.",
+      "Период с 17 мая до 3 сентября работает как набор регистраций, проверка сценариев, консолидация заводчиков и медийная кампания, где TAZY.DOG становится точкой действия.",
     "launch.cta": "Начать регистрацию",
     "footer.summary": "Доказательная цифровая инфраструктура казахской тазы.",
     "footer.dataRoom": "Кабинет данных FCI",
@@ -641,11 +641,11 @@ export const copyCatalog = {
     },
   },
   kk: {
-    "meta.title": "TAZY.PRO · Қазақ тазысының ұлттық цифрлық платформасы",
-    "meta.description": "TAZY.PRO — қазақ тазысына арналған ұлттық цифрлық платформа: тізілім, селекционерлер, QR-паспорттар, мұра картасы және FCI-ге дайындық контуры.",
+    "meta.title": "TAZY.DOG · Қазақ тазысының ұлттық цифрлық платформасы",
+    "meta.description": "TAZY.DOG — қазақ тазысына арналған ұлттық цифрлық платформа: тізілім, селекционерлер, QR-паспорттар, мұра картасы және FCI-ге дайындық контуры.",
     "brand.subtitle": "Тұқымның ұлттық цифрлық платформасы",
     "a11y.skipToRegistry": "Тізілімге өту",
-    "a11y.home": "TAZY.PRO басты беті",
+    "a11y.home": "TAZY.DOG басты беті",
     "a11y.primaryNavigation": "Негізгі навигация",
     "a11y.language": "Тіл",
     "a11y.toggleTheme": "Тақырыпты ауыстыру",
@@ -664,7 +664,7 @@ export const copyCatalog = {
     "a11y.footerNavigation": "Футер навигациясы",
     "a11y.protectedNavigation": "Қорғалған навигация",
     "a11y.benchmark": "Платформаларды салыстыру",
-    "a11y.moduleMap": "TAZY.PRO модульдерінің толық картасы",
+    "a11y.moduleMap": "TAZY.DOG модульдерінің толық картасы",
     "a11y.fciProofRail": "FCI-ны тану жолы",
     "a11y.healthLedger": "Health Passport және генетикалық деректер",
     "nav.registry": "Тізілім",
@@ -675,7 +675,7 @@ export const copyCatalog = {
     "nav.fci": "FCI",
     "nav.launch": "Іске қосу",
     "cta.register": "Тіркеуді бастау",
-    heroTitle: "TAZY.PRO",
+    heroTitle: "TAZY.DOG",
     heroText:
       "Тазының тізілімі, өсіруі, мәдени мұрасы және институционалдық дайындығын біріктіретін ұлттық цифрлық платформа: ашық ит профилінен FCI үшін дәлел пакетіне дейін.",
     "hero.registryCta": "Тізілімді ашу",
@@ -697,7 +697,7 @@ export const copyCatalog = {
     "intro.passports": "ашық QR-паспорттар",
     "intro.target": "толық танылу мақсаты",
     "platform.eyebrow": "Лендинг емес, платформа",
-    "platform.title": "TAZY.PRO қоғамдық сенімді, асылдандыру жұмысын, мәдени мұраны және институционалдық деректерді бір жүйеге біріктіруі керек.",
+    "platform.title": "TAZY.DOG қоғамдық сенімді, асылдандыру жұмысын, мәдени мұраны және институционалдық деректерді бір жүйеге біріктіруі керек.",
     "platform.text":
       "Пайдаланушы мұнда жай медиа-витрина емес, жұмыс істейтін инфрақұрылым тұрғанын бірден көруі керек: тізілім, селекционерлер желісі, гео-экожүйе, дипломатиялық қабат және FCI-ге дайындық контуры.",
     "platform.cardRegistryLabel": "Ашық қабат",
@@ -731,7 +731,7 @@ export const copyCatalog = {
     "modules.dataRoomTitle": "Data Room",
     "modules.dataRoomText": "FCI экспорты, мемлекеттік есептер, ғылыми срездер және дәлел манифестері.",
     "benchmark.eyebrow": "Әлемдік benchmark",
-    "benchmark.title": "TAZY.PRO өзінің құндылығын тек ZooEasy, PDO және AKC Marketplace-пен салыстырғанда айырмашылығын нақты көрсетсе ғана ұсынады.",
+    "benchmark.title": "TAZY.DOG өзінің құндылығын тек ZooEasy, PDO және AKC Marketplace-пен салыстырғанда айырмашылығын нақты көрсетсе ғана ұсынады.",
     "benchmark.text":
       "Қазіргі шешімдер тізілім мен шежірені жабады, бірақ FCI, денсаулық, мәдениет, туризм, дипломатия және сақталу қағидаларын бір тұтас дәлел жүйесінде біріктірмейді.",
     "benchmark.platform": "Платформа",
@@ -917,7 +917,7 @@ export const copyCatalog = {
     "breeding.metricDiversity": "Генетикалық әртүрлілік сигналы",
     "architecture.eyebrow": "Техникалық контур",
     "architecture.title":
-      "Техникалық тұрғыдан TAZY.PRO тұқымның операциялық жүйесі болуы керек: деректер ядроға бір рет кіреді де, ашық, сарапшылық және институционалдық қабаттарға тарайды.",
+      "Техникалық тұрғыдан TAZY.DOG тұқымның операциялық жүйесі болуы керек: деректер ядроға бір рет кіреді де, ашық, сарапшылық және институционалдық қабаттарға тарайды.",
     "architecture.text":
       "Ядро ашық профильдерді, қорғалған дәлелдерді, ревьюді, экспорт пакеттерін және болашақ мобильді сценарийлерді бөледі, сонда витрина жеке құжаттар қоймасына айналмайды.",
     "architecture.open": "Техникалық картаны ашу",
@@ -1073,7 +1073,7 @@ export const copyCatalog = {
       "Компоненттер ұзын қазақ және ағылшын жолдарына есептелген, карточка, батырма және мобильді навигация бұзылмайды.",
     "launch.title": "Дұрыс іске қосу — әуелі жұмыс істейтін инфрақұрылым, содан кейін соның айналасындағы медиа толқын.",
     "launch.text":
-      "17 мамырдан 3 қыркүйекке дейінгі кезең тіркеулерді жинау, сценарийлерді тексеру, селекционерлерді біріктіру және TAZY.PRO-ды әрекет нүктесіне айналдыратын медиа кампания ретінде жүруі керек.",
+      "17 мамырдан 3 қыркүйекке дейінгі кезең тіркеулерді жинау, сценарийлерді тексеру, селекционерлерді біріктіру және TAZY.DOG-ды әрекет нүктесіне айналдыратын медиа кампания ретінде жүруі керек.",
     "launch.cta": "Тіркеуді бастау",
     "footer.summary": "Қазақ тазысына арналған дәлелді цифрлық инфрақұрылым.",
     "footer.dataRoom": "FCI деректер кабинеті",
@@ -1283,11 +1283,11 @@ export const copyCatalog = {
     },
   },
   en: {
-    "meta.title": "TAZY.PRO · National Digital Platform for the Kazakh Tazy",
-    "meta.description": "TAZY.PRO is the national digital platform for the Kazakh Tazy: registry, breeder network, QR passports, heritage map, and the FCI readiness track.",
+    "meta.title": "TAZY.DOG · National Digital Platform for the Kazakh Tazy",
+    "meta.description": "TAZY.DOG is the national digital platform for the Kazakh Tazy: registry, breeder network, QR passports, heritage map, and the FCI readiness track.",
     "brand.subtitle": "National digital breed platform",
     "a11y.skipToRegistry": "Skip to registry",
-    "a11y.home": "TAZY.PRO home",
+    "a11y.home": "TAZY.DOG home",
     "a11y.primaryNavigation": "Primary navigation",
     "a11y.language": "Language",
     "a11y.toggleTheme": "Toggle theme",
@@ -1306,7 +1306,7 @@ export const copyCatalog = {
     "a11y.footerNavigation": "Footer navigation",
     "a11y.protectedNavigation": "Protected navigation",
     "a11y.benchmark": "Platform comparison",
-    "a11y.moduleMap": "TAZY.PRO modules map",
+    "a11y.moduleMap": "TAZY.DOG modules map",
     "a11y.fciProofRail": "FCI recognition path",
     "a11y.healthLedger": "Health Passport and genetic data",
     "nav.registry": "Registry",
@@ -1317,7 +1317,7 @@ export const copyCatalog = {
     "nav.fci": "FCI",
     "nav.launch": "Launch",
     "cta.register": "Start registration",
-    heroTitle: "TAZY.PRO",
+    heroTitle: "TAZY.DOG",
     heroText:
       "A national digital platform for Tazy registry, breeding, cultural heritage, and institutional readiness: from a public dog profile to an FCI evidence package.",
     "hero.registryCta": "Open registry",
@@ -1339,7 +1339,7 @@ export const copyCatalog = {
     "intro.passports": "public QR passports",
     "intro.target": "full recognition target",
     "platform.eyebrow": "Platform, not landing page",
-    "platform.title": "TAZY.PRO should connect public trust, breeding operations, cultural heritage, and institutional data in one system.",
+    "platform.title": "TAZY.DOG should connect public trust, breeding operations, cultural heritage, and institutional data in one system.",
     "platform.text":
       "The product should immediately read as working infrastructure rather than a media showcase: registry, breeder network, geo ecosystem, diplomacy layer, and the FCI evidence track.",
     "platform.cardRegistryLabel": "Public trust",
@@ -1373,7 +1373,7 @@ export const copyCatalog = {
     "modules.dataRoomTitle": "Data Room",
     "modules.dataRoomText": "FCI export, state reports, science slices, and evidence manifests.",
     "benchmark.eyebrow": "Global benchmark",
-    "benchmark.title": "Our strength exists only if the platform clearly shows how TAZY.PRO differs from ZooEasy, PDO, and AKC Marketplace.",
+    "benchmark.title": "Our strength exists only if the platform clearly shows how TAZY.DOG differs from ZooEasy, PDO, and AKC Marketplace.",
     "benchmark.text":
       "Most solutions cover registry and pedigrees, but do not combine FCI, health, culture, tourism, diplomacy, and preservation into one evidence system.",
     "benchmark.platform": "Platform",
@@ -1557,7 +1557,7 @@ export const copyCatalog = {
     "breeding.metricDiversity": "Genetic diversity signal",
     "architecture.eyebrow": "Technical contour",
     "architecture.title":
-      "Technically, TAZY.PRO should be the breed operating system: data enters the core once and then flows into public, expert, and institutional layers.",
+      "Technically, TAZY.DOG should be the breed operating system: data enters the core once and then flows into public, expert, and institutional layers.",
     "architecture.text":
       "The core separates public profiles, protected evidence, review, export packages, and future mobile workflows so the showcase never becomes a private-document store.",
     "architecture.open": "Open technical map",
@@ -1713,7 +1713,7 @@ export const copyCatalog = {
       "Components account for longer Kazakh and English strings without breaking cards, buttons, and mobile navigation.",
     "launch.title": "The right launch is working infrastructure first, then a media wave around it.",
     "launch.text":
-      "The period from 17 May to 3 September should be used to gather registrations, test operating flows, align breeders, and make TAZY.PRO the action point of the campaign.",
+      "The period from 17 May to 3 September should be used to gather registrations, test operating flows, align breeders, and make TAZY.DOG the action point of the campaign.",
     "launch.cta": "Start registration",
     "footer.summary": "Evidence-grade digital infrastructure for the Kazakh Tazy.",
     "footer.dataRoom": "FCI Data Room",

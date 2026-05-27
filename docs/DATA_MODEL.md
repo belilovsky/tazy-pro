@@ -1,4 +1,4 @@
-# TAZY.PRO Data Model Draft
+# TAZY.DOG Data Model Draft
 
 This is a domain draft for the MVP. It is intentionally framework-neutral.
 

@@ -4,12 +4,16 @@ set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 DIST_DIR="${ROOT_DIR}/dist/hostinger"
 MAIN_DIR="${DIST_DIR}/tazy.dog"
-REDIRECT_DIR="${DIST_DIR}/tazy.pro"
+PRO_DIR="${DIST_DIR}/tazy.pro"
 API_BASE="${HOSTINGER_API_BASE:-https://tazy.qdev.run}"
 CANONICAL_URL="${HOSTINGER_CANONICAL_URL:-https://tazy.dog/}"
 
-rm -rf "${MAIN_DIR}" "${REDIRECT_DIR}"
-install -d -m 0755 "${MAIN_DIR}" "${REDIRECT_DIR}"
+rm -rf "${MAIN_DIR}" "${PRO_DIR}"
+rm -f \
+  "${DIST_DIR}/tazy.dog-hostinger.zip" \
+  "${DIST_DIR}/tazy.pro-hostinger.zip" \
+  "${DIST_DIR}/tazy.pro-redirect-hostinger.zip"
+install -d -m 0755 "${MAIN_DIR}" "${PRO_DIR}"
 
 cp "${ROOT_DIR}/index.html" "${MAIN_DIR}/index.html"
 cp "${ROOT_DIR}/styles.css" "${MAIN_DIR}/styles.css"
@@ -62,20 +66,38 @@ cat > "${MAIN_DIR}/sitemap.xml" <<'SITEMAP'
 </urlset>
 SITEMAP
 
-cp "${ROOT_DIR}/ops/hostinger/tazy-pro-redirect.htaccess" "${REDIRECT_DIR}/.htaccess"
-cp "${ROOT_DIR}/ops/hostinger/tazy-pro-redirect.html" "${REDIRECT_DIR}/index.html"
+cp "${ROOT_DIR}/ops/hostinger/tazy-pro-feed.htaccess" "${PRO_DIR}/.htaccess"
+cp "${ROOT_DIR}/ops/hostinger/tazy-pro-feed.html" "${PRO_DIR}/index.html"
+cp -R "${ROOT_DIR}/assets" "${PRO_DIR}/assets"
+
+cat > "${PRO_DIR}/robots.txt" <<'ROBOTS'
+User-agent: *
+Allow: /
+Sitemap: https://tazy.pro/sitemap.xml
+ROBOTS
+
+cat > "${PRO_DIR}/sitemap.xml" <<'SITEMAP'
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://tazy.pro/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+</urlset>
+SITEMAP
 
 (
   cd "${MAIN_DIR}"
   zip -qr "${DIST_DIR}/tazy.dog-hostinger.zip" .
 )
 (
-  cd "${REDIRECT_DIR}"
-  zip -qr "${DIST_DIR}/tazy.pro-redirect-hostinger.zip" .
+  cd "${PRO_DIR}"
+  zip -qr "${DIST_DIR}/tazy.pro-hostinger.zip" .
 )
 
 echo "Built Hostinger bundles:"
 echo "  ${MAIN_DIR}"
 echo "  ${DIST_DIR}/tazy.dog-hostinger.zip"
-echo "  ${REDIRECT_DIR}"
-echo "  ${DIST_DIR}/tazy.pro-redirect-hostinger.zip"
+echo "  ${PRO_DIR}"
+echo "  ${DIST_DIR}/tazy.pro-hostinger.zip"

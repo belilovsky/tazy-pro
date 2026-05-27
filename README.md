@@ -1,4 +1,4 @@
-# TAZY.PRO
+# TAZY.DOG
 
 Working MVP for the national digital Tazy platform: public registry, breeder
 network, geo/heritage surface, digital passport, technical architecture map,
@@ -96,9 +96,10 @@ npm run build:hostinger
 ```
 
 This creates `dist/hostinger/tazy.dog-hostinger.zip` for the main site and
-`dist/hostinger/tazy.pro-redirect-hostinger.zip` for the temporary 301 redirect
-to `https://tazy.dog/`. The Hostinger bundle points the static frontend at the
-current backend API on `https://tazy.qdev.run`.
+`dist/hostinger/tazy.pro-hostinger.zip` for the separate feed/nutrition site.
+The `tazy.dog` Hostinger bundle points the breed frontend at the current
+backend API on `https://tazy.qdev.run`; `tazy.pro` is a standalone static
+product page for feeds, rations, and kennel nutrition programs.
 
 ## Backend
 
