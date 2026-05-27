@@ -199,6 +199,7 @@ button {
 .brand {
   gap: 12px;
   min-width: 210px;
+  min-height: 44px;
 }
 
 .brand-mark {
@@ -244,7 +245,7 @@ button {
 .desktop-nav a,
 .site-footer a {
   display: inline-flex;
-  min-height: 40px;
+  min-height: 44px;
   align-items: center;
   padding: 0 10px;
   border-radius: 999px;
@@ -279,8 +280,8 @@ button {
 }
 
 .language-switch button {
-  min-width: 36px;
-  min-height: 30px;
+  min-width: 44px;
+  min-height: 44px;
   border-radius: 999px;
   background: transparent;
   color: var(--color-text-secondary);
@@ -300,7 +301,7 @@ button {
 }
 
 .mobile-language-switch button {
-  min-height: 38px;
+  min-height: 44px;
   flex: 1;
   border: 1px solid var(--border-subtle);
   border-radius: 999px;
@@ -318,10 +319,12 @@ button {
 .theme-button,
 .menu-button,
 .mobile-menu-close {
+  flex: 0 0 44px;
   display: grid;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   place-items: center;
+  padding: 0;
   border: 1px solid var(--border-subtle);
   border-radius: 50%;
   background: var(--surface-control);
@@ -410,16 +413,15 @@ button {
 .mobile-menu {
   position: fixed;
   z-index: 120;
-  top: 82px;
-  right: 18px;
-  left: 18px;
+  inset: 0;
   display: none;
   flex-direction: column;
   gap: 10px;
-  padding: 18px;
+  overflow-y: auto;
+  padding: max(18px, env(safe-area-inset-top)) 18px max(24px, env(safe-area-inset-bottom));
   border: 1px solid var(--border-subtle);
-  border-radius: 22px;
-  background: var(--surface-raised);
+  border-radius: 0;
+  background: var(--surface-base);
   box-shadow: var(--shadow-elevation-lg);
 }
 
@@ -526,7 +528,7 @@ button {
   color: var(--color-text-on-hero);
   font-family: var(--font-display);
   font-size: 5.8rem;
-  line-height: 0.92;
+  line-height: 1.02;
   font-weight: 700;
 }
 
@@ -872,6 +874,7 @@ button {
   min-height: 58px;
   padding: 16px;
   border-right: 1px solid var(--border-subtle);
+  overflow-wrap: anywhere;
 }
 
 .benchmark-head span {
@@ -932,8 +935,11 @@ button {
 .operations-card h3 {
   margin: 0;
   font-family: var(--font-display);
-  font-size: 1.65rem;
+  font-size: clamp(1.38rem, 1.75vw, 1.6rem);
   line-height: 1.08;
+  hyphens: auto;
+  overflow-wrap: anywhere;
+  text-wrap: normal;
 }
 
 .platform-card span,
@@ -1212,6 +1218,7 @@ button {
 .route-back {
   display: inline-flex;
   width: fit-content;
+  min-height: 44px;
   align-items: center;
   color: var(--color-accent-secondary);
   font-size: 0.86rem;
@@ -2349,6 +2356,7 @@ select {
   display: grid;
   min-width: 0;
   gap: 3px;
+  overflow-wrap: anywhere;
 }
 
 .data-room-row small,
@@ -2358,13 +2366,31 @@ select {
 
 .data-room-row em {
   flex: 0 0 auto;
-  max-width: 150px;
+  max-width: 180px;
   color: var(--color-accent-primary);
   font-size: 0.78rem;
   font-style: normal;
   font-weight: 850;
+  line-height: 1.25;
   text-align: right;
   text-transform: uppercase;
+}
+
+.hero-panel > strong,
+.hero-proof-rail strong,
+.intro-strip strong,
+.metrics-rail strong,
+.route-stat-grid strong,
+.public-route-stat-grid strong,
+.data-room-cycle strong {
+  line-height: 1.15;
+}
+
+.route-hero-copy h1,
+.passport-copy h1,
+.public-route-header h1,
+.admin-heading h1 {
+  line-height: 1.04;
 }
 
 .site-footer {
