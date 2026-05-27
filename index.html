@@ -38,8 +38,8 @@
       })();
     </script>
     <title data-copy="meta.title">TAZY.DOG · Национальная цифровая платформа казахской тазы</title>
-    <link rel="stylesheet" href="/assets/fonts/avds/avds-fonts.css?v=20260528T051500Z" />
-    <link rel="stylesheet" href="/styles.css?v=20260528T051500Z" />
+    <link rel="stylesheet" href="/assets/fonts/avds/avds-fonts.css?v=20260528T071500Z" />
+    <link rel="stylesheet" href="/styles.css?v=20260528T071500Z" />
   </head>
   <body>
     <a class="skip-link" href="#registry" data-copy="a11y.skipToRegistry">Перейти к реестру</a>
@@ -460,32 +460,21 @@
               <button type="button" data-map-layer-control="heritage" aria-pressed="false" data-copy="mapdash.layerHeritage">Наследие</button>
             </div>
 
+            <div class="map-stage-meta">
+              <p class="map-provenance" data-copy="mapdash.provenance">QazGEO ADM1 · реальные границы регионов и сценарные узлы TAZY.DOG</p>
+              <div class="map-legend" aria-hidden="true">
+                <span><i class="map-legend-swatch map-legend-swatch-region"></i><em data-copy="mapdash.legendBoundary">региональный контур</em></span>
+                <span><i class="map-legend-swatch map-legend-swatch-active"></i><em data-copy="mapdash.legendActive">активные узлы слоя</em></span>
+                <span><i class="map-legend-swatch map-legend-swatch-route"></i><em data-copy="mapdash.legendRoute">рабочий маршрут</em></span>
+              </div>
+            </div>
+
             <div class="map-canvas" aria-label="Карта Казахстана" data-copy-aria-label="mapdash.canvasAria">
-              <svg class="map-shape" viewBox="0 0 720 360" role="img" aria-hidden="true">
-                <path class="kz-shell" d="M56 204 96 158 148 146 180 110 244 104 306 80 374 88 434 72 504 90 578 86 646 116 672 154 648 182 658 214 632 246 576 256 534 290 452 302 396 284 340 294 286 272 226 284 176 262 110 256 76 228Z"></path>
-                <path class="kz-ridge" d="M132 176 220 168 280 136 340 144 420 126 490 144 574 140 626 170"></path>
-                <path class="kz-ridge" d="M188 238 260 220 336 234 412 214 474 230 540 218"></path>
-              </svg>
+              <svg class="map-shape" viewBox="0 0 900 520" role="img" aria-hidden="true" data-map-svg></svg>
 
-              <div class="map-node-layer" data-map-layer-group="registry">
-                <span class="map-node map-node-primary" style="--x: 67%; --y: 63%"><b>Алматы</b><small data-copy="mapdash.nodeRegistryAlmaty">кластер родословных и здоровье</small></span>
-                <span class="map-node" style="--x: 55%; --y: 38%"><b>Астана</b><small data-copy="mapdash.nodeRegistryAstana">review и экспортный контур</small></span>
-                <span class="map-node" style="--x: 60%; --y: 72%"><b>Туркестан</b><small data-copy="mapdash.nodeRegistryTurkistan">питомники и молодые линии</small></span>
-                <span class="map-node" style="--x: 29%; --y: 46%"><b>Актобе</b><small data-copy="mapdash.nodeRegistryAktobe">региональный набор профилей</small></span>
-              </div>
-
-              <div class="map-node-layer" data-map-layer-group="field" hidden>
-                <span class="map-node map-node-primary" style="--x: 64%; --y: 67%"><b>Жетысу</b><small data-copy="mapdash.nodeFieldZhetysu">весенний коридор испытаний</small></span>
-                <span class="map-node" style="--x: 48%; --y: 50%"><b>Сарыарка</b><small data-copy="mapdash.nodeFieldSaryarka">полевые выезды и offline check</small></span>
-                <span class="map-node" style="--x: 21%; --y: 58%"><b>Мангистау</b><small data-copy="mapdash.nodeFieldMangystau">гостевой маршрут и контроль паспорта</small></span>
-              </div>
-
-              <div class="map-node-layer" data-map-layer-group="heritage" hidden>
-                <span class="map-node map-node-primary" style="--x: 57%; --y: 58%"><b>Улытау</b><small data-copy="mapdash.nodeHeritageUlytau">устные истории и линии</small></span>
-                <span class="map-node" style="--x: 70%; --y: 66%"><b>Алматы</b><small data-copy="mapdash.nodeHeritageAlmaty">паспорт, архив и медиа-слой</small></span>
-                <span class="map-node" style="--x: 62%; --y: 73%"><b>Туркестан</b><small data-copy="mapdash.nodeHeritageTurkistan">культурный маршрут и локальные кураторы</small></span>
-                <span class="map-node" style="--x: 79%; --y: 24%"><b>Paris</b><small data-copy="mapdash.nodeHeritageParis">международный дипломатический кейс</small></span>
-              </div>
+              <div class="map-node-layer" data-map-layer-group="registry"></div>
+              <div class="map-node-layer" data-map-layer-group="field" hidden></div>
+              <div class="map-node-layer" data-map-layer-group="heritage" hidden></div>
             </div>
           </div>
 
@@ -495,8 +484,8 @@
               <h3 data-copy="mapdash.registryTitle">Карта показывает не просто точки, а подтвержденные рабочие узлы.</h3>
               <span data-copy="mapdash.registryText">Верхний слой связывает поголовье, питомники, проверенные профили и точки, где уже есть смысл для публичной проверки.</span>
               <ul class="map-metric-list">
-                <li><b>17</b><span data-copy="mapdash.registryMetricOne">регионов в одном контуре</span></li>
-                <li><b>3</b><span data-copy="mapdash.registryMetricTwo">опорных кластера для верификации</span></li>
+                <li><b>QazGEO</b><span data-copy="mapdash.registryMetricOne">регионов в одном контуре</span></li>
+                <li><b>4</b><span data-copy="mapdash.registryMetricTwo">опорных кластера для верификации</span></li>
                 <li><b>QR</b><span data-copy="mapdash.registryMetricThree">единая точка входа в профиль</span></li>
               </ul>
             </article>
@@ -897,6 +886,6 @@
       </div>
     </footer>
 
-    <script type="module" src="/src/main.js?v=20260528T051500Z"></script>
+    <script type="module" src="/src/main.js?v=20260528T071500Z"></script>
   </body>
 </html>

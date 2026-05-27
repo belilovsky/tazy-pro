@@ -1,5 +1,5 @@
-import { pairScores } from "../data/platform.js?v=20260528T051500Z";
-import { LANGUAGE_EVENT, getCurrentLang, translateSeedText } from "../i18n/runtime.js?v=20260528T051500Z";
+import { pairScores } from "../data/platform.js?v=20260528T071500Z";
+import { LANGUAGE_EVENT, getCurrentLang, translateSeedText } from "../i18n/runtime.js?v=20260528T071500Z";
 
 export function initBreeding(root = document) {
   const sire = root.querySelector("[data-sire]");
