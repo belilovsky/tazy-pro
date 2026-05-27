@@ -21,7 +21,7 @@
     <link rel="alternate" hreflang="ru" href="https://tazy.dog/" data-hreflang="ru" />
     <link rel="alternate" hreflang="en" href="https://tazy.dog/en/" data-hreflang="en" />
     <link rel="alternate" hreflang="x-default" href="https://tazy.dog/" data-hreflang="x-default" />
-    <meta name="theme-color" content="#071014" />
+    <meta name="theme-color" content="#081317" />
     <link rel="preload" href="/assets/fonts/avds/ibm-plex-sans-002.woff2" as="font" type="font/woff2" crossorigin />
     <script>
       (() => {
@@ -30,7 +30,7 @@
           const preferredTheme = window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
           const theme = storedTheme === "light" || storedTheme === "dark" ? storedTheme : preferredTheme;
           document.documentElement.dataset.theme = theme;
-          const themeColor = theme === "light" ? "#f8fbf8" : "#071014";
+          const themeColor = theme === "light" ? "#f4f6f3" : "#081317";
           document.querySelector('meta[name="theme-color"]')?.setAttribute("content", themeColor);
         } catch (error) {
           // Ignore storage and media-query failures before app bootstrap.
@@ -38,8 +38,8 @@
       })();
     </script>
     <title data-copy="meta.title">TAZY.DOG · Национальная цифровая платформа казахской тазы</title>
-    <link rel="stylesheet" href="/assets/fonts/avds/avds-fonts.css?v=20260528T071500Z" />
-    <link rel="stylesheet" href="/styles.css?v=20260528T071500Z" />
+    <link rel="stylesheet" href="/assets/fonts/avds/avds-fonts.css?v=20260527T212801Z" />
+    <link rel="stylesheet" href="/styles.css?v=20260527T212801Z" />
   </head>
   <body>
     <a class="skip-link" href="#registry" data-copy="a11y.skipToRegistry">Перейти к реестру</a>
@@ -132,8 +132,8 @@
           <div class="hero-copy">
             <h1 id="hero-title" data-copy="heroTitle">TAZY.DOG</h1>
             <p data-copy="heroText">
-              Национальная цифровая платформа казахской тазы: единый реестр собак, сеть ответственных
-              заводчиков, цифровые паспорта, карта наследия и доказательный трек для FCI.
+              Национальная цифровая платформа казахской тазы: реестр собак, сеть заводчиков,
+              цифровые паспорта, карта породы и контур данных для FCI.
             </p>
             <div class="hero-actions">
               <a class="primary-button" href="#registry" data-copy="hero.registryCta">Открыть реестр</a>
@@ -196,12 +196,11 @@
 
       <section class="section platform-section" aria-labelledby="platform-title">
         <div class="section-heading">
-          <p data-copy="platform.eyebrow">Не лендинг, а система</p>
-          <h2 id="platform-title" data-copy="platform.title">TAZY.DOG связывает реестр, племенную работу, культурное наследие и институциональные данные в одну систему.</h2>
+          <p data-copy="platform.eyebrow">Рабочая платформа</p>
+          <h2 id="platform-title" data-copy="platform.title">TAZY.DOG объединяет реестр, племенную работу, карту и FCI-контур.</h2>
           <span data-copy="platform.text">
-            С первого экрана ясно: перед нами не промо-сайт и не витрина обещаний, а
-            рабочая инфраструктура породы с реестром, сетью заводчиков, картой, кабинетом данных и
-            международным треком.
+            С главной страницы доступны ключевые сервисы: профили собак, сеть заводчиков,
+            операционная карта, селекционный блок и кабинет данных.
           </span>
         </div>
 
@@ -238,8 +237,8 @@
           </a>
           <a class="service-card" href="#/fci-progress">
             <p data-copy="platform.serviceInstitutionalEyebrow">FCI и Data Room</p>
-            <h3 data-copy="platform.serviceInstitutionalTitle">Публичный прогресс, защищенный кабинет и review-контур</h3>
-            <span data-copy="platform.serviceInstitutionalText">Главная точка входа для федерации, reviewer-команды и партнеров, которым нужны живые доказательства.</span>
+            <h3 data-copy="platform.serviceInstitutionalTitle">Публичный прогресс, кабинет данных и контур проверки</h3>
+            <span data-copy="platform.serviceInstitutionalText">Вход для федерации, экспертов и партнеров, которым нужны живые данные, статусы и выгрузки.</span>
             <b data-copy="platform.serviceInstitutionalCta">Открыть институциональный слой</b>
           </a>
         </div>
@@ -247,14 +246,14 @@
         <article class="service-status" aria-label="Состояние ядра платформы" data-copy-aria-label="platform.statusAria">
           <div>
             <p data-copy="platform.statusEyebrow">Рабочее ядро</p>
-            <h3 data-copy="platform.statusTitle">Главная ведет в сервисы, а не в презентацию.</h3>
-            <span data-copy="platform.statusText">Ниже собраны реальные рабочие поверхности: публичный реестр, карта, селекционный блок, FCI-контур и reviewer-сценарий.</span>
+            <h3 data-copy="platform.statusTitle">Публичный и экспертный контуры работают на одной модели данных.</h3>
+            <span data-copy="platform.statusText">Профили, доказательства, география, селекция и отчеты используют общие правила верификации и один журнал событий.</span>
           </div>
           <ul>
             <li data-copy="platform.statusItemOne">Публичный профиль собаки и QR-паспорт</li>
-            <li data-copy="platform.statusItemTwo">Проверка доказательств и protected review flow</li>
+            <li data-copy="platform.statusItemTwo">Контур проверки доказательств и ролей доступа</li>
             <li data-copy="platform.statusItemThree">Операционная карта по регионам и сценариям</li>
-            <li data-copy="platform.statusItemFour">Племенной калькулятор и Health Passport</li>
+            <li data-copy="platform.statusItemFour">Племенной калькулятор и паспорт здоровья</li>
           </ul>
         </article>
       </section>
@@ -336,10 +335,10 @@
       <section class="section evidence-section" id="registry" aria-labelledby="registry-title">
         <div class="section-heading">
           <p data-copy="registry.eyebrow">Доказательный реестр</p>
-          <h2 id="registry-title" data-copy="registry.title">Публичный профиль собаки заменяет папку из разрозненных справок.</h2>
+          <h2 id="registry-title" data-copy="registry.title">Публичный профиль собаки — базовый объект всей платформы.</h2>
           <span data-copy="registry.text">
-            Одна карточка показывает происхождение, здоровье, ДНК, полевые испытания и готовность к
-            международному экспорту данных.
+            Карточка объединяет происхождение, здоровье, ДНК, полевые испытания и экспортную
+            готовность в одном проверяемом объекте.
           </span>
         </div>
 
@@ -412,11 +411,10 @@
         <div class="trust-layout">
         <div class="section-heading align-left trust-copy">
           <p data-copy="breeders.eyebrow">Сеть заводчиков</p>
-          <h2 id="breeders-title" data-copy="breeders.title">Сеть заводчиков показывает не только факт регистрации, но и качество работы.</h2>
+          <h2 id="breeders-title" data-copy="breeders.title">Сеть заводчиков показывает статус, обязательства и качество работы.</h2>
             <span data-copy="breeders.text">
-              Три уровня участия, кодекс ответственного заводчика, декларации пометов и прозрачные
-              требования к паспорту здоровья создают доверие ко всей сети, а не к одной удачной
-              карточке.
+              Уровни участия, кодекс сети, декларации пометов и паспорт здоровья собираются
+              в один прозрачный профессиональный контур.
             </span>
             <div class="section-actions section-actions-left">
               <a class="secondary-button" href="#/breeders" data-copy="breeders.open">Открыть каталог и уровни</a>
@@ -446,9 +444,9 @@
       <section class="section ecosystem-section" id="ecosystem" aria-labelledby="ecosystem-title">
         <div class="section-heading">
           <p data-copy="mapdash.eyebrow">Операционная карта</p>
-          <h2 id="ecosystem-title" data-copy="mapdash.title">Карта сразу показывает, где находится порода, где идут полевые сценарии и где собирается культурный контур.</h2>
+          <h2 id="ecosystem-title" data-copy="mapdash.title">Карта показывает региональные узлы, полевые сценарии и культурный слой.</h2>
           <span data-copy="mapdash.text">
-            Это не декоративный блок. Карта связывает региональные узлы, проверки, события, маршруты и будущий международный слой.
+            На одной гео-основе видны профили, питомники, события, маршруты и точки наследия.
           </span>
         </div>
 
@@ -481,8 +479,8 @@
           <aside class="map-inspector">
             <article class="map-summary" data-map-summary="registry">
               <p data-copy="mapdash.registryEyebrow">Слой реестра</p>
-              <h3 data-copy="mapdash.registryTitle">Карта показывает не просто точки, а подтвержденные рабочие узлы.</h3>
-              <span data-copy="mapdash.registryText">Верхний слой связывает поголовье, питомники, проверенные профили и точки, где уже есть смысл для публичной проверки.</span>
+              <h3 data-copy="mapdash.registryTitle">Реестр привязан к реальной географии породы.</h3>
+              <span data-copy="mapdash.registryText">Карта показывает подтвержденные кластеры, точки проверки и регионы, где уже накоплен рабочий массив профилей.</span>
               <ul class="map-metric-list">
                 <li><b>QazGEO</b><span data-copy="mapdash.registryMetricOne">регионов в одном контуре</span></li>
                 <li><b>4</b><span data-copy="mapdash.registryMetricTwo">опорных кластера для верификации</span></li>
@@ -523,10 +521,10 @@
       <section class="section intelligence-section" id="breeding" aria-labelledby="breeding-title">
         <div class="section-heading align-left">
           <p data-copy="breeding.eyebrow">Генетический центр</p>
-          <h2 id="breeding-title" data-copy="breeding.title">Разведение здесь выглядит как управление популяцией, а не подбор пары наугад.</h2>
+          <h2 id="breeding-title" data-copy="breeding.title">Селекция работает как инструмент управления популяцией.</h2>
           <span data-copy="breeding.text">
-            Платформа считает COI, моделирует помёт, отслеживает эффект популярного производителя и
-            показывает риски до решения заводчика.
+            COI, давление популярного производителя, разнообразие линий и моделирование помета
+            доступны до решения по вязке.
           </span>
         </div>
 
@@ -717,9 +715,10 @@
       <section class="section fci-section" id="fci" aria-labelledby="fci-title">
         <div class="section-heading">
           <p data-copy="ops.eyebrow">Институциональный слой</p>
-          <h2 id="fci-title" data-copy="ops.title">Публичный трек, защищенные кабинеты и паспортный слой собираются в один рабочий контур.</h2>
+          <h2 id="fci-title" data-copy="ops.title">Публичный трек, кабинет данных и паспортный слой работают как единый контур.</h2>
           <span data-copy="ops.text">
-            Главная показывает, какие поверхности работают наружу, а какие остаются инструментом для reviewer-команды, федерации и FCI-пакетов.
+            Снаружи виден статус цикла, внутри доступны защищенные документы, выгрузки,
+            проверка и международный паспортный слой.
           </span>
         </div>
 
@@ -737,10 +736,10 @@
             <a class="profile-link" href="#/data-room" data-copy="ops.dataCta">Открыть кабинет данных</a>
           </article>
           <article class="operations-card">
-            <p data-copy="ops.reviewLabel">Review OS</p>
+            <p data-copy="ops.reviewLabel">Контур проверки</p>
             <h3 data-copy="ops.reviewTitle">Кабинет проверки</h3>
-            <span data-copy="ops.reviewText">Приватные документы, статусы ревью, запросы доработок и журнал решений живут отдельно от публичной витрины.</span>
-            <a class="profile-link" href="#/admin" data-copy="ops.reviewCta">Открыть review-контур</a>
+            <span data-copy="ops.reviewText">Приватные документы, статусы проверки, запросы доработок и журнал решений живут отдельно от публичной витрины.</span>
+            <a class="profile-link" href="#/admin" data-copy="ops.reviewCta">Открыть контур проверки</a>
           </article>
           <article class="operations-card">
             <p data-copy="ops.passportLabel">Паспортный слой</p>
@@ -813,11 +812,11 @@
 
       <section class="section design-system-section" id="avds" aria-labelledby="design-system-title" hidden>
         <div class="section-heading">
-          <p data-copy="design.eyebrow">AV DS интерфейс</p>
-          <h2 id="design-system-title" data-copy="design.title">AV DS здесь не декор, а единый язык публичного сайта, кабинета проверки и будущего полевого приложения.</h2>
+          <p data-copy="design.eyebrow">AV DS 4</p>
+          <h2 id="design-system-title" data-copy="design.title">AV DS 4 задает единый язык для публичного сайта, кабинета проверки и полевого контура.</h2>
           <span data-copy="design.text">
-            Один набор токенов, состояний, плотности и двуязычных компонентов удерживает платформу цельной,
-            даже когда появляются новые модули: регистрация, события, отчеты, карта и мобильная проверка.
+            Семантические токены, плотность, состояния и двуязычные компоненты удерживают
+            платформу цельной по мере роста модулей.
           </span>
         </div>
 
@@ -825,7 +824,7 @@
           <article class="design-system-card">
             <p data-copy="design.tokenLabel">Токены</p>
             <h3 data-copy="design.tokenTitle">Семантические поверхности</h3>
-            <span data-copy="design.tokenText">Фон, карточки, акценты, границы и статусы берутся из AV DS-токенов, поэтому темная и светлая темы ведут себя одинаково.</span>
+            <span data-copy="design.tokenText">Темная и светлая темы собираются из одного токен-слоя AV DS 4, поэтому поверхности, границы и статусы ведут себя предсказуемо.</span>
             <div class="token-row" aria-hidden="true">
               <i></i><i></i><i></i><i></i>
             </div>
@@ -886,6 +885,6 @@
       </div>
     </footer>
 
-    <script type="module" src="/src/main.js?v=20260528T071500Z"></script>
+    <script type="module" src="/src/main.js?v=20260527T212801Z"></script>
   </body>
 </html>

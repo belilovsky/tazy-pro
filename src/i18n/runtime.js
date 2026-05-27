@@ -1,4 +1,4 @@
-import { copyCatalog } from "./messages.js?v=20260528T071500Z";
+import { copyCatalog } from "./messages.js?v=20260527T212801Z";
 
 export const DEFAULT_LANG = "ru";
 export const PUBLIC_LANGS = ["ru", "en"];

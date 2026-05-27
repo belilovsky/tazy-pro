@@ -35,7 +35,7 @@ export const copyCatalog = {
     "cta.register": "Начать регистрацию",
     heroTitle: "TAZY.DOG",
     heroText:
-      "Национальная цифровая платформа казахской тазы: единый реестр собак, сеть ответственных заводчиков, цифровые паспорта, карта наследия и доказательный трек для FCI.",
+      "Национальная цифровая платформа казахской тазы: реестр собак, сеть заводчиков, цифровые паспорта, карта породы и контур данных для FCI.",
     "hero.registryCta": "Открыть реестр",
     "hero.fciCta": "Смотреть FCI-контур",
     "hero.panel.title": "Национальный запуск",
@@ -58,10 +58,10 @@ export const copyCatalog = {
     "intro.regions": "регионов и внешних узлов",
     "intro.passports": "публичные QR-паспорта",
     "intro.target": "цель полного признания",
-    "platform.eyebrow": "Не лендинг, а система",
-    "platform.title": "TAZY.DOG собирает реестр, карту, селекцию и FCI-контур в одну рабочую систему.",
+    "platform.eyebrow": "Рабочая платформа",
+    "platform.title": "TAZY.DOG объединяет реестр, племенную работу, карту и FCI-контур.",
     "platform.text":
-      "На главной видны не обещания, а рабочие входы: реестр, сеть заводчиков, карта, кабинет данных и международный трек.",
+      "С главной страницы доступны ключевые сервисы: профили собак, сеть заводчиков, операционная карта, селекционный блок и кабинет данных.",
     "platform.servicesAria": "Рабочие сервисы TAZY.DOG",
     "platform.serviceRegistryEyebrow": "Публичный реестр",
     "platform.serviceRegistryTitle": "Профили собак, QR-паспорта и открытая проверка",
@@ -89,24 +89,24 @@ export const copyCatalog = {
       "Один объект связывает карточку собаки, культурный слой, экспорт и дипломатические кейсы.",
     "platform.servicePassportCta": "Открыть паспортный слой",
     "platform.serviceInstitutionalEyebrow": "FCI и Data Room",
-    "platform.serviceInstitutionalTitle": "Публичный прогресс, защищенный кабинет и review-контур",
+    "platform.serviceInstitutionalTitle": "Публичный прогресс, кабинет данных и контур проверки",
     "platform.serviceInstitutionalText":
-      "Точка входа для федерации, reviewer-команды и партнеров, которым нужны живые доказательства.",
+      "Вход для федерации, экспертов и партнеров, которым нужны живые данные, статусы и выгрузки.",
     "platform.serviceInstitutionalCta": "Открыть институциональный слой",
     "platform.statusAria": "Состояние ядра платформы",
     "platform.statusEyebrow": "Рабочее ядро",
-    "platform.statusTitle": "Главная ведет в сервисы, а не в презентацию.",
+    "platform.statusTitle": "Публичный и экспертный контуры работают на одной модели данных.",
     "platform.statusText":
-      "Ниже собраны реальные рабочие поверхности: публичный реестр, карта, селекционный блок, FCI-контур и review-сценарий.",
+      "Профили, доказательства, география, селекция и отчеты используют общие правила верификации и один журнал событий.",
     "platform.statusItemOne": "публичный профиль собаки и QR-паспорт",
-    "platform.statusItemTwo": "защищенный review-контур для проверки доказательств",
+    "platform.statusItemTwo": "контур проверки доказательств и ролей доступа",
     "platform.statusItemThree": "операционная карта по регионам и сценариям",
     "platform.statusItemFour": "племенной калькулятор и паспорт здоровья",
     "mapdash.eyebrow": "Операционная карта",
     "mapdash.title":
-      "Карта сразу показывает, где находится порода, где идут полевые сценарии и где собирается культурный контур.",
+      "Карта показывает региональные узлы, полевые сценарии и культурный слой.",
     "mapdash.text":
-      "Это не декоративный блок. Карта связывает региональные узлы, проверки, события, маршруты и будущий международный слой.",
+      "На одной гео-основе видны профили, питомники, события, маршруты и точки наследия.",
     "mapdash.layersAria": "Слои карты",
     "mapdash.layerRegistry": "Реестр",
     "mapdash.layerField": "Полевые сценарии",
@@ -117,7 +117,7 @@ export const copyCatalog = {
     "mapdash.legendActive": "активные узлы слоя",
     "mapdash.legendRoute": "рабочий маршрут",
     "mapdash.nodeRegistryAlmaty": "кластер родословных и здоровье",
-    "mapdash.nodeRegistryAstana": "review и экспортный контур",
+    "mapdash.nodeRegistryAstana": "контур проверки и экспорта",
     "mapdash.nodeRegistryTurkistan": "питомники и молодые линии",
     "mapdash.nodeRegistryAktobe": "региональный набор профилей",
     "mapdash.nodeFieldZhetysu": "весенний коридор испытаний",
@@ -128,9 +128,9 @@ export const copyCatalog = {
     "mapdash.nodeHeritageTurkistan": "культурный маршрут и локальные кураторы",
     "mapdash.nodeHeritageParis": "международный дипломатический кейс",
     "mapdash.registryEyebrow": "Слой реестра",
-    "mapdash.registryTitle": "Карта показывает не просто точки, а подтвержденные рабочие узлы.",
+    "mapdash.registryTitle": "Реестр привязан к реальной географии породы.",
     "mapdash.registryText":
-      "Верхний слой связывает поголовье, питомники, проверенные профили и точки, где уже есть смысл для публичной проверки.",
+      "Карта показывает подтвержденные кластеры, точки проверки и регионы, где уже накоплен рабочий массив профилей.",
     "mapdash.registryMetricOne": "реальная геометрия регионов на главной",
     "mapdash.registryMetricTwo": "опорных кластера для верификации",
     "mapdash.registryMetricThree": "единая точка входа в профиль",
@@ -221,9 +221,9 @@ export const copyCatalog = {
     "journey.exportText":
       "Из живого журнала собираются квартальные срезы, пакеты для FCI и доказательная история к 2034 году.",
     "registry.eyebrow": "Доказательный реестр",
-    "registry.title": "Публичный профиль собаки заменяет папку из разрозненных справок.",
+    "registry.title": "Публичный профиль собаки — базовый объект всей платформы.",
     "registry.text":
-      "Одна карточка показывает происхождение, здоровье, ДНК, полевые испытания и готовность к международному экспорту данных.",
+      "Карточка объединяет происхождение, здоровье, ДНК, полевые испытания и экспортную готовность в одном проверяемом объекте.",
     "registry.openProfile": "Открыть публичный профиль",
     "registry.selectorBarys": "ДНК подтверждено · полевые испытания",
     "registry.selectorKoke": "родословная подтверждена · здоровье проверено",
@@ -252,9 +252,9 @@ export const copyCatalog = {
     "health.temperamentText": "поведение, устойчивость и работа с человеком",
     "breeders.eyebrow": "Сеть заводчиков",
     "breeders.title":
-      "Сеть заводчиков показывает не только факт регистрации, но и качество работы.",
+      "Сеть заводчиков показывает статус, обязательства и качество работы.",
     "breeders.text":
-      "Три уровня участия, кодекс ответственного заводчика, декларации пометов и прозрачные требования к паспорту здоровья создают доверие ко всей сети, а не к одной удачной карточке.",
+      "Уровни участия, кодекс сети, декларации пометов и паспорт здоровья собираются в один прозрачный профессиональный контур.",
     "breeders.tierOwnerLabel": "Владелец",
     "breeders.tierOwnerTitle": "Базовый уровень",
     "breeders.tierOwnerText":
@@ -288,9 +288,9 @@ export const copyCatalog = {
     "breeders.routeCtaFci": "Смотреть публичный трек FCI",
     "ecosystem.eyebrow": "Гео-экосистема",
     "ecosystem.title":
-      "После реестра начинается карта породы: поголовье, события, маршруты и наследие.",
+      "После реестра платформа собирает карту породы: регионы, события, маршруты и наследие.",
     "ecosystem.text":
-      "Профили собак, питомники, полевые испытания, культурные объекты и региональные маршруты собираются в одну обозримую систему.",
+      "География поголовья, полевые испытания, культурные точки и туристические сценарии читаются на одной операционной карте.",
     "ecosystem.mapLabel": "Региональный контур",
     "ecosystem.mapTitle": "Карта поголовья и питомников",
     "ecosystem.mapText":
@@ -327,9 +327,9 @@ export const copyCatalog = {
     "ecosystem.routeCtaRegistry": "Перейти к реестру",
     "ecosystem.routeCtaHeritage": "Открыть слой наследия",
     "breeding.eyebrow": "Генетический центр",
-    "breeding.title": "Разведение здесь выглядит как управление популяцией, а не подбор пары наугад.",
+    "breeding.title": "Селекция работает как инструмент управления популяцией.",
     "breeding.text":
-      "Платформа считает COI, моделирует помет, отслеживает эффект популярного производителя и показывает риски до решения заводчика.",
+      "COI, давление популярного производителя, разнообразие линий и моделирование помета доступны до решения по вязке.",
     "breeding.run": "Смоделировать помет",
     "breeding.metricCoi": "Коэффициент инбридинга",
     "breeding.metricSire": "Давление популярного производителя",
@@ -454,9 +454,9 @@ export const copyCatalog = {
     "heritage.routeCtaFci": "Смотреть трек FCI",
     "ops.eyebrow": "Институциональный слой",
     "ops.title":
-      "Публичный трек, защищенные кабинеты и паспортный слой собираются в один рабочий контур.",
+      "Публичный трек, кабинет данных и паспортный слой работают как единый контур.",
     "ops.text":
-      "Главная показывает, какие поверхности работают наружу, а какие остаются инструментом для reviewer-команды, федерации и FCI-пакетов.",
+      "Снаружи виден статус цикла, внутри доступны защищенные документы, выгрузки, проверка и международный паспортный слой.",
     "ops.publicLabel": "Публичный слой",
     "ops.publicTitle": "Публичный прогресс FCI",
     "ops.publicText":
@@ -467,11 +467,11 @@ export const copyCatalog = {
     "ops.dataText":
       "Срезы по родословным, здоровью, ДНК и популяции собираются в закрытый контур без ручной сборки перед дедлайном.",
     "ops.dataCta": "Открыть кабинет данных",
-    "ops.reviewLabel": "Review OS",
+    "ops.reviewLabel": "Контур проверки",
     "ops.reviewTitle": "Кабинет проверки",
     "ops.reviewText":
-      "Приватные документы, статусы ревью, запросы доработок и журнал решений живут отдельно от публичной витрины.",
-    "ops.reviewCta": "Открыть review-контур",
+      "Приватные документы, статусы проверки, запросы доработок и журнал решений живут отдельно от публичной витрины.",
+    "ops.reviewCta": "Открыть контур проверки",
     "ops.passportLabel": "Паспортный слой",
     "ops.passportTitle": "Наследие, линии и дипломатические кейсы",
     "ops.passportText":
@@ -479,9 +479,9 @@ export const copyCatalog = {
     "ops.passportCta": "Открыть паспортный слой",
     "ops.milestonesAria": "Этапы цикла признания",
     "fci.eyebrow": "Институциональный контур",
-    "fci.title": "Для FCI, государства и партнеров важна живая система, а не разовая кампания перед дедлайном.",
+    "fci.title": "Для FCI, государства и партнеров нужна живая доказательная система.",
     "fci.text":
-      "Экспорт в FCI строится из живых данных: родословные, здоровье, ДНК, темперамент, полевые испытания и популяционная статистика.",
+      "Родословные, здоровье, ДНК, темперамент, полевые испытания и популяционная статистика собираются в постоянный рабочий трек.",
     "fci.stepOneTitle": "Предварительное признание",
     "fci.stepOneText":
       "Генеральная ассамблея FCI. Тазы входит в 10 группу и получает формальный цикл до полного признания.",
@@ -545,15 +545,15 @@ export const copyCatalog = {
     "metrics.health": "покрытие паспортов здоровья к 2028",
     "metrics.clubs": "FCI-клубов партнеров к 2027",
     "metrics.exports": "квартальные FCI-отчеты в год",
-    "design.eyebrow": "AV DS интерфейс",
+    "design.eyebrow": "AV DS 4",
     "design.title":
-      "AV DS здесь не декор, а единый язык публичного сайта, кабинета проверки и будущего полевого приложения.",
+      "AV DS 4 задает единый язык для публичного сайта, кабинета проверки и полевого контура.",
     "design.text":
-      "Один набор токенов, состояний, плотности и двуязычных компонентов удерживает платформу цельной, даже когда появляются новые модули: регистрация, события, отчеты, карта и мобильная проверка.",
+      "Семантические токены, плотность, состояния и двуязычные компоненты удерживают платформу цельной по мере роста модулей.",
     "design.tokenLabel": "Токены",
     "design.tokenTitle": "Семантические поверхности",
     "design.tokenText":
-      "Фон, карточки, акценты, границы и статусы берутся из AV DS-токенов, поэтому темная и светлая темы ведут себя одинаково.",
+      "Темная и светлая темы собираются из одного токен-слоя AV DS 4, поэтому поверхности, границы и статусы ведут себя предсказуемо.",
     "design.stateLabel": "Состояния",
     "design.stateTitle": "Проверяемые статусы",
     "design.stateText":
@@ -1587,7 +1587,7 @@ export const copyCatalog = {
     "cta.register": "Start registration",
     heroTitle: "TAZY.DOG",
     heroText:
-      "A national digital platform for Tazy registry, breeding, cultural heritage, and institutional readiness: from a public dog profile to an FCI evidence package.",
+      "National digital platform for the Kazakh Tazy: dog registry, breeder network, digital passports, breed map, and FCI data track.",
     "hero.registryCta": "Open registry",
     "hero.fciCta": "View FCI contour",
     "hero.panel.title": "National launch",
@@ -1606,10 +1606,10 @@ export const copyCatalog = {
     "intro.regions": "regions and external nodes",
     "intro.passports": "public QR passports",
     "intro.target": "full recognition target",
-    "platform.eyebrow": "Platform, not landing page",
-    "platform.title": "TAZY.DOG brings the registry, map, breeding, and FCI operations into one working system.",
+    "platform.eyebrow": "Working platform",
+    "platform.title": "TAZY.DOG connects the registry, breeding operations, the map, and the FCI contour.",
     "platform.text":
-      "The homepage starts with working entry points rather than promises: registry, breeder network, map, data room, and the international track.",
+      "The homepage opens straight into the core services: dog profiles, breeder network, operations map, breeding block, and data room.",
     "platform.servicesAria": "TAZY.DOG working services",
     "platform.serviceRegistryEyebrow": "Public registry",
     "platform.serviceRegistryTitle": "Dog profiles, QR passports, and public verification",
@@ -1637,24 +1637,24 @@ export const copyCatalog = {
       "One object links the dog card, the cultural layer, export, and diplomacy cases.",
     "platform.servicePassportCta": "Open passport layer",
     "platform.serviceInstitutionalEyebrow": "FCI and Data Room",
-    "platform.serviceInstitutionalTitle": "Public progress, protected workspace, and review contour",
+    "platform.serviceInstitutionalTitle": "Public progress, data room, and evidence review",
     "platform.serviceInstitutionalText":
-      "An entry point for federation users, reviewers, and partners who need live evidence.",
+      "An entry point for federation users, experts, and partners who need live data, statuses, and exports.",
     "platform.serviceInstitutionalCta": "Open institutional layer",
     "platform.statusAria": "Platform core status",
     "platform.statusEyebrow": "Working core",
-    "platform.statusTitle": "The homepage leads into services, not a presentation.",
+    "platform.statusTitle": "Public and expert layers run on one data model.",
     "platform.statusText":
-      "Below are the real working surfaces: the public registry, the map, the breeding block, the FCI contour, and the review flow.",
+      "Profiles, evidence, geography, breeding, and reporting share one verification logic and one event log.",
     "platform.statusItemOne": "public dog profile and QR passport",
-    "platform.statusItemTwo": "protected review contour for evidence checks",
+    "platform.statusItemTwo": "evidence review contour and access roles",
     "platform.statusItemThree": "operational map across regions and scenarios",
     "platform.statusItemFour": "breeding calculator and Health Passport",
     "mapdash.eyebrow": "Operational map",
     "mapdash.title":
-      "The map immediately shows where the breed lives, where field scenarios run, and where the cultural contour is assembled.",
+      "The map shows regional nodes, field scenarios, and the cultural layer.",
     "mapdash.text":
-      "This is not decorative. The map connects regional nodes, checks, events, routes, and the future international layer.",
+      "Profiles, kennels, events, routes, and heritage points share one geographic base.",
     "mapdash.layersAria": "Map layers",
     "mapdash.layerRegistry": "Registry",
     "mapdash.layerField": "Field scenarios",
@@ -1676,9 +1676,9 @@ export const copyCatalog = {
     "mapdash.nodeHeritageTurkistan": "cultural route and local curators",
     "mapdash.nodeHeritageParis": "international diplomacy case",
     "mapdash.registryEyebrow": "Registry layer",
-    "mapdash.registryTitle": "The map shows verified working nodes, not generic pins.",
+    "mapdash.registryTitle": "The registry is tied to the real geography of the breed.",
     "mapdash.registryText":
-      "The top layer connects population, kennels, verified profiles, and the points that already matter for public checks.",
+      "The map highlights verified clusters, review points, and regions where the working profile base is already strong.",
     "mapdash.registryMetricOne": "real regional geometry on the homepage",
     "mapdash.registryMetricTwo": "anchor clusters for verification",
     "mapdash.registryMetricThree": "single entry point into the profile",
@@ -1816,9 +1816,9 @@ export const copyCatalog = {
     "journey.exportText":
       "Quarterly snapshots, export packages, and the evidence history toward 2034 are assembled from the live log.",
     "registry.eyebrow": "Evidence registry",
-    "registry.title": "A public dog profile should replace a folder of scattered certificates.",
+    "registry.title": "The public dog profile is the core object of the platform.",
     "registry.text":
-      "The public profile shows pedigree, health, DNA, field trials, and readiness for international data export.",
+      "One card combines origin, health, DNA, field trials, and export readiness in a single verifiable object.",
     "registry.openProfile": "Open public profile",
     "registry.selectorBarys": "DNA verified · field tested",
     "registry.selectorKoke": "pedigree verified · health checked",
@@ -1833,9 +1833,9 @@ export const copyCatalog = {
       "The profile and event log are designed to generate FCI exports, not to be assembled manually before deadlines.",
     "breeders.eyebrow": "Breeder network",
     "breeders.title":
-      "The platform should not repeat the marketplace mistake where registration is visible but breeder quality is not.",
+      "The breeder network shows status, obligations, and quality of work.",
     "breeders.text":
-      "Three-tier verification, a responsible breeder code, litter declarations, and clear health-passport requirements create trust in the network, not only in an individual dog.",
+      "Participation tiers, the network code, litter declarations, and the health passport combine into one transparent professional contour.",
     "breeders.tierOwnerLabel": "Owner",
     "breeders.tierOwnerTitle": "Base tier",
     "breeders.tierOwnerText":
@@ -1869,9 +1869,9 @@ export const copyCatalog = {
     "breeders.routeCtaFci": "View public FCI progress",
     "ecosystem.eyebrow": "Geo ecosystem",
     "ecosystem.title":
-      "The next layer after the registry is a map of population, events, and heritage, not separate spreadsheets held by different people.",
+      "After the registry, the platform assembles the breed map: regions, events, routes, and heritage.",
     "ecosystem.text":
-      "The platform should connect dog profiles, kennels, field trials, cultural objects, and regional routes into one legible system.",
+      "Population geography, field trials, cultural points, and tourism scenarios read as one operational map.",
     "ecosystem.mapLabel": "Regional coverage",
     "ecosystem.mapTitle": "Population and kennel map",
     "ecosystem.mapText":
@@ -1908,9 +1908,9 @@ export const copyCatalog = {
     "ecosystem.routeCtaRegistry": "Go to registry",
     "ecosystem.routeCtaHeritage": "Open the heritage layer",
     "breeding.eyebrow": "Genetic centre",
-    "breeding.title": "Breeding here should look like population governance, not blind pair matching.",
+    "breeding.title": "Breeding works as a population-governance tool.",
     "breeding.text":
-      "The platform calculates COI, models litters, detects Popular Sire Effect, and shows risk before breeder decisions.",
+      "COI, popular sire pressure, line diversity, and litter simulation are available before the mating decision.",
     "breeding.run": "Model litter",
     "breeding.metricCoi": "Coefficient of inbreeding",
     "breeding.metricSire": "Popular sire pressure",
@@ -2016,9 +2016,9 @@ export const copyCatalog = {
     "heritage.routeCtaFci": "View FCI progress",
     "ops.eyebrow": "Institutional layer",
     "ops.title":
-      "The public track, protected workspaces, and passport layer come together as one operating contour.",
+      "Public progress, the data room, and the passport layer run as one contour.",
     "ops.text":
-      "The homepage makes clear which surfaces work outward and which remain tools for the reviewer team, the federation, and FCI packages.",
+      "From the outside you see cycle status; inside you get protected documents, exports, review workflows, and the international passport layer.",
     "ops.publicLabel": "Public layer",
     "ops.publicTitle": "Public FCI progress",
     "ops.publicText":
@@ -2041,9 +2041,9 @@ export const copyCatalog = {
     "ops.passportCta": "Open passport layer",
     "ops.milestonesAria": "Recognition cycle milestones",
     "fci.eyebrow": "Institutional contour",
-    "fci.title": "FCI, state institutions, and international partners should see a living system, not a one-off campaign before a deadline.",
+    "fci.title": "FCI, state institutions, and partners need a living evidence system.",
     "fci.text":
-      "FCI exports are built from live records: pedigrees, health, DNA, temperament, field trials, and population statistics.",
+      "Pedigrees, health, DNA, temperament, field trials, and population statistics are assembled into a permanent operating track.",
     "fci.stepOneTitle": "Preliminary recognition",
     "fci.stepOneText":
       "The FCI General Assembly places the Tazy into Group 10 and starts the formal cycle toward full recognition.",
@@ -2082,15 +2082,15 @@ export const copyCatalog = {
     "fci.routePanelReportsText":
       "The right institutional contour reduces manual reporting: pedigree depth, health coverage, and open gaps should be calculated from the live system.",
     "fci.routeCtaRegistry": "Open registry",
-    "design.eyebrow": "AV DS interface",
+    "design.eyebrow": "AV DS 4",
     "design.title":
-      "AV DS is not decoration here; it is the shared trust language for the public site, reviewer workspace, and future field app.",
+      "AV DS 4 defines one language for the public site, review workspace, and field contour.",
     "design.text":
-      "One set of tokens, states, density rules, and bilingual components should keep the platform coherent as modules appear: registration, events, reports, map, and mobile review.",
+      "Semantic tokens, density rules, states, and bilingual components keep the platform coherent as modules expand.",
     "design.tokenLabel": "Tokens",
     "design.tokenTitle": "Semantic surfaces",
     "design.tokenText":
-      "Backgrounds, cards, accents, borders, and statuses come from AV DS tokens, so dark and light themes behave consistently.",
+      "Dark and light themes are built from one AV DS 4 token layer, so surfaces, borders, and statuses behave predictably.",
     "design.stateLabel": "States",
     "design.stateTitle": "Verifiable states",
     "design.stateText":
